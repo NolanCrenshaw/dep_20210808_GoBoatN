@@ -12,11 +12,11 @@ function App() {
     // Access "auth_token" -- never pass to props
     const authCheck = window.localStorage.getItem('auth_token')
 
-  return (
-    <BrowserRoute>
-        {authCheck ? <Main/> : <Splash/>}
-    </BrowserRoute>
-  );
+    return (
+        <BrowserRoute>
+            {authCheck ? <Main/> : <Splash/>}
+        </BrowserRoute>
+    );
 }
 
 export default App;
