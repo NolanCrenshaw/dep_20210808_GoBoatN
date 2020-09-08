@@ -4,9 +4,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
+pycodestyle = "*"
+rope = "*"
 
 [packages]
 flask = "*"
+flask-cors = "*"
+flask-jwt-extended = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+sqlalchemy = "*"
+python-dotenv = "*"
+bcrypt = "*"
 
 [requires]
 python_version = "3.8"
