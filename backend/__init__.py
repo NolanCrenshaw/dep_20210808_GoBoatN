@@ -22,3 +22,9 @@ migrate = Migrate(app, db)
 
 # Blueprint Registration
 app.register_blueprint(auth, url_prefix='/auth')
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path>')
+def react_root(path):
+    return app.send_static_file('index.html')

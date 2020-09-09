@@ -8,7 +8,7 @@ const Main = () => {
     return (
         <div className="main-container">
             <h1>Hello World!</h1>
-            <h3>Main Page</h3>
+            <h3>Main Page!</h3>
         </div>
     )
 }

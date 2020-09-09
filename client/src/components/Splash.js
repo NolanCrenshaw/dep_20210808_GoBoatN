@@ -132,9 +132,11 @@ const Splash = () => {
 
     // Render
     return (
-        <div className="splash-container">
-            <h1>Hello World!</h1>
-            <h3>Splash Page</h3>
+        <div className="splash-root--container">
+            <div className="splash-window--container">
+                <div className="splash-window__background"></div>
+
+            </div>
         </div>
     )
 }
