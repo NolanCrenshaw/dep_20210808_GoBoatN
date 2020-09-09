@@ -27,4 +27,4 @@ ENV JWT_SECRET_KEY=OGNhNTdlZjRjNjBlZDBkNzliOTMzY2Fm
 EXPOSE 8000
 
 # Run flask environment
-CMD gunicorn starter_app:app
+CMD gunicorn backend:app

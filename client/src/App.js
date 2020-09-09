@@ -1,6 +1,6 @@
 // Package Requirements
 import React from 'react';
-import { BrowserRoute } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 // Local Requirements
 import Splash from './components/Splash';
@@ -13,9 +13,9 @@ function App() {
     const authCheck = window.localStorage.getItem('auth_token')
 
     return (
-        <BrowserRoute>
+        <BrowserRouter>
             {authCheck ? <Main/> : <Splash/>}
-        </BrowserRoute>
+        </BrowserRouter>
     );
 }
 
