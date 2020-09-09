@@ -5,7 +5,7 @@ from datetime import datetime
 import bcrypt
 
 # Local Requirements
-from models import db, User
+from .models import db, User
 
 
 # Blueprint Declaration

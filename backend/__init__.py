@@ -6,9 +6,9 @@ from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 
 # Local Requirements
-from models import db
-from config import Config
-from auth import auth
+from .models import db
+from .config import Config
+from .auth import auth
 
 
 # Declarations

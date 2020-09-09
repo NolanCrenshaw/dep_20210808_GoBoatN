@@ -1,10 +1,12 @@
+# Package Requirements
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, backref
 
-
+# Database Declaration
 db = SQLAlchemy()
 
 
+# Class Definitions
 class User(db.Model):
     __tablename__ = "users"
 
@@ -35,11 +37,12 @@ class User(db.Model):
         backref="user",
         lazy=False
     )
-    invites = db.relationship(
-        "Invite",
-        backref="user",
-        lazy=False
-    )
+    # -- TODO -- Causing Foreign Key Conflicts
+    # invites = db.relationship(
+    #     "Invite",
+    #     backref="user",
+    #     lazy=False
+    # )
     boaters = db.relationship(
         "Boater",
         backref="user",
@@ -98,7 +101,7 @@ class Access(db.Model):
     __tablename__ = "accesses"
 
     id = db.Column(db.Integer, primary_key=True)
-    river = db.Column(db.Integer, db.ForeignKey("rivers.id"))
+    river_id = db.Column(db.Integer, db.ForeignKey("rivers.id"))
     name = db.Column(db.String(255))
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
@@ -122,7 +125,7 @@ class Boat(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user = db.Column(
+    user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id"),
         nullable=False
@@ -152,7 +155,7 @@ class Vehicle(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user = db.Column(
+    user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id"),
         nullable=False
@@ -181,7 +184,7 @@ class Friend(db.Model):
     __tablename__ = "friends"
 
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(
+    user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id"),
         nullable=False
@@ -205,7 +208,7 @@ class Trip(db.Model):
         db.DateTime(timezone=True),
         nullable=False
     )
-    river = db.Column(
+    river_id = db.Column(
         db.Integer,
         db.ForeignKey("rivers.id"),
         nullable=False
@@ -256,7 +259,7 @@ class Invite(db.Model):
     __tablename__ = "invites"
 
     id = db.Column(db.Integer, primary_key=True)
-    trip = db.Column(
+    trip_id = db.Column(
         db.Integer,
         db.ForeignKey("trips.id"),
         nullable=False
@@ -281,21 +284,24 @@ class Boater(db.Model):
     __tablename__ = "boaters"
 
     id = db.Column(db.Integer, primary_key=True)
-    trip = db.Column(
+    trip_id = db.Column(
         db.Integer,
         db.ForeignKey("trips.id"),
         nullable=False
     )
-    user = db.Column(
+    user_id = db.Column(
         db.Integer,
         db.ForeignKey("users.id"),
         nullable=False
     )
-    boat = db.Column(db.Integer, db.ForeignKey("boats.id"))
-    transport = db.Column(db.Integer, db.ForeignKey("transports.id"))
+    boat_id = db.Column(db.Integer, db.ForeignKey("boats.id"))
+    vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicles.id"))
     driver = db.Column(db.Boolean)
     meet_at = db.Column(db.String(255))
     date_added = db.Column(
         db.DateTime(timezone=True),
         nullable=False
     )
+
+
+

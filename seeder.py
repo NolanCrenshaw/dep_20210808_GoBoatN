@@ -6,8 +6,8 @@ load_dotenv()
 from datetime import datetime  # noqa
 
 # Local Requirements
-from backend import app, db  # noqa
-from backend.models.py import User  # noqa
+from backend import app  # noqa
+from backend.models import db, User  # noqa
 from backend.auth import set_password  # noqa
 
 
