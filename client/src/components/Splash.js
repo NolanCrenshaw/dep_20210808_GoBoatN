@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AUTH_URL } from "../config";
-
+import { AUTH_URL } from '../config';
+import '../styles/splash.css';
 
 // Authorization
 const token = window.localStorage.getItem("auth_token");
@@ -134,8 +134,12 @@ const Splash = () => {
     return (
         <div className="splash-root--container">
             <div className="splash-window--container">
-                <div className="splash-window__background"></div>
+                <div className="splash-window__margin swmleft"></div>
+                <div className="splash-window__center--main">
 
+                    <div className="splash-logo--container"></div>
+                </div>
+                <div className="splash-window__margin swmright"></div>
             </div>
         </div>
     )

@@ -1,0 +1,42 @@
+.splash-root--container {
+    scrollbar-width: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: static;
+
+}
+.splash-window--container {
+    width: 95vw;
+    height: 85vh;
+    margin-top: 10vh;
+    border-radius: 50px;
+    background-color: #25A18E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.splash-window__margin {
+    width: 30%;
+    height: 100%;
+    /* background-color: #7AE582; */
+}
+.splash-window__center--main {
+    width: 40%;
+    height: 92%;
+    background-color: #004E64;
+    border-radius: 20px;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash-logo--container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    top: -260px;
+    border-radius: 360px;
+    background-color: rgb(238, 169, 203);
+}
