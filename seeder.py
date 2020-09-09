@@ -1,14 +1,15 @@
 # Package Requirements
 from dotenv import load_dotenv
-from datetime import datetime
-
-# Local Requirements
-from backend import app, db
-from backend.models import User
-from backend.auth import set_password
-
 # Access Environment Variables
 load_dotenv()
+
+from datetime import datetime  # noqa
+
+# Local Requirements
+from backend import app, db  # noqa
+from backend.models.py import User  # noqa
+from backend.auth import set_password  # noqa
+
 
 hash = set_password("password")
 
