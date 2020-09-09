@@ -9,23 +9,23 @@ const token = window.localStorage.getItem("auth_token");
 const Splash = () => {
 
     // Log in State & Listen
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const updateEmail = e => setEmail(e.target.value);
     const updatePassword = e => setPassword(e.target.value);
 
     // Sign up State & Listen
     const [username, setUsername] = useState();
-    const [emailSignup, setEmail] = useState();
-    const [passwordSignup, setPassword] = useState();
+    const [emailSignup, setEmailSignup] = useState();
+    const [passwordSignup, setPasswordSignup] = useState();
     const [confirm, setConfirm] = useState();
     const [firstname, setFirstname] = useState();
     const [lastname, setLastname] = useState();
     const [zipcode, setZipcode] = useState();
     const updateUsername = e => setUsername(e.target.value);
-    const updateEmail = e => setEmail(e.target.value);
-    const updatePassword = e => setPassword(e.target.value);
-    const updatePasswordConfirm = e => setPasswordConfirm(e.target.value);
+    const updateEmailSignup = e => setEmailSignup(e.target.value);
+    const updatePasswordSignup = e => setPasswordSignup(e.target.value);
+    const updateConfirm = e => setConfirm(e.target.value);
     const updateFirstname = e => setFirstname(e.target.value);
     const updateLastname = e => setLastname(e.target.value);
     const updateZipcode = e => setZipcode(e.target.value);
@@ -53,15 +53,15 @@ const Splash = () => {
 
     // Sign up Function
     const signup = async () => {
-        if (password !== confirm) {
+        if (passwordSignup !== confirm) {
             // -- TODO -- Handling
             console.log('signup password !== confirm');
             return;
         };
         const user = {
             username: username,
-            email: email,
-            password: password,
+            email: emailSignup,
+            password: passwordSignup,
             firstname: firstname,
             lastname: lastname,
             zipcode: zipcode,
@@ -112,7 +112,7 @@ const Splash = () => {
         setTimeout(ghostWritePassword, speed*demoEmail.length);
 
         const demo = async () => {
-            const response = await fetch(`${API_URL}/auth/login`, {
+            const response = await fetch(`${AUTH_URL}/login`, {
                 method: "POST",
                 mode: "cors",
                 headers: { "Content-Type": "application/json" },

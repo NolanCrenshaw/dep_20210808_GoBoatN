@@ -1,9 +1,3 @@
-# -- River Runner --
-# -- >>> React/Flask/Postgres --
-# -- >>> by Nolan Crenshaw --
-# -- >>> app.py <<< -- (serves as "__init__.py")
-
-
 # Package Requirements
 import os
 from flask import Flask, render_template, request
