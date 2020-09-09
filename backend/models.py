@@ -63,7 +63,7 @@ class User(db.Model):
         }
 
 
-class River(db.Models):
+class River(db.Model):
     __tablename__ = "rivers"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -103,7 +103,7 @@ class Access(db.Model):
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
     latitude = db.Column(db.Integer)
-    longitude = db.Column(db.Intger)
+    longitude = db.Column(db.Integer)
 
     def to_dict(self, river):
         return {
@@ -123,8 +123,8 @@ class Boat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     user = db.Column(
-        db.Intger,
-        ForeignKey("users.id"),
+        db.Integer,
+        db.ForeignKey("users.id"),
         nullable=False
     )
     make = db.Column(db.String(255), nullable=False)
@@ -154,7 +154,7 @@ class Vehicle(db.Model):
     name = db.Column(db.String(255), nullable=False)
     user = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
     make = db.Column(db.String(255), nullable=False)
@@ -183,12 +183,12 @@ class Friend(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
     friend = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
     date_added = db.Column(
@@ -197,7 +197,7 @@ class Friend(db.Model):
     )
 
 
-class Trip(db.Models):
+class Trip(db.Model):
     __tablename__ = "trips"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -258,17 +258,17 @@ class Invite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trip = db.Column(
         db.Integer,
-        ForeignKey("trips.id"),
+        db.ForeignKey("trips.id"),
         nullable=False
     )
     sender = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
     receiver = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
     date_added = db.Column(
@@ -283,16 +283,16 @@ class Boater(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trip = db.Column(
         db.Integer,
-        ForeignKey("trips.id")
+        db.ForeignKey("trips.id"),
         nullable=False
     )
     user = db.Column(
         db.Integer,
-        ForeignKey("users.id"),
+        db.ForeignKey("users.id"),
         nullable=False
     )
-    boat = db.Column(db.Integer, ForeignKey("boats.id"))
-    transport = db.Column(db.Integer, ForeignKey("transports.id"))
+    boat = db.Column(db.Integer, db.ForeignKey("boats.id"))
+    transport = db.Column(db.Integer, db.ForeignKey("transports.id"))
     driver = db.Column(db.Boolean)
     meet_at = db.Column(db.String(255))
     date_added = db.Column(

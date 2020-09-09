@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
 
 # Local Requirements
 from models import db
@@ -16,6 +17,7 @@ app.config.from_object(Config)
 CORS(app)
 jwt = JWTManager(app)
 db.init_app(app)
+migrate = Migrate(app, db)
 
 
 # Blueprint Registration
