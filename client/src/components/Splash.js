@@ -30,7 +30,7 @@ const Splash = () => {
 
     // Log in Function
     const login = async () => {
-        const res = await fetch(`${AUTH_URL}/`, {
+        const res = await fetch(`${AUTH_URL}/login`, {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },

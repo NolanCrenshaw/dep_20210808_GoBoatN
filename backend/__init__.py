@@ -1,6 +1,6 @@
 # Package Requirements
 import os
-from flask import Flask, render_template, request
+from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
@@ -9,6 +9,7 @@ from flask_migrate import Migrate
 from .models import db
 from .config import Config
 from .auth import auth
+from .api.users import user
 
 
 # Declarations
@@ -22,9 +23,11 @@ migrate = Migrate(app, db)
 
 # Blueprint Registration
 app.register_blueprint(auth, url_prefix='/auth')
+app.register_blueprint(user, url_prefix='/api/user')
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path>')
-def react_root(path):
-    return app.send_static_file('index.html')
+# Default Routing
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path>')
+# def react_root(path):
+#     return app.send_static_file('index.html')
