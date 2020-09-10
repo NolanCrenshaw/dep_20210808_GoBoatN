@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { AUTH_URL } from '../config';
 import '../styles/splash.css';
 
-// Authorization
-const token = window.localStorage.getItem("auth_token");
 
 // React Component
 const Splash = () => {
@@ -89,8 +87,12 @@ const Splash = () => {
 
     // Demo User Function
     const demoUser = async () => {
-        const demoEmail = "demo@riverrunner.com", demoPassword = "demoShow123";
-        const speed = 50, i = 1, j = 1;
+        const demoEmail = "demo@goboatn.com", demoPassword = "demoShow123";
+        const speed = 50
+        let i = 1, j = 1;
+
+        setEmail("")
+        setPassword("")
 
         const ghostWriteEmail = () => {
             if (i <= demoEmail.length) {
@@ -133,40 +135,65 @@ const Splash = () => {
     // Render
     return (
         <div className="splash-root--container">
-            <div className="splash-window--container">
-                <div className="splash-window__margin swmleft"></div>
-                <div className="splash-window__center--main">
+            <div className="splash--container">
+                <div className="splash__margin swmleft"></div>
+                <div className="splash__center--main">
 
                     {/* <div className="splash-logo--container">
                         <div className="splash-logo__image">
                             <span>Logo</span>
                         </div>
                     </div> */}
-                    <div className="splash-window__form--container">
-                        <input
-                            className="splash-window__login-inputs"
-                            id="splash-login__email"
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={updateEmail} />
-                        <input
-                            className="splash-window__login-inputs"
-                            id="splash-login__password"
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={updatePassword} />
-                        <div
-                            className="splash-window__login-button-c"
-                            onClick={login}>
-                            <div className="splash-window__login-button">
-                                <span>Log in</span>
+                    <div className="splash__form--container">
+                        <div className="splash__form--login-c">
+                            <input
+                                className="splash__inputs"
+                                id="splash-login__email"
+                                type="email"
+                                placeholder="Email"
+                                value={email}
+                                onChange={updateEmail} />
+                            <input
+                                className="splash__inputs"
+                                id="splash-login__password"
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={updatePassword} />
+                            <div
+                                className="splash__button-c"
+                                onClick={login}>
+                                <div
+                                    className="splash__button"
+                                    id="splash__button--login">
+                                    <span>Log in</span>
+                                </div>
                             </div>
+                            <div className="splash__divider"/>
+                            <div
+                                className="splash__button-c"
+                                onClick={demoUser}>
+                                <div
+                                    className="splash__button"
+                                    id="splash__button--demo">
+                                    <span>Demo User</span>
+                                </div>
                             </div>
+                            <div className="splash__divider"/>
+                            <div
+                                className="splash__button-c"
+                                onClick={demoUser}>
+                                <div
+                                    className="splash__button"
+                                    id="splash__button--signup">
+                                    <span>Sign up</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-                <div className="splash-window__margin swmright"></div>
+                <div className="splash__margin swmright"></div>
             </div>
         </div>
     )
