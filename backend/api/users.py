@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # Local Requirements
-from models import db, User
+from ..models import db, User
 
 
 # Blueprint Declaration
@@ -11,11 +11,17 @@ user = Blueprint('users', __name__)
 
 
 # Routes
-@user.route('/<id>', methods=["GET"])
+# @user.route('/csrf')
+# def send_csrf():
+#     try:
+#         return jsonify(message="csurf set"), 200
+
+
+@user.route('/<id>')
 @jwt_required
 def user_by_id(id):
-    user = User.query.get(int(id))
-    return jsonify(user.to_safe_object())
+    user = User.query.filter_by(id=id).first()
+    return jsonify(user=user.to_safe_object())
 
 
 @user.route('/token', methods=["GET"])

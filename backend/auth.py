@@ -9,7 +9,7 @@ from .models import db, User
 
 
 # Blueprint Declaration
-auth = Blueprint('auth', __name__)
+auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 # Password Hashing & Verify Functions
@@ -28,7 +28,7 @@ def verify_password(password, hashed_password):
 
 
 # Routes
-@auth.route('/', methods=["POST"])
+@auth.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
     try:
@@ -39,7 +39,9 @@ def login():
         elif not password:
             return jsonify(message='Password Required'), 400
 
+        # Query
         user = User.query.filter_by(email=email).first()
+
         if not user:
             return jsonify(message='Email Not Valid'), 400
 
