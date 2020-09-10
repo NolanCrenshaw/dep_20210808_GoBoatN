@@ -1,0 +1,127 @@
+.splash-root--container {
+    scrollbar-width: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: static;
+
+}
+.splash--container {
+    /* width: 96vw;
+    height: 96vh;
+    margin-top: 2vh;
+    border-radius: 25px; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/josh-wedgwood-river-etive-unsplash.jpg);
+    background-size: cover;
+    box-shadow: 20px 20px 10px #25A18E;
+
+}
+.splash__margin {
+    /* width: 30%;
+    height: 100%; */
+    /* background-color: #7AE582; */
+}
+.splash__center--main {
+    width: 40%;
+    height: 92%;
+    min-width: 325px;
+    background-color: #0077B6;
+    border-radius: 20px;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.splash-logo--container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    /* top: -260px; */
+    border-radius: 360px;
+    background-color: rgb(238, 169, 203);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash-logo__image {
+    width: 370px;
+    height: 370px;
+    border-radius: 360px;
+    background-color: rgb(100, 114, 197);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash__form--container {
+    width: 90%;
+    height: 70%;
+    background-color: #48CAE4;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.splash__form--login-c {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(125, 78, 235); */
+}
+.splash__form--login-c span {
+    color: #023E8A;
+    font-size: calc(20px + 1vw);
+    font-weight: 700;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+.splash__inputs {
+    width: 95%;
+    height: 40px;
+    max-width: 300px;
+    margin: 5px 0 5px 0;
+    border: 3px solid #023E8A;
+    box-shadow: 5px 5px 5px black;
+    background-color: #CAF0F8;
+    font-size: calc(6px + 1vw);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+.splash__button-c {
+    width: 90%;
+    height: 40px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 0 0;
+    border: 3px solid #023E8A;
+    border-radius: 90px;
+    background-color: #CAF0F8;
+    box-shadow: 5px 5px 5px black;
+    cursor: pointer;
+}
+.splash__button-c:hover {
+    background-color: #023E8A;
+}
+.splash__button span {
+    font-weight: 900;
+    font-size: calc(4px + 1vw);
+}
+.splash__button-c:hover span {
+    color: white;
+}
+.splash__divider {
+    width: 70%;
+    height: 0;
+    margin: 20px 0 0 20px;
+    border: 1px solid #023E8A;
+    border-radius: 100%;
+}
+
+

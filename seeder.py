@@ -12,10 +12,21 @@ from backend.auth import set_password  # noqa
 
 
 hash = set_password("password")
+demo_hash = set_password("demoShow123")
 
 with app.app_context():
     db.drop_all()
     db.create_all()
+
+    Demo = User(
+        username="DemoUser",
+        email="demo@goboatn.com",
+        hashed_password=demo_hash,
+        firstname="Demo",
+        lastname="Rivers",
+        zipcode=37409,
+        date_added=datetime.now()
+    )
 
     Bob = User(
         username="Bobtest",
@@ -54,6 +65,7 @@ with app.app_context():
         date_added=datetime.now()
     )
 
+    db.session.add(Demo)
     db.session.add(Bob)
     db.session.add(Kim)
     db.session.add(Swym)
