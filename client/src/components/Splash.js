@@ -91,9 +91,11 @@ const Splash = () => {
         const speed = 50
         let i = 1, j = 1;
 
+        // Clear Inputs
         setEmail("")
         setPassword("")
 
+        // Ghost Writer Functions
         const ghostWriteEmail = () => {
             if (i <= demoEmail.length) {
                 let text = demoEmail.slice(0,i);
@@ -113,6 +115,7 @@ const Splash = () => {
         ghostWriteEmail();
         setTimeout(ghostWritePassword, speed*demoEmail.length);
 
+        // Demo Fetch Function
         const demo = async () => {
             const response = await fetch(`${AUTH_URL}/login`, {
                 method: "POST",
