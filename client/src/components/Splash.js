@@ -137,7 +137,34 @@ const Splash = () => {
                 <div className="splash-window__margin swmleft"></div>
                 <div className="splash-window__center--main">
 
-                    <div className="splash-logo--container"></div>
+                    {/* <div className="splash-logo--container">
+                        <div className="splash-logo__image">
+                            <span>Logo</span>
+                        </div>
+                    </div> */}
+                    <div className="splash-window__form--container">
+                        <input
+                            className="splash-window__login-inputs"
+                            id="splash-login__email"
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={updateEmail} />
+                        <input
+                            className="splash-window__login-inputs"
+                            id="splash-login__password"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={updatePassword} />
+                        <div
+                            className="splash-window__login-button-c"
+                            onClick={login}>
+                            <div className="splash-window__login-button">
+                                <span>Log in</span>
+                            </div>
+                            </div>
+                    </div>
                 </div>
                 <div className="splash-window__margin swmright"></div>
             </div>

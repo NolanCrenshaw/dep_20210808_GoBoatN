@@ -29,6 +29,7 @@
     background-color: #004E64;
     border-radius: 20px;;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -36,7 +37,25 @@
     width: 400px;
     height: 400px;
     position: relative;
-    top: -260px;
+    /* top: -260px; */
     border-radius: 360px;
     background-color: rgb(238, 169, 203);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash-logo__image {
+    width: 370px;
+    height: 370px;
+    border-radius: 360px;
+    background-color: rgb(100, 114, 197);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.splash-window__form--container {
+    width: 90%;
+    height: 70%;
+    background-color: white;
+    border-radius: 20px;
 }
