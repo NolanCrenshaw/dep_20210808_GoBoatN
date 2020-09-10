@@ -13,6 +13,8 @@ const Main = () => {
     const [user, setUser] = useState({})
     const [caput, setCaput] = useState("landing");
 
+    // Component Variables
+    const profile_pic = user.profile_pic || require('../images/default-profile-pic.jpg')
 
     useEffect(() => {
         // Fetch User by <auth_token>
@@ -51,17 +53,17 @@ const Main = () => {
                     </div>
                     <div className="main__vita">
                         <div className="vita__profile-pic">
-
+                            <img src={profile_pic}/>
                         </div>
                         <div className="vita-bio--container">
                             <div className="vita-bio__username">
                                 <span>{ user.username }</span>
                             </div>
-                            <div className="vita-bio__firstname">
-                                <span>{ user.firstname }</span>
+                            <div className="vita-bio__name">
+                                <span>{ user.firstname } { user.lastname }</span>
                             </div>
-                            <div className="vita-bio__lastname">
-                                <span>{ user.lastname }</span>
+                            <div className="vita-bio__email">
+                                <span>{ user.email }</span>
                             </div>
                         </div>
                     </div>
