@@ -15,7 +15,7 @@ from .api.vehicles import vehicle
 
 
 # Declarations
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="")
 app.config.from_object(Config)
 CORS(app)
 jwt = JWTManager(app)
