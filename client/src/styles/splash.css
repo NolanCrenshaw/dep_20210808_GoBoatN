@@ -125,11 +125,15 @@
     border: 1px solid #023E8A;
     border-radius: 100%;
 }
-.splash__center--credit {
+.splash__center--credit-c {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     bottom: -200px;
 }
-
+.splash__center--credit span {
+    color: #023E8A;
+    margin: 15px;
+    font-family: 'Raleway', sans-serif;
+}

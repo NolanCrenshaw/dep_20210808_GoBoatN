@@ -16,6 +16,13 @@ const Main = () => {
     // Component Variables
     const profile_pic = user.profile_pic || require('../images/jpg/default-profile-pic.jpg')
 
+    // Functions
+    const logout = () => {
+        window.localStorage.removeItem('auth_token');
+        window.location.reload();
+    }
+
+    // Component Based Functions
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
@@ -51,27 +58,43 @@ const Main = () => {
                             <div
                                 className="main-header__button"
                                 id="main-header__button--one">
-                                <span>One</span>
+                                <span>Add a boat</span>
                             </div>
+                            <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
                                 id="main-header__button--two">
-                                <span>Two</span>
+                                <span>Add a vehicle</span>
                             </div>
+                            <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
                                 id="main-header__button--three">
-                                <span>Three</span>
+                                <span>Create a trip</span>
+                            </div>
+                            <div className="main-switch-board__graf-c">
+                                <span>Go Boat</span>
+                                <span className="main-switch__graf--odd">i</span>
+                                <span>n</span>
+                                <span className="main-switch__graf--odd">g</span>
                             </div>
                             <div
                                 className="main-header__button"
                                 id="main-header__button--four">
-                                <span>Four</span>
+                                <span>Search for trips</span>
                             </div>
+                            <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
                                 id="main-header__button--five">
-                                <span>Five</span>
+                                <span>Settings</span>
+                            </div>
+                            <div className="main-switch-board__divider"/>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--six"
+                                onClick={logout}>
+                                <span>Log out</span>
                             </div>
                         </div>
                     </div>

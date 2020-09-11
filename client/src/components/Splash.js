@@ -182,8 +182,7 @@ const Splash = () => {
                                 </div>
                                 <div className="splash__divider"/>
                                 <div
-                                    className="splash__button-c"
-                                    onClick={demoUser}>
+                                    className="splash__button-c">
                                     <div
                                         className="splash__button"
                                         id="splash__button--signup">
@@ -194,10 +193,12 @@ const Splash = () => {
                         </div>
 
                     </div>
-                    <div className="splash__center--credit">
-                        <span>
-                            Photo by <a href="https://unsplash.com/@j_wedge?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Josh Wedgwood</a> on <a href="https://unsplash.com/s/photos/river-etive?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-                        </span>
+                    <div className="splash__center--credit-c">
+                        <div className="splash__center--credit">
+                            <span>
+                                Photo by <a href="https://unsplash.com/@j_wedge?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Josh Wedgwood</a> on <a href="https://unsplash.com/s/photos/river-etive?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div className="splash__margin swmright">

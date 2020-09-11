@@ -8,15 +8,30 @@
 .landing {}
 .landing__picture-box {
     width: 100%;
-    height: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     background-image: url(../images/jpg/michael-niessl-x_gyAYzyeQA-unsplash.jpg);
-    background-size: 100%;
+    background-size: 1200px;
+    overflow: hidden;
     background-repeat: no-repeat;
     background-position-y: -250px;
     border-radius: 50px 50px 0 0;
 }
-.landing__picture-box span {
-    position: relative;
-    top: 270px;
-    left: 700px;
+.landing__picture-box div {
+    margin: 10px;
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.landing__picture-box--credit-c span {
+    color: #023E8A;
+    margin: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Raleway', sans-serif;
+}
+.landing__picture-box--credit-c a {
+    color: #023E8A;
 }
