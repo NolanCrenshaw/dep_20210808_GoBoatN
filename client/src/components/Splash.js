@@ -105,9 +105,9 @@ const Splash = () => {
                     <div className="splash__center--logo">
                         <div className="splash__logo">
                             <span>Go Boat</span>
-                            <span className="main-switch__graf--odd">i</span>
+                            <span className="splash__logo--odd">i</span>
                             <span>n</span>
-                            <span className="main-switch__graf--odd">g</span>
+                            <span className="splash__logo--odd">g</span>
                             <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
                         </div>
                     </div>

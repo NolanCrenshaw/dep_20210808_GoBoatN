@@ -15,25 +15,33 @@
     background-size: cover;
 }
 .splash__margin {}
-.splash-logo--container {
-    width: 400px;
-    height: 400px;
-    position: relative;
-    /* top: -260px; */
-    border-radius: 360px;
-    background-color: rgb(238, 169, 203);
+.splash__center--logo {
+    width: 470px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    background-color: #0077B6;
+    margin-top: -30%;
+    margin-bottom: 20%;
 }
-.splash-logo__image {
-    width: 370px;
-    height: 370px;
-    border-radius: 360px;
-    background-color: rgb(100, 114, 197);
+.splash__logo {
+    width: 90%;
+    height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
+    background-color: #48CAE4;
+}
+.splash__logo {
+    color: #03045E;
+    font-size: 48px;
+    font-family: 'Shrikhand', cursive;
+}
+.splash__logo--odd {
+    color: white;
 }
 .splash__center--main {
     width: 470px;

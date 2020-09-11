@@ -10,11 +10,9 @@ const Main = () => {
 
     // State
     const [user, setUser] = useState({})
-    const [userPic, setUserPic] = useState("../images/jpg/default-profile-pic.jpg")
     const [caput, setCaput] = useState("landing");
 
-
-    let profile_pic = require("../images/jpg/default-profile-pic.jpg");
+    const profile_pic = require("../images/jpg/default-profile-pic.jpg");
 
     // Set Profile Picture Function
     // const profileSetter = () => {
