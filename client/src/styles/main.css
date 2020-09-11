@@ -4,15 +4,13 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     position: static;
+    scrollbar-width: none;
 }
 .main--container {
     width: 100vw;
     height: 100vh;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* align-items: center; */
     overflow-x: hidden;
+    scrollbar-width: none;
 }
 .main__header {
     width: 100vw;
@@ -30,7 +28,7 @@
 .main-header__left {
     width: 8%;
     height: 100%;
-    /* background-color: cadetblue; */
+    z-index: 1;
 }
 .main-header__bulk {
     width: 84%;
@@ -38,7 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: burlywood; */
+    z-index: 1;
 }
 .main-header__switch-board {
     display: flex;
@@ -72,7 +70,7 @@
     color: white;
 }
 .main-switch-board__graf-c {
-    width: 200px;
+    width: 250px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -96,11 +94,15 @@
 .main-header__right {
     width: 8%;
     height: 100%;
-    /* background-color: crimson; */
+    z-index: 1;
 }
 .main__body {
     width: 100%;
     height: 100%;
+}
+.main__body--elements {
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-evenly;
 }
@@ -123,12 +125,12 @@
 }
 .main__vita {
     width: 20%;
-    height: 95%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 40px;
     background-color: rgb(14, 95, 122);
@@ -143,14 +145,13 @@
     box-shadow: 8px 8px 20px rgb(1, 1, 34);
     background-color: blue;
     position: relative;
-    top: -35%;
-    z-index: 2;
+    top: -5%;
+    z-index: 0;
 }
 .vita__profile-pic img {
     max-width: 100%;
     position: relative;
     border-radius: 180px;
-    z-index: 3;
 }
 .vita-bio--container {
     width: 85%;
@@ -163,7 +164,7 @@
     border-radius: 20px;
     box-shadow: 4px 4px 20px black;
     position: relative;
-    top: -240px;
+    /* top: -240px; */
     background-color: burlywood;
 }
 .vita-bio--container div {
@@ -174,4 +175,11 @@
     font-size: 18px;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
+}
+.main__body--footer {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    background-color: blueviolet;
+    scrollbar-width: none;
 }

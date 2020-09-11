@@ -9,7 +9,7 @@ from .models import db, User
 
 
 # Blueprint Declaration
-auth = Blueprint('auth', __name__, url_prefix='/auth')
+auth = Blueprint('auth', __name__)
 
 
 # Password Hashing & Verify Functions
