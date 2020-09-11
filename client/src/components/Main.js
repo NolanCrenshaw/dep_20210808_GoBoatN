@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_URL } from '../config';
 import Landing from './Landing'
 import '../styles/main.css';
-
+import { imageURL, canoeBackgroundSlice } from '../images/canoe-background-slice';
 
 const token = window.localStorage.getItem("auth_token");
 
@@ -14,7 +14,7 @@ const Main = () => {
     const [caput, setCaput] = useState("landing");
 
     // Component Variables
-    const profile_pic = user.profile_pic || require('../images/default-profile-pic.jpg')
+    const profile_pic = user.profile_pic || require('../images/jpg/default-profile-pic.jpg')
 
     useEffect(() => {
         // Fetch User by <auth_token>
@@ -44,7 +44,39 @@ const Main = () => {
     return (
         <div className="main-root--container">
             <div className="main--container">
-                <div className="main__header"></div>
+                <div className="main__header">
+                    <div className="main-header__left"></div>
+                    <div className="main-header__bulk">
+                        <div className="main-header__switch-board">
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--one">
+                                <span>One</span>
+                            </div>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--two">
+                                <span>Two</span>
+                            </div>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--three">
+                                <span>Three</span>
+                            </div>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--four">
+                                <span>Four</span>
+                            </div>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--five">
+                                <span>Five</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="main-header__right"></div>
+                </div>
                 <div className="main__body">
                     <div className="main__caput">
                         <div className="main__caput--switch">

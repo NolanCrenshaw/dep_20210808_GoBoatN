@@ -140,63 +140,68 @@ const Splash = () => {
         <div className="splash-root--container">
             <div className="splash--container">
                 <div className="splash__margin swmleft"></div>
-                <div className="splash__center--main">
+                <div className="splash__center">
+                    <div className="splash__center--logo">
 
-                    {/* <div className="splash-logo--container">
-                        <div className="splash-logo__image">
-                            <span>Logo</span>
-                        </div>
-                    </div> */}
-                    <div className="splash__form--container">
-                        <div className="splash__form--login-c">
-                            <input
-                                className="splash__inputs"
-                                id="splash-login__email"
-                                type="email"
-                                placeholder="Email"
-                                value={email}
-                                onChange={updateEmail} />
-                            <input
-                                className="splash__inputs"
-                                id="splash-login__password"
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={updatePassword} />
-                            <div
-                                className="splash__button-c"
-                                onClick={login}>
-                                <div
-                                    className="splash__button"
-                                    id="splash__button--login">
-                                    <span>Log in</span>
-                                </div>
-                            </div>
-                            <div className="splash__divider"/>
-                            <div
-                                className="splash__button-c"
-                                onClick={demoUser}>
-                                <div
-                                    className="splash__button"
-                                    id="splash__button--demo">
-                                    <span>Demo User</span>
-                                </div>
-                            </div>
-                            <div className="splash__divider"/>
-                            <div
-                                className="splash__button-c"
-                                onClick={demoUser}>
-                                <div
-                                    className="splash__button"
-                                    id="splash__button--signup">
-                                    <span>Sign up</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    <div className="splash__center--main">
+                        <div className="splash__form--container">
+                            <div className="splash__form--login-c">
+                                <input
+                                    className="splash__inputs"
+                                    id="splash-login__email"
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={updateEmail} />
+                                <input
+                                    className="splash__inputs"
+                                    id="splash-login__password"
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={updatePassword} />
+                                <div
+                                    className="splash__button-c"
+                                    onClick={login}>
+                                    <div
+                                        className="splash__button"
+                                        id="splash__button--login">
+                                        <span>Log in</span>
+                                    </div>
+                                </div>
+                                <div className="splash__divider"/>
+                                <div
+                                    className="splash__button-c"
+                                    onClick={demoUser}>
+                                    <div
+                                        className="splash__button"
+                                        id="splash__button--demo">
+                                        <span>Demo User</span>
+                                    </div>
+                                </div>
+                                <div className="splash__divider"/>
+                                <div
+                                    className="splash__button-c"
+                                    onClick={demoUser}>
+                                    <div
+                                        className="splash__button"
+                                        id="splash__button--signup">
+                                        <span>Sign up</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div className="splash__center--credit">
+                        <span>
+                            Photo by <a href="https://unsplash.com/@j_wedge?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Josh Wedgwood</a> on <a href="https://unsplash.com/s/photos/river-etive?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+                        </span>
+                    </div>
                 </div>
-                <div className="splash__margin swmright"></div>
+                <div className="splash__margin swmright">
+                </div>
             </div>
         </div>
     )

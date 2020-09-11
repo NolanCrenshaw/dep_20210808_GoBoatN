@@ -20,9 +20,58 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     background-color: teal;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.308);
     z-index: 1;
+}
+.main-header__left {
+    width: 20%;
+    height: 100%;
+    background-color: cadetblue;
+}
+.main-header__bulk {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+}
+.main-header__switch-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.main-header__button {
+    width: 170px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 10px 0 10px;
+    border: 5px solid rgb(216, 27, 27);
+    border-radius: 20% 10px 20% 10px;
+    cursor: pointer;
+}
+.main-header__button:hover {
+    background-color:rgb(216, 27, 27);
+}
+.main-header__button span {
+    color: rgb(216, 27, 27);
+    font-size: 24px;
+    font-weight: 1000;
+    font-family: 'Roboto', sans-serif;
+}
+.main-header__button:hover span {
+    color: white;
+}
+.main-header__right {
+    width: 20%;
+    height: 100%;
+    background-color: crimson;
 }
 .main__body {
     width: 100%;
@@ -38,7 +87,7 @@
     align-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
-    border-radius: 40px;
+    border-radius: 50px;
     background-color: rgb(191, 191, 241);
     box-shadow: 15px 15px 10px rgb(99, 91, 91);
 }
@@ -47,7 +96,7 @@
     height: 95%;
     margin-top: 10px;
     border: 1px dotted black;
-    border-radius: 20px;
+    border-radius: 50px;
 }
 .main__vita {
     width: 20%;
@@ -64,11 +113,9 @@
     position: static;
 }
 .vita__profile-pic {
-    /* width: 250px;
-    height: 250px; */
     width: 70%;
     height: auto;
-    border: 5px solid blue;
+    border: 3px solid blue;
     border-radius: 180px;
     box-shadow: 8px 8px 20px rgb(1, 1, 34);
     background-color: blue;
@@ -78,9 +125,9 @@
 }
 .vita__profile-pic img {
     max-width: 100%;
-    position: relative;
-    top: 2px;
+    /* position: relative; */
     border-radius: 180px;
+    z-index: 2;
 }
 .vita-bio--container {
     width: 85%;
@@ -88,20 +135,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border: 2px solid black;
     border-radius: 20px;
     box-shadow: 4px 4px 20px black;
     position: relative;
-    top: -260px;
+    top: -240px;
     background-color: burlywood;
 }
 .vita-bio--container div {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 0 5px 20px;
 }
 .vita-bio--container span {
     color: blue;
-    font-size: calc(4px + 1vw);
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
 }

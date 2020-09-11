@@ -16,25 +16,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../images/josh-wedgwood-river-etive-unsplash.jpg);
+    background-image: url(../images/jpg/josh-wedgwood-river-etive-unsplash.jpg);
     background-size: cover;
 }
 .splash__margin {
     /* width: 30%;
     height: 100%; */
     /* background-color: #7AE582; */
-}
-.splash__center--main {
-    width: 470px;
-    height: 420px;
-    min-width: 325px;
-    background-color: #0077B6;
-    border-radius: 20px;;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.699);
 }
 .splash-logo--container {
     width: 400px;
@@ -55,6 +43,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.splash__center--main {
+    width: 470px;
+    height: 420px;
+    min-width: 400px;
+    background-color: #0077B6;
+    border-radius: 20px;;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.699);
 }
 .splash__form--container {
     width: 90%;
@@ -79,8 +79,8 @@
 .splash__form--login-c span {
     color: #023E8A;
     font-size: calc(20px + 1vw);
-    font-weight: 700;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
 }
 .splash__inputs {
     width: 95%;
@@ -91,8 +91,8 @@
     border-radius: 5px;
     box-shadow: 5px 5px 5px #024e74;
     background-color: #CAF0F8;
-    font-size: calc(6px + 1vw);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
 }
 .splash__button-c {
     width: 90%;
@@ -113,7 +113,7 @@
 }
 .splash__button span {
     font-weight: 900;
-    font-size: calc(4px + 1vw);
+    font-size: 24px;
 }
 .splash__button-c:hover span {
     color: white;
@@ -125,5 +125,11 @@
     border: 1px solid #023E8A;
     border-radius: 100%;
 }
-
+.splash__center--credit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: -200px;
+}
 
