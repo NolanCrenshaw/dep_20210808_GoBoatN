@@ -40,6 +40,9 @@
     font-size: 48px;
     font-family: 'Shrikhand', cursive;
 }
+.splash__logo img {
+    margin-left: 20px;
+}
 .splash__logo--odd {
     color: white;
 }
