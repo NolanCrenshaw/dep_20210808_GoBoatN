@@ -10,10 +10,20 @@ const Main = () => {
 
     // State
     const [user, setUser] = useState({})
+    const [userPic, setUserPic] = useState("../images/jpg/default-profile-pic.jpg")
     const [caput, setCaput] = useState("landing");
 
-    // Component Variables
-    const profile_pic = user.profile_pic || require('../images/jpg/default-profile-pic.jpg')
+
+    let profile_pic = require("../images/jpg/default-profile-pic.jpg");
+
+    // Set Profile Picture Function
+    // const profileSetter = () => {
+    //     if (user.profile_pic) {
+    //         const pro_pic = user.profile_pic
+    //         // profile_pic = require(`${pro_pic}`)
+    //         console.log("propic -->", pro_pic)
+    //     }
+    // }
 
     // Log out Function
     const logout = () => {
@@ -22,15 +32,15 @@ const Main = () => {
     }
 
     // Caput Toggle Function
-    const toggleCaput = screen => {
-        if (screen === "landing") {
-            setCaput("landing");
-        } else if (screen === "boats") {
-            setCaput("boats");
-        } else if (screen === "vehicles") {
-            setCaput("vehicles");
-        }
-    }
+    // const toggleCaput = screen => {
+    //     if (screen === "landing") {
+    //         setCaput("landing");
+    //     } else if (screen === "boats") {
+    //         setCaput("boats");
+    //     } else if (screen === "vehicles") {
+    //         setCaput("vehicles");
+    //     }
+    // }
 
     // Switch Board Button Functions
     const boatToggle = () => setCaput("boats")
@@ -41,7 +51,7 @@ const Main = () => {
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
-            const res = await fetch(`${API_URL}/user/token`, {
+            const res = await fetch(`${API_URL}/users/token`, {
                 method: "GET",
                 mode: "cors",
                 headers: {
@@ -56,6 +66,11 @@ const Main = () => {
                 setUser(json);
             }
         };
+        const setUserPic = () => {
+            if (user.profile_pic) {
+                setUserPic(`${user.profile_pic}`)
+            }
+        }
         getUser();
     }, [])
 

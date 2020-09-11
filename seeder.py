@@ -25,7 +25,8 @@ with app.app_context():
         firstname="Demo",
         lastname="Rivers",
         zipcode=37409,
-        date_added=datetime.now()
+        date_added=datetime.now(),
+        profile_pic="../images/jpg/demoUser_profile_pic.png"
     )
 
     Bob = User(

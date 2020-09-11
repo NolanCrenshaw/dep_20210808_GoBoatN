@@ -103,6 +103,7 @@
 .main__body--elements {
     width: 100%;
     height: auto;
+    min-height: 100vh;
     display: flex;
     justify-content: space-evenly;
 }
@@ -179,7 +180,10 @@
 .main__body--footer {
     width: 100%;
     height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    background-color: blueviolet;
+    background-color: #9edfec;
     scrollbar-width: none;
 }
