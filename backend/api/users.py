@@ -10,13 +10,6 @@ from ..models import db, User
 user = Blueprint('users', __name__)
 
 
-# Routes
-# @user.route('/csrf')
-# def send_csrf():
-#     try:
-#         return jsonify(message="csurf set"), 200
-
-
 @user.route('/<id>')
 @jwt_required
 def user_by_id(id):

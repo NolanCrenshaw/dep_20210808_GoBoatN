@@ -9,7 +9,7 @@ from .models import db, User
 
 
 # Blueprint Declaration
-auth = Blueprint('auth', __name__, url_prefix='/auth')
+auth = Blueprint('auth', __name__)
 
 
 # Password Hashing & Verify Functions
@@ -62,7 +62,9 @@ def login():
 
 @auth.route('/signup', methods=["POST"])
 def signup():
+    print("inside signup")
     data = request.get_json()
+    print(data)
     try:
         username = data['username']
         email = data['email']
@@ -95,11 +97,13 @@ def signup():
             zipcode=zipcode,
             date_added=datetime.now()
         )
-        db.session.add(user)
-        db.session.commit()
+        # db.session.add(user)
+        # db.session.commit()
 
-        auth_token = create_access_token(identity={"email": user.email})
-        return jsonify(auth_token=auth_token), 200
+        # auth_token = create_access_token(identity={"email": data['email']})
+        # return jsonify(auth_token=auth_token), 200
+        print("Clean exit from signup route")
+        return jsonify(message="Signup route returning")
 
     except Exception:
         return jsonify(message="try failed"), 409
