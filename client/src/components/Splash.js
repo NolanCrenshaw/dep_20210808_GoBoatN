@@ -30,7 +30,7 @@ const Splash = () => {
         } else {
             // <"auth_token"> Storage
             const json = await res.json()
-            if (json.auth_token != undefined) {
+            if (json.auth_token !== undefined) {
                 window.localStorage.setItem('auth_token', json.auth_token);
                 window.location.reload();
             }
@@ -103,7 +103,13 @@ const Splash = () => {
                 <div className="splash__margin swmleft"></div>
                 <div className="splash__center">
                     <div className="splash__center--logo">
-
+                        <div className="splash__logo">
+                            <span>Go Boat</span>
+                            <span className="main-switch__graf--odd">i</span>
+                            <span>n</span>
+                            <span className="main-switch__graf--odd">g</span>
+                            <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
+                        </div>
                     </div>
                     <div className="splash__center--main">
                         <div className={signupShow}>

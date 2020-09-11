@@ -6,11 +6,6 @@
     position: static;
 }
 .splash--container {
-    /* width: 96vw;
-    height: 96vh;
-    margin-top: 2vh;
-    border-radius: 25px; */
-    /* box-shadow: 20px 20px 10px #25A18E; */
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -19,11 +14,7 @@
     background-image: url(../images/jpg/josh-wedgwood-river-etive-unsplash.jpg);
     background-size: cover;
 }
-.splash__margin {
-    /* width: 30%;
-    height: 100%; */
-    /* background-color: #7AE582; */
-}
+.splash__margin {}
 .splash-logo--container {
     width: 400px;
     height: 400px;

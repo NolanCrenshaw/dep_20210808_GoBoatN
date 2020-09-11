@@ -10,6 +10,8 @@ from .models import db
 from .config import Config
 from .auth import auth
 from .api.users import user
+from .api.boats import boat
+from .api.vehicles import vehicle
 
 
 # Declarations
@@ -23,11 +25,13 @@ migrate = Migrate(app, db)
 
 # Blueprint Registration
 app.register_blueprint(auth, url_prefix='/auth')
-app.register_blueprint(user, url_prefix='/api/user')
+app.register_blueprint(user, url_prefix='/api/users')
+app.register_blueprint(boat, url_prefix='/api/boats')
+app.register_blueprint(vehicle, url_prefix='/api/vehicles')
 
 
 # Default Routing
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path>')
-# def react_root(path):
-#     return app.send_static_file('index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path>')
+def react_root(path):
+    return app.send_static_file('index.html')
