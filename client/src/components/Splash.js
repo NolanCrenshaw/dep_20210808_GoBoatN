@@ -7,27 +7,14 @@ import '../styles/splash.css';
 // React Component
 const Splash = () => {
 
+    // Sign up Modal State
+    const [signupShow, setSignupShow] = useState("signup-modal--hidden")
+
     // Log in State & Listen
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const updateEmail = e => setEmail(e.target.value);
     const updatePassword = e => setPassword(e.target.value);
-
-    // // Sign up State & Listen
-    // const [username, setUsername] = useState();
-    // const [emailSignup, setEmailSignup] = useState();
-    // const [passwordSignup, setPasswordSignup] = useState();
-    // const [confirm, setConfirm] = useState();
-    // const [firstname, setFirstname] = useState();
-    // const [lastname, setLastname] = useState();
-    // const [zipcode, setZipcode] = useState();
-    // const updateUsername = e => setUsername(e.target.value);
-    // const updateEmailSignup = e => setEmailSignup(e.target.value);
-    // const updatePasswordSignup = e => setPasswordSignup(e.target.value);
-    // const updateConfirm = e => setConfirm(e.target.value);
-    // const updateFirstname = e => setFirstname(e.target.value);
-    // const updateLastname = e => setLastname(e.target.value);
-    // const updateZipcode = e => setZipcode(e.target.value);
 
     // Log in Function
     const login = async () => {
@@ -49,42 +36,6 @@ const Splash = () => {
             }
         }
     };
-
-    // // Sign up Function
-    // const signup = async () => {
-    //     if (passwordSignup !== confirm) {
-    //         // -- TODO -- Handling
-    //         console.log('signup password !== confirm');
-    //         return;
-    //     };
-    //     const user = {
-    //         username: username,
-    //         email: emailSignup,
-    //         password: passwordSignup,
-    //         firstname: firstname,
-    //         lastname: lastname,
-    //         zipcode: zipcode,
-    //     };
-    //     const res = await fetch(`${AUTH_URL}/signup`, {
-    //         method: "POST",
-    //         mode: "cors",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(user),
-    //     });
-    //     if (!res.ok) {
-    //         // -- TODO -- Handling
-    //         console.log("signup res failure");
-    //     } else {
-    //         const json = await res.json();
-    //         if (json.auth_token !== undefined) {
-    //             // -- TODO -- Handling
-    //             console.log("auth_token === undefined");
-    //         } else {
-    //             window.localStorage.setItem('auth_token', json.auth_token);
-    //             window.location.reload();
-    //         }
-    //     };
-    // };
 
     // Demo User Function
     const demoUser = async () => {
@@ -133,6 +84,15 @@ const Splash = () => {
         setTimeout(demo, 1200);
     }
 
+    // Signup Toggle Function
+    const toggleSignup = () => {
+        if (signupShow === "signup-modal--hidden") {
+            setSignupShow("signup-modal--visible");
+        } else {
+            setSignupShow("signup-modal--hidden");
+        }
+    }
+
 
 // ---- Component Render ---- //
 
@@ -146,6 +106,11 @@ const Splash = () => {
 
                     </div>
                     <div className="splash__center--main">
+                        <div className={signupShow}>
+                            <div className="signup--container">
+                                <Signup toggle={toggleSignup}/>
+                            </div>
+                        </div>
                         <div className="splash__form--container">
                             <div className="splash__form--login-c">
                                 <input
@@ -183,7 +148,8 @@ const Splash = () => {
                                 </div>
                                 <div className="splash__divider"/>
                                 <div
-                                    className="splash__button-c">
+                                    className="splash__button-c"
+                                    onClick={toggleSignup}>
                                     <div
                                         className="splash__button"
                                         id="splash__button--signup">

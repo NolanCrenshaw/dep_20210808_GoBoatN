@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { AUTH_URL } from '../config';
+import '../styles/signup.css';
 
+const Signup = props => {
 
-const Signup = () => {
-
-    // Sign up State & Listen
+    // State & Listen
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -64,21 +64,64 @@ const Signup = () => {
         <div className="signup-root--container">
             <div className="signup__center--main">
                 <div className="signup__form--container">
-                    <div className="signup__form--login-c">
+                    <div
+                        className="signup__form--close-button"
+                        onClick={props.toggle}>
+                        <img src="https://img.icons8.com/color/40/000000/x-coordinate.png"/>
+                    </div>
+                    <div className="signup__form--signup-c">
                         <input
                             className="signup__inputs"
-                            id="signup-login__email"
+                            id="signup__username"
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={updateUsername} />
+                        <input
+                            className="signup__inputs"
+                            id="signup__email"
                             type="email"
                             placeholder="Email"
                             value={email}
                             onChange={updateEmail} />
+                        <div className="signup__divider"/>
                         <input
                             className="signup__inputs"
-                            id="signup-login__password"
+                            id="signup__password"
                             type="password"
                             placeholder="Password"
                             value={password}
                             onChange={updatePassword} />
+                        <input
+                            className="signup__inputs"
+                            id="signup__confirm"
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirm}
+                            onChange={updateConfirm} />
+                        <div className="signup__divider"/>
+                        <input
+                            className="signup__inputs"
+                            id="signup__firstname"
+                            type="text"
+                            placeholder="First Name"
+                            value={firstname}
+                            onChange={updateFirstname} />
+                        <input
+                            className="signup__inputs"
+                            id="signup__lastname"
+                            type="text"
+                            placeholder="Last Name"
+                            value={lastname}
+                            onChange={updateLastname} />
+                        <input
+                            className="signup__inputs"
+                            id="signup__zipcode"
+                            type="text"
+                            placeholder="Zipcode"
+                            value={zipcode}
+                            onChange={updateZipcode} />
+                        <div className="signup__divider"/>
                         <div
                             className="signup__button-c"
                             onClick={signup}>
@@ -88,7 +131,6 @@ const Signup = () => {
                                 <span>Sign Up</span>
                             </div>
                         </div>
-                        <div className="signup__divider"/>
                     </div>
                 </div>
             </div>

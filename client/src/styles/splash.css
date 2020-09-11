@@ -121,7 +121,7 @@
 .splash__divider {
     width: 70%;
     height: 0;
-    margin: 20px 0 0 20px;
+    margin: 20px 0 0 0;
     border: 1px solid #023E8A;
     border-radius: 100%;
 }
@@ -136,4 +136,15 @@
     color: #023E8A;
     margin: 15px;
     font-family: 'Raleway', sans-serif;
+}
+.signup-modal--hidden {
+    visibility: hidden;
+    position: fixed;
+}
+.signup-modal--visible {
+    position: fixed;
+}
+.signup--container {
+    width: 500px;
+    height: 600px;
 }

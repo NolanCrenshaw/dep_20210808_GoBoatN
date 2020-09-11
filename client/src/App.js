@@ -1,5 +1,5 @@
 // Package Requirements
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 // Local Requirements
@@ -7,11 +7,12 @@ import Splash from './components/Splash';
 import Main from './components/Main';
 import { API_URL } from './config';
 
+// Access "auth_token" -- never pass to props
+const token = window.localStorage.getItem('auth_token');
 
+// React Component
 function App() {
 
-    // Access "auth_token" -- never pass to props
-    const authCheck = window.localStorage.getItem('auth_token')
 
     // useEffect(() => {
     //     const getCSRF = async () => {
@@ -45,8 +46,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            {authCheck ? <Main/> : <Splash/>}
-            {/* <Main/> */}
+            {token ? <Main/> : <Splash/>}
         </BrowserRouter>
     );
 }
