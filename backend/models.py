@@ -30,12 +30,12 @@ class User(db.Model):
     boats = db.relationship(
         "Boat",
         backref="user",
-        lazy=False
+        lazy=True
     )
     vehicles = db.relationship(
         "Vehicle",
         backref="user",
-        lazy=False
+        lazy=True
     )
     # -- TODO -- Causing Foreign Key Conflicts
     # invites = db.relationship(
@@ -46,7 +46,7 @@ class User(db.Model):
     boaters = db.relationship(
         "Boater",
         backref="user",
-        lazy=False
+        lazy=True
     )
 
     def to_safe_object(self):
@@ -228,12 +228,12 @@ class Trip(db.Model):
     invites = db.relationship(
         "Invite",
         backref="trip",
-        lazy=False
+        lazy=True
     )
     boaters = db.relationship(
         "Boater",
         backref="trip",
-        lazy=False
+        lazy=True
     )
 
     def to_dict(
@@ -302,6 +302,3 @@ class Boater(db.Model):
         db.DateTime(timezone=True),
         nullable=False
     )
-
-
-
