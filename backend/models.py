@@ -1,6 +1,7 @@
 # Package Requirements
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, backref
+from datetime import datetime
 
 # Database Declaration
 db = SQLAlchemy()
@@ -24,7 +25,8 @@ class User(db.Model):
     sprite = db.Column(db.String(255))
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
 
     boats = db.relationship(
@@ -101,7 +103,11 @@ class Access(db.Model):
     __tablename__ = "accesses"
 
     id = db.Column(db.Integer, primary_key=True)
-    river_id = db.Column(db.Integer, db.ForeignKey("rivers.id"))
+    river_id = db.Column(
+        db.Integer,
+        db.ForeignKey("rivers.id"),
+        nullable=False
+    )
     name = db.Column(db.String(255))
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
@@ -135,15 +141,19 @@ class Boat(db.Model):
     sprite = db.Column(db.String(255))
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
 
-    def to_dict(self, user):
+    def __repr__(self):
+        return f"{self.name}, {self.make}, {self.user}"
+
+    def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "user": user,
             "make": self.make,
+            "user": self.user_id,
             "occupancy": self.occupancy,
             "sprite": self.sprite,
             "date_added": self.date_added,
@@ -168,12 +178,12 @@ class Vehicle(db.Model):
         nullable=False
     )
 
-    def to_dict(self, user):
+    def to_dict(self):
         return {
             "id": self.id,
             "name": self.name,
-            "user": user,
             "make": self.make,
+            "user": self.user_id,
             "occupancy": self.occupancy,
             "sprite": self.sprite,
             "date_added": self.date_added,
