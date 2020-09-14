@@ -1,7 +1,6 @@
 import React from 'react';
 import { API_URL } from '../config';
 import '../styles/landing.css';
-import canoeBackgroundSlice from '../images/canoe-background-slice';
 
 // React Component
 const Landing = props => {

@@ -1,0 +1,52 @@
+.vehicles-root--container {
+    scrollbar-width: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: static;
+}
+.vehicles {}
+.vehicles__display-c {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px 50px 0 0;
+    background-color: lightgreen;
+}
+.vehicles__notifications-c {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    background-color: white;
+    border-radius: 0 0 50px 50px;
+}
+.vehicles__display {
+    width: 90%;
+    height: auto;
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.vehicle-card {
+    width: 90%;
+    height: 100px;
+    margin: 15px 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: goldenrod
+}
+.vehicle-card span {
+    margin: 5px 0 5px 0;
+    color: black;
+    font-size: 16px;
+    font-weight: 1000;
+    font-family: 'Raleway', sans-serif;
+}

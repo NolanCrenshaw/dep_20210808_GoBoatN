@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL } from '../config';
-import Landing from './Landing'
+import Landing from './Landing';
+import Boats from './Boats';
+import Vehicles from './Vehicles';
 import '../styles/main.css';
 
 const token = window.localStorage.getItem("auth_token");
@@ -9,7 +11,7 @@ const token = window.localStorage.getItem("auth_token");
 const Main = () => {
 
     //
-    const [caput, setCaput] = useState("landing");
+    const [caput, setCaput] = useState("");
 
     // User State
     const [user, setUser] = useState({})
@@ -25,20 +27,23 @@ const Main = () => {
     }
 
     // Caput Toggle Function
-    // const toggleCaput = screen => {
-    //     if (screen === "landing") {
-    //         setCaput("landing");
-    //     } else if (screen === "boats") {
-    //         setCaput("boats");
-    //     } else if (screen === "vehicles") {
-    //         setCaput("vehicles");
-    //     }
-    // }
+    let caputToggle;
+    if (caput==="boats") {
+        caputToggle = <Boats boats={userBoats}/>
+    } else if (caput==="vehicles") {
+        caputToggle = <Vehicles vehicles={userVehicles}/>
+    } else if (caput==="landing") {
+        caputToggle = <Landing />
+    } else {
+        caputToggle = <Landing /> // changed for dev.
+        // caputToggle = <Boats boats={userBoats}/>
+    }
 
     // Switch Board Button Functions
-    const boatToggle = () => setCaput("boats")
-    const vehicleToggle = () => setCaput("vehicles")
-    const tripToggle = () => setCaput("trip")
+    const landingRender = () => setCaput("landing");
+    const boatsRender = () => setCaput("boats");
+    const vehiclesRender = () => setCaput("vehicles");
+    const tripsRender = () => setCaput("trip");
 
     // Component Based Functions
     useEffect(() => {
@@ -58,6 +63,7 @@ const Main = () => {
                 const json = await res.json();
                 setUser(json.user);
                 setUserBoats(json.boats);
+                setUserVehicles(json.vehicles);
             }
         };
         // -- TODO -- set profile picture
@@ -82,23 +88,23 @@ const Main = () => {
                         <div className="main-header__switch-board">
                             <div
                                 className="main-header__button"
-                                id="main-header__button--one"
-                                onClick={boatToggle}>
+                                id="main-header__button--home"
+                                onClick={landingRender}>
+                                <span>Home</span>
+                            </div>
+                            <div className="main-switch-board__divider"/>
+                            <div
+                                className="main-header__button"
+                                id="main-header__button--boats"
+                                onClick={boatsRender}>
                                 <span>Your boats</span>
                             </div>
                             <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
-                                id="main-header__button--two"
-                                onClick={vehicleToggle}>
+                                id="main-header__button--vehicles"
+                                onClick={vehiclesRender}>
                                 <span>Your vehicles</span>
-                            </div>
-                            <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--three"
-                                onClick={tripToggle}>
-                                <span>Create a trip</span>
                             </div>
                             <div className="main-switch-board__graf-c">
                                 <span>Go Boat</span>
@@ -109,19 +115,20 @@ const Main = () => {
                             </div>
                             <div
                                 className="main-header__button"
-                                id="main-header__button--four">
-                                <span>Search for trips</span>
+                                id="main-header__button--trips"
+                                onClick={tripsRender}>
+                                <span>River Trips</span>
                             </div>
                             <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
-                                id="main-header__button--five">
+                                id="main-header__button--settings">
                                 <span>Settings</span>
                             </div>
                             <div className="main-switch-board__divider"/>
                             <div
                                 className="main-header__button"
-                                id="main-header__button--six"
+                                id="main-header__button--logout"
                                 onClick={logout}>
                                 <span>Log out</span>
                             </div>
@@ -133,7 +140,7 @@ const Main = () => {
                     <div className="main__body--elements">
                         <div className="main__caput">
                             <div className="main__caput--switch">
-                                { caput==="landing" ? <Landing/> : <Landing/> }
+                                { caputToggle }
                             </div>
                         </div>
                         <div className="main__vita">
@@ -151,14 +158,14 @@ const Main = () => {
                                     <span>{ user.email }</span>
                                 </div>
                             </div>
-                            <div className="vita-boats--container">
+                            {/* <div className="vita-boats--container">
                                 {userBoats.map((boat) =>
-                                    <div>
+                                    <div key={boat.id}>
                                         <span>{ boat.name }</span>
                                         <span>{ boat.make }</span>
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="main__body--footer">
