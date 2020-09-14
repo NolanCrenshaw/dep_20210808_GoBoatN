@@ -40,14 +40,32 @@ const Boats = props => {
                 </div>
                 <div className="boats__create-c">
                     <div className="boats__create">
-                        <form
-                            id="create_boat_form"
-                            method="POST"
-                            onClick={createBoat}>
+                        <div className="create-boat__form">
                             <input
+                                className="create-boat__input"
+                                id="create-boat__name"
                                 type="text"
+                                placeholder="Name for boat"
+                                value={name}
+                                onChange={updateName} />
+                            <input
+                                className="create-boat__input"
+                                id="create-boat__make"
+                                type="text"
+                                placeholder="Make of boat"
+                                value={make}
+                                onChange={updateMake} />
+                            <select
+                                className="create-boat__select"
+                                id="create-boat__occupancy"
+                                placeholder="How many people fit in this boat?"
+                                value={occupancy}
+                                onChange={updateOccupancy} >
+                                <option value="1" >1</option>
+                                <option value="2" >2</option>
+                            </select>
 
-                        </form>
+                        </div>
 
                     </div>
                 </div>
