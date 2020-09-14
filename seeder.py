@@ -3,11 +3,10 @@ from dotenv import load_dotenv
 # Access Environment Variables
 load_dotenv()
 
-from datetime import datetime  # noqa
 
 # Local Requirements
 from backend import app  # noqa
-from backend.models import db, User  # noqa
+from backend.models import db, User, River, Access, Boat  # noqa
 from backend.auth import set_password  # noqa
 
 
@@ -25,10 +24,7 @@ with app.app_context():
         firstname="Demo",
         lastname="Rivers",
         zipcode=37409,
-        date_added=datetime.now(),
-        profile_pic="../images/jpg/demoUser_profile_pic.png"
     )
-
     Bob = User(
         username="Bobtest",
         email="bob@test.com",
@@ -36,7 +32,6 @@ with app.app_context():
         firstname="Bob",
         lastname="Bobberson",
         zipcode=37409,
-        date_added=datetime.now()
     )
     Kim = User(
         username="Kimtest",
@@ -45,7 +40,6 @@ with app.app_context():
         firstname="Kim",
         lastname="Kimerson",
         zipcode=37409,
-        date_added=datetime.now()
     )
     Swym = User(
         username="Swymtest",
@@ -54,7 +48,6 @@ with app.app_context():
         firstname="Swym",
         lastname="Swymerson",
         zipcode=37409,
-        date_added=datetime.now()
     )
     Dog = User(
         username="Dogtest",
@@ -63,12 +56,46 @@ with app.app_context():
         firstname="Dog",
         lastname="Doggerson",
         zipcode=37409,
-        date_added=datetime.now()
     )
-
+    Ocoee = River(
+        name="Ocoee",
+    )
+    Chattooga = River(
+        name="Chattooga"
+    )
+    Ocoee_putin = Access(
+        river_id=1,
+        name="Dam #2",
+        put_in_option=True,
+        take_out_option=False,
+    )
+    Ocoee_takeout = Access(
+        river_id=1,
+        name="Dam #1",
+        put_in_option=False,
+        take_out_option=True,
+    )
+    Longboat = Boat(
+        name="Huck",
+        user_id=1,
+        make="Liquid Logic",
+        occupancy=1,
+    )
+    Playboat = Boat(
+        name="Pop",
+        user_id=1,
+        make="Liquid Logic",
+        occupancy=1,
+    )
     db.session.add(Demo)
     db.session.add(Bob)
     db.session.add(Kim)
     db.session.add(Swym)
     db.session.add(Dog)
+    db.session.add(Ocoee)
+    db.session.add(Chattooga)
+    db.session.add(Ocoee_putin)
+    db.session.add(Ocoee_takeout)
+    db.session.add(Longboat)
+    db.session.add(Playboat)
     db.session.commit()

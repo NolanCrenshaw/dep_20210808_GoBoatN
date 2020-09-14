@@ -8,20 +8,15 @@ const token = window.localStorage.getItem("auth_token");
 // React Component
 const Main = () => {
 
-    // State
-    const [user, setUser] = useState({})
+    //
     const [caput, setCaput] = useState("landing");
 
-    const profile_pic = require("../images/jpg/default-profile-pic.jpg");
+    // User State
+    const [user, setUser] = useState({})
+    const [userBoats, setUserBoats] = useState([])
+    const [userVehicles, setUserVehicles] = useState([])
 
-    // Set Profile Picture Function
-    // const profileSetter = () => {
-    //     if (user.profile_pic) {
-    //         const pro_pic = user.profile_pic
-    //         // profile_pic = require(`${pro_pic}`)
-    //         console.log("propic -->", pro_pic)
-    //     }
-    // }
+    const profile_pic = require("../images/jpg/default-profile-pic.jpg");
 
     // Log out Function
     const logout = () => {
@@ -61,9 +56,11 @@ const Main = () => {
                 console.log("getUser res failure");
             } else {
                 const json = await res.json();
-                setUser(json);
+                setUser(json.user);
+                setUserBoats(json.boats);
             }
         };
+        // -- TODO -- set profile picture
         const setUserPic = () => {
             if (user.profile_pic) {
                 setUserPic(`${user.profile_pic}`)
@@ -153,6 +150,14 @@ const Main = () => {
                                 <div className="vita-bio__email">
                                     <span>{ user.email }</span>
                                 </div>
+                            </div>
+                            <div className="vita-boats--container">
+                                {userBoats.map((boat) =>
+                                    <div>
+                                        <span>{ boat.name }</span>
+                                        <span>{ boat.make }</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

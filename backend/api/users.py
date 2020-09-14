@@ -20,7 +20,25 @@ def user_by_id(id):
 @user.route('/token', methods=["GET"])
 @jwt_required
 def user_by_token():
+    # return user by token
     user_object = get_jwt_identity()
     user = User.query.filter_by(email=user_object['email']).first()
     safe_user = user.to_safe_object()
-    return jsonify(safe_user), 200
+
+    # populate user's boats
+    user_boats = user.boats
+    boats = []
+    for boat in user_boats:
+        boats.append(boat.to_dict())
+
+    # populate user's vehicles
+    user_vehicles = user.vehicles
+    vehicles = []
+    for vehicle in user_vehicles:
+        vehicles.append(vehicle.to_dict())
+
+    return jsonify(
+        user=safe_user,
+        boats=boats,
+        vehicles=vehicles
+    ), 200
