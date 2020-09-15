@@ -1,4 +1,4 @@
-const BASE_URL = process.env.CLIENT_BASE_URL || 'http://localhost:5000'
+const BASE_URL = window.location.host
 
 export const AUTH_URL = `${BASE_URL}/auth`;
 export const API_URL = `${BASE_URL}/api`;
