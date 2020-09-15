@@ -29,9 +29,12 @@ const Main = () => {
     // Caput Toggle Function
     let caputToggle;
     if (caput==="boats") {
-        caputToggle = <Boats boats={userBoats}/>
+        caputToggle = <Boats
+                        boats={userBoats}
+                        caput={setCaput}/>
     } else if (caput==="vehicles") {
-        caputToggle = <Vehicles vehicles={userVehicles}/>
+        caputToggle = <Vehicles
+                        vehicles={userVehicles}/>
     } else if (caput==="landing") {
         caputToggle = <Landing />
     } else {

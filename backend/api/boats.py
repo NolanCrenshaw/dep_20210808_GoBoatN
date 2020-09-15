@@ -8,8 +8,19 @@ from ..models import db, Boat
 boat = Blueprint('boats', __name__)
 
 
-# Returns list of
-@boat.route('/<id>')
+# Creates new boat row entree
+@boat.route('/', methods=["POST"])
 @jwt_required
 def boats_by_user_id(id):
-    pass
+    data = request.get_json()
+    try:
+        boat = Boat(
+            name=data['name'],
+            make=data['make'],
+            occupancy=data['occupancy'],
+        )
+        db.session.add(boat)
+        db.session.commit()
+        return jsonify(message="boat created successfully")
+    except Exception:
+        return jsonify(message="boat create failed"), 409

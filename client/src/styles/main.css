@@ -109,7 +109,7 @@
 }
 .main__caput {
     width: 60%;
-    height: 95%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,7 +128,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -145,7 +145,7 @@
     box-shadow: 8px 8px 20px rgb(1, 1, 34);
     background-color: blue;
     position: relative;
-    top: -5%;
+    top: -15px;
     z-index: 0;
 }
 .vita__profile-pic img {
@@ -164,7 +164,7 @@
     border-radius: 20px;
     box-shadow: 4px 4px 20px black;
     position: relative;
-    /* top: -240px; */
+    overflow: hidden;
     background-color: burlywood;
 }
 .vita-bio--container div {

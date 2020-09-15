@@ -64,7 +64,6 @@ def login():
 def signup():
     print("inside signup")
     data = request.get_json()
-    print(data)
     try:
         username = data['username']
         email = data['email']
@@ -95,7 +94,6 @@ def signup():
             firstname=firstname,
             lastname=lastname,
             zipcode=zipcode,
-            date_added=datetime.now()
         )
         # db.session.add(user)
         # db.session.commit()
