@@ -1,5 +1,5 @@
 # Package Requirements
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
 from flask_jwt_extended import create_access_token
 from datetime import datetime
 import bcrypt
@@ -27,40 +27,63 @@ def verify_password(password, hashed_password):
         return False
 
 
+# CORS Preflight Header Handling
+def cors_preflight_res():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
+    return response
+
+
+# CORS JSON Response Header Handling
+def corsify_res(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+
 # Routes
-@auth.route('/login', methods=['POST'])
+@auth.route('/login', methods=['POST', "OPTIONS"])
 def login():
     data = request.get_json()
-    try:
-        email = data['email']
-        password = data['password']
-        if not email:
-            return jsonify(message="Email Required"), 400
-        elif not password:
-            return jsonify(message='Password Required'), 400
 
-        # Query
-        user = User.query.filter_by(email=email).first()
+    # CORS Preflight Handling
+    if request.method == "OPTIONS":
+        return cors_preflight_res()
 
-        if not user:
-            return jsonify(message='Email Not Valid'), 400
+    elif request.method == "POST":
+        try:
+            email = data['email']
+            password = data['password']
+            if not email:
+                return jsonify(message="Email Required"), 400
+            elif not password:
+                return jsonify(message='Password Required'), 400
 
-        verified = verify_password(password, user.hashed_password)
+            # Query
+            user = User.query.filter_by(email=email).first()
 
-        if not verified:
-            # Error needs handling decision
-            return jsonify(message='Incorrect Password'), 403
-        else:
-            auth_token = create_access_token(
-                identity={"email": user.email}
-            )
-        return jsonify(auth_token=auth_token), 200
+            if not user:
+                return jsonify(message='Email Not Valid'), 400
 
-    except Exception:
-        return jsonify(message='Login Failed'), 408
+            verified = verify_password(password, user.hashed_password)
+
+            if not verified:
+                # Error needs handling decision
+                return jsonify(message='Incorrect Password'), 403
+            else:
+                auth_token = create_access_token(
+                    identity={"email": user.email}
+                )
+            return corsify_res(jsonify(auth_token=auth_token)), 200
+
+        except Exception:
+            return jsonify(message='Login Failed'), 408
+    else:
+        return jsonify(message="Request Method not recognized"), 400
 
 
-@auth.route('/signup', methods=["POST"])
+@auth.route('/signup', methods=["POST", "OPTIONS"])
 def signup():
     print("inside signup")
     data = request.get_json()
