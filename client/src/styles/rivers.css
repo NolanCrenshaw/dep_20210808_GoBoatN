@@ -1,0 +1,11 @@
+.rivers-root--container {
+    scrollbar-width: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: static;
+}
+#mapid {
+    width: 500px;
+    height: 300px;
+}

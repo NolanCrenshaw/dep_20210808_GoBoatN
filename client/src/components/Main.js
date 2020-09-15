@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
+import Rivers from './Rivers';
 import '../styles/main.css';
 
 const token = window.localStorage.getItem("auth_token");
@@ -38,7 +39,7 @@ const Main = () => {
     } else if (caput==="landing") {
         caputToggle = <Landing />
     } else {
-        caputToggle = <Landing /> // changed for dev.
+        caputToggle = <Rivers /> // changed for dev.
         // caputToggle = <Boats boats={userBoats}/>
     }
 
@@ -46,7 +47,7 @@ const Main = () => {
     const landingRender = () => setCaput("landing");
     const boatsRender = () => setCaput("boats");
     const vehiclesRender = () => setCaput("vehicles");
-    const tripsRender = () => setCaput("trip");
+    const riversRender = () => setCaput("rivers");
 
     // Component Based Functions
     useEffect(() => {
@@ -119,8 +120,8 @@ const Main = () => {
                             <div
                                 className="main-header__button"
                                 id="main-header__button--trips"
-                                onClick={tripsRender}>
-                                <span>River Trips</span>
+                                onClick={riversRender}>
+                                <span>Rivers</span>
                             </div>
                             <div className="main-switch-board__divider"/>
                             <div
