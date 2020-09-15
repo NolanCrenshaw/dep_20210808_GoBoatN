@@ -111,8 +111,8 @@ class Access(db.Model):
     name = db.Column(db.String(255))
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
-    latitude = db.Column(db.Integer)
-    longitude = db.Column(db.Integer)
+    latitude = db.Column(db.Numeric(8, 6))
+    longitude = db.Column(db.Numeric(9, 6))
 
     def to_dict(self, river):
         return {

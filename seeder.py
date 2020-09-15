@@ -59,6 +59,8 @@ with app.app_context():
     )
     Ocoee = River(
         name="Ocoee",
+        class_designation=3,
+        length=5,
     )
     Chattooga = River(
         name="Chattooga"
@@ -68,12 +70,16 @@ with app.app_context():
         name="Dam #2",
         put_in_option=True,
         take_out_option=False,
+        latitude=35.082900,
+        longitude=-84.491800,
     )
     Ocoee_takeout = Access(
         river_id=1,
         name="Dam #1",
         put_in_option=False,
         take_out_option=True,
+        latitude=35.096300,
+        longitude=-84.548100,
     )
     Longboat = Boat(
         name="Huck",
