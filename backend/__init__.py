@@ -12,6 +12,7 @@ from .auth import auth
 from .api.users import user
 from .api.boats import boat
 from .api.vehicles import vehicle
+from .api.rivers import river
 
 
 # Declarations
@@ -28,6 +29,7 @@ app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(user, url_prefix='/api/users')
 app.register_blueprint(boat, url_prefix='/api/boats')
 app.register_blueprint(vehicle, url_prefix='/api/vehicles')
+app.register_blueprint(river, url_prefix='/api/rivers')
 
 
 # Default Routing

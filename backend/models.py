@@ -114,15 +114,15 @@ class Access(db.Model):
     latitude = db.Column(db.Numeric(8, 6))
     longitude = db.Column(db.Numeric(9, 6))
 
-    def to_dict(self, river):
+    def to_dict(self):
         return {
             "id": self.id,
-            "river": river,
+            "river": self.river_id,
             "name": self.name,
             "put_in_option": self.put_in_option,
             "take_out_option": self.take_out_option,
-            "latitude": self.latitude,
-            "longitude": self.longitude,
+            "latitude": str(self.latitude),
+            "longitude": str(self.longitude),
         }
 
 
