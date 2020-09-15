@@ -1,0 +1,16 @@
+.riverCard-root--container {
+    scrollbar-width: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: static;
+}
+.riverCard {
+    width: 90%;
+    height: 100px;
+    min-width: 300px;
+    margin: 20px;
+    border: 3px solid #024e74;
+    border-radius: 3px 30px 3px;
+    background-color: rgb(209, 209, 245);
+}

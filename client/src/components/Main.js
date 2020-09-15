@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
+import RiverPage from './RiverPage';
 import Rivers from './Rivers';
 import '../styles/main.css';
 
@@ -11,13 +12,15 @@ const token = window.localStorage.getItem("auth_token");
 // React Component
 const Main = () => {
 
-    //
+    // Page State
     const [caput, setCaput] = useState("");
+    const [river, setRiver] = useState({});
 
     // User State
     const [user, setUser] = useState({})
     const [userBoats, setUserBoats] = useState([])
     const [userVehicles, setUserVehicles] = useState([])
+
 
     const profile_pic = require("../images/jpg/default-profile-pic.jpg");
 
@@ -31,16 +34,24 @@ const Main = () => {
     let caputToggle;
     if (caput==="boats") {
         caputToggle = <Boats
+                        user={user}
                         boats={userBoats}
                         caput={setCaput}/>
     } else if (caput==="vehicles") {
         caputToggle = <Vehicles
-                        vehicles={userVehicles}/>
+                        user={user}
+                        vehicles={userVehicles}
+                        caput={setCaput}/>
+    } else if (caput==="riverPage") {
+        caputToggle = <RiverPage
+                        user={user}
+                        river={river}
+                        caput={setCaput}/>
     } else if (caput==="landing") {
         caputToggle = <Landing />
     } else {
-        caputToggle = <Rivers /> // changed for dev.
-        // caputToggle = <Boats boats={userBoats}/>
+        caputToggle = <Rivers
+                        caput={setCaput}/> // changed for dev.
     }
 
     // Switch Board Button Functions
@@ -62,6 +73,7 @@ const Main = () => {
                 },
             });
             if (!res.ok) {
+                // -- TODO -- Handling
                 console.log("getUser res failure");
             } else {
                 const json = await res.json();

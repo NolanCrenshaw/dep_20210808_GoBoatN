@@ -17,7 +17,7 @@ def user_by_id(id):
     return jsonify(user=user.to_safe_object())
 
 
-@user.route('/token', methods=["GET"])
+@user.route('/token')
 @jwt_required
 def user_by_token():
     # return user by token
