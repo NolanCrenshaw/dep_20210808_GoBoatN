@@ -1,4 +1,6 @@
 .riverpage-root--container {
+    width: 100%;
+    height: auto;
     scrollbar-width: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;

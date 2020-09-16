@@ -1,11 +1,16 @@
 .landing-root--container {
+    width: 100%;
+    height: auto;
     scrollbar-width: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     position: static;
 }
-.landing {}
+.landing {
+    width: 100%;
+    height: 100%;
+}
 .landing__picture-box {
     width: 100%;
     height: 400px;
