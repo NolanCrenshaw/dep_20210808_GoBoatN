@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { API_URL } from '../config';
+import { BASE_URL } from '../config';
 import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
@@ -64,7 +64,7 @@ const Main = () => {
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
-            const res = await fetch(`${API_URL}/users/token`, {
+            const res = await fetch(`${BASE_URL}/api/users/token`, {
                 method: "GET",
                 mode: "cors",
                 headers: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AUTH_URL } from '../config';
+import { BASE_URL } from '../config';
 import Signup from './Signup';
 import '../styles/splash.css';
 
@@ -18,7 +18,7 @@ const Splash = () => {
 
     // Log in Function
     const login = async () => {
-        const res = await fetch(`${AUTH_URL}/login`, {
+        const res = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ const Splash = () => {
 
         // Demo Fetch Function
         const demo = async () => {
-            const response = await fetch(`${AUTH_URL}/login`, {
+            const response = await fetch(`${BASE_URL}/auth/login`, {
                 method: "POST",
                 mode: "cors",
                 headers: { "Content-Type": "application/json" },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { API_URL } from '../config';
+import { BASE_URL } from '../config';
 import RiverCard from './cards/RiverCard';
 import '../styles/rivers.css';
 
@@ -29,7 +29,7 @@ const Rivers = props => {
 
     useEffect(() => {
         const getRivers = async () => {
-            const res = await fetch(`${API_URL}/rivers/`, {
+            const res = await fetch(`${BASE_URL}/api/rivers/`, {
                 method: "GET",
                 mode: "cors",
                 headers: {

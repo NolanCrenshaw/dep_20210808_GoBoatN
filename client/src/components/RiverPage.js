@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
-import { API_URL } from '../config';
+import { BASE_URL } from '../config';
 import '../styles/riverpage.css';
 
 

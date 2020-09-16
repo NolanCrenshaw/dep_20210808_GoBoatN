@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_URL } from '../config';
+import { BASE_URL } from '../config';
 import '../styles/boats.css';
 
 
@@ -36,7 +36,7 @@ const Boats = props => {
             make: make,
             occupancy: occupancy,
         }
-        const res = await fetch(`${API_URL}/boats/`, {
+        const res = await fetch(`${BASE_URL}/api/boats/`, {
             method: "POST",
             mode: "cors",
             headers: {

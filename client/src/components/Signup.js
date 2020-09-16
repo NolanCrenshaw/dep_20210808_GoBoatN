@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AUTH_URL } from '../config';
+import { BASE_URL } from '../config';
 import '../styles/signup.css';
 
 const Signup = props => {
@@ -35,7 +35,7 @@ const Signup = props => {
             lastname: lastname,
             zipcode: zipcode,
         };
-        const res = await fetch(`${AUTH_URL}/signup`, {
+        const res = await fetch(`${BASE_URL}/auth/signup`, {
             method: "POST",
             mode: "cors",
             headers: { "Content-Type": "application/json" },
