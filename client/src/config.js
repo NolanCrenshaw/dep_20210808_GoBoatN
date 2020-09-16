@@ -1,4 +1,1 @@
-const BASE_URL = window.location.host
-
-// export const AUTH_URL = `/auth`;
-// export const API_URL = `/api`;
+const BASE_URL = window.location.host || "http://localhost:5000"
