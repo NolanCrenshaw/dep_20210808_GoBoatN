@@ -11,10 +11,12 @@ import Boats from './Boats';
 import Vehicles from './Vehicles';
 import RiverPage from './RiverPage';
 import Rivers from './Rivers';
+import Profile from './Profile';
 import HomeButton from './navbar_buttons/HomeButton';
 import BoatsButton from './navbar_buttons/BoatsButton';
 import VehiclesButton from './navbar_buttons/VehiclesButton';
 import RiversButton from './navbar_buttons/RiversButton';
+import ProfileButton from './navbar_buttons/ProfileButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
 
@@ -91,11 +93,7 @@ const Main = () => {
                             </div>
                             <RiversButton/>
                             <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--settings">
-                                <span>Settings</span>
-                            </div>
+                            <ProfileButton/>
                             <div className="main-switch-board__divider"/>
                             <LogoutButton/>
                         </div>
@@ -119,6 +117,9 @@ const Main = () => {
                                     </Route>
                                     <Route path="/rivers">
                                         <Rivers/>
+                                    </Route>
+                                    <Route path="/profile">
+                                        <Profile/>
                                     </Route>
                                     <Route path="/">
                                         <Landing />
