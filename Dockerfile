@@ -21,8 +21,6 @@ RUN ["cp", "-r", "client/build/", "backend/static"]
 ENV FLASK_APP=backend
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
-ENV SECRET_KEY=ZWM3NWViOTdjMzdjNzc5NWZhM2VhYTcy
-ENV JWT_SECRET_KEY=OGNhNTdlZjRjNjBlZDBkNzliOTMzY2Fm
 
 EXPOSE 8000
 
