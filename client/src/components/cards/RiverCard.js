@@ -11,7 +11,9 @@ const RiverCard = props => {
     // Listen
 
     // Function
-
+    const navToRiver = () => {
+        props.caput("riverPage")
+    };
 
 // ---- Component Render ---- //
 
@@ -20,7 +22,7 @@ const RiverCard = props => {
         <div className="riverCard-root--container">
             <div
                 className="riverCard"
-                onClick={props.caput("riverPage")}>
+                onClick={navToRiver}>
                 <div className="riverCard__sidebox"></div>
                 <div className="riverCard__text-container">
                     <div className="riverCard__name">
