@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    useHistory
 } from 'react-router-dom';
 import { BASE_URL } from '../config';
 import Landing from './Landing';
@@ -68,6 +67,7 @@ const Main = () => {
             }
         }
         getUser();
+        // setUserPic(); -- TODO -- set profile picture
     }, [])
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import '../../styles/rivercard.css';
 import Rivers from '../Rivers';
 
@@ -12,7 +13,10 @@ const RiverCard = props => {
 
     // Function
     const navToRiver = () => {
-        props.caput("riverPage")
+        return (
+            <Redirect
+                to={`/rivers/${props.river[0].id}`}/>
+        )
     };
 
 // ---- Component Render ---- //
