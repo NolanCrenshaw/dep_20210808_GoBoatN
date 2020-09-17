@@ -39,6 +39,7 @@
     z-index: 1;
 }
 .main-header__switch-board {
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,6 +48,7 @@
 .main-header__button {
     width: 140px;
     height: 40px;
+    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,8 +112,6 @@
     width: 60%;
     height: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 50px;

@@ -39,14 +39,18 @@ class User(db.Model):
         backref="user",
         lazy=True
     )
-    # -- TODO -- Causing Foreign Key Conflicts
-    # invites = db.relationship(
-    #     "Invite",
-    #     backref="user",
-    #     lazy=False
-    # )
+    invites = db.relationship(
+        "Invite",
+        backref="user",
+        lazy=False
+    )
     boaters = db.relationship(
         "Boater",
+        backref="user",
+        lazy=True
+    )
+    friends = db.relationship(
+        "Friend",
         backref="user",
         lazy=True
     )
@@ -199,11 +203,7 @@ class Friend(db.Model):
         db.ForeignKey("users.id"),
         nullable=False
     )
-    friend = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    friend_id = db.Column(db.Integer, nullable=False)
     date_added = db.Column(
         db.DateTime(timezone=True),
         nullable=False
@@ -261,7 +261,6 @@ class Trip(db.Model):
             "put_in": put_in,
             "take_out": take_out,
             "date_added": self.date_added,
-
         }
 
 
@@ -272,11 +271,6 @@ class Invite(db.Model):
     trip_id = db.Column(
         db.Integer,
         db.ForeignKey("trips.id"),
-        nullable=False
-    )
-    sender = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
         nullable=False
     )
     receiver = db.Column(

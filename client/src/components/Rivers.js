@@ -68,8 +68,8 @@ const Rivers = props => {
                 <div className="rivers__cards-container">
                     <div className="rivers__cards">
                         { rivers.map((river) => <RiverCard
-                                                    river={river}
-                                                    caput={props.caput}/>
+                                                    key={river[0].id}
+                                                    river={river}/>
                         )}
                     </div>
                 </div>

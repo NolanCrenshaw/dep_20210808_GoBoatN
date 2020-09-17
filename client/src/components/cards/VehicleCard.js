@@ -1,33 +1,26 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import '../../styles/rivercard.css';
 
 
 // React Component
-const RiverCard = props => {
+const VehicleCard = props => {
 
     // State
-    const history = useHistory();
 
     // Listen
 
     // Function
-    const navToRiver = () => {
-        history.push(`/rivers/${props.river[0].id}`);
-        history.go(0);
-    };
+
 
 // ---- Component Render ---- //
 
     // Render
     return (
         <div className="riverCard-root--container">
-            <div
-                className="riverCard"
-                onClick={navToRiver}>
+            <div className="riverCard">
                 <div className="riverCard__sidebox"></div>
                 <div className="riverCard__text-container">
-                    <div className="riverCard__name">
+                    <div className="vehicleCard__name">
                         <span>{props.river[0].name}</span>
                     </div>
                     <div className="riverCard__info-container">
@@ -40,4 +33,4 @@ const RiverCard = props => {
         </div>
     )
 };
-export default RiverCard;
+export default VehicleCard;

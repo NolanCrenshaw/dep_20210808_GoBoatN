@@ -20,6 +20,8 @@ def rivers_all():
     # extract access points
     for river_obj in river_objects:
         river = []
+
+        # package access list
         access_list = []
         access_objects = river_obj.accesses
         for access in access_objects:
@@ -31,5 +33,20 @@ def rivers_all():
 
         # append main json response with river package
         rivers.append(river)
-    print(f'rivers --> {rivers}')
     return jsonify(rivers=rivers), 200
+
+
+@river.route('/<id>')
+@jwt_required
+def river_by_id(id):
+    # return river
+    river_obj = River.query.filter_by(id=id).first()
+    river = river_obj.to_dict()
+
+    # package access list
+    access_list = []
+    access_objects = river_obj.accesses
+    for access in access_objects:
+        access_list.append(access.to_dict())
+
+    return jsonify(river=river, access=access_list)

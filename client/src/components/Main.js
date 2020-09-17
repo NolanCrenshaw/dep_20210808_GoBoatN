@@ -1,64 +1,43 @@
 import React, { useState, useEffect } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from 'react-router-dom';
 import { BASE_URL } from '../config';
 import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
 import RiverPage from './RiverPage';
 import Rivers from './Rivers';
+import Profile from './Profile';
+import ProfileEdit from './ProfileEdit';
+import HomeButton from './navbar_buttons/HomeButton';
+import BoatsButton from './navbar_buttons/BoatsButton';
+import VehiclesButton from './navbar_buttons/VehiclesButton';
+import RiversButton from './navbar_buttons/RiversButton';
+import ProfileEditButton from './navbar_buttons/ProfileEditButton';
+import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
+import '../styles/alt/alt-main.css';
+import TripPage from './TripPage';
 
-const token = window.localStorage.getItem("auth_token");
 
 // React Component
 const Main = () => {
 
     // Page State
-    const [caput, setCaput] = useState("");
+    const token = window.localStorage.getItem("auth_token");
     const [river, setRiver] = useState({});
 
-    // User State
-    const [user, setUser] = useState({})
-    const [userBoats, setUserBoats] = useState([])
-    const [userVehicles, setUserVehicles] = useState([])
+    // Current User State
+    const [user, setUser] = useState({});
+    const [userBoats, setUserBoats] = useState([]);
+    const [userVehicles, setUserVehicles] = useState([]);
 
-
+    // Temporary Profile Picture Set
     const profile_pic = require("../images/jpg/default-profile-pic.jpg");
 
-    // Log out Function
-    const logout = () => {
-        window.localStorage.removeItem('auth_token');
-        window.location.reload();
-    }
-
-    // Caput Toggle Function
-    let caputToggle;
-    if (caput==="boats") {
-        caputToggle = <Boats
-                        user={user}
-                        boats={userBoats}
-                        caput={setCaput}/>
-    } else if (caput==="vehicles") {
-        caputToggle = <Vehicles
-                        user={user}
-                        vehicles={userVehicles}
-                        caput={setCaput}/>
-    } else if (caput==="riverPage") {
-        caputToggle = <RiverPage
-                        user={user}
-                        river={river}
-                        caput={setCaput}/>
-    } else if (caput==="landing") {
-        caputToggle = <Landing />
-    } else {
-        caputToggle = <Rivers
-                        caput={setCaput}/> // changed for dev.
-    }
-
-    // Switch Board Button Functions
-    const landingRender = () => setCaput("landing");
-    const boatsRender = () => setCaput("boats");
-    const vehiclesRender = () => setCaput("vehicles");
-    const riversRender = () => setCaput("rivers");
 
     // Component Based Functions
     useEffect(() => {
@@ -89,6 +68,7 @@ const Main = () => {
             }
         }
         getUser();
+        // setUserPic(); -- TODO -- set profile picture
     }, [])
 
 
@@ -102,26 +82,11 @@ const Main = () => {
                     <div className="main-header__left"></div>
                     <div className="main-header__bulk">
                         <div className="main-header__switch-board">
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--home"
-                                onClick={landingRender}>
-                                <span>Home</span>
-                            </div>
+                            <VehiclesButton/>
                             <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--boats"
-                                onClick={boatsRender}>
-                                <span>Your boats</span>
-                            </div>
+                            <BoatsButton/>
                             <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--vehicles"
-                                onClick={vehiclesRender}>
-                                <span>Your vehicles</span>
-                            </div>
+                            <HomeButton/>
                             <div className="main-switch-board__graf-c">
                                 <span>Go Boat</span>
                                 <span className="main-switch__graf--odd">i</span>
@@ -129,36 +94,84 @@ const Main = () => {
                                 <span className="main-switch__graf--odd">g</span>
                                 <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
                             </div>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--trips"
-                                onClick={riversRender}>
-                                <span>Rivers</span>
-                            </div>
+                            <RiversButton/>
                             <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--settings">
-                                <span>Settings</span>
-                            </div>
+                            <ProfileEditButton/>
                             <div className="main-switch-board__divider"/>
-                            <div
-                                className="main-header__button"
-                                id="main-header__button--logout"
-                                onClick={logout}>
-                                <span>Log out</span>
-                            </div>
+                            <LogoutButton/>
                         </div>
+                        {/* <div className="alt-main-header main-header__switch-board">
+                            <div className="main-switch-board__graf-c">
+                                <span>Go Boat</span>
+                                <span className="main-switch__graf--odd">i</span>
+                                <span>n</span>
+                                <span className="main-switch__graf--odd">g</span>
+                                <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
+                            </div>
+                            <div className="alt-main-switch-board--button-container">
+                                <VehiclesButton/>
+                                <div className="main-switch-board__divider"/>
+                                <BoatsButton/>
+                                <div className="main-switch-board__divider"/>
+                                <HomeButton/>
+                                <RiversButton/>
+                                <div className="main-switch-board__divider"/>
+                                <ProfileEditButton/>
+                                <div className="main-switch-board__divider"/>
+                                <LogoutButton/>
+                            </div>
+                        </div> */}
                     </div>
                     <div className="main-header__right"></div>
                 </div>
                 <div className="main__body">
                     <div className="main__body--elements">
-                        <div className="main__caput">
-                            <div className="main__caput--switch">
-                                { caputToggle }
+                        <Router>
+                            <div className="main__caput">
+                                <Switch>
+                                    <Route
+                                        exact
+                                        path="/boats">
+                                        <Boats
+                                            user={user}
+                                            boats={userBoats}/>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/vehicles">
+                                        <Vehicles
+                                            user={user}
+                                            vehicles={userVehicles}/>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/rivers">
+                                        <Rivers/>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/rivers/:id"
+                                        component={RiverPage}/>
+                                    <Route
+                                        exact
+                                        path="/profile/edit">
+                                        <ProfileEdit
+                                            user={user}/>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/profile/:id"
+                                        component={Profile}/>
+                                    <Route
+                                        exact
+                                        path="/trips/:id"
+                                        component={TripPage}/>
+                                    <Route path="/">
+                                        <Landing />
+                                    </Route>
+                                </Switch>
                             </div>
-                        </div>
+                        </Router>
                         <div className="main__vita">
                             <div className="vita__profile-pic">
                                 <img src={profile_pic}/>
