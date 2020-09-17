@@ -20,6 +20,7 @@ import RiversButton from './navbar_buttons/RiversButton';
 import ProfileButton from './navbar_buttons/ProfileButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
+import '../styles/alt/alt-main.css';
 
 
 // React Component
@@ -80,11 +81,11 @@ const Main = () => {
                     <div className="main-header__left"></div>
                     <div className="main-header__bulk">
                         <div className="main-header__switch-board">
-                            <HomeButton/>
+                            <VehiclesButton/>
                             <div className="main-switch-board__divider"/>
                             <BoatsButton/>
                             <div className="main-switch-board__divider"/>
-                            <VehiclesButton/>
+                            <HomeButton/>
                             <div className="main-switch-board__graf-c">
                                 <span>Go Boat</span>
                                 <span className="main-switch__graf--odd">i</span>
@@ -97,6 +98,27 @@ const Main = () => {
                             <ProfileButton/>
                             <div className="main-switch-board__divider"/>
                             <LogoutButton/>
+                        </div>
+                        <div className="alt-main-header main-header__switch-board">
+                            <div className="main-switch-board__graf-c">
+                                <span>Go Boat</span>
+                                <span className="main-switch__graf--odd">i</span>
+                                <span>n</span>
+                                <span className="main-switch__graf--odd">g</span>
+                                <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
+                            </div>
+                            <div className="alt-main-switch-board--button-container">
+                                <VehiclesButton/>
+                                <div className="main-switch-board__divider"/>
+                                <BoatsButton/>
+                                <div className="main-switch-board__divider"/>
+                                <HomeButton/>
+                                <RiversButton/>
+                                <div className="main-switch-board__divider"/>
+                                <ProfileButton/>
+                                <div className="main-switch-board__divider"/>
+                                <LogoutButton/>
+                            </div>
                         </div>
                     </div>
                     <div className="main-header__right"></div>
@@ -116,12 +138,19 @@ const Main = () => {
                                             user={user}
                                             vehicles={userVehicles}/>
                                     </Route>
-                                    <Route path="/rivers">
+                                    <Route
+                                        exact
+                                        path="/rivers">
                                         <Rivers/>
                                     </Route>
                                     <Route
                                         exact
-                                        path="/profile_edit">
+                                        path="/rivers/:id"
+                                        component={RiverPage}>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/profile/edit">
                                         <ProfileEdit
                                             user={user}/>
                                     </Route>

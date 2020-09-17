@@ -39,6 +39,8 @@
     z-index: 1;
 }
 .main-header__switch-board {
+    visibility: hidden;
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
