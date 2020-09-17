@@ -16,10 +16,11 @@ import HomeButton from './navbar_buttons/HomeButton';
 import BoatsButton from './navbar_buttons/BoatsButton';
 import VehiclesButton from './navbar_buttons/VehiclesButton';
 import RiversButton from './navbar_buttons/RiversButton';
-import ProfileButton from './navbar_buttons/ProfileButton';
+import ProfileEditButton from './navbar_buttons/ProfileEditButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
 import '../styles/alt/alt-main.css';
+import TripPage from './TripPage';
 
 
 // React Component
@@ -29,10 +30,10 @@ const Main = () => {
     const token = window.localStorage.getItem("auth_token");
     const [river, setRiver] = useState({});
 
-    // User State
-    const [user, setUser] = useState({})
-    const [userBoats, setUserBoats] = useState([])
-    const [userVehicles, setUserVehicles] = useState([])
+    // Current User State
+    const [user, setUser] = useState({});
+    const [userBoats, setUserBoats] = useState([]);
+    const [userVehicles, setUserVehicles] = useState([]);
 
     // Temporary Profile Picture Set
     const profile_pic = require("../images/jpg/default-profile-pic.jpg");
@@ -95,11 +96,11 @@ const Main = () => {
                             </div>
                             <RiversButton/>
                             <div className="main-switch-board__divider"/>
-                            <ProfileButton/>
+                            <ProfileEditButton/>
                             <div className="main-switch-board__divider"/>
                             <LogoutButton/>
                         </div>
-                        <div className="alt-main-header main-header__switch-board">
+                        {/* <div className="alt-main-header main-header__switch-board">
                             <div className="main-switch-board__graf-c">
                                 <span>Go Boat</span>
                                 <span className="main-switch__graf--odd">i</span>
@@ -115,11 +116,11 @@ const Main = () => {
                                 <HomeButton/>
                                 <RiversButton/>
                                 <div className="main-switch-board__divider"/>
-                                <ProfileButton/>
+                                <ProfileEditButton/>
                                 <div className="main-switch-board__divider"/>
                                 <LogoutButton/>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="main-header__right"></div>
                 </div>
@@ -128,12 +129,16 @@ const Main = () => {
                         <Router>
                             <div className="main__caput">
                                 <Switch>
-                                    <Route path="/boats">
+                                    <Route
+                                        exact
+                                        path="/boats">
                                         <Boats
                                             user={user}
                                             boats={userBoats}/>
                                     </Route>
-                                    <Route path="/vehicles">
+                                    <Route
+                                        exact
+                                        path="/vehicles">
                                         <Vehicles
                                             user={user}
                                             vehicles={userVehicles}/>
@@ -146,8 +151,7 @@ const Main = () => {
                                     <Route
                                         exact
                                         path="/rivers/:id"
-                                        component={RiverPage}>
-                                    </Route>
+                                        component={RiverPage}/>
                                     <Route
                                         exact
                                         path="/profile/edit">
@@ -157,8 +161,11 @@ const Main = () => {
                                     <Route
                                         exact
                                         path="/profile/:id"
-                                        component={Profile}>
-                                    </Route>
+                                        component={Profile}/>
+                                    <Route
+                                        exact
+                                        path="/trips/:id"
+                                        component={TripPage}/>
                                     <Route path="/">
                                         <Landing />
                                     </Route>

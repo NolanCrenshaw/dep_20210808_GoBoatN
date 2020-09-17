@@ -1,6 +1,6 @@
 .alt-main-header {
     position: absolute;
-    /* visibility: hidden; */
+    visibility: hidden;
     flex-wrap: wrap;
 
 }

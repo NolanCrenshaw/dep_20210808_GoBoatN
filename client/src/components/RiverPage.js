@@ -27,7 +27,7 @@ const RiverPage = props => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-            })
+            });
             if (!res.ok) {
                 // -- TODO Handling
                 console.log("getRiver res failure");

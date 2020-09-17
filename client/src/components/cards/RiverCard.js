@@ -1,22 +1,20 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../../styles/rivercard.css';
-import Rivers from '../Rivers';
 
 
 // React Component
 const RiverCard = props => {
 
     // State
+    const history = useHistory();
 
     // Listen
 
     // Function
     const navToRiver = () => {
-        return (
-            <Redirect
-                to={`/rivers/${props.river[0].id}`}/>
-        )
+        history.push(`/rivers/${props.river[0].id}`);
+        history.go(0);
     };
 
 // ---- Component Render ---- //

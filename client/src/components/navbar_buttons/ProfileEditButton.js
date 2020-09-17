@@ -5,7 +5,7 @@ const ProfileEditButton = () => {
     const history = useHistory();
 
     function handleClick() {
-        history.push("/profile_edit")
+        history.push("/profile/edit")
         history.go(0)
     }
 
