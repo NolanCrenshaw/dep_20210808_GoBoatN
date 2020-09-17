@@ -12,6 +12,7 @@ import Vehicles from './Vehicles';
 import RiverPage from './RiverPage';
 import Rivers from './Rivers';
 import Profile from './Profile';
+import ProfileEdit from './ProfileEdit';
 import HomeButton from './navbar_buttons/HomeButton';
 import BoatsButton from './navbar_buttons/BoatsButton';
 import VehiclesButton from './navbar_buttons/VehiclesButton';
@@ -20,12 +21,12 @@ import ProfileButton from './navbar_buttons/ProfileButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
 
-const token = window.localStorage.getItem("auth_token");
 
 // React Component
 const Main = () => {
 
     // Page State
+    const token = window.localStorage.getItem("auth_token");
     const [river, setRiver] = useState({});
 
     // User State
@@ -118,8 +119,16 @@ const Main = () => {
                                     <Route path="/rivers">
                                         <Rivers/>
                                     </Route>
-                                    <Route path="/profile">
-                                        <Profile/>
+                                    <Route
+                                        exact
+                                        path="/profile_edit">
+                                        <ProfileEdit
+                                            user={user}/>
+                                    </Route>
+                                    <Route
+                                        exact
+                                        path="/profile/:id"
+                                        component={Profile}>
                                     </Route>
                                     <Route path="/">
                                         <Landing />

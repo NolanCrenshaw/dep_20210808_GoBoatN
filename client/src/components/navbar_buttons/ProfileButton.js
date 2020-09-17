@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const ProfileButton = () => {
+const ProfileEditButton = () => {
     const history = useHistory();
 
     function handleClick() {
-        history.push("/profile")
+        history.push("/profile_edit")
         history.go(0)
     }
 
@@ -14,8 +14,8 @@ const ProfileButton = () => {
             className="main-header__button"
             id="main-header__button--profile"
             onClick={handleClick}>
-            <span>Profile</span>
+            <span>Your profile</span>
         </div>
     );
 }
-export default ProfileButton;
+export default ProfileEditButton;
