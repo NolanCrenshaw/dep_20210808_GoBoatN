@@ -112,7 +112,7 @@ class Access(db.Model):
         db.ForeignKey("rivers.id"),
         nullable=False
     )
-    name = db.Column(db.String(255))
+    name = db.Column(db.String(255), default="unnamed")
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
     latitude = db.Column(db.Numeric(8, 6))
