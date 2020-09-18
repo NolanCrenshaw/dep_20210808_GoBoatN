@@ -10,21 +10,28 @@ const Rivers = props => {
     // State
     const token = window.localStorage.getItem("auth_token");
     const [rivers, setRivers] = useState([]);
+    const [pageViewRivers, setPageViewRivers] = useState([]);
 
-    // Listen
 
-    // Functions
-    // const renderRiverCards = rivers => {
-    //     // let i = rivers.length;
-    //     // if (i <= 0) return;
+    const RiverTab = props => {
+        const count = pageViewRivers.length;
+        const [currentTab, setCurrentTab] = useState(0);
 
-    //     for (let i = rivers.length; i > 0; i--) {
-    //         return (
-    //             <RiverCard
-    //                 river={rivers[i]}/>
-    //         )
-    //     }
-    // }
+        return (
+            <div className="river-tab-root--container">
+                <div className="river-tab">
+                    <div className="river-tab__body">
+                        { rivers.map((river) => <RiverCard
+                                                    key={river[0].id}
+                                                    river={river}/>
+                        )}
+                    </div>
+                    <div className="river-tab__tabs"></div>
+                </div>
+            </div>
+        )
+    }
+
 
 
     useEffect(() => {
@@ -46,7 +53,22 @@ const Rivers = props => {
             }
         }
         getRivers();
-    }, [])
+        const setRiversLimited = () => {
+            const riversTabbed = [];
+            const riversIndex = rivers.length;
+            let i = Math.floor(riversIndex/20), k = 0;
+            while (i > 0) {
+                let items = rivers.slice(k, k+20);
+                riversTabbed.push(items);
+                i--;
+                k+=20;
+            };
+            let items = rivers.slice(k, rivers.length+1);
+            riversTabbed.push(items);
+            setPageViewRivers(riversTabbed);
+        };
+        setRiversLimited();
+    }, [rivers])
 
 // ---- Component Render ---- //
 

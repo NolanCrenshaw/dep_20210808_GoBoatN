@@ -5,7 +5,6 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    position: static;
 }
 .riverpage {
     width: 100%;
@@ -13,15 +12,90 @@
 }
 .map-container {
     width: 100%;
-    height: 300px;
+    height: 500px;
     border-radius: 50px 50px 0 0;
     overflow: hidden;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+
 }
 .leaflet-container {
-    height: 100%;
     width: 100%;
+    height: 100%;
 }
 .leaflet-pane {
-    height: 100%;
     width: 100%;
+    height: 100%;
+    position: static;
+}
+.riverpage-body {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    display: flex;
+    border-radius: 0 0 50px 50px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    background-color: blueviolet;
+}
+.riverpage-body__textbox {
+    width: auto;
+    height: 70px;
+    position: relative;
+    top: -50px;
+    left: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.riverpage-body--name-c {
+    width: auto;
+    height: 70px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 3px solid peru;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    background-color: rgb(240, 217, 186);
+}
+.riverpage-body__rivername {
+    width: auto;
+    height: 95%;
+    display: flex;
+    padding: 20px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+.riverpage-body__rivername span {
+    color: black;
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.riverpage-body--region-c {
+    width: auto;
+    height: 40px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 3px solid peru;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    background-color: rgb(240, 217, 186);
+}
+.riverpage-body__region {
+    width: auto;
+    height: 95%;
+    display: flex;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+.riverpage-body__region span {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
 }

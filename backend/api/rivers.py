@@ -15,6 +15,7 @@ river = Blueprint('rivers', __name__)
 def rivers_all():
     # return all rivers ordered by name
     river_objects = River.query.order_by(River.name).all()
+    # river_objects = River.query.order_by(func.random).limit(20).all()
     rivers = []
 
     # extract access points
