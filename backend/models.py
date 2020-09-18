@@ -81,8 +81,8 @@ class River(db.Model):
     length = db.Column(db.Integer)
     description = db.Column(db.Text)
     region = db.Column(db.String(255))
-    latitude = db.Column(db.Integer)
-    longitude = db.Column(db.Integer)
+    # latitude = db.Column(db.Integer)
+    # longitude = db.Column(db.Integer)
 
     accesses = db.relationship(
         "Access",
@@ -98,8 +98,8 @@ class River(db.Model):
             "length": self.length,
             "description": self.description,
             "region": self.region,
-            "latitude": self.latitude,
-            "longitude": self.longitude,
+            # "latitude": self.latitude,
+            # "longitude": self.longitude,
         }
 
 
@@ -112,7 +112,7 @@ class Access(db.Model):
         db.ForeignKey("rivers.id"),
         nullable=False
     )
-    name = db.Column(db.String(255))
+    name = db.Column(db.String(255), default="unnamed")
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
     latitude = db.Column(db.Numeric(8, 6))
@@ -179,7 +179,8 @@ class Vehicle(db.Model):
     sprite = db.Column(db.String(255))
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
 
     def to_dict(self):

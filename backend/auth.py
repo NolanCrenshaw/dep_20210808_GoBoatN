@@ -87,44 +87,53 @@ def login():
 def signup():
     print("inside signup")
     data = request.get_json()
-    try:
-        username = data['username']
-        email = data['email']
-        firstname = data['firstname']
-        lastname = data['lastname']
-        zipcode = int(data['zipcode'])
 
-        if not username:
-            return jsonify(message="Username Required"), 400
-        elif not email:
-            return jsonify(message='Email Required'), 400
-        elif not firstname:
-            return jsonify(message='First Name Required'), 400
-        elif not lastname:
-            return jsonify(message='Last Name Required'), 400
-        elif not zipcode:
-            return jsonify(message='Zipcode Required'), 400
+    # CORS Preflight Handling
+    if request.method == "OPTIONS":
+        return cors_preflight_res()
 
+    elif request.method == "POST":
         try:
-            hashed_password = set_password(data['password'])
+            username = data['username']
+            email = data['email']
+            firstname = data['firstname']
+            lastname = data['lastname']
+            zipcode = int(data['zipcode'])
+
+            if not username:
+                return jsonify(message="Username Required"), 400
+            elif not email:
+                return jsonify(message='Email Required'), 400
+            elif not firstname:
+                return jsonify(message='First Name Required'), 400
+            elif not lastname:
+                return jsonify(message='Last Name Required'), 400
+            elif not zipcode:
+                return jsonify(message='Zipcode Required'), 400
+
+            try:
+                hashed_password = set_password(data['password'])
+            except Exception:
+                return jsonify(message='Password Required'), 400
+
+            user = User(
+                username=username,
+                email=email,
+                hashed_password=hashed_password,
+                firstname=firstname,
+                lastname=lastname,
+                zipcode=zipcode,
+            )
+            db.session.add(user)
+            db.session.commit()
+
+            auth_token = create_access_token(
+                identity={"email": data['email']})
+            return jsonify(auth_token=auth_token), 200
+            print("Clean exit from signup route")
+            return jsonify(message="Signup route returning")
+
         except Exception:
-            return jsonify(message='Password Required'), 400
-
-        user = User(
-            username=username,
-            email=email,
-            hashed_password=hashed_password,
-            firstname=firstname,
-            lastname=lastname,
-            zipcode=zipcode,
-        )
-        # db.session.add(user)
-        # db.session.commit()
-
-        # auth_token = create_access_token(identity={"email": data['email']})
-        # return jsonify(auth_token=auth_token), 200
-        print("Clean exit from signup route")
-        return jsonify(message="Signup route returning")
-
-    except Exception:
-        return jsonify(message="try failed"), 409
+            return jsonify(message="try failed"), 409
+    else:
+        return jsonify(message="Request Method not recognized"), 400

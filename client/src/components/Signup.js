@@ -46,7 +46,7 @@ const Signup = props => {
             console.log("signup res failure");
         } else {
             const json = await res.json();
-            if (json.auth_token !== undefined) {
+            if (json.auth_token == undefined) {
                 // -- TODO -- Handling
                 console.log("auth_token === undefined");
             } else {
