@@ -7,7 +7,13 @@
     -o-background-size: cover;
     position: static;
 }
-.vehicles {}
+.vehicles {
+    width: 100%;
+    height: auto;
+    border: 3px solid blue;
+    border-radius: 50px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+}
 .vehicles__display-c {
     width: 100%;
     height: auto;

@@ -109,13 +109,13 @@
     justify-content: space-evenly;
 }
 .main__caput {
-    width: 60%;
+    width: 65%;
     height: auto;
     display: flex;
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 50px;
-    box-shadow: 15px 15px 10px rgb(99, 91, 91);
+    /* box-shadow: 15px 15px 10px rgb(99, 91, 91); */
 }
 .main__caput--switch {
     width: 100%;
@@ -123,7 +123,8 @@
     border-radius: 50px;
 }
 .main__vita {
-    width: 20%;
+    width: 25%;
+    max-width: 480px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -138,6 +139,7 @@
 }
 .vita__profile-pic {
     width: 70%;
+    max-width: 1300px;
     height: auto;
     border: 3px solid blue;
     border-radius: 180px;

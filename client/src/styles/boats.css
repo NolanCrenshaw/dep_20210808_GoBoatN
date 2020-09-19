@@ -9,9 +9,10 @@
 }
 .boats {
     width: 100%;
-    height: 100%;
-    position: static;
+    height: auto;
+    border: 3px solid blue;
     border-radius: 50px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
 }
 .boats__display-c {
     width: 100%;
@@ -25,7 +26,7 @@
 }
 .boats__display {
     width: 90%;
-    height: auto;
+    height: 100%;
     padding: 20px 0 20px 0;
     display: flex;
     flex-direction: column;
@@ -53,7 +54,6 @@
 .boats__create--container {
     width: 100%;
     height: auto;
-    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;

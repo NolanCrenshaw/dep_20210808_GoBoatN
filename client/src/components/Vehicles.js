@@ -74,46 +74,47 @@ const Vehicles = props => {
                 <div className="vehicles__notifications-c">
 
                 </div>
-            </div>
-            <div className="vehicles__create--container">
-                <div className="create-vehicle__img--container">
 
-                </div>
-                <div className="vehicles__create">
-                    <div className="create-vehicle__form">
-                        <input
-                            className="create-vehicle__input"
-                            id="create-vehicle__name"
-                            type="text"
-                            placeholder="Name for vehicle"
-                            value={name}
-                            onChange={updateName} />
-                        <input
-                            className="create-vehicle__input"
-                            id="create-vehicle__make"
-                            type="text"
-                            placeholder="Make of vehicle"
-                            value={make}
-                            onChange={updateMake} />
-                        <div className="create-vehicle__select--container">
-                            <label>Max Occupancy</label>
-                            <select
-                                className="create-vehicle__select"
-                                id="create-vehicle__occupancy"
-                                value={occupancy}
-                                onChange={updateOccupancy}>
-                                <option value="1" >1</option>
-                                <option value="2" >2</option>
-                                <option value="3" >3</option>
-                                <option value="4" >4</option>
-                                <option value="5" >5</option>
-                                <option value="6" >6</option>
-                            </select>
-                        </div>
-                        <div
-                            className="create-vehicle__form-button"
-                            onClick={createVehicle}>
-                            <span>Create vehicle</span>
+                <div className="vehicles__create--container">
+                    <div className="create-vehicle__img--container">
+
+                    </div>
+                    <div className="vehicles__create">
+                        <div className="create-vehicle__form">
+                            <input
+                                className="create-vehicle__input"
+                                id="create-vehicle__name"
+                                type="text"
+                                placeholder="Name for vehicle"
+                                value={name}
+                                onChange={updateName} />
+                            <input
+                                className="create-vehicle__input"
+                                id="create-vehicle__make"
+                                type="text"
+                                placeholder="Make of vehicle"
+                                value={make}
+                                onChange={updateMake} />
+                            <div className="create-vehicle__select--container">
+                                <label>Max Occupancy</label>
+                                <select
+                                    className="create-vehicle__select"
+                                    id="create-vehicle__occupancy"
+                                    value={occupancy}
+                                    onChange={updateOccupancy}>
+                                    <option value="1" >1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3" >3</option>
+                                    <option value="4" >4</option>
+                                    <option value="5" >5</option>
+                                    <option value="6" >6</option>
+                                </select>
+                            </div>
+                            <div
+                                className="create-vehicle__form-button"
+                                onClick={createVehicle}>
+                                <span>Create vehicle</span>
+                            </div>
                         </div>
                     </div>
                 </div>
