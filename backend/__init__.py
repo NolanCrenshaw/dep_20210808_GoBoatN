@@ -14,6 +14,7 @@ from .api.boats import boat
 from .api.vehicles import vehicle
 from .api.rivers import river
 from .api.trips import trip
+from .api.bucket import bucket
 
 
 # Declarations
@@ -32,6 +33,7 @@ app.register_blueprint(boat, url_prefix='/api/boats')
 app.register_blueprint(vehicle, url_prefix='/api/vehicles')
 app.register_blueprint(river, url_prefix='/api/rivers')
 app.register_blueprint(trip, url_prefix='/api/trips')
+app.register_blueprint(bucket, url_prefix='/api/bucket')
 
 
 # Default Routing
