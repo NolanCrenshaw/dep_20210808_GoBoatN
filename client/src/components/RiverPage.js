@@ -65,10 +65,10 @@ const RiverPage = props => {
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         />
                         <Marker position={putin}>
-                            <Popup>{access[0].name}</Popup>
+                            {/* <Popup>{access[0].name}</Popup> */}
                         </Marker>
                         <Marker position={takeout}>
-                            <Popup>{access[1].name}</Popup>
+                            {/* <Popup>{access[1].name}</Popup> */}
                         </Marker>
                     </Map>
                 </div>
