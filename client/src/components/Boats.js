@@ -59,59 +59,59 @@ const Boats = props => {
     return (
         <div className="boats-root--container">
             <div className="boats">
-                <div className="boats__display-c">
-                    <div className="boats__display">
-                        { props.boats.map((boat) =>
-                            <div
-                                className="boat-card"
-                                key={boat.id}>
-                                <span>{boat.name}</span>
-                                <span>{boat.make}</span>
-                                <span>{boat.occupancy}</span>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-            <div className="boats__create--container">
-                <div className="create-boat__img--container">
-
-                </div>
-                <div className="boats__create">
-                    <div className="create-boat__form">
-                        <input
-                            className="create-boat__input"
-                            id="create-boat__name"
-                            type="text"
-                            placeholder="Name for boat"
-                            value={name}
-                            onChange={updateName} />
-                        <input
-                            className="create-boat__input"
-                            id="create-boat__make"
-                            type="text"
-                            placeholder="Make of boat"
-                            value={make}
-                            onChange={updateMake} />
-                        <div className="create-boat__select--container">
-                            <label>Max Occupancy</label>
-                            <select
-                                className="create-boat__select"
-                                id="create-boat__occupancy"
-                                value={occupancy}
-                                onChange={updateOccupancy}>
-                                <option value="1" >1</option>
-                                <option value="2" >2</option>
-                                <option value="3" >3</option>
-                                <option value="4" >4</option>
-                                <option value="5" >5</option>
-                                <option value="6" >6</option>
-                            </select>
+                    <div className="boats__display-c">
+                        <div className="boats__display">
+                            { props.boats.map((boat) =>
+                                <div
+                                    className="boat-card"
+                                    key={boat.id}>
+                                    <span>{boat.name}</span>
+                                    <span>{boat.make}</span>
+                                    <span>{boat.occupancy}</span>
+                                </div>
+                            )}
                         </div>
-                        <div
-                            className="create-boat__form-button"
-                            onClick={createBoat}>
-                            <span>Create Boat</span>
+                    </div>
+                <div className="boats__create--container">
+                    <div className="create-boat__img--container">
+
+                    </div>
+                    <div className="boats__create">
+                        <div className="create-boat__form">
+                            <input
+                                className="create-boat__input"
+                                id="create-boat__name"
+                                type="text"
+                                placeholder="Name for boat"
+                                value={name}
+                                onChange={updateName} />
+                            <input
+                                className="create-boat__input"
+                                id="create-boat__make"
+                                type="text"
+                                placeholder="Make of boat"
+                                value={make}
+                                onChange={updateMake} />
+                            <div className="create-boat__select--container">
+                                <label>Max Occupancy</label>
+                                <select
+                                    className="create-boat__select"
+                                    id="create-boat__occupancy"
+                                    value={occupancy}
+                                    onChange={updateOccupancy}>
+                                    <option value="1" >1</option>
+                                    <option value="2" >2</option>
+                                    <option value="3" >3</option>
+                                    <option value="4" >4</option>
+                                    <option value="5" >5</option>
+                                    <option value="6" >6</option>
+                                </select>
+                            </div>
+                            <div
+                                className="create-boat__form-button"
+                                onClick={createBoat}>
+                                <span>Create Boat</span>
+                            </div>
                         </div>
                     </div>
                 </div>

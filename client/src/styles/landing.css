@@ -9,7 +9,10 @@
 }
 .landing {
     width: 100%;
-    height: 100%;
+    height: auto;
+    border: 3px solid blue;
+    border-radius: 50px;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
 }
 .landing__picture-box {
     width: 100%;
@@ -18,7 +21,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     background-image: url(../images/jpg/michael-niessl-x_gyAYzyeQA-unsplash.jpg);
-    background-size: 1200px;
+    background-size: 1300px;
     overflow: hidden;
     background-repeat: no-repeat;
     background-position-y: -250px;
@@ -28,7 +31,7 @@
     margin: 10px;
     padding: 2px;
     border: 1px solid black;
-    border-radius: 20px;
+    border-radius: 50px;
 }
 .landing__picture-box--credit-c span {
     color: #023E8A;

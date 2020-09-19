@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Map, TileLayer, Marker } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { BASE_URL } from '../config';
 import '../styles/riverpage.css';
 
@@ -64,8 +64,12 @@ const RiverPage = props => {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         />
-                        <Marker position={putin}/>
-                        <Marker position={takeout}/>
+                        <Marker position={putin}>
+                            <Popup>{access[0].name}</Popup>
+                        </Marker>
+                        <Marker position={takeout}>
+                            <Popup>{access[1].name}</Popup>
+                        </Marker>
                     </Map>
                 </div>
                 <div className="riverpage-body">
@@ -83,10 +87,16 @@ const RiverPage = props => {
                     </div>
                     <div className="riverpage-body__access-c">
                         <div className="riverpage-body__access">
-
+                            <div className="riverpage-body__access--textbox">
+                                <span>Put in:</span>
+                                <span>{access[0].name}</span>
+                            </div>
                         </div>
                         <div className="riverpage-body__access">
-
+                            <div className="riverpage-body__access--textbox">
+                                <span>Take out:</span>
+                                <span>{access[1].name}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
