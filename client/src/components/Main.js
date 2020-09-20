@@ -60,7 +60,7 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
-                setProfilePic(`${IMG_KEY}${json.profile_pic}`)
+                setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
             }
         };
         getUser();
