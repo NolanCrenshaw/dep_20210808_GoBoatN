@@ -10,5 +10,9 @@ class Config:
     # Key Variables
     SECRET_KEY = os.environ.get('SECRET_KEY')
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+    AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY')
+    AWS_SECRET_KEY = os.environ.get('AWS_SECRET_KEY')
+
+    # Security Settings
     JWT_ACCESS_TOKEN_EXPIRES = False
     CORS_HEADER = 'Content-Type'

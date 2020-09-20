@@ -46,7 +46,7 @@ const Signup = props => {
             console.log("signup res failure");
         } else {
             const json = await res.json();
-            if (json.auth_token == undefined) {
+            if (json.auth_token === undefined) {
                 // -- TODO -- Handling
                 console.log("auth_token === undefined");
             } else {
@@ -67,7 +67,7 @@ const Signup = props => {
                     <div
                         className="signup__form--close-button"
                         onClick={props.toggle}>
-                        <img src="https://img.icons8.com/color/40/000000/x-coordinate.png"/>
+                        <img src="https://img.icons8.com/color/40/000000/x-coordinate.png" alt=""/>
                     </div>
                     <div className="signup__form--signup-c">
                         <input

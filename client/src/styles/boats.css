@@ -70,6 +70,12 @@
     border-radius: 20px;
     background-color: green;
 }
+.create-boat__img-form {}
+.create-boat__img-form--input {}
+.create-boat__img-upload {
+    width: 500px;
+    background-color: goldenrod;
+}
 .boats__create {
     width: 50%;
     height: 240px;

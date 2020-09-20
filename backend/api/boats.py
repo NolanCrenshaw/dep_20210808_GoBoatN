@@ -1,5 +1,5 @@
 # Package Requirements
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # Local Requirements
@@ -11,13 +11,15 @@ boat = Blueprint('boats', __name__)
 # Creates new boat row entree
 @boat.route('/', methods=["POST"])
 @jwt_required
-def boats_by_user_id(id):
+def create_boat():
     data = request.get_json()
     try:
         boat = Boat(
             name=data['name'],
             make=data['make'],
+            user_id=data['user_id'],
             occupancy=data['occupancy'],
+            sprite=data['sprite']
         )
         db.session.add(boat)
         db.session.commit()
