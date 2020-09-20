@@ -107,7 +107,7 @@ with app.app_context():
     )
     boat_one = Boat(
         name="Huck",
-        user_id=1,
+        user_id=3,
         make="Liquid Logic",
         occupancy=1,
         sprite="playBoatSprite.png"
@@ -128,7 +128,7 @@ with app.app_context():
     )
     boat_four = Boat(
         name="Ranger",
-        user_id=3,
+        user_id=1,
         make="Avon",
         occupancy=8,
         sprite="raftSprite.png"
@@ -149,7 +149,7 @@ with app.app_context():
     )
     boat_seven = Boat(
         name="My Canoe",
-        user_id=5,
+        user_id=1,
         make="Old Town",
         occupancy=2,
         sprite="canoeSprite.png"
@@ -159,37 +159,41 @@ with app.app_context():
         user_id=1,
         make="Toyota",
         occupancy=2,
+        sprite="pickupSprite.png"
     )
     vehicle_two = Vehicle(
         name="CRV",
         user_id=2,
         make="Honda",
         occupancy=5,
+        sprite="suvSprite.png"
     )
     vehicle_three = Vehicle(
         name="Grand Caravan",
         user_id=3,
         make="Dodge",
         occupancy=7,
+        sprite="suvSprite.png"
     )
     vehicle_four = Vehicle(
         name="Taurus",
         user_id=4,
         make="Ford",
         occupancy=5,
+        sprite="carSprite.png"
     )
     vehicle_five = Vehicle(
         name="Wrangler",
-        user_id=5,
+        user_id=2,
         make="Jeep",
         occupancy=2,
+        sprite="pickupSprite.png"
     )
 
     db.session.add(Demo)
     db.session.add(Bob)
     db.session.add(Kim)
     db.session.add(Swym)
-    db.session.add(Dog)
     db.session.add(boat_one)
     db.session.add(boat_two)
     db.session.add(boat_three)

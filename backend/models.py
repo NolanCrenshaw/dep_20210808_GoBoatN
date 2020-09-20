@@ -144,7 +144,7 @@ class Boat(db.Model):
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
     date_added = db.Column(
-        db.DateTime(timezone=True),
+        db.DateTime,
         nullable=False,
         default=datetime.utcnow
     )
