@@ -8,6 +8,7 @@ const Boats = props => {
 
     // DOM Ref
     const imgFile = React.createRef();
+    const token = window.localStorage.getItem("auth_token")
 
     // Boat State
     const [name, setName] = useState("");
@@ -15,7 +16,6 @@ const Boats = props => {
     const [occupancy, setOccupancy] = useState(1);
 
     // Component State
-    const token = window.localStorage.getItem("auth_token")
     const [nameRequired, setNameRequired] = useState("no-error");
     const [makeRequired, setMakeRequired] = useState("no-error");
 
