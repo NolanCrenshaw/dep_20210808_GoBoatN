@@ -60,7 +60,9 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
-                setProfilePic(`${IMG_KEY}${json.profile_pic}`)
+                if (json.user.profile_pic !== null) {
+                    setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
+                }
             }
         };
         getUser();
@@ -197,7 +199,7 @@ const Main = () => {
                     </div>
                 </div>
                 <div className="main__footer">
-
+                    <span>Footer</span>
                 </div>
             </div>
         </div>
