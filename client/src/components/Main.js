@@ -199,7 +199,7 @@ const Main = () => {
                     </div>
                 </div>
                 <div className="main__footer">
-
+                    <span>Footer</span>
                 </div>
             </div>
         </div>

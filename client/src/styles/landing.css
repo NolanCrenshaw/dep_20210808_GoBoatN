@@ -10,7 +10,7 @@
 .landing {
     width: 100%;
     height: auto;
-    border: 3px solid blue;
+    border: 5px solid rgb(14, 95, 122);
     border-radius: 50px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
 }
@@ -46,7 +46,7 @@
 .landing__notifications-c {
     width: 100%;
     height: 100%;
-    min-height: 500px;
+    min-height: 200px;
     background-color: white;
     border-radius: 0 0 50px 50px;
 }

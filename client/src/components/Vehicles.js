@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
-import { BASE_URL } from '../config';
+import { BASE_URL, IMG_KEY } from '../config';
+import VehicleCard from './cards/VehicleCard';
 import '../styles/vehicles.css';
 
 // React Component
 const Vehicles = props => {
 
+    const token = window.localStorage.getItem("auth_token")
+    const vehicleSprites = [
+        {title: "Car", sprite: "carSprite.png"},
+        {title: "Truck", sprite: "pickupSprite.png"},
+        {title: "SUV", sprite: "suvSprite.png"}
+    ]
+
+
     // Vehicle State
     const [name, setName] = useState("");
     const [make, setMake] = useState("");
-    const [occupancy, setOccupancy] = useState("");
+    const [occupancy, setOccupancy] = useState(1);
+    const [spriteOption, setSpriteOption] = useState(vehicleSprites[0].sprite);
 
     // Component State
-    const token = window.localStorage.getItem("auth_token")
     const [nameRequired, setNameRequired] = useState("no-error");
     const [makeRequired, setMakeRequired] = useState("no-error");
 
@@ -19,6 +28,7 @@ const Vehicles = props => {
     const updateName = e => setName(e.target.value);
     const updateMake = e => setMake(e.target.value);
     const updateOccupancy = e => setOccupancy(e.target.value);
+    const updateSpriteOption = e => setSpriteOption(e.target.value);
 
     // Create a Vehicle Function
     const createVehicle = async () => {
@@ -33,7 +43,9 @@ const Vehicles = props => {
         const vehicle = {
             name: name,
             make: make,
+            user_id: props.user.id,
             occupancy: occupancy,
+            sprite: spriteOption
         }
         const res = await fetch(`${BASE_URL}/api/vehicles/`, {
             method: "POST",
@@ -48,7 +60,7 @@ const Vehicles = props => {
             // -- TODO -- Handling
             console.log("createVehicle res failure");
         } else {
-            return;
+            window.location.reload();
         }
     };
 
@@ -61,23 +73,33 @@ const Vehicles = props => {
                 <div className="vehicles__display-c">
                     <div className="vehicles__display">
                         { props.vehicles.map((vehicle) =>
-                            <div
-                                className="vehicle-card"
-                                key={vehicle.id}>
-                                <span>{vehicle.name}</span>
-                                <span>{vehicle.make}</span>
-                                <span>{vehicle.occupancy}</span>
-                            </div>
+                            <VehicleCard vehicle={vehicle}/>
                         )}
                     </div>
                 </div>
-                <div className="vehicles__notifications-c">
-
+                <div className="vehicles__create--header">
+                    <span>Add a vehicle to your collection</span>
                 </div>
-
                 <div className="vehicles__create--container">
                     <div className="create-vehicle__img--container">
-
+                        <span className="create-vehicle__img--instruct">
+                            Pick an image for your vehicle
+                        </span>
+                        <div className="create-vehicle__img-form">
+                            { vehicleSprites.map(vehicle =>
+                                <div className="vehicle-sprite--container">
+                                    <div className="vehicle-sprite__img">
+                                        <img src={`${IMG_KEY}${vehicle.sprite}`}/>
+                                    </div>
+                                    <span>{vehicle.title}</span>
+                                    <input
+                                        type="radio"
+                                        onClick={updateSpriteOption}
+                                        value={vehicle.sprite}
+                                        checked={spriteOption === vehicle.sprite} />
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="vehicles__create">
                         <div className="create-vehicle__form">

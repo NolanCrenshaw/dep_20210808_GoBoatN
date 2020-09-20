@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import { BASE_URL } from '../config';
+import { BASE_URL, IMG_KEY } from '../config';
+import BoatCard from './cards/BoatCard';
 import '../styles/boats.css';
 
 
 // React Component
 const Boats = props => {
 
-    // DOM Ref
-    const imgFile = React.createRef();
     const token = window.localStorage.getItem("auth_token")
+    const boatSprites = [
+        { title: "canoe", sprite: "canoeSprite.png" },
+        { title: "kayak", sprite: "playBoatSprite.png" },
+        { title: "raft", sprite: "raftSprite.png" },
+    ]
 
     // Boat State
     const [name, setName] = useState("");
     const [make, setMake] = useState("");
     const [occupancy, setOccupancy] = useState(1);
+    const [spriteOption, setSpriteOption] = useState(boatSprites[0].sprite);
 
     // Component State
     const [nameRequired, setNameRequired] = useState("no-error");
@@ -23,9 +28,12 @@ const Boats = props => {
     const updateName = e => setName(e.target.value);
     const updateMake = e => setMake(e.target.value);
     const updateOccupancy = e => setOccupancy(e.target.value);
+    const updateSpriteOption = e => setSpriteOption(e.target.value);
 
     // Create a Boat Function
     const createBoat = async () => {
+
+        // -- TODO - Handling
         if (name.length === 0 ) {
             setNameRequired("erroring");
             if (make.length === 0) {
@@ -38,28 +46,7 @@ const Boats = props => {
             make: make,
             user_id: props.user.id,
             occupancy: occupancy,
-            sprite: null
-        }
-
-        if (imgFile.current.files[0] !== undefined) {
-            const formData = new FormData();
-            formData.append('file', imgFile.current.files[0])
-
-            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: formData,
-            });
-            if (!res.ok) {
-                // -- TODO -- Handling
-                console.log("boatImage upload failure")
-            } else {
-                const json = await res.json()
-                boat.sprite = json.sprite
-            }
+            sprite: spriteOption
         }
         const res = await fetch(`${BASE_URL}/api/boats/`, {
             method: "POST",
@@ -84,32 +71,35 @@ const Boats = props => {
     return (
         <div className="boats-root--container">
             <div className="boats">
-                    <div className="boats__display-c">
-                        <div className="boats__display">
-                            { props.boats.map((boat) =>
-                                <div
-                                    className="boat-card"
-                                    key={boat.id}>
-                                    <span>{boat.name}</span>
-                                    <span>{boat.make}</span>
-                                    <span>{boat.occupancy}</span>
-                                </div>
-                            )}
-                        </div>
+                <div className="boats__display-c">
+                    <div className="boats__display">
+                        { props.boats.map((boat) =>
+                            <BoatCard boat={boat}/>
+                        )}
                     </div>
+                </div>
+                <div className="boats__create--header">
+                    <span>Add a boat to your collection</span>
+                </div>
                 <div className="boats__create--container">
                     <div className="create-boat__img--container">
+                        <span className="create-boat__img--instruct">
+                            Pick an image for your boat
+                        </span>
                         <div className="create-boat__img-form">
-                            <div className="create-boat__img-form--input">
-                                <span>Choose a file to upload</span>
-                                <input
-                                    className="create-boat__img-upload"
-                                    type="file"
-                                    accept="image/*"
-                                    name="file"
-                                    ref={imgFile}
-                                />
-                            </div>
+                            { boatSprites.map(boat =>
+                                <div className="boat-sprite--container">
+                                    <div className="boat-sprite__img">
+                                        <img src={`${IMG_KEY}${boat.sprite}`}/>
+                                    </div>
+                                    <span>{boat.title}</span>
+                                    <input
+                                        type="radio"
+                                        onClick={updateSpriteOption}
+                                        value={boat.sprite}
+                                        checked={spriteOption === boat.sprite} />
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="boats__create">

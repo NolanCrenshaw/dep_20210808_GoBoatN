@@ -76,6 +76,7 @@ with app.app_context():
         firstname="Demo",
         lastname="Rivers",
         zipcode=37409,
+        profile_pic="demoUser_profile_pic.png"
     )
     Bob = User(
         username="Bobtest",
@@ -84,6 +85,7 @@ with app.app_context():
         firstname="Bob",
         lastname="Bobberson",
         zipcode=37409,
+        profile_pic="Image_from_iOS_4.png"
     )
     Kim = User(
         username="Kimtest",
@@ -92,6 +94,7 @@ with app.app_context():
         firstname="Kim",
         lastname="Kimerson",
         zipcode=37409,
+        profile_pic="Image_from_iOS_2.png"
     )
     Swym = User(
         username="Swymtest",
@@ -100,56 +103,56 @@ with app.app_context():
         firstname="Swym",
         lastname="Swymerson",
         zipcode=37409,
-    )
-    Dog = User(
-        username="Dogtest",
-        email="dog@test.com",
-        hashed_password=hash,
-        firstname="Dog",
-        lastname="Doggerson",
-        zipcode=37409,
+        profile_pic="Image_from_iOS.png"
     )
     boat_one = Boat(
         name="Huck",
         user_id=1,
         make="Liquid Logic",
         occupancy=1,
+        sprite="playBoatSprite.png"
     )
     boat_two = Boat(
         name="Pop",
         user_id=1,
         make="Liquid Logic",
         occupancy=1,
+        sprite="playBoatSprite.png"
     )
     boat_three = Boat(
         name="Dagger",
         user_id=2,
         make="Blisstick",
         occupancy=1,
+        sprite="playBoatSprite.png"
     )
     boat_four = Boat(
         name="Ranger",
         user_id=3,
         make="Avon",
         occupancy=8,
+        sprite="raftSprite.png"
     )
     boat_five = Boat(
         name="Betsy",
         user_id=3,
         make="Shredder",
         occupancy=2,
+        sprite="raftSprite.png"
     )
     boat_six = Boat(
         name="Martha",
         user_id=4,
         make="Jackson",
         occupancy=1,
+        sprite="playBoatSprite.png"
     )
     boat_seven = Boat(
-        name="Canoe",
+        name="My Canoe",
         user_id=5,
         make="Old Town",
         occupancy=2,
+        sprite="canoeSprite.png"
     )
     vehicle_one = Vehicle(
         name="Tacoma",
