@@ -28,11 +28,12 @@ const Main = () => {
 
     // Page State
     const token = window.localStorage.getItem("auth_token");
+    const defaultPic = `${IMG_KEY}default-profile-pic.jpg`
     const [river, setRiver] = useState({});
 
     // Current User State
     const [user, setUser] = useState({});
-    const [profilePic, setProfilePic] = useState(`${IMG_KEY}default-profile-pic.jpg`)
+    const [profilePic, setProfilePic] = useState(defaultPic)
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
 
@@ -59,16 +60,10 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
+                setProfilePic(`${IMG_KEY}${json.profile_pic}`)
             }
         };
-        // -- TODO -- set profile picture
-        const setUserPic = () => {
-            if (user.profile_pic) {
-                setProfilePic(`${IMG_KEY}${user.profile_pic}`)
-            }
-        }
         getUser();
-        // setUserPic(); -- TODO -- set profile picture
     }, [])
 
 
@@ -173,7 +168,7 @@ const Main = () => {
                         <div className="main__vita">
                             <div className="vita__profile-pic--container">
                                 <div className="vita__profile-pic">
-                                    <img src={`${IMG_KEY}${user.profile_pic}`}/>
+                                    <img src={profilePic}/>
                                 </div>
                             </div>
                             <div className="vita-bio--container">
