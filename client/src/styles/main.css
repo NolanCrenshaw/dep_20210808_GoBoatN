@@ -137,22 +137,29 @@
     box-shadow: 15px 15px 10px rgb(99, 91, 91);
     position: static;
 }
-.vita__profile-pic {
-    width: 70%;
-    max-width: 1300px;
-    height: auto;
-    border: 3px solid blue;
+.vita__profile-pic--container {
+    width: 350px;
+    height: 350px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 180px;
     box-shadow: 8px 8px 20px rgb(1, 1, 34);
-    background-color: blue;
-    position: relative;
-    top: -15px;
-    z-index: 0;
+    background-color: rgb(51, 76, 145);
+}
+.vita__profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .vita__profile-pic img {
-    max-width: 100%;
-    position: relative;
+    width: 90%;
+    max-width: 1300px;
+    height: auto;
+    border: 1px solid black;
     border-radius: 180px;
+    position: relative;
 }
 .vita-bio--container {
     width: 85%;

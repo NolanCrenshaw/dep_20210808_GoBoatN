@@ -6,13 +6,16 @@ import '../styles/boats.css';
 // React Component
 const Boats = props => {
 
+    // DOM Ref
+    const imgFile = React.createRef();
+    const token = window.localStorage.getItem("auth_token")
+
     // Boat State
     const [name, setName] = useState("");
     const [make, setMake] = useState("");
-    const [occupancy, setOccupancy] = useState("");
+    const [occupancy, setOccupancy] = useState(1);
 
     // Component State
-    const token = window.localStorage.getItem("auth_token")
     const [nameRequired, setNameRequired] = useState("no-error");
     const [makeRequired, setMakeRequired] = useState("no-error");
 
@@ -30,11 +33,33 @@ const Boats = props => {
             };
             return;
         };
-
         const boat = {
             name: name,
             make: make,
+            user_id: props.user.id,
             occupancy: occupancy,
+            sprite: null
+        }
+
+        if (imgFile.current.files[0] !== undefined) {
+            const formData = new FormData();
+            formData.append('file', imgFile.current.files[0])
+
+            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: formData,
+            });
+            if (!res.ok) {
+                // -- TODO -- Handling
+                console.log("boatImage upload failure")
+            } else {
+                const json = await res.json()
+                boat.sprite = json.sprite
+            }
         }
         const res = await fetch(`${BASE_URL}/api/boats/`, {
             method: "POST",
@@ -49,7 +74,7 @@ const Boats = props => {
             // -- TODO -- Handling
             console.log("createBoat res failure");
         } else {
-            return;
+            window.location.reload();
         }
     };
 
@@ -74,7 +99,18 @@ const Boats = props => {
                     </div>
                 <div className="boats__create--container">
                     <div className="create-boat__img--container">
-
+                        <div className="create-boat__img-form">
+                            <div className="create-boat__img-form--input">
+                                <span>Choose a file to upload</span>
+                                <input
+                                    className="create-boat__img-upload"
+                                    type="file"
+                                    accept="image/*"
+                                    name="file"
+                                    ref={imgFile}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className="boats__create">
                         <div className="create-boat__form">

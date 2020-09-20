@@ -4,7 +4,7 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
-import { BASE_URL } from '../config';
+import { BASE_URL, IMG_KEY } from '../config';
 import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
@@ -32,11 +32,11 @@ const Main = () => {
 
     // Current User State
     const [user, setUser] = useState({});
+    const [profilePic, setProfilePic] = useState(`${IMG_KEY}default-profile-pic.jpg`)
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
 
     // Temporary Profile Picture Set
-    const profile_pic = require("../images/jpg/default-profile-pic.jpg");
 
 
     // Component Based Functions
@@ -64,7 +64,7 @@ const Main = () => {
         // -- TODO -- set profile picture
         const setUserPic = () => {
             if (user.profile_pic) {
-                setUserPic(`${user.profile_pic}`)
+                setProfilePic(`${IMG_KEY}${user.profile_pic}`)
             }
         }
         getUser();
@@ -171,8 +171,10 @@ const Main = () => {
                             </div>
                         </Router>
                         <div className="main__vita">
-                            <div className="vita__profile-pic">
-                                <img src={profile_pic}/>
+                            <div className="vita__profile-pic--container">
+                                <div className="vita__profile-pic">
+                                    <img src={`${IMG_KEY}${user.profile_pic}`}/>
+                                </div>
                             </div>
                             <div className="vita-bio--container">
                                 <div className="vita-bio__username">
