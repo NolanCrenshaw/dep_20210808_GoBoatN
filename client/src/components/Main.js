@@ -149,11 +149,9 @@ const Main = () => {
                                         <Rivers/>
                                     </Route>
                                     <Route
-                                        exact
                                         path="/rivers/:id"
                                         component={RiverPage}/>
                                     <Route
-                                        exact
                                         path="/profile/edit">
                                         <ProfileEdit
                                             user={user}/>

@@ -68,7 +68,7 @@ const Rivers = props => {
             setPageViewRivers(riversTabbed);
         };
         setRiversLimited();
-    }, [rivers])
+    }, [])
 
 // ---- Component Render ---- //
 
