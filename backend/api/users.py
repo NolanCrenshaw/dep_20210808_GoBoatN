@@ -10,6 +10,7 @@ from ..models import db, User
 user = Blueprint('users', __name__)
 
 
+# Get User by ID
 @user.route('/<id>')
 @jwt_required
 def user_by_id(id):
@@ -35,6 +36,7 @@ def user_by_id(id):
     ), 200
 
 
+# Get User by Token
 @user.route('/token')
 @jwt_required
 def user_by_token():
@@ -60,3 +62,25 @@ def user_by_token():
         boats=boats,
         vehicles=vehicles
     ), 200
+
+
+# Update User Obj
+@user.route('/token/update', methods=["PUT"])
+@jwt_required
+def update_user_by_token():
+    if request.method == "PUT":
+        try:
+            data = request.get_json()
+            user_object = get_jwt_identity()
+            user = User.query.filter_by(email=user_object['email']).first()
+            print("still working")
+            print(f' User == {user}')
+            print(f' Data == {data}')
+            user.profile_pic = data
+            print("still working 2")
+            db.session.commit()
+            return jsonify(message="Update user success"), 200
+        except Exception:
+            return jsonify(message="Update user failed"), 401
+    else:
+        return jsonify(message="Request method not cleared"), 402

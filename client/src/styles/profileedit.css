@@ -1,0 +1,16 @@
+.profile-card__upload-img {
+    margin: 0 5px;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.profile-card__upload--button {
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #023E8A;
+    border-radius: 90px;
+    background-color: #CAF0F8;
+    cursor: pointer;
+}
