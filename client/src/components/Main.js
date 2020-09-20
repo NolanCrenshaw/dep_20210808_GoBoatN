@@ -194,12 +194,9 @@ const Main = () => {
                             </div> */}
                         </div>
                     </div>
-                    <div className="main__body--footer">
-
+                    <div className="main__footer">
+                        <span>Footer</span>
                     </div>
-                </div>
-                <div className="main__footer">
-                    <span>Footer</span>
                 </div>
             </div>
         </div>

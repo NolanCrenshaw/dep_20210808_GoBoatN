@@ -215,10 +215,7 @@ class Trip(db.Model):
     __tablename__ = "trips"
 
     id = db.Column(db.Integer, primary_key=True)
-    scheduled_time = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False
-    )
+    scheduled_time = db.Column(db.DateTime)
     river_id = db.Column(
         db.Integer,
         db.ForeignKey("rivers.id"),
@@ -232,8 +229,9 @@ class Trip(db.Model):
     put_in = db.Column(db.Integer, db.ForeignKey("accesses.id"))
     take_out = db.Column(db.Integer, db.ForeignKey("accesses.id"))
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow
     )
 
     invites = db.relationship(

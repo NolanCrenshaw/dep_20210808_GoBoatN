@@ -77,3 +77,24 @@ def trip_by_id(id):
         boats,
         vehicles,
     ), 200
+
+
+@trip.route('/create', methods=["POST"])
+@jwt_required
+def create_trip():
+    try:
+        count = Trip.count()
+        data = request.get_json()
+        trip = Trip(
+            id=count+1,
+            river_id=data['river'],
+            trip_leader=data['user'],
+            put_in=data['putin'],
+            take_out=data['takeout']
+        )
+        db.session.add(trip)
+        db.commit()
+
+        return jsonify(trip_id=count+1), 200
+    except Exception:
+        return jsonify(message="create_trip failed"), 400
