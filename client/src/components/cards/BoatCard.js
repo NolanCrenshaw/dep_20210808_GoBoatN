@@ -1,5 +1,6 @@
-import React from 'react'                                ;
-import '../../styles/boatcard.css'
+import React from 'react';
+import { IMG_KEY } from '../../config';
+import '../../styles/boatcard.css';
 
 
 // React Component
@@ -13,10 +14,16 @@ const BoatCard = props => {
         <div
             className="boat-card"
             key={props.boat.id}>
-            <span>{props.boat.name}</span>
-            <span>{props.boat.make}</span>
-            <span>{props.boat.occupancy}</span>
-            <span>{props.boat.sprite}</span>
+            <div className="boat-card__img">
+                <img src={`${IMG_KEY}${props.boat.sprite}`}/>
+            </div>
+            <div className="boat-card__textbox--container">
+                <div className="boat-card__textbox">
+                    <span>{props.boat.name}</span>
+                    <span>{props.boat.make}</span>
+                    <span>{props.boat.occupancy}</span>
+                </div>
+            </div>
         </div>
     )
 }
