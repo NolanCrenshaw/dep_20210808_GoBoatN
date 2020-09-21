@@ -189,10 +189,6 @@ with app.app_context():
         occupancy=2,
         sprite="pickupSprite.png"
     )
-    trip_one = Trip(
-        river_id=15,
-        trip_leader=1,
-    )
 
     db.session.add(Demo)
     db.session.add(Bob)
@@ -210,7 +206,6 @@ with app.app_context():
     db.session.add(vehicle_three)
     db.session.add(vehicle_four)
     db.session.add(vehicle_five)
-    db.session.add(trip_one)
 
     db.session.commit()
 
