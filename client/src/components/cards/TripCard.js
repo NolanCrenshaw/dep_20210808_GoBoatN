@@ -1,21 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BASE_URL } from '../../config';
 import '../../styles/tripcard.css';
 
 
 // React Component
 const TripCard = props => {
 
-    // State
+    const token = window.localStorage.getItem("auth_token");
     const history = useHistory();
+
+    // State
+    const [river, setRiver] = useState({})
 
     // Listen
 
     // Function
     const navToTrip = () => {
-        history.push(`/trips/${props.trip[0].id}`);
+        history.push(`/trips/${props.trip.id}`);
         history.go(0);
     };
+
+    useEffect(() => {
+        const getRiver = async () => {
+            const res = await fetch(`${BASE_URL}/api/rivers/${props.trip.river_id}`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            })
+            if (!res.ok) {
+                // -- TODO - Handling
+                console.log("getRiver res failure")
+            } else {
+                const json = await res.json()
+                setRiver(json.river)
+            }
+        };
+        getRiver();
+    },[])
 
 // ---- Component Render ---- //
 
@@ -28,11 +53,12 @@ const TripCard = props => {
                 <div className="tripCard__sidebox"></div>
                 <div className="tripCard__text-container">
                     <div className="tripCard__name">
-                        <span>{props.trip[0].name}</span>
+                        <span>{river.name}</span>
+                        <span>{props.trip.scheduled_time}</span>
                     </div>
-                    <div className="tripCard__info-container">
+                    <div className="tripCard__info--container">
                         <div className="tripCard__info--class">
-                            <span>{props.trip[0].class_designation}</span>
+                            <span>{props.trip.class_designation}</span>
                         </div>
                     </div>
                 </div>

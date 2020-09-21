@@ -18,6 +18,7 @@ import VehiclesButton from './navbar_buttons/VehiclesButton';
 import RiversButton from './navbar_buttons/RiversButton';
 import ProfileEditButton from './navbar_buttons/ProfileEditButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
+import TripCard from './cards/TripCard';
 import '../styles/main.css';
 import '../styles/alt/alt-main.css';
 import TripPage from './TripPage';
@@ -41,9 +42,6 @@ const Main = () => {
 
 
     // Functions
-
-
-
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
@@ -63,6 +61,8 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
+                setUserInvites(json.invites);
+                setUserTrips(json.trips);
                 if (json.user.profile_pic !== null) {
                     setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
                 }
@@ -166,8 +166,14 @@ const Main = () => {
                                     <span>{ user.email }</span>
                                 </div>
                             </div>
+                            <span className="vita-trip--header">
+                                Your Trips
+                            </span>
                             <div className="vita-trip--container">
-
+                                { userTrips[0]
+                                    ? userTrips[0].map(trip => <TripCard trip={trip}/>)
+                                    : <span>You should Create a trip!</span>
+                                }
                             </div>
                         </div>
                     </div>

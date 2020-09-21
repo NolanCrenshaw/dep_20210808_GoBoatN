@@ -184,6 +184,21 @@
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
+.vita-trip--container {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.vita-trip--header {
+    padding: 20px;
+    color: rgb(22, 22, 26);
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
+}
 .main__body--footer {}
 .main__footer {
     width: 100%;

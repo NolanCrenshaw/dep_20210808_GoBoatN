@@ -190,7 +190,7 @@ with app.app_context():
         sprite="pickupSprite.png"
     )
     trip_one = Trip(
-        river_id=20,
+        river_id=15,
         trip_leader=1,
     )
 
