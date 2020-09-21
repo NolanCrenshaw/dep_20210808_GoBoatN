@@ -1,9 +1,10 @@
 # Package Requirements
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from datetime import datetime
 
 # Local Requirements
-from ..models import db, Trip
+from ..models import db, Trip, Access, River, User
 
 
 # Blueprint Declaration
@@ -51,6 +52,7 @@ def trip_by_id(id):
     boaters = []
     boats = []
     vehicles = []
+    access = []
 
     # package invite list
     invite_objects = trip_obj.invites
@@ -70,21 +72,46 @@ def trip_by_id(id):
         vehicle = boater['vehicle_id']
         vehicles.append(vehicle)
 
+    # package access points
+    putin = Access.query.filter_by(id=trip['put_in']).first()
+    takeout = Access.query.filter_by(id=trip['take_out']).first()
+    access.append(putin.to_dict())
+    access.append(takeout.to_dict())
+
+    river = River.query.filter_by(id=trip['river_id']).first()
+    trip_leader = User.query.filter_by(id=trip['trip_leader']).first()
+
     return jsonify(
-        trip,
-        invites,
-        boaters,
-        boats,
-        vehicles,
+        trip=trip,
+        invites=invites,
+        boaters=boaters,
+        boats=boats,
+        vehicles=vehicles,
+        access=access,
+        river=river.to_dict(),
+        trip_leader=trip_leader.to_safe_object(),
     ), 200
+
+
+@trip.route('/<id>/update', methods=["PUT"])
+@jwt_required
+def update_trip_time(id):
+    try:
+        data = request.get_json()
+        trip = Trip.query.filter_by(id=id).first()
+        trip.scheduled_time = data
+        db.session.commit()
+        return jsonify(message="update trip time success")
+    except Exception:
+        return jsonify(message="update trip time failure")
 
 
 @trip.route('/create', methods=["POST"])
 @jwt_required
 def create_trip():
     try:
-        count = Trip.count()
         data = request.get_json()
+        count = Trip.query.count()
         trip = Trip(
             id=count+1,
             river_id=data['river'],
@@ -93,7 +120,8 @@ def create_trip():
             take_out=data['takeout']
         )
         db.session.add(trip)
-        db.commit()
+        print('before commit -------')
+        db.session.commit()
 
         return jsonify(trip_id=count+1), 200
     except Exception:

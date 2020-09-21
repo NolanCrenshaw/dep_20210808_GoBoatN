@@ -245,20 +245,14 @@ class Trip(db.Model):
         lazy=True
     )
 
-    def to_dict(
-        self,
-        river,
-        user,
-        put_in="empty",
-        take_out="empty"
-    ):
+    def to_dict(self):
         return {
             "id": self.id,
             "scheduled_time": self.scheduled_time,
-            "river": river,
-            "trip_leader": user,
-            "put_in": put_in,
-            "take_out": take_out,
+            "river_id": self.river_id,
+            "trip_leader": self.trip_leader,
+            "put_in": self.put_in,
+            "take_out": self.take_out,
             "date_added": self.date_added,
         }
 

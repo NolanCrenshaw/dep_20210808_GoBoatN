@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
 import '../styles/trippage.css';
 
@@ -7,64 +7,174 @@ import '../styles/trippage.css';
 // React Component
 const TripPage = props => {
 
-    // Page State
     const token = window.localStorage.getItem("auth_token");
-    const [trip, setTrip] = useState({});
-    const [putin, setPutin] = useState({});
-    const [takeout, setTakeout] = useState({});
-    const [center, setCenter] = useState([35.082900, -84.491800,]);
-    const [zoom, setZoom] = useState(13);
 
     // River State
+    const [trip, setTrip] = useState({});
     const [river, setRiver] = useState({});
-    const [access, setAccess] = useState([]);
+    const [tripLeader, setTripLeader] = useState({});
+    const [access, setAccess] = useState([{}, {}]);
+    const [putin, setPutin] = useState([35.082900, -84.491800,]);
+    const [takeout, setTakeout] = useState([35.082900, -84.491800,]);
+    const [center, setCenter] = useState([35.082900, -84.491800,]);
+    const [zoom, setZoom] = useState(11);
 
     // Current User State
     const [user, setUser] = useState({});
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
 
+    // Time State
+    const [year, setYear] = useState('2020');
+    const [month, setMonth] = useState('01');
+    const [day, setDay] = useState('01');
+    const [hour, setHour] = useState('01');
 
     // Listen
+    const updateYear = e => setYear(e.target.value);
+    const updateMonth = e => setMonth(e.target.value);
+    const updateDay = e => setDay(e.target.value);
+    const updateHour = e => setHour(e.target.value);
+
 
     // Function
+    const LeaderTimeControl = () => {
+        if (user.id === tripLeader.id) {
+
+            return (
+                <div className="trippage-body__time-inputs-c">
+                    <span>Year</span>
+                    <select
+                        className="trip-time__select"
+                        id="trip-time__year"
+                        value={year}
+                        onChange={updateYear}>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                    <span>Month</span>
+                    <select
+                        className="trip-time__select"
+                        id="trip-time__month"
+                        value={month}
+                        onChange={updateMonth}>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <span>Day</span>
+                    <select
+                        className="trip-time__select"
+                        id="trip-time__day"
+                        value={day}
+                        onChange={updateDay}>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <span>Hour</span>
+                    <select
+                        className="trip-time__select"
+                        id="trip-time__hour"
+                        value={hour}
+                        onChange={updateHour}>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select>
+                    <div
+                        id="trippage-body__trip-time-edit"
+                        onClick={setTime}>
+                        <span>Set Time</span>
+                    </div>
+                </div>
+            )
+        } else {
+            return null
+        }
+    };
+
+    const setTime = async () => {
+        const time = `${year}-${month}-${day}T${hour}:00:00`
+        console.log(time);
+        const res = await fetch(`${BASE_URL}/api/trips/${trip.id}/update`, {
+            method: "PUT",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(time)
+        })
+        if (!res.ok) {
+            // -- TODO - Handling
+            console.log("setTime res failure");
+        } else {
+            const json = await res.json();
+            window.location.reload();
+        }
+    };
+
 
     useEffect(() => {
-        const getTrip = async () => {
-            const res = await fetch(`${BASE_URL}/api/trips/${props.match.params.id}`, {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-            });
-            if (!res.ok) {
-                // -- TODO Handling
-                console.log("getTrip res failure");
-            } else {
-                const json = await res.json();
-                setTrip(json.trip);
-            }
-        }
-        const getRiver = async () => {
-            const res = await fetch(`${BASE_URL}/api/rivers/${trip.river_id}`, {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-            })
-            if (!res.ok) {
-                // -- TODO Handling
-                console.log("getRiver res failure");
-            } else {
-                const json = await res.json();
-                setRiver(json.river);
-                setAccess(json.access);
-            }
-        };
         const getUser = async () => {
             const res = await fetch(`${BASE_URL}/api/users/token`, {
                 method: "GET",
@@ -85,8 +195,34 @@ const TripPage = props => {
             }
         };
         getUser();
+        const getTrip = async () => {
+            const res = await fetch(`${BASE_URL}/api/trips/${props.match.params.id}`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if (!res.ok) {
+                // -- TODO Handling
+                console.log("getTrip res failure");
+            } else {
+                const json = await res.json();
+                const piLat = json.access[0].latitude;
+                const piLon = json.access[0].longitude;
+                const toLat = json.access[1].latitude;
+                const toLon = json.access[1].longitude;
+                setTrip(json.trip);
+                setRiver(json.river);
+                setTripLeader(json.trip_leader);
+                setAccess(json.access);
+                setCenter([piLat, toLon]);
+                setPutin([piLat, piLon]);
+                setTakeout([toLat, toLon]);
+            }
+        }
         getTrip();
-        getRiver();
     },[]);
 
 
@@ -104,7 +240,58 @@ const TripPage = props => {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         />
+                        <Marker position={putin}>
+                            {/* <Popup>{access[0].name}</Popup> */}
+                        </Marker>
+                        <Marker position={takeout}>
+                            {/* <Popup>{access[1].name}</Popup> */}
+                        </Marker>
                     </Map>
+                </div>
+                <div className="trippage-body">
+                    <div className="trippage-body__textbox">
+                        <div className="trippage-body--name-c">
+                            <div className="trippage-body__tripname">
+                                <span>{river.name}</span>
+                            </div>
+                        </div>
+                        <div className="trippage-body--region-c">
+                            <div className="trippage-body__region">
+                                <span>{river.region}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="trippage-body__access-c">
+                        <div className="trippage-body__access">
+                            <div className="trippage-body__access--textbox">
+                                <span>Put in:</span>
+                                <span>{access[0].name}</span>
+                            </div>
+                        </div>
+                        <div className="trippage-body__access">
+                            <div className="trippage-body__access--textbox">
+                                <span>Take out:</span>
+                                <span>{access[1].name}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="trippage-body__trip-c">
+                        <div className="trippage-body__trip">
+                            <div className="trippage-body__infobox">
+                                <div className="trippage-body__infobox--trip-leader">
+                                    <span>Trip Leader:</span>
+                                    <span>{tripLeader.username}</span>
+                                </div>
+                                <div className="trippage-body__infobox--trip-time-c">
+                                    <div className="trippage-body__infobox--trip-time">
+                                        <span>Trip Time:</span>
+                                        <span>{trip.scheduled_time}</span>
+                                    </div>
+                                    <LeaderTimeControl/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
 import { useHistory } from 'react-router-dom';
 import '../styles/riverpage.css';
@@ -13,6 +13,7 @@ const RiverPage = props => {
 
     // State
     const [river, setRiver] = useState({});
+    const [user, setUser] = useState({});
     const [access, setAccess] = useState([{}, {}]);
     const [putin, setPutin] = useState([35.082900, -84.491800,]);
     const [takeout, setTakeout] = useState([35.082900, -84.491800,]);
@@ -26,7 +27,10 @@ const RiverPage = props => {
     const createTrip = async () => {
 
         const trip = {
-
+            river: river.id,
+            user: user.id,
+            putin: access[0].id,
+            takeout: access[1].id,
         }
 
         const res = await fetch(`${BASE_URL}/api/trips/create`, {
@@ -76,7 +80,25 @@ const RiverPage = props => {
                 setTakeout([toLat, toLon]);
             }
         };
+        const getUser = async () => {
+            const res = await fetch(`${BASE_URL}/api/users/token`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if (!res.ok) {
+                // -- TODO -- Handling
+                console.log("getUser res failure");
+            } else {
+                const json = await res.json();
+                setUser(json.user);
+            }
+        };
         getRiver();
+        getUser();
     },[]);
 
 
