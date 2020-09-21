@@ -9,7 +9,7 @@
 .riverpage {
     width: 100%;
     height: auto;
-    border: 3px solid blue;
+    border: 3px solid #023E8A;
     border-radius: 50px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
 
@@ -129,15 +129,32 @@
     display: flex;
     flex-direction: column;
 }
-/* .riverpage-body__access--textbox span {
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Libre Franklin', sans-serif;
-} */
 .riverpage-body__access--textbox:first-child {
     color: black;
     font-size: 18px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
+}
+.riverpage-body__trip-c {
+    padding: 30px;
+}
+.riverpage-body__trip--button {
+    width: 90%;
+    height: 40px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 0 0;
+    border: 3px solid #023E8A;
+    border-radius: 90px;
+    background-color: #75b680;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 24px;
+}
+.riverpage-body__trip--button:hover {
+    background-color: #1a992f;
+    color: white;
 }

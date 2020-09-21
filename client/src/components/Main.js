@@ -18,6 +18,7 @@ import VehiclesButton from './navbar_buttons/VehiclesButton';
 import RiversButton from './navbar_buttons/RiversButton';
 import ProfileEditButton from './navbar_buttons/ProfileEditButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
+import TripCard from './cards/TripCard';
 import '../styles/main.css';
 import '../styles/alt/alt-main.css';
 import TripPage from './TripPage';
@@ -33,14 +34,14 @@ const Main = () => {
 
     // Current User State
     const [user, setUser] = useState({});
-    const [profilePic, setProfilePic] = useState(defaultPic)
+    const [userTrips, setUserTrips] = useState([]);
+    const [userInvites, setUserInvites] = useState([]);
+    const [profilePic, setProfilePic] = useState(defaultPic);
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
 
-    // Temporary Profile Picture Set
 
-
-    // Component Based Functions
+    // Functions
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
@@ -60,6 +61,8 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
+                setUserInvites(json.invites);
+                setUserTrips(json.trips);
                 if (json.user.profile_pic !== null) {
                     setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
                 }
@@ -97,27 +100,6 @@ const Main = () => {
                             <div className="main-switch-board__divider"/>
                             <LogoutButton/>
                         </div>
-                        {/* <div className="alt-main-header main-header__switch-board">
-                            <div className="main-switch-board__graf-c">
-                                <span>Go Boat</span>
-                                <span className="main-switch__graf--odd">i</span>
-                                <span>n</span>
-                                <span className="main-switch__graf--odd">g</span>
-                                <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
-                            </div>
-                            <div className="alt-main-switch-board--button-container">
-                                <VehiclesButton/>
-                                <div className="main-switch-board__divider"/>
-                                <BoatsButton/>
-                                <div className="main-switch-board__divider"/>
-                                <HomeButton/>
-                                <RiversButton/>
-                                <div className="main-switch-board__divider"/>
-                                <ProfileEditButton/>
-                                <div className="main-switch-board__divider"/>
-                                <LogoutButton/>
-                            </div>
-                        </div> */}
                     </div>
                     <div className="main-header__right"></div>
                 </div>
@@ -184,22 +166,20 @@ const Main = () => {
                                     <span>{ user.email }</span>
                                 </div>
                             </div>
-                            {/* <div className="vita-boats--container">
-                                {userBoats.map((boat) =>
-                                    <div key={boat.id}>
-                                        <span>{ boat.name }</span>
-                                        <span>{ boat.make }</span>
-                                    </div>
-                                )}
-                            </div> */}
+                            <span className="vita-trip--header">
+                                Your Trips
+                            </span>
+                            <div className="vita-trip--container">
+                                { userTrips[0]
+                                    ? userTrips[0].map(trip => <TripCard trip={trip}/>)
+                                    : <span>You should Create a trip!</span>
+                                }
+                            </div>
                         </div>
                     </div>
-                    <div className="main__body--footer">
-
+                    <div className="main__footer">
+                        <span>Footer</span>
                     </div>
-                </div>
-                <div className="main__footer">
-                    <span>Footer</span>
                 </div>
             </div>
         </div>

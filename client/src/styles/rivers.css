@@ -16,7 +16,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 50px 50px 0 0;
-    background-color: rgb(223, 165, 165);
 }
 .rivers__search-bar {
     width: 60%;
@@ -55,7 +54,7 @@
     height: 100%;
 }
 .rivers__search-bar--button:hover {
-    background-color: lightcoral;
+    background-color: rgb(170, 87, 87);
 }
 .rivers__cards-container {
     width: 100%;
@@ -64,7 +63,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightseagreen;
+    border: 3px solid#023E8A;
+    border-radius: 50px;
+    background-color:  #eef6f8;
+    box-shadow: 10px 10px 10px rgb(99, 91, 91);
 }
 .rivers__cards {
     width: 90%;
@@ -74,5 +76,4 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lime;
 }

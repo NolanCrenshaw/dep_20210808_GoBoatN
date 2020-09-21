@@ -115,7 +115,6 @@
     margin-top: 25px;
     margin-bottom: 25px;
     border-radius: 50px;
-    /* box-shadow: 15px 15px 10px rgb(99, 91, 91); */
 }
 .main__caput--switch {
     width: 100%;
@@ -185,12 +184,25 @@
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
+.vita-trip--container {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.vita-trip--header {
+    padding: 20px;
+    color: rgb(22, 22, 26);
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
+}
 .main__body--footer {}
 .main__footer {
     width: 100%;
     height: 200px;
-    position: -webkit-sticky;
-    position: sticky;
     bottom: 0;
     display: flex;
     justify-content: center;

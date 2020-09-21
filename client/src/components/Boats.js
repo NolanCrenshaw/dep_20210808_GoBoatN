@@ -9,9 +9,9 @@ const Boats = props => {
 
     const token = window.localStorage.getItem("auth_token")
     const boatSprites = [
-        { title: "canoe", sprite: "canoeSprite.png" },
-        { title: "kayak", sprite: "playBoatSprite.png" },
-        { title: "raft", sprite: "raftSprite.png" },
+        { title: "Canoe", sprite: "canoeSprite.png" },
+        { title: "Kayak", sprite: "playBoatSprite.png" },
+        { title: "Raft", sprite: "raftSprite.png" },
     ]
 
     // Boat State

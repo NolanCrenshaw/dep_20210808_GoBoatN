@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
+import { useHistory } from 'react-router-dom';
 import '../styles/riverpage.css';
 
 
 // React Component
 const RiverPage = props => {
 
-    // State
     const token = window.localStorage.getItem("auth_token");
+    const history = useHistory();
+
+    // State
     const [river, setRiver] = useState({});
+    const [user, setUser] = useState({});
     const [access, setAccess] = useState([{}, {}]);
     const [putin, setPutin] = useState([35.082900, -84.491800,]);
     const [takeout, setTakeout] = useState([35.082900, -84.491800,]);
@@ -20,6 +24,36 @@ const RiverPage = props => {
     // Listen
 
     // Function
+    const createTrip = async () => {
+
+        const trip = {
+            river: river.id,
+            user: user.id,
+            putin: access[0].id,
+            takeout: access[1].id,
+        }
+
+        const res = await fetch(`${BASE_URL}/api/trips/create`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(trip)
+        });
+        if (!res.ok) {
+            // -- TODO  - Handling
+            console.log("createTrip res failure")
+        } else {
+            const json = await res.json();
+            history.push(`/trips/${json.trip_id}`);
+            history.go(0);
+        };
+    }
+
+
+
     useEffect(() => {
         const getRiver = async () => {
             const res = await fetch(`${BASE_URL}/api/rivers/${props.match.params.id}`, {
@@ -46,7 +80,25 @@ const RiverPage = props => {
                 setTakeout([toLat, toLon]);
             }
         };
+        const getUser = async () => {
+            const res = await fetch(`${BASE_URL}/api/users/token`, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            });
+            if (!res.ok) {
+                // -- TODO -- Handling
+                console.log("getUser res failure");
+            } else {
+                const json = await res.json();
+                setUser(json.user);
+            }
+        };
         getRiver();
+        getUser();
     },[]);
 
 
@@ -97,6 +149,13 @@ const RiverPage = props => {
                                 <span>Take out:</span>
                                 <span>{access[1].name}</span>
                             </div>
+                        </div>
+                    </div>
+                    <div className="riverpage-body__trip-c">
+                        <div
+                            className="riverpage-body__trip--button"
+                            onClick={createTrip}>
+                            <span>Let's Go Boating!</span>
                         </div>
                     </div>
                 </div>

@@ -144,7 +144,7 @@ class Boat(db.Model):
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
     date_added = db.Column(
-        db.DateTime(timezone=True),
+        db.DateTime,
         nullable=False,
         default=datetime.utcnow
     )
@@ -215,10 +215,7 @@ class Trip(db.Model):
     __tablename__ = "trips"
 
     id = db.Column(db.Integer, primary_key=True)
-    scheduled_time = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False
-    )
+    scheduled_time = db.Column(db.DateTime)
     river_id = db.Column(
         db.Integer,
         db.ForeignKey("rivers.id"),
@@ -232,8 +229,9 @@ class Trip(db.Model):
     put_in = db.Column(db.Integer, db.ForeignKey("accesses.id"))
     take_out = db.Column(db.Integer, db.ForeignKey("accesses.id"))
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False
+        db.DateTime,
+        nullable=False,
+        default=datetime.utcnow
     )
 
     invites = db.relationship(
@@ -247,20 +245,14 @@ class Trip(db.Model):
         lazy=True
     )
 
-    def to_dict(
-        self,
-        river,
-        user,
-        put_in="empty",
-        take_out="empty"
-    ):
+    def to_dict(self):
         return {
             "id": self.id,
             "scheduled_time": self.scheduled_time,
-            "river": river,
-            "trip_leader": user,
-            "put_in": put_in,
-            "take_out": take_out,
+            "river_id": self.river_id,
+            "trip_leader": self.trip_leader,
+            "put_in": self.put_in,
+            "take_out": self.take_out,
             "date_added": self.date_added,
         }
 
