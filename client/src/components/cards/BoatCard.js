@@ -19,8 +19,11 @@ const BoatCard = props => {
             </div>
             <div className="boat-card__textbox--container">
                 <div className="boat-card__textbox">
+                    <span>Name:</span>
                     <span>{props.boat.name}</span>
+                    <span>Make:</span>
                     <span>{props.boat.make}</span>
+                    <span>Occupancy:</span>
                     <span>{props.boat.occupancy}</span>
                 </div>
             </div>
