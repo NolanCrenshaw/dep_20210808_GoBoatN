@@ -25,10 +25,6 @@ const Landing = props => {
                         </span>
                     </div>
                 </div>
-                <div className="landing__notifications-c">
-                    <div className="landing__notifications--invites"></div>
-                    <div className="landing__notifications--weather"></div>
-                </div>
             </div>
         </div>
     )
