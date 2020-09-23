@@ -31,7 +31,6 @@ const ProfileEdit = props => {
                 },
                 body: formData,
             });
-            console.log(formData)
             if (!res.ok) {
                 // -- TODO -- Handling
                 console.log("uploadImg res failure")
@@ -57,8 +56,6 @@ const ProfileEdit = props => {
                 console.log(newjson.message)
             }
         };
-
-
     };
 
     useEffect(() => {

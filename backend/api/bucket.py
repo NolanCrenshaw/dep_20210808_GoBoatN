@@ -26,12 +26,20 @@ def upload():
         img = request.files['file']
         if img:
             filename = secure_filename(img.filename)
-            img.save(filename)
-            s3.upload_file(
-                Bucket=s3_bucket_name,
+
+            s3.Bucket(s3_bucket_name).put_object(
+                Body=img,
                 Filename=filename,
-                Key=filename,
+                Key=filename
             )
+
+
+            # img.save(filename)
+            # s3.upload_file(
+            #     Bucket=s3_bucket_name,
+            #     Filename=filename,
+            #     Key=filename,
+            # )
             return jsonify(
                 sprite=filename,
                 message="file uploaded successfully"), 201
