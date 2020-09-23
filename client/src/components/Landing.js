@@ -61,18 +61,22 @@ const Landing = props => {
                         </div>
                     </div>
                     <div className="vita-tripbox">
-                        <div className="vita-trip">
+                        <div className="vita-trip-c">
                             <span className="vita-trip--header">
                                 Your Trips
                             </span>
                             <div className="vita-trip--container">
                                 { userTrips[0]
                                     ? userTrips[0].map(trip => <TripCard trip={trip}/>)
-                                    : <span>You should Create a trip!</span>
+                                    : <div/>
+                                }
+                                { userTrips[1]
+                                    ? userTrips[1].map(trip => <TripCard trip={trip}/>)
+                                    : <div/>
                                 }
                             </div>
                         </div>
-                        <div className="vita-trip">
+                        <div className="vita-trip-c">
                         <span className="vita-trip--header">
                                 Your Invites
                             </span>
