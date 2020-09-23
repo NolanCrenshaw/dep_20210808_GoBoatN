@@ -128,9 +128,11 @@ const Main = () => {
                                         <Rivers/>
                                     </Route>
                                     <Route
+                                        exact
                                         path="/rivers/:id"
                                         component={RiverPage}/>
                                     <Route
+                                        exact
                                         path="/profile/edit">
                                         <ProfileEdit
                                             user={user}/>
@@ -143,39 +145,17 @@ const Main = () => {
                                         exact
                                         path="/trips/:id"
                                         component={TripPage}/>
-                                    <Route path="/">
-                                        <Landing />
+                                    <Route
+                                        exact
+                                        path="/">
+                                        <Landing
+                                            user={user}
+                                            trips={userTrips}
+                                            invites={userInvites}/>
                                     </Route>
                                 </Switch>
                             </div>
                         </Router>
-                        <div className="main__vita">
-                            <div className="vita__profile-pic--container">
-                                <div className="vita__profile-pic">
-                                    <img src={profilePic}/>
-                                </div>
-                            </div>
-                            <div className="vita-bio--container">
-                                <div className="vita-bio__username">
-                                    <span>{ user.username }</span>
-                                </div>
-                                <div className="vita-bio__name">
-                                    <span>{ user.firstname } { user.lastname }</span>
-                                </div>
-                                <div className="vita-bio__email">
-                                    <span>{ user.email }</span>
-                                </div>
-                            </div>
-                            <span className="vita-trip--header">
-                                Your Trips
-                            </span>
-                            <div className="vita-trip--container">
-                                { userTrips[0]
-                                    ? userTrips[0].map(trip => <TripCard trip={trip}/>)
-                                    : <span>You should Create a trip!</span>
-                                }
-                            </div>
-                        </div>
                     </div>
                     <div className="main__footer">
                         <span>Footer</span>
