@@ -1,8 +1,10 @@
 # Package Requirements
+import os
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from werkzeug.utils import secure_filename
 import boto3
+from botocore.exceptions import ClientError
 
 # Local Requirements
 from ..config import Config
@@ -26,20 +28,13 @@ def upload():
         img = request.files['file']
         if img:
             filename = secure_filename(img.filename)
-
-            s3.Bucket(s3_bucket_name).put_object(
-                Body=img,
+            img.save(filename)
+            s3.upload_file(
+                Bucket=s3_bucket_name,
                 Filename=filename,
                 Key=filename
             )
-
-
-            # img.save(filename)
-            # s3.upload_file(
-            #     Bucket=s3_bucket_name,
-            #     Filename=filename,
-            #     Key=filename,
-            # )
+            os.remove(filename)
             return jsonify(
                 sprite=filename,
                 message="file uploaded successfully"), 201
