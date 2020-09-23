@@ -117,11 +117,7 @@ def update_user_by_token():
             data = request.get_json()
             user_object = get_jwt_identity()
             user = User.query.filter_by(email=user_object['email']).first()
-            print("still working")
-            print(f' User == {user}')
-            print(f' Data == {data}')
             user.profile_pic = data
-            print("still working 2")
             db.session.commit()
             return jsonify(message="Update user success"), 200
         except Exception:

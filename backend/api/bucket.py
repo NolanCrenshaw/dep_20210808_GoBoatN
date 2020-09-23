@@ -1,8 +1,10 @@
 # Package Requirements
+import os
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from werkzeug.utils import secure_filename
 import boto3
+from botocore.exceptions import ClientError
 
 # Local Requirements
 from ..config import Config
@@ -30,8 +32,9 @@ def upload():
             s3.upload_file(
                 Bucket=s3_bucket_name,
                 Filename=filename,
-                Key=filename,
+                Key=filename
             )
+            os.remove(filename)
             return jsonify(
                 sprite=filename,
                 message="file uploaded successfully"), 201
