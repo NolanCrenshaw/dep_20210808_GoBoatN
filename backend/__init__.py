@@ -38,7 +38,7 @@ app.register_blueprint(bucket, url_prefix='/api/bucket')
 
 # Default Routing
 @app.route('/', defaults={'path': ''})
-@app.route('/<path>')
+@app.route('/<path:path>')
 def react_root(path):
     print(f'Path --> {path}')
     if path == 'favicon.ico':
