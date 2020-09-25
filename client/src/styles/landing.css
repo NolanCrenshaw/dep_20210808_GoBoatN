@@ -10,9 +10,13 @@
 .landing {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .landing__picture-box {
-    width: 100%;
+    width: 98%;
     height: 500px;
     display: flex;
     justify-content: flex-end;
@@ -20,24 +24,10 @@
     background-image: url(https://goboatnbucky.s3.us-east-2.amazonaws.com/roya-ann-miller-ojG9qrU_blw-unsplash.jpg);
     background-size: cover;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgb(99, 91, 91);
     background-repeat: no-repeat;
     background-position-y: -150px;
-}
-.landing__picture-box div {
-    margin: 10px;
-    padding: 2px;
-    border: 1px solid black;
-    border-radius: 50px;
-}
-.landing__picture-box--credit-c span {
-    color: #023E8A;
-    margin: 15px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Raleway', sans-serif;
-}
-.landing__picture-box--credit-c a {
-    color: #023E8A;
 }
 .landing__notifications-c {
     width: 100%;
@@ -51,10 +41,10 @@
     height: auto;
     display: flex;
     justify-content: flex-start;
-    background-color: rgb(119, 186, 231);
+    /* background-color: rgb(119, 186, 231); */
 }
 .vita-topbox {
-    width: 40%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -62,17 +52,19 @@
     align-items: center;
 }
 .vita__profile-pic--container {
-    width: 350px;
-    height: 350px;
-    /* margin: 100px; */
+    width: 280px;
+    min-width: 280px;
+    height: 280px;
+    min-height: 280px;
     position: relative;
-    top: -180px;
+    top: -200px;
+    left: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 180px;
-    box-shadow: 8px 8px 20px rgb(1, 1, 34);
-    background-color: rgb(51, 76, 145);
+    box-shadow: 5px 5px 20px rgb(1, 1, 34);
+    background-color: white;
 }
 .vita__profile-pic {
     display: flex;
@@ -80,7 +72,7 @@
     align-items: center;
 }
 .vita__profile-pic img {
-    width: 98%;
+    width: 93%;
     max-width: 1300px;
     height: auto;
     border: 1px solid black;
@@ -114,7 +106,7 @@
     font-family: 'Roboto', sans-serif;
 }
 .vita-tripbox {
-    width: 60%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: column;

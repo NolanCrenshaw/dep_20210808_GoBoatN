@@ -35,19 +35,17 @@ const Landing = props => {
         <div className="landing-root--container">
             <div className="landing">
                 <div className="landing__picture-box">
-                    <div className="landing__picture-box--credit-c">
-                        <span>
-                            Photo by <a href="https://unsplash.com/@antipodos?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Michael Niessl</a> on <a href="https://unsplash.com/s/photos/river?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-                        </span>
+                    <div className="landing__picture-box--edit-c">
+
                     </div>
                 </div>
                 <div className="vita">
-                    <div className="vita-topbox">
-                        <div className="vita__profile-pic--container">
-                            <div className="vita__profile-pic">
-                                <img src={profilePic}/>
-                            </div>
+                    <div className="vita__profile-pic--container">
+                        <div className="vita__profile-pic">
+                            <img src={profilePic}/>
                         </div>
+                    </div>
+                    <div className="vita-topbox">
                         <div className="vita-bio--container">
                             <div className="vita-bio__username">
                                 <span>{ user.username }</span>
