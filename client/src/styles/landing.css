@@ -20,11 +20,9 @@
     height: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-image: url(https://goboatnbucky.s3.us-east-2.amazonaws.com/roya-ann-miller-ojG9qrU_blw-unsplash.jpg);
     background-size: cover;
-    /* overflow: hidden; */
     border-radius: 20px;
     box-shadow: 5px 5px 10px rgb(99, 91, 91);
     background-repeat: no-repeat;
@@ -36,8 +34,8 @@
     height: 280px;
     min-height: 280px;
     position: relative;
-    bottom: -200px;
-    left: -460px;
+    bottom: -320px;
+    left: -500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,6 +57,22 @@
     border-radius: 180px;
     position: relative;
     z-index: 2;
+}
+.landing__banner-edit--button svg {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    position: relative;
+    top: -250px;
+    left: -660px;
+    fill: white;
+    border-radius: 180px;
+    background-size: 200%;
+    cursor: not-allowed;
+}
+.landing__banner-edit--button:hover svg {
+    fill: white;
+    background-color: blue;
 }
 .vita {
     width: 98%;

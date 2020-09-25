@@ -71,17 +71,17 @@ const Boats = props => {
     return (
         <div className="boats-root--container">
             <div className="boats">
-                <div className="boats__display-c">
+                {/* <div className="boats__display-c">
                     <div className="boats__display">
                         { props.boats.map((boat) =>
                             <BoatCard boat={boat}/>
                         )}
                     </div>
-                </div>
-                <div className="boats__create--header">
-                    <span>Add a boat to your collection</span>
-                </div>
-                <div className="boats__create--container">
+                </div> */}
+                <div className="boats__create-main">
+                    <div className="boats__create--header">
+                        <span>Add a boat to your collection</span>
+                    </div>
                     <div className="create-boat__img--container">
                         <span className="create-boat__img--instruct">
                             Pick an image for your boat

@@ -10,9 +10,18 @@
 .boats {
     width: 100%;
     height: auto;
-    border: 3px solid blue;
-    border-radius: 50px;
-    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.boats__create-main {
+    width: 98%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
 }
 .boats__display-c {
     width: 100%;
@@ -21,7 +30,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px 50px 0 0;
     background-color: lightgreen;
 }
 .boats__display {
@@ -39,22 +47,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#CAF0F8;
     color: black;
     font-size: 26px;
     font-weight: 1000;
     font-family: 'Raleway', sans-serif;
 }
 .boats__create--container {
-    width: 100%;
+    /* width: 100%;
     height: auto;
     min-height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    border-radius: 0 0 50px 50px;
-    background-color:#CAF0F8;
+    background-color:#CAF0F8; */
 }
 .create-boat__img--container {
     width: 50%;

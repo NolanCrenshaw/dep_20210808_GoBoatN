@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API_URL, IMG_KEY } from '../config';
 import TripCard from './cards/TripCard';
+import BannerEditSVG from '../images/BannerEditSVG';
 import '../styles/landing.css';
 
 // React Component
@@ -42,6 +43,9 @@ const Landing = props => {
                         <div className="landing__profile-pic">
                             <img src={profilePic}/>
                         </div>
+                    </div>
+                    <div className="landing__banner-edit--button">
+                        <BannerEditSVG/>
                     </div>
                 </div>
                 <div className="vita">
