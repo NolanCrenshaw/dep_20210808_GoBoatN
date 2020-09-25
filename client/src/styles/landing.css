@@ -120,7 +120,7 @@
     margin: 10px;
     padding: 30px;
     overflow: hidden;
-    background-color: teal;
+    /* background-color: teal; */
 }
 .vita-bio__flairbox {
     width: 20%;
@@ -128,7 +128,7 @@
     margin: 10px;
     padding: 30px;
     overflow: hidden;
-    background-color: thistle;
+    /* background-color: thistle; */
 }
 .vita-bottombox {
     width: 98%;
@@ -147,7 +147,7 @@
     margin: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -161,9 +161,20 @@
 }
 .vita-card {
     width: 30%;
-    height: 100px;
+    height: auto;
     margin: 20px;
-    background-color: turquoise;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* background-color: turquoise; */
+}
+.vita-card__header {
+    color:  rgb(41, 40, 40);
+    font-size: 24px;
+    font-style: italic;
+    font-family: 'Epilogue', sans-serif;
+
 }
 .vita-invite--container {}
 .vita-trips--container {}

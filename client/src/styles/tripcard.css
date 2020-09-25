@@ -1,11 +1,12 @@
 .tripCard-root--container {
-    width: 80%;
+    width: 100%;
     height: 60px;
-    margin: 7px;
+    margin: 2px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 3px solid black;
+    /* border: 1px dashed black; */
     border-radius: 10px;
     overflow: hidden;
 }
@@ -16,7 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(151, 221, 214);
+    background-color: rgb(204, 241, 238);
 }
 .tripCard__sidebox {}
 .tripCard__text-container {
@@ -27,11 +28,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Epilogue', sans-serif;
 }
 .tripCard__name {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.tripCard__time {
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+
 }
 .tripCard__info--container {}
 .tripCard__info--class {}

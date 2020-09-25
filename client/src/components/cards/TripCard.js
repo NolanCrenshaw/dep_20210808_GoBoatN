@@ -54,6 +54,8 @@ const TripCard = props => {
                 <div className="tripCard__text-container">
                     <div className="tripCard__name">
                         <span>{river.name}</span>
+                    </div>
+                    <div className="tripCard__time">
                         <span>{props.trip.scheduled_time}</span>
                     </div>
                     <div className="tripCard__info--container">
