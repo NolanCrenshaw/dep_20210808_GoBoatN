@@ -38,27 +38,58 @@ const Landing = props => {
                     <div className="landing__picture-box--edit-c">
 
                     </div>
-                </div>
-                <div className="vita">
-                    <div className="vita__profile-pic--container">
-                        <div className="vita__profile-pic">
+                    <div className="landing__profile-pic--container">
+                        <div className="landing__profile-pic">
                             <img src={profilePic}/>
                         </div>
                     </div>
+                </div>
+                <div className="vita">
                     <div className="vita-topbox">
                         <div className="vita-bio--container">
-                            <div className="vita-bio__username">
-                                <span>{ user.username }</span>
+                            <div className="vita-bio__textbox">
+                                <div className="vita-bio__name">
+                                    <span>{ user.firstname } { user.lastname }</span>
+                                </div>
+                                <div className="vita-bio__username">
+                                    <span>{ user.username }</span>
+                                </div>
+                                <div className="vita-bio__email">
+                                    <span>{ user.email }</span>
+                                </div>
                             </div>
-                            <div className="vita-bio__name">
-                                <span>{ user.firstname } { user.lastname }</span>
+                            <div className="vita-bio__infobox">
+
                             </div>
-                            <div className="vita-bio__email">
-                                <span>{ user.email }</span>
+                            <div className="vita-bio__flairbox">
+
                             </div>
                         </div>
                     </div>
-                    <div className="vita-tripbox">
+                    <div className="vita-bottombox">
+                        <div className="vita-bottombox__cards-c">
+                            <div className="vita-card vita-invite--container">
+                                <div className="vita-card-header">
+                                    <span>Invites</span>
+                                </div>
+                            </div>
+                            <div className="vita-card__divider"/>
+                            <div className="vita-card vita-trips--container">
+                                <div className="vita-card-header">
+                                    <span>Trips</span>
+                                </div>
+                            </div>
+                            <div className="vita-card__divider"/>
+                            <div className="vita-card vita-friends--container">
+                                <div className="vita-card-header">
+                                    <span>Friends</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* <div className="vita-tripbox">
                         <div className="vita-trip-c">
                             <span className="vita-trip--header">
                                 Your Trips
@@ -85,7 +116,7 @@ const Landing = props => {
                                 }
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
