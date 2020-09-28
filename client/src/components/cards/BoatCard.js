@@ -1,11 +1,30 @@
 import React from 'react';
-import { IMG_KEY } from '../../config';
+import { BASE_URL, IMG_KEY } from '../../config';
 import '../../styles/boatcard.css';
 
 
 // React Component
 const BoatCard = props => {
 
+    const token = window.localStorage.getItem("auth_token")
+
+    // Delete Boat Function
+    const deleteBoat = async () => {
+        const res = await fetch(`${BASE_URL}/api/boats/${props.boat.id}/delete`, {
+            method: "DELETE",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+        if (!res.ok) {
+            // -- TODO - Handling
+            console.log("deleteBoat res failure")
+        } else {
+            window.location.reload();
+        }
+    }
 
 // ---- Component Render ---- //
 
@@ -33,7 +52,9 @@ const BoatCard = props => {
                             <span>{props.boat.occupancy}</span>
                         </div>
                     </div>
-                <div className="boat-card__delete">
+                <div
+                    className="boat-card__delete"
+                    onClick={deleteBoat}>
                     <img src="https://img.icons8.com/dusk/64/000000/delete-forever.png"/>
                 </div>
                 </div>
