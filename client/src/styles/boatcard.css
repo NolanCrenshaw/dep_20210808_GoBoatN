@@ -1,32 +1,52 @@
-.boat-card {
-    width: 90%;
-    height: 100px;
-    margin: 5px 0 5px 0;
+.boat-card-root--container {
+    width: 100%;
+    height: 60px;
+    margin: 2px;
+    padding: 20px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    border-radius: 20px;
-    background-color: rgb(248, 183, 18)
-}
-.boat-card__img {
-    width: 20%;
-    height: 100%;
-    border-radius: 20px 0 0 20px;
-    background-size: cover;
-    background-color: rgb(167, 183, 184);
+    border-radius: 10px;
     overflow: hidden;
 }
+.boat-card {
+    width: 80%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #0077B6;
+    background-color: #d5eaee;
+}
+.boat-card__img {
+    width: 130px;
+    height: 170px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-size: contain;
+}
 .boat-card__img img {
-    width: 100%;
+    width: 100px;
+    height: 80px;
+    margin: 10px;
+    overflow: hidden;
 }
 .boat-card__textbox--container {
-    width: 80%;
+    width: 100%;
     height: auto;
-    margin-left: 20px;
-    padding: 7px;
+    margin: 5px;
+    padding: 10px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    font-size: 22px;
+    font-weight: 1000;
+    font-family: 'Raleway', sans-serif;
 }
 .boat-card__textbox {
     width: 100%;
@@ -35,13 +55,38 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 5px double goldenrod;
-    border-radius: 10px;
 }
-.boat-card__textbox span {
+.boat-card__textbox div {
     margin: 15px;
-    color: black;
-    font-size: 20px;
-    font-weight: 1000;
-    font-family: 'Raleway', sans-serif;
+}
+.boat-card__name span:nth-child(1) {
+    font-size: 14px;
+    font-style: italic;
+    margin-right: 5px;
+}
+.boat-card__make span:nth-child(1) {
+    font-size: 14px;
+    font-style: italic;
+    margin-right: 5px;
+}
+.boat-card__occupancy span:nth-child(1) {
+    font-size: 14px;
+    font-style: italic;
+    margin-right: 5px;
+}
+.boat-card__delete {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 180%;
+    cursor: not-allowed;
+}
+.boat-card__delete:hover {
+    background-color: red;
+}
+.boat-card__delete img {
+    width: 30px;
+    height: 30px;
 }

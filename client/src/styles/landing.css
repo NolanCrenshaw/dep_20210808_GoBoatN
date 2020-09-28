@@ -10,42 +10,249 @@
 .landing {
     width: 100%;
     height: auto;
-    border-radius: 50px;
-    box-shadow: 10px 10px 10px rgb(99, 91, 91);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .landing__picture-box {
-    width: 100%;
-    height: 600px;
+    width: 98%;
+    height: 500px;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: column;
     background-image: url(https://goboatnbucky.s3.us-east-2.amazonaws.com/roya-ann-miller-ojG9qrU_blw-unsplash.jpg);
-    background-size: 1300px;
-    overflow: hidden;
+    background-size: cover;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(99, 91, 91);
     background-repeat: no-repeat;
-    background-position-y: -250px;
-    border-radius: 50px;
+    background-position-y: -150px;
 }
-.landing__picture-box div {
-    margin: 10px;
-    padding: 2px;
+.landing__profile-pic--container {
+    width: 280px;
+    min-width: 280px;
+    height: 280px;
+    min-height: 280px;
+    position: relative;
+    bottom: -240px;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 180px;
+    box-shadow: 5px 5px 10px rgb(1, 1, 34);
+    background-color: white;
+}
+.landing__profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.landing__profile-pic img {
+    width: 93%;
+    max-width: 1300px;
+    height: auto;
     border: 1px solid black;
-    border-radius: 50px;
+    border-radius: 180px;
+    position: relative;
 }
-.landing__picture-box--credit-c span {
-    color: #023E8A;
-    margin: 15px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: 'Raleway', sans-serif;
+.landing__profile-edit--button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 180px;
+    box-shadow: 5px 5px 10px rgb(1, 1, 34);
+    background-color: white;
+    cursor: not-allowed;
 }
-.landing__picture-box--credit-c a {
-    color: #023E8A;
+.landing__profile-edit--button:hover {
+    background-color: rgb(97, 97, 243);
 }
-.landing__notifications-c {
+.landing__profile-edit--button svg {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    fill:black;
+}
+
+.landing__banner-edit--button svg {
+    width: 40px;
+    height: 40px;
+    padding: 7px;
+    position: relative;
+    top: -255px;
+    left: 30px;
+    /* right: 660px; */
+    fill: white;
+    border-radius: 180px;
+    background-size: 200%;
+    cursor: not-allowed;
+}
+.vita {
+    width: 98%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(119, 186, 231); */
+}
+.vita-topbox {
+    width: 98%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: tomato; */
+}
+
+.vita-bio--container {
+    width: 100%;
+    height: 120px;
+    padding: 30px 10px 0 0;
+    margin: 10px;
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+    /* border: 1px solid rgb(99, 91, 91); */
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(99, 91, 91);
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+.vita-bio__textbox {
+    width: 30%;
+    height: 100%;
+    margin: 10px;
+    padding: 30px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: yellowgreen; */
+}
+.vita-bio__name span {
+    color: #03045E;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Epilogue', sans-serif;;
+}
+.vita-bio__username span {}
+.vita-bio__email span {}
+.vita-bio__infobox {
+    width: 40%;
+    height: 100%;
+    margin: 10px;
+    padding: 30px;
+    overflow: hidden;
+    /* background-color: teal; */
+}
+.vita-bio__flairbox {
+    width: 20%;
+    height: 100%;
+    margin: 10px;
+    padding: 30px;
+    overflow: hidden;
+    /* background-color: thistle; */
+}
+.vita-bottombox {
+    width: 98%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: tomato; */
+}
+.vita-bottombox__cards-c {
     width: 100%;
     height: auto;
-    min-height: 200px;
+    padding: 10px 0 0 0;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(99, 91, 91);
+    position: relative;
+    overflow: hidden;
     background-color: white;
-    border-radius: 0 0 50px 50px;
+}
+.vita-card__divider {
+    width: 0;
+    height: 70%;
+    margin: 20px 0 0 0;
+    border: 1px solid gray;
+    border-radius: 100%;
+}
+.vita-card {
+    width: 30%;
+    height: auto;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* background-color: turquoise; */
+}
+.vita-card__header {
+    color:  rgb(41, 40, 40);
+    font-size: 24px;
+    font-style: italic;
+    font-family: 'Epilogue', sans-serif;
+
+}
+.vita-invite--container {}
+.vita-trip--container {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.vita-friends--container {}
+
+
+.vita-tripbox {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.vita-trip-c {
+    width: 100%;
+    height: auto;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.vita-trip--header {
+    width: 200px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #023E8A;
+    border-radius: 10px;
+    background-color:  #48CAE4;
+    color: rgb(22, 22, 26);
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
 }
