@@ -39,7 +39,7 @@ const Boats = props => {
         if (createShow === "create-modal--hidden") {
             setCreateShow("create-modal--visible");
         } else {
-            setCreateShow("create-modal--hidden")
+            setCreateShow("create-modal--hidden");
         }
     };
 
