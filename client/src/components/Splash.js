@@ -82,7 +82,7 @@ const Splash = () => {
             }
         }
         setTimeout(demo, 1200);
-    }
+    };
 
     // Signup Toggle Function
     const toggleSignup = () => {
@@ -91,7 +91,7 @@ const Splash = () => {
         } else {
             setSignupShow("signup-modal--hidden");
         }
-    }
+    };
 
 
 // ---- Component Render ---- //

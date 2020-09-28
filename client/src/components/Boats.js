@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BASE_URL, IMG_KEY } from '../config';
 import BoatCard from './cards/BoatCard';
+import CreateBoat from './CreateBoat';
 import '../styles/boats.css';
 
 
@@ -8,23 +9,14 @@ import '../styles/boats.css';
 const Boats = props => {
 
     const token = window.localStorage.getItem("auth_token")
-    const boatSprites = [
-        { title: "Yellow Canoe", sprite: "canoeSprite.png" },
-        { title: "Red Playboat", sprite: "playBoatSprite.png" },
-        { title: "Orange Raft", sprite: "raftSprite.png" },
-        { title: "Blue Raft", sprite: "blue_raft.webp" },
-        { title: "", sprite: "orange_canoe.png" },
-        { title: "", sprite: "orange_playboat.png" },
-        { title: "", sprite: "purple_longboat.png" },
-        { title: "", sprite: "red_canoe.png" },
-        { title: "", sprite: "yellow_sea_kayak.png" },
-    ]
+
+    // Create Modal State
+    const [createShow, setCreateShow] = useState("create-modal--hidden")
 
     // Boat State
     const [name, setName] = useState("");
     const [make, setMake] = useState("");
     const [occupancy, setOccupancy] = useState(1);
-    const [spriteOption, setSpriteOption] = useState(boatSprites[0].sprite);
 
     // Component State
     const [nameRequired, setNameRequired] = useState("no-error");
@@ -34,11 +26,9 @@ const Boats = props => {
     const updateName = e => setName(e.target.value);
     const updateMake = e => setMake(e.target.value);
     const updateOccupancy = e => setOccupancy(e.target.value);
-    const updateSpriteOption = e => setSpriteOption(e.target.value);
 
-    // Create a Boat Function
-    const createBoat = async () => {
-
+    // Create Toggle Function
+    const toggleCreate = () => {
         // -- TODO - Handling
         if (name.length === 0 ) {
             setNameRequired("erroring");
@@ -47,29 +37,47 @@ const Boats = props => {
             };
             return;
         };
-        const boat = {
-            name: name,
-            make: make,
-            user_id: props.user.id,
-            occupancy: occupancy,
-            sprite: spriteOption
-        }
-        const res = await fetch(`${BASE_URL}/api/boats/`, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-            body: JSON.stringify(boat),
-        });
-        if (!res.ok) {
-            // -- TODO -- Handling
-            console.log("createBoat res failure");
+        if (createShow === "create-modal--hidden") {
+            setCreateShow("create-modal--visible");
         } else {
-            window.location.reload();
+            setCreateShow("create-modal--hidden")
         }
     };
+
+    // // Create a Boat Function
+    // const createBoat = async () => {
+
+    //     // -- TODO - Handling
+    //     if (name.length === 0 ) {
+    //         setNameRequired("erroring");
+    //         if (make.length === 0) {
+    //             setMakeRequired("erroring");
+    //         };
+    //         return;
+    //     };
+    //     const boat = {
+    //         name: name,
+    //         make: make,
+    //         user_id: props.user.id,
+    //         occupancy: occupancy,
+    //         sprite: spriteOption
+    //     }
+    //     const res = await fetch(`${BASE_URL}/api/boats/`, {
+    //         method: "POST",
+    //         mode: "cors",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": `Bearer ${token}`,
+    //         },
+    //         body: JSON.stringify(boat),
+    //     });
+    //     if (!res.ok) {
+    //         // -- TODO -- Handling
+    //         console.log("createBoat res failure");
+    //     } else {
+    //         window.location.reload();
+    //     }
+    // };
 
 // ---- Component Render ---- //
 
@@ -77,6 +85,16 @@ const Boats = props => {
     return (
         <div className="boats-root--container">
             <div className="boats">
+                <div className={createShow}>
+                    <div className="boats__modal">
+                        <CreateBoat
+                            toggle={toggleCreate}
+                            user={props.user}
+                            name={name}
+                            make={make}
+                            occupancy={occupancy}/>
+                    </div>
+                </div>
                 <div className="boats__display-c">
                     <span className="boats__display--header">
                         Your Boats:
@@ -134,7 +152,7 @@ const Boats = props => {
                                         </div>
                                         <div
                                             className="create-boat__form-button"
-                                            onClick={createBoat}>
+                                            onClick={toggleCreate}>
                                             <img src="https://img.icons8.com/officel/80/000000/plus.png"/>
                                         </div>
                                     </div>
