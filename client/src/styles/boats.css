@@ -37,27 +37,6 @@
     font-weight: 1000;
     font-family: 'Raleway', sans-serif;
 }
-.boats__create--container {}
-.create-boat__img--container {
-    width: 80%;
-    min-width: 500px;
-    height: auto;
-    margin: 5px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px rgb(1, 1, 34);
-    background-color: rgb(156, 197, 199);
-}
-.create-boat__img--instruct {
-    color: #023E8A;
-    font-size: 22px;
-    font-weight: 900;
-    font-family: 'Roboto', sans-serif;
-}
 .boat-sprite--container {
     width: 130px;
     height: 170px;

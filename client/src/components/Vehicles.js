@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import { BASE_URL, IMG_KEY } from '../config';
 import VehicleCard from './cards/VehicleCard';
+import CreateVehicle from './CreateVehicle';
 import '../styles/vehicles.css';
 
 // React Component
 const Vehicles = props => {
 
     const token = window.localStorage.getItem("auth_token")
-    const vehicleSprites = [
-        {title: "Car", sprite: "carSprite.png"},
-        {title: "Truck", sprite: "pickupSprite.png"},
-        {title: "SUV", sprite: "suvSprite.png"}
-    ]
 
+    // Create Modal State
+    const [createShow, setCreateShow] = useState("create-modal--hidden")
 
     // Vehicle State
     const [name, setName] = useState("");
     const [make, setMake] = useState("");
     const [occupancy, setOccupancy] = useState(1);
-    const [spriteOption, setSpriteOption] = useState(vehicleSprites[0].sprite);
 
     // Component State
     const [nameRequired, setNameRequired] = useState("no-error");
@@ -28,10 +24,10 @@ const Vehicles = props => {
     const updateName = e => setName(e.target.value);
     const updateMake = e => setMake(e.target.value);
     const updateOccupancy = e => setOccupancy(e.target.value);
-    const updateSpriteOption = e => setSpriteOption(e.target.value);
 
-    // Create a Vehicle Function
-    const createVehicle = async () => {
+    // Create Toggle Function
+    const toggleCreate = () => {
+        // -- TODO - Handling
         if (name.length === 0 ) {
             setNameRequired("erroring");
             if (make.length === 0) {
@@ -39,30 +35,13 @@ const Vehicles = props => {
             };
             return;
         };
-
-        const vehicle = {
-            name: name,
-            make: make,
-            user_id: props.user.id,
-            occupancy: occupancy,
-            sprite: spriteOption
-        }
-        const res = await fetch(`${BASE_URL}/api/vehicles/`, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-            body: JSON.stringify(vehicle),
-        });
-        if (!res.ok) {
-            // -- TODO -- Handling
-            console.log("createVehicle res failure");
+        if (createShow === "create-modal--hidden") {
+            setCreateShow("create-modal--visible");
         } else {
-            window.location.reload();
+            setCreateShow("create-modal--hidden")
         }
     };
+
 
 // ---- Component Render ---- //
 
@@ -70,72 +49,83 @@ const Vehicles = props => {
     return (
         <div className="vehicles-root--container">
             <div className="vehicles">
+                <div className={createShow}>
+                    <div className="vehicles__modal">
+                        <CreateVehicle
+                            toggle={toggleCreate}
+                            user={props.user}
+                            name={name}
+                            make={make}
+                            occupancy={occupancy}/>
+                    </div>
+                </div>
                 <div className="vehicles__display-c">
+                    <span className="vehicles__display--header">
+                        Your Vehicles:
+                    </span>
                     <div className="vehicles__display">
                         { props.vehicles.map((vehicle) =>
                             <VehicleCard vehicle={vehicle}/>
                         )}
-                    </div>
-                </div>
-                <div className="vehicles__create--header">
-                    <span>Add a vehicle to your collection</span>
-                </div>
-                <div className="vehicles__create--container">
-                    <div className="create-vehicle__img--container">
-                        <span className="create-vehicle__img--instruct">
-                            Pick an image for your vehicle
-                        </span>
-                        <div className="create-vehicle__img-form">
-                            { vehicleSprites.map(vehicle =>
-                                <div className="vehicle-sprite--container">
-                                    <div className="vehicle-sprite__img">
-                                        <img src={`${IMG_KEY}${vehicle.sprite}`}/>
-                                    </div>
-                                    <span>{vehicle.title}</span>
-                                    <input
-                                        type="radio"
-                                        onClick={updateSpriteOption}
-                                        value={vehicle.sprite}
-                                        checked={spriteOption === vehicle.sprite} />
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    <div className="vehicles__create">
-                        <div className="create-vehicle__form">
-                            <input
-                                className="create-vehicle__input"
-                                id="create-vehicle__name"
-                                type="text"
-                                placeholder="Name for vehicle"
-                                value={name}
-                                onChange={updateName} />
-                            <input
-                                className="create-vehicle__input"
-                                id="create-vehicle__make"
-                                type="text"
-                                placeholder="Make of vehicle"
-                                value={make}
-                                onChange={updateMake} />
-                            <div className="create-vehicle__select--container">
-                                <label>Max Occupancy</label>
-                                <select
-                                    className="create-vehicle__select"
-                                    id="create-vehicle__occupancy"
-                                    value={occupancy}
-                                    onChange={updateOccupancy}>
-                                    <option value="1" >1</option>
-                                    <option value="2" >2</option>
-                                    <option value="3" >3</option>
-                                    <option value="4" >4</option>
-                                    <option value="5" >5</option>
-                                    <option value="6" >6</option>
-                                </select>
-                            </div>
+                        <div className="vehicle-card-root--container">
                             <div
-                                className="create-vehicle__form-button"
-                                onClick={createVehicle}>
-                                <span>Create vehicle</span>
+                                className="vehicle-card add-vehicle-card">
+                                <div className="vehicle-card__header--create">
+                                    <div className="vehicle-card__header">
+                                        <span>Add a vehicle</span>
+                                    </div>
+                                </div>
+                                <div className="vehicle-card__textbox--container">
+                                    <div className="vehicle-card__textbox">
+                                        <div className="vehicle-card__name">
+                                            <span>Name:</span>
+                                            <input
+                                                className="create-vehicle__input"
+                                                id="create-vehicle__name"
+                                                type="text"
+                                                placeholder=""
+                                                value={name}
+                                                onChange={updateName} />
+                                        </div>
+                                        <div className="vehicle-card__make">
+                                            <span>Make:</span>
+                                            <input
+                                                className="create-vehicle__input"
+                                                id="create-vehicle__make"
+                                                type="text"
+                                                placeholder=""
+                                                value={make}
+                                                onChange={updateMake} />
+                                        </div>
+                                        <div className="vehicle-card__occupancy--create">
+                                            <span>Occupancy:</span>
+                                            <div className="create-vehicle__select--container">
+                                                <select
+                                                    className="create-vehicle__select"
+                                                    id="create-vehicle__occupancy"
+                                                    value={occupancy}
+                                                    onChange={updateOccupancy}>
+                                                    <option value="1" >1</option>
+                                                    <option value="2" >2</option>
+                                                    <option value="3" >3</option>
+                                                    <option value="4" >4</option>
+                                                    <option value="5" >5</option>
+                                                    <option value="6" >6</option>
+                                                    <option value="7" >7</option>
+                                                    <option value="8" >8</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div
+                                            className="create-vehicle__form-button"
+                                            onClick={toggleCreate}>
+                                            <img src="https://img.icons8.com/officel/80/000000/plus.png"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="vehicle-card__delete">
+                                    <img src="https://img.icons8.com/dusk/64/000000/delete-forever.png"/>
+                                </div>
                             </div>
                         </div>
                     </div>

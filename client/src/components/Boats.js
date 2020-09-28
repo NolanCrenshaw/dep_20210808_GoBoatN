@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BASE_URL, IMG_KEY } from '../config';
 import BoatCard from './cards/BoatCard';
 import CreateBoat from './CreateBoat';
 import '../styles/boats.css';
@@ -44,40 +43,6 @@ const Boats = props => {
         }
     };
 
-    // // Create a Boat Function
-    // const createBoat = async () => {
-
-    //     // -- TODO - Handling
-    //     if (name.length === 0 ) {
-    //         setNameRequired("erroring");
-    //         if (make.length === 0) {
-    //             setMakeRequired("erroring");
-    //         };
-    //         return;
-    //     };
-    //     const boat = {
-    //         name: name,
-    //         make: make,
-    //         user_id: props.user.id,
-    //         occupancy: occupancy,
-    //         sprite: spriteOption
-    //     }
-    //     const res = await fetch(`${BASE_URL}/api/boats/`, {
-    //         method: "POST",
-    //         mode: "cors",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${token}`,
-    //         },
-    //         body: JSON.stringify(boat),
-    //     });
-    //     if (!res.ok) {
-    //         // -- TODO -- Handling
-    //         console.log("createBoat res failure");
-    //     } else {
-    //         window.location.reload();
-    //     }
-    // };
 
 // ---- Component Render ---- //
 
@@ -147,6 +112,8 @@ const Boats = props => {
                                                     <option value="4" >4</option>
                                                     <option value="5" >5</option>
                                                     <option value="6" >6</option>
+                                                    <option value="7" >7</option>
+                                                    <option value="8" >8</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -163,68 +130,6 @@ const Boats = props => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="boats__create-main">
-                    {/* <div className="boats__create--header">
-                        <span>Add a boat to your collection</span>
-                    </div> */}
-                    {/* <div className="create-boat__img--container">
-                        <span className="create-boat__img--instruct">
-                            Select an image for your boat
-                        </span>
-                        <div className="create-boat__img-form">
-                            { boatSprites.map(boat =>
-                                <div className="boat-sprite--container">
-                                    <div className="boat-sprite__img">
-                                        <img src={`${IMG_KEY}${boat.sprite}`}/>
-                                    </div>
-                                    <input
-                                        type="radio"
-                                        onClick={updateSpriteOption}
-                                        value={boat.sprite}
-                                        checked={spriteOption === boat.sprite} />
-                                </div>
-                            )}
-                        </div>
-                    </div> */}
-                    {/* <div className="boats__create">
-                        <div className="create-boat__form">
-                            <input
-                                className="create-boat__input"
-                                id="create-boat__name"
-                                type="text"
-                                placeholder="Name for boat"
-                                value={name}
-                                onChange={updateName} />
-                            <input
-                                className="create-boat__input"
-                                id="create-boat__make"
-                                type="text"
-                                placeholder="Make of boat"
-                                value={make}
-                                onChange={updateMake} />
-                            <div className="create-boat__select--container">
-                                <label>Max Occupancy</label>
-                                <select
-                                    className="create-boat__select"
-                                    id="create-boat__occupancy"
-                                    value={occupancy}
-                                    onChange={updateOccupancy}>
-                                    <option value="1" >1</option>
-                                    <option value="2" >2</option>
-                                    <option value="3" >3</option>
-                                    <option value="4" >4</option>
-                                    <option value="5" >5</option>
-                                    <option value="6" >6</option>
-                                </select>
-                            </div>
-                            <div
-                                className="create-boat__form-button"
-                                onClick={createBoat}>
-                                <span>Create Boat</span>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

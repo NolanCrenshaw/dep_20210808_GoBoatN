@@ -1,14 +1,14 @@
-.boat-modal--container {
+.vehicle-modal--container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.create-boat__img-form--input {}
-.create-boat__img-upload {
+.create-vehicle__img-form--input {}
+.create-vehicle__img-upload {
     width: 500px;
     background-color: goldenrod;
 }
-.boats__create {
+.vehicles__create {
     width: 50%;
     height: 240px;
     margin: 20px;
@@ -17,7 +17,7 @@
     align-items: center;
     border-radius: 20px;
 }
-.create-boat__img-form {
+.create-vehicle__img-form {
     width: 80%;
     height: 100%;
     display: flex;
@@ -30,7 +30,7 @@
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
-.create-boat__input {
+.create-vehicle__input {
     width: 120px;
     height: 40px;
     margin: 5px 0 5px 0;
@@ -46,7 +46,7 @@
     box-shadow: 5px 5px 5px #024e74;
     */
 }
-.create-boat__select {
+.create-vehicle__select {
 	width: 90%;
 	max-width: 80px;
     display: flex;
@@ -71,17 +71,17 @@
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
 }
-.create-boat__select--container {
+.create-vehicle__select--container {
     width: 80px;
     display: inlines;
 }
-.create-boat__select--container label {
+.create-vehicle__select--container label {
     color: #023E8A;
     font-size: 24px;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
-.create-boat__button {
+.create-vehicle__button {
     width: 200px;
     height: 50px;
     display: flex;
@@ -97,7 +97,7 @@
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
 }
-.create-boat__button:hover {
+.create-vehicle__button:hover {
     color: white;
     border: 6px solid rgb(4, 102, 4);
     background-color: green;

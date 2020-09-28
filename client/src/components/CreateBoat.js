@@ -6,15 +6,15 @@ const CreateBoat = props => {
 
     const token = window.localStorage.getItem("auth_token")
     const boatSprites = [
-        { title: "Yellow Canoe", sprite: "canoeSprite.png" },
-        { title: "Red Playboat", sprite: "playBoatSprite.png" },
-        { title: "Orange Raft", sprite: "raftSprite.png" },
-        { title: "Blue Raft", sprite: "blue_raft.webp" },
-        { title: "", sprite: "orange_canoe.png" },
-        { title: "", sprite: "orange_playboat.png" },
-        { title: "", sprite: "purple_longboat.png" },
-        { title: "", sprite: "red_canoe.png" },
-        { title: "", sprite: "yellow_sea_kayak.png" },
+        { title: "yellow_canoe", sprite: "canoeSprite.png" },
+        { title: "red_playboat", sprite: "playBoatSprite.png" },
+        { title: "orange_raft", sprite: "raftSprite.png" },
+        { title: "blue_raft", sprite: "blue_raft.webp" },
+        { title: "orange_canoe", sprite: "orange_canoe.png" },
+        { title: "orange_playboat", sprite: "orange_playboat.png" },
+        { title: "purple_longboat", sprite: "purple_longboat.png" },
+        { title: "red_canoe", sprite: "red_canoe.png" },
+        { title: "yellow_sea_kayak", sprite: "yellow_sea_kayak.png" },
     ]
 
     // State
