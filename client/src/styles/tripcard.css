@@ -1,23 +1,23 @@
 .tripCard-root--container {
     width: 100%;
     height: 60px;
-    margin: 2px;
     padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px dashed black; */
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
 }
 .tripCard {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 40%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    background-color: rgb(204, 241, 238);
+    border-radius: 20%;
+    background-color: rgb(226, 241, 240);
 }
 .tripCard__sidebox {}
 .tripCard__text-container {

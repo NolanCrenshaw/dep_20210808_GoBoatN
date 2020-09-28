@@ -17,10 +17,10 @@
 }
 .landing__picture-box {
     width: 98%;
+    min-width: 1200px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-image: url(https://goboatnbucky.s3.us-east-2.amazonaws.com/roya-ann-miller-ojG9qrU_blw-unsplash.jpg);
     background-size: cover;
     border-radius: 20px;
@@ -34,15 +34,16 @@
     height: 280px;
     min-height: 280px;
     position: relative;
-    bottom: -320px;
-    left: -500px;
+    bottom: -240px;
+    left: 50px;
+    /* bottom: -320px;
+    right: 500px; */
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 180px;
     box-shadow: 5px 5px 10px rgb(1, 1, 34);
     background-color: white;
-    z-index: 2;
 }
 .landing__profile-pic {
     display: flex;
@@ -56,15 +57,15 @@
     border: 1px solid black;
     border-radius: 180px;
     position: relative;
-    z-index: 2;
 }
 .landing__banner-edit--button svg {
     width: 40px;
     height: 40px;
     padding: 7px;
     position: relative;
-    top: -250px;
-    left: -660px;
+    top: -255px;
+    left: 30px;
+    /* right: 660px; */
     fill: white;
     border-radius: 180px;
     background-size: 200%;
@@ -97,7 +98,7 @@
 .vita-bio--container {
     width: 100%;
     height: 120px;
-    padding: 60px 20px 0 0;
+    padding: 30px 10px 0 0;
     margin: 10px;
     display: flex;
     /* justify-content: flex-start; */
@@ -107,7 +108,7 @@
     box-shadow: 5px 5px 10px rgb(99, 91, 91);
     position: relative;
     overflow: hidden;
-    /* background-color: burlywood; */
+    background-color: white;
 }
 .vita-bio__textbox {
     width: 30%;
@@ -163,8 +164,10 @@
     justify-content: center;
     align-items: flex-start;
     border-radius: 20px;
+    box-shadow: 5px 5px 10px rgb(99, 91, 91);
     position: relative;
     overflow: hidden;
+    background-color: white;
 }
 .vita-card__divider {
     width: 0;
@@ -176,7 +179,7 @@
 .vita-card {
     width: 30%;
     height: auto;
-    margin: 20px;
+    margin: 10px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -191,7 +194,16 @@
 
 }
 .vita-invite--container {}
-.vita-trips--container {}
+.vita-trip--container {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 .vita-friends--container {}
 
 
@@ -206,6 +218,7 @@
 .vita-trip-c {
     width: 100%;
     height: auto;
+    margin: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -225,14 +238,4 @@
     font-size: 24px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
-}
-.vita-trip--container {
-    width: auto;
-    height: 200px;
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
 }

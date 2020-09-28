@@ -49,6 +49,7 @@ const TripCard = props => {
         <div className="tripCard-root--container">
             <div
                 className="tripCard"
+                key={river.id}
                 onClick={navToTrip}>
                 <div className="tripCard__sidebox"></div>
                 <div className="tripCard__text-container">
