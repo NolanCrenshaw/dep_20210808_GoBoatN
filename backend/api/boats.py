@@ -26,3 +26,16 @@ def create_boat():
         return jsonify(message="boat created successfully")
     except Exception:
         return jsonify(message="boat create failed"), 409
+
+
+# Deletes a Boat row entree
+@boat.route('/<id>/delete', methods=["DELETE"])
+@jwt_required
+def destroy_boat(id):
+    try:
+        boat = Boat.query.filter_by(id=id).first()
+        db.session.delete(boat)
+        db.session.commit()
+        return jsonify(message="boat deleted"), 200
+    except Exception:
+        return jsonify(message="destroy boat route failed"), 400

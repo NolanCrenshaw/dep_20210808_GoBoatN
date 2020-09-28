@@ -39,7 +39,7 @@ const Boats = props => {
         if (createShow === "create-modal--hidden") {
             setCreateShow("create-modal--visible");
         } else {
-            setCreateShow("create-modal--hidden")
+            setCreateShow("create-modal--hidden");
         }
     };
 
@@ -123,9 +123,6 @@ const Boats = props => {
                                             <img src="https://img.icons8.com/officel/80/000000/plus.png"/>
                                         </div>
                                     </div>
-                                <div className="boat-card__delete">
-                                    <img src="https://img.icons8.com/dusk/64/000000/delete-forever.png"/>
-                                </div>
                                 </div>
                             </div>
                         </div>

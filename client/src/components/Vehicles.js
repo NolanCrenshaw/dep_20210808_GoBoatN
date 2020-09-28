@@ -43,6 +43,7 @@ const Vehicles = props => {
     };
 
 
+
 // ---- Component Render ---- //
 
     // Render
@@ -122,9 +123,6 @@ const Vehicles = props => {
                                             <img src="https://img.icons8.com/officel/80/000000/plus.png"/>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="vehicle-card__delete">
-                                    <img src="https://img.icons8.com/dusk/64/000000/delete-forever.png"/>
                                 </div>
                             </div>
                         </div>

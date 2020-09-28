@@ -26,3 +26,16 @@ def create_vehicle():
         return jsonify(message="vehicle created successfully")
     except Exception:
         return jsonify(message="vehicle create failed"), 409
+
+
+# Deletes a Vehicle row entree
+@vehicle.route('/<id>/delete', methods=["DELETE"])
+@jwt_required
+def destroy_vehicle(id):
+    try:
+        vehicle = Vehicle.query.filter_by(id=id).first()
+        db.session.delete(vehicle)
+        db.session.commit()
+        return jsonify(message="vehicle deleted"), 200
+    except Exception:
+        return jsonify(message="destroy vehicle route failed"), 400
