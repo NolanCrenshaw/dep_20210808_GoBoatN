@@ -117,27 +117,31 @@
 
 }
 .create-boat__input {
-    width: 95%;
+    width: 120px;
+    height: 40px;
+    margin: 5px 0 5px 0;
+    border: 1px solid #023E8A;
+    background-color: #CAF0F8;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+
+    /* width: 95%;
     height: 40px;
     max-width: 300px;
-    margin: 5px 0 5px 0;
-    border: 3px solid #023E8A;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #024e74;
-    background-color: #CAF0F8;
-    font-size: 22px;
-    font-family: 'Roboto', sans-serif;
+    */
 }
 .create-boat__select {
-    display: block;
+	width: 90%;
+	max-width: 80px;
+    display: flex;
 	font-size: 16px;
 	font-family: sans-serif;
 	font-weight: 700;
 	color: #444;
     line-height: 1;
 	padding: .6em 1.4em .5em .8em;
-	width: 90%;
-	max-width: 80px;
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid #aaa;
@@ -154,16 +158,8 @@
 	background-size: .65em auto, 100%;
 }
 .create-boat__select--container {
-    width: 300px;
-    height: 60px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 5px 0 5px 0;
-    border: 3px solid #023E8A;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px #024e74;
-    background-color:  #CAF0F8;
+    width: 80px;
+    display: inlines;
 }
 .create-boat__select--container label {
     color: #023E8A;
@@ -171,22 +167,51 @@
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
 }
+.boat-card__occupancy--create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-style: italic;
+    margin-right: 5px;
+}
+.boat-card__header-create {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boat-card__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 145px;
+    height: 100%;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 1000;
+    font-family: 'Raleway', sans-serif;
+}
 .create-boat__form-button {
-    width: 90%;
-    height: 40px;
-    max-width: 300px;
+    width: auto;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 5px 0 0 0;
     border: 3px solid #023E8A;
     border-radius: 90px;
-    background-color: #CAF0F8;
+    background-color: green;
     box-shadow: 5px 5px 5px #024e74;
     cursor: pointer;
 }
 .create-boat__form-button:hover {
-    background-color: #023E8A;
+    background-color:white;
+}
+.create-boat__form-button img {
+    width: 50px;
+    height: 50px;
 }
 .create-boat__form-button span {
     color: #023E8A;
@@ -227,4 +252,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.add-boat-card {
+    width: 80%;
 }

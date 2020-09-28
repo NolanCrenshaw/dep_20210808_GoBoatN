@@ -42,6 +42,9 @@ const Landing = props => {
                     <div className="landing__profile-pic--container">
                         <div className="landing__profile-pic">
                             <img src={profilePic}/>
+                            <div className="landing__profile-edit--button">
+                                <BannerEditSVG/>
+                            </div>
                         </div>
                     </div>
                     <div className="landing__banner-edit--button">
