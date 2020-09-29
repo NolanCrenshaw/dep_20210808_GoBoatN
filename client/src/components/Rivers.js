@@ -7,9 +7,21 @@ import '../styles/rivers.css';
 // React Component
 const Rivers = props => {
 
-    // State
     const token = window.localStorage.getItem("auth_token");
+
+    // State
     const [rivers, setRivers] = useState([]);
+    const [search, setSearch] = useState('');
+
+    // Listen
+    const updateSearch = e => setSearch(e.target.value);
+
+    // Search Function
+    const searchRivers = async () => {
+        const term = `/*(${search})*/`
+
+        const res = await fetch
+    }
 
 
     useEffect(() => {
@@ -44,7 +56,9 @@ const Rivers = props => {
                         <input
                             className="rivers__search-bar--input"
                             type="text"
-                            placeholder="Search - Coming Soon!"/>
+                            placeholder="Search Rivers"
+                            value={search}
+                            onChange={updateSearch}/>
                         <div className="rivers__search-bar--button">
                             <img src="https://img.icons8.com/cotton/64/000000/search--v2.png"/>
                         </div>
