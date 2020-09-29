@@ -171,14 +171,15 @@
     /* background-color: thistle; */
 }
 .vita-bottombox {
-    width: 98%;
-    height: auto;
+    width: 100%;
+    height: fit-content;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* background-color: tomato; */
+    scrollbar-width: none;
 }
 .vita-bottombox__cards-c {
     width: 100%;
