@@ -26,6 +26,9 @@ const RiverCard = props => {
             <div
                 className="riverCard"
                 onClick={navToRiver}>
+                <div className="riverCard__sidebox">
+
+                </div>
                 <div className="riverCard__text-container">
                     <div className="riverCard__name">
                         <span>{props.river[0].name}</span>
@@ -40,9 +43,6 @@ const RiverCard = props => {
                             </span>
                         </div>
                     </div>
-                </div>
-                <div className="riverCard__sidebox">
-
                 </div>
             </div>
         </div>

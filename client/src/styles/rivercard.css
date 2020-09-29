@@ -14,12 +14,8 @@
     width: 90%;
     height: 100px;
     min-width: 300px;
-    margin: 20px;
     display: flex;
     align-items: center;
-    border: 3px solid #024e74;
-    border-radius: 15px;
-    background-color: rgb(209, 209, 245);
 }
 .riverCard__sidebox {
     width: 40%;
@@ -28,13 +24,15 @@
     overflow: hidden;
 }
 .riverCard__text-container {
-    width: 60%;
-    height: 100px;
+    width: 80%;
+    height: 20px;
     display: flex;
     margin-left: 50px;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 0 15px 15px 0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 25%;
+    background-color: rgb(177, 238, 235);
+    cursor: pointer;
 }
 .riverCard__name {
     color: black;
