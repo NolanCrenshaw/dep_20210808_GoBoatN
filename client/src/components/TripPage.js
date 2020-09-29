@@ -260,16 +260,10 @@ const TripPage = props => {
                                 <span>{river.region}</span>
                             </div>
                         </div>
-                    </div>
-                    <div className="trippage-body__access-c">
-                        <div className="trippage-body__access">
-                            <div className="trippage-body__access--textbox">
+                        <div className="riverpage-body__access-c">
+                            <div className="riverpage-body__access">
                                 <span>Put in:</span>
                                 <span>{access[0].name}</span>
-                            </div>
-                        </div>
-                        <div className="trippage-body__access">
-                            <div className="trippage-body__access--textbox">
                                 <span>Take out:</span>
                                 <span>{access[1].name}</span>
                             </div>
