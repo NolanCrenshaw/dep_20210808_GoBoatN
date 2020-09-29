@@ -24,7 +24,6 @@ const Rivers = props => {
         for (let i=0; i<rivers.length; i++) {
             const river = rivers[i][0];
             if (term.test(river.name)) {
-                console.log("hit!", river.name)
                 filterRivers.push(rivers[i])
             }
         }

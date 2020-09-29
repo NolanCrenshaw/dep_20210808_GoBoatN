@@ -110,7 +110,7 @@
     /* background-color: rgb(119, 186, 231); */
 }
 .vita-topbox {
-    width: 98%;
+    width: 99%;
     height: auto;
     margin-top: 20px;
     display: flex;
@@ -146,10 +146,11 @@
     /* background-color: yellowgreen; */
 }
 .vita-bio__name span {
-    color: #03045E;
-    font-size: 30px;
+    color:  #023E8A;
+    font-size: 38px;
+    font-style: italic;
     font-weight: 400;
-    font-family: 'Epilogue', sans-serif;;
+    font-family: 'Libre Franklin', sans-serif;
 }
 .vita-bio__username span {}
 .vita-bio__email span {}

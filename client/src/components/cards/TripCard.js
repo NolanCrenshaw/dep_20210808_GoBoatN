@@ -56,7 +56,6 @@ const TripCard = props => {
 
         // Trip's Date and Time State
         const tripTime = new Date(props.trip.scheduled_time);
-        console.log(tripTime.toLocaleString('en-US', options).split(/[\,,\s]/))
         setTripDate(
             tripTime.toLocaleString('en-US', options).split(/[\,,\s]/)
         );

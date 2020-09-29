@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL, IMG_KEY } from '../config';
 import TripCard from './cards/TripCard';
+import UserCard from './cards/UserCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 import '../styles/landing.css';
 
@@ -204,6 +205,9 @@ const Landing = props => {
                             <div className="vita-card vita-friends--container">
                                 <div className="vita-card__header">
                                     <span>Friends:</span>
+                                    <div className="vita-friend--container">
+                                        <UserCard user={user}/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

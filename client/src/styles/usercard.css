@@ -1,0 +1,72 @@
+.userCard-root--container {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.userCard {
+    width: auto;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-radius: 20%;
+    background-color: rgb(226, 241, 240);
+}
+.userCard__sidebox {
+    width: 100px;
+    height: 80px;
+    padding: 20px;
+    position: relative;
+    bottom: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userCard__profile_pic {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 180px;
+}
+.userCard__profile_pic img {
+    width: 100%;
+    height: 100%;
+
+}
+.userCard__text-container {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Epilogue', sans-serif;
+}
+.userCard__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.userCard__info-container {
+    font-weight: 800;
+}
+/* .userCard__datebox span:nth-child(3) {
+    font-size: 24px;
+    font-weight: bolder;
+}
+.userCard__time span {
+    width: auto;
+    height: auto;
+    font-size: 18px;
+    /* font-style: italic; */
+    /* font-weight: 400; */
+
