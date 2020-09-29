@@ -41,7 +41,7 @@
     height: 280px;
     min-height: 280px;
     position: relative;
-    bottom: -240px;
+    bottom: -280px;
     left: 50px;
     display: flex;
     justify-content: center;
@@ -49,6 +49,7 @@
     border-radius: 180px;
     box-shadow: 5px 5px 10px rgb(1, 1, 34);
     background-color: white;
+    z-index: 2;
 }
 .landing__profile-pic {
     display: flex;
