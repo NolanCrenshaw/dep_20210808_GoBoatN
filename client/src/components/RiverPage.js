@@ -139,16 +139,10 @@ const RiverPage = props => {
                     </div>
                     <div className="riverpage-body__access-c">
                         <div className="riverpage-body__access">
-                            <div className="riverpage-body__access--textbox">
-                                <span>Put in:</span>
-                                <span>{access[0].name}</span>
-                            </div>
-                        </div>
-                        <div className="riverpage-body__access">
-                            <div className="riverpage-body__access--textbox">
-                                <span>Take out:</span>
-                                <span>{access[1].name}</span>
-                            </div>
+                            <span>Put in:</span>
+                            <span>{access[0].name}</span>
+                            <span>Take out:</span>
+                            <span>{access[1].name}</span>
                         </div>
                     </div>
                     <div className="riverpage-body__trip-c">
