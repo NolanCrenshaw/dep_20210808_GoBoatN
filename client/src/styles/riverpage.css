@@ -7,9 +7,9 @@
     -o-background-size: cover;
 }
 .riverpage {
-    width: 100%;
+    width: 98%;
     height: auto;
-    border: 3px solid #023E8A;
+    margin-bottom: 40px;
     border-radius: 50px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
 
@@ -17,7 +17,7 @@
 .map-container {
     width: 100%;
     height: 500px;
-    border-radius: 50px 50px 0 0;
+    border-radius: 50px;
     overflow: hidden;
 }
 .leaflet-container {
@@ -35,6 +35,7 @@
     min-height: 300px;
     /* display: flex; */
     border-radius: 0 0 50px 50px;
+    background-color: white;
 }
 .riverpage-body__textbox {
     width: auto;
@@ -111,29 +112,29 @@
 }
 .riverpage-body__access {
     width: auto;
-    height: 70px;
+    height: 100px;
     padding: 10px;
     margin: 5px 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border: 5px double peru;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
     background-color: rgb(186, 228, 228);
 }
-.riverpage-body__access--textbox {
-    width: auto;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-}
-.riverpage-body__access--textbox:first-child {
-    color: black;
-    font-size: 18px;
-    font-weight: 600;
+.riverpage-body__access span {
+    font-size: 20px;
     font-family: 'Libre Franklin', sans-serif;
+}
+.riverpage-body__access span:nth-child(1) {
+    font-size: 16px;
+    font-style: italic;
+}
+.riverpage-body__access span:nth-child(3) {
+    font-size: 16px;
+    font-style: italic;
 }
 .riverpage-body__trip-c {
     padding: 30px;

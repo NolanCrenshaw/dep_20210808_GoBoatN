@@ -14,31 +14,33 @@
     width: 90%;
     height: 100px;
     min-width: 300px;
-    margin: 20px;
     display: flex;
+    justify-content: center;
     align-items: center;
-    border: 3px solid #024e74;
-    border-radius: 15px;
-    background-color: rgb(209, 209, 245);
 }
-.riverCard__sidebox {
-    width: 40%;
+/* .riverCard__sidebox {
+    width: 20%;
     height: 100px;
     border-radius: 0 15px 15px 0;
     overflow: hidden;
-}
+} */
 .riverCard__text-container {
-    width: 60%;
-    height: 100px;
+    width: 80%;
+    height: 20px;
     display: flex;
     margin-left: 50px;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 0 15px 15px 0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 25%;
+    background-color: rgb(177, 238, 235);
+    cursor: pointer;
 }
 .riverCard__name {
+    display: flex;
+    /* justify-content: flex-end;
+    align-items: flex-end; */
     color: black;
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
 }
@@ -56,15 +58,15 @@
     justify-content: flex-start;
     align-items: flex-end;
     color: black;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
 }
 #riverCard__info--region-header {
     color: rgb(54, 50, 50);
-    font-size: 16px;
+    font-size: 14px;
 }
 #riverCard__info--region {
     margin-left: 10px;
-    font-size: 24px;
+    font-size: 20px;
 }

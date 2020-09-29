@@ -23,10 +23,10 @@ const RiverCard = props => {
     // Render
     return (
         <div className="riverCard-root--container">
-            <div
-                className="riverCard"
-                onClick={navToRiver}>
-                <div className="riverCard__text-container">
+            <div className="riverCard">
+                <div
+                    className="riverCard__text-container"
+                    onClick={navToRiver}>
                     <div className="riverCard__name">
                         <span>{props.river[0].name}</span>
                     </div>
@@ -40,9 +40,6 @@ const RiverCard = props => {
                             </span>
                         </div>
                     </div>
-                </div>
-                <div className="riverCard__sidebox">
-
                 </div>
             </div>
         </div>
