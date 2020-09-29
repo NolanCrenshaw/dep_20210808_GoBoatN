@@ -19,11 +19,10 @@ const Rivers = props => {
 
     // Search Function
     const searchRivers = () => {
-        const term = new RegExp(`${search}`, 'i')
         const filterRivers = [];
+        const term = new RegExp(`${search}`, 'i')
         for (let i=0; i<rivers.length; i++) {
             const river = rivers[i][0];
-            // if (river.name.includes(term)) {
             if (term.test(river.name)) {
                 console.log("hit!", river.name)
                 filterRivers.push(rivers[i])
