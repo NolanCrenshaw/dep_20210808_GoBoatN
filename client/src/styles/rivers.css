@@ -67,6 +67,7 @@
     width: 75%;
     height: 100%;
     min-height: 300px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
