@@ -232,43 +232,53 @@ const TripPage = props => {
     return (
         <div className="trippage-root--container">
             <div className="trippage">
-                <div className="map-container">
-                    <Map
-                        center={center}
-                        zoom={zoom}>
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        />
-                        <Marker position={putin}>
-                            {/* <Popup>{access[0].name}</Popup> */}
-                        </Marker>
-                        <Marker position={takeout}>
-                            {/* <Popup>{access[1].name}</Popup> */}
-                        </Marker>
-                    </Map>
-                </div>
-                <div className="trippage-body">
-                    <div className="trippage-body__textbox">
-                        <div className="trippage-body--name-c">
-                            <div className="trippage-body__tripname">
+                <div className="trippage__topbox">
+                    <div className="trippage__infobox">
+                        <div className="trippage--name-c">
+                            <div className="trippage__tripname">
                                 <span>{river.name}</span>
                             </div>
                         </div>
-                        <div className="trippage-body--region-c">
-                            <div className="trippage-body__region">
-                                <span>{river.region}</span>
+                        <div className="trippage__infobox--sub">
+                            <div className="trippage__infotext--container">
+                                <div className="trippage--region-c">
+                                    <div className="trippage__region">
+                                        <span>Region: </span>
+                                        <span>{river.region}</span>
+                                    </div>
+                                </div>
+                                <div className="trippage__access-c">
+                                    <div className="trippage__access">
+                                        <span>Put in:</span>
+                                        <span>{access[0].name}</span>
+                                        <span>Take out:</span>
+                                        <span>{access[1].name}</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="riverpage-body__access-c">
-                            <div className="riverpage-body__access">
-                                <span>Put in:</span>
-                                <span>{access[0].name}</span>
-                                <span>Take out:</span>
-                                <span>{access[1].name}</span>
+                            <div className="trippage__icon--container">
+                                <span>Hello World</span>
                             </div>
                         </div>
                     </div>
+                    <div className="map-container">
+                        <Map
+                            center={center}
+                            zoom={zoom}>
+                            <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            />
+                            <Marker position={putin}>
+                                {/* <Popup>{access[0].name}</Popup> */}
+                            </Marker>
+                            <Marker position={takeout}>
+                                {/* <Popup>{access[1].name}</Popup> */}
+                            </Marker>
+                        </Map>
+                    </div>
+                </div>
+                <div className="trippage-body">
                     <div className="trippage-body__trip-c">
                         <div className="trippage-body__trip">
                             <div className="trippage-body__infobox">
