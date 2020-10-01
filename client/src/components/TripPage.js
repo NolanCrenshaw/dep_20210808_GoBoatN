@@ -8,6 +8,17 @@ import '../styles/trippage.css';
 const TripPage = props => {
 
     const token = window.localStorage.getItem("auth_token");
+    const options = {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        timezone: 'UTC',
+        hour12: 'false',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short',
+    };
 
     // River State
     const [trip, setTrip] = useState({});
@@ -29,6 +40,8 @@ const TripPage = props => {
     const [month, setMonth] = useState('01');
     const [day, setDay] = useState('01');
     const [hour, setHour] = useState('01');
+    const [tripDate, setTripDate] = useState(new Date);
+    const [tripTime, setTripTime] = useState([])
 
     // Listen
     const updateYear = e => setYear(e.target.value);
@@ -195,6 +208,8 @@ const TripPage = props => {
             }
         };
         getUser();
+
+        // Fetch Trip Obj
         const getTrip = async () => {
             const res = await fetch(`${BASE_URL}/api/trips/${props.match.params.id}`, {
                 method: "GET",
@@ -220,6 +235,14 @@ const TripPage = props => {
                 setCenter([piLat, toLon]);
                 setPutin([piLat, piLon]);
                 setTakeout([toLat, toLon]);
+
+                const tripTime = new Date(json.trip.scheduled_time);
+                setTripDate(
+                    tripTime.toLocaleString('en-US', options).split(/[\,,\s]/)
+                );
+                setTripTime(
+                    tripTime.toLocaleTimeString('en-US').split(/[:,\s]/)
+                )
             }
         }
         getTrip();
