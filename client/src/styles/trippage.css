@@ -30,36 +30,21 @@
 }
 .trippage__infobox {
     width: auto;
-    height: 100%;
+    height: auto;
+    padding: 20px;
     margin: 15px;
-    position: relative;
-    /* top: -50px; */
-    left: 30px;
-    top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
-    background-color: ;
-}
-.trippage__infobox--sub {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* background-color: rebeccapurple; */
 }
 .trippage--name-c {
     width: auto;
-    height: 70px;
-    padding: 10px;
-    margin-bottom: 15px;
+    height: 50px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 5px solid peru;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px rgb(99, 91, 91);
-    background-color: rgb(240, 217, 186);
 }
 .trippage__tripname {
     width: auto;
@@ -70,19 +55,21 @@
     align-items: center;
     overflow: hidden;
     color: black;
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 900;
     font-family: 'Libre Franklin', sans-serif;
 }
 .trippage__infotext--container {
-    width: 48%;
+    width: auto;
+    height: auto;
+    margin-bottom: 15px;
 }
 .trippage--region-c {
     width: auto;
     height: 40px;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     /* border: 5px solid peru;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
@@ -95,9 +82,9 @@
     padding: 10px;
     justify-content: flex-start;
     align-items: flex-end;
-    overflow: hidden;
+    /* overflow: hidden; */
     color: black;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
 }
@@ -108,45 +95,48 @@
 .trippage__access-c {
     width: auto;
     height: 100px;
-    padding: 10px 0;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 .trippage__access {
-    width: auto;
+    width: 98%;
     height: 100px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 5px solid peru;
+    /* border: 5px solid peru;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
-    background-color: rgb(240, 217, 186);
+    background-color: rgb(240, 217, 186); */
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     font-family: 'Libre Franklin', sans-serif;
 }
 .trippage__access span:nth-child(2), span:nth-child(4) {
-    font-size: 22px;
+    font-size: 18px;
     padding: 3px;
     margin-bottom: 3px;
 }
 .trippage__icon--container {
-    width: 40%;
+    width: 98%;
     height: 100%;
+    min-height: 100px;
+    margin-top: 30px;
     border: 5px solid peru;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
     background-color: rgb(240, 217, 186);
 }
-.map-container {
+.trippage__map-container {
     width: 600px;
     height: 400px;
+    margin: 50px;
     border-radius: 50px;
     box-shadow: 10px 10px 10px rgb(99, 91, 91);
     overflow: hidden;

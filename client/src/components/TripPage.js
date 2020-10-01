@@ -239,29 +239,26 @@ const TripPage = props => {
                                 <span>{river.name}</span>
                             </div>
                         </div>
-                        <div className="trippage__infobox--sub">
-                            <div className="trippage__infotext--container">
-                                <div className="trippage--region-c">
-                                    <div className="trippage__region">
-                                        <span>Region: </span>
-                                        <span>{river.region}</span>
-                                    </div>
-                                </div>
-                                <div className="trippage__access-c">
-                                    <div className="trippage__access">
-                                        <span>Put in:</span>
-                                        <span>{access[0].name}</span>
-                                        <span>Take out:</span>
-                                        <span>{access[1].name}</span>
-                                    </div>
+                        <div className="trippage__infotext--container">
+                            <div className="trippage--region-c">
+                                <div className="trippage__region">
+                                    <span>Region: </span>
+                                    <span>{river.region}</span>
                                 </div>
                             </div>
-                            <div className="trippage__icon--container">
-                                <span>Hello World</span>
+                            <div className="trippage__access-c">
+                                <div className="trippage__access">
+                                    <span>Put in:</span>
+                                    <span>{access[0].name}</span>
+                                    <span>Take out:</span>
+                                    <span>{access[1].name}</span>
+                                </div>
                             </div>
                         </div>
+                        <div className="trippage__icon--container">
+                        </div>
                     </div>
-                    <div className="map-container">
+                    <div className="trippage__map-container">
                         <Map
                             center={center}
                             zoom={zoom}>
@@ -279,7 +276,11 @@ const TripPage = props => {
                     </div>
                 </div>
                 <div className="trippage-body">
-                    <div className="trippage-body__trip-c">
+
+
+
+
+                    {/* <div className="trippage-body__trip-c">
                         <div className="trippage-body__trip">
                             <div className="trippage-body__infobox">
                                 <div className="trippage-body__infobox--trip-leader">
@@ -295,7 +296,7 @@ const TripPage = props => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
