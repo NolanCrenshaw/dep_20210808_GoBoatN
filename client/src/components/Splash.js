@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BASE_URL } from '../config';
+import { BASE_URL, IMG_KEY } from '../config';
 import Signup from './Signup';
 import '../styles/splash.css';
 
@@ -9,6 +9,9 @@ const Splash = () => {
 
     // Sign up Modal State
     const [signupShow, setSignupShow] = useState("signup-modal--hidden")
+    const containerStyle = {
+        backgroundImage: `${IMG_KEY}josh-wedgwood-river-etive-unsplash.jpg`
+    }
 
     // Log in State & Listen
     const [email, setEmail] = useState();

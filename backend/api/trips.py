@@ -64,13 +64,13 @@ def trip_by_id(id):
     for boater in boater_objects:
         boaters.append(boater.to_dict())
 
-        # populate boats list
-        boat = boater['boat_id']
-        boats.append(boat)
+        # # populate boats list
+        # boat = boater['boat_id']
+        # boats.append(boat)
 
-        # populate vehicles list
-        vehicle = boater['vehicle_id']
-        vehicles.append(vehicle)
+        # # populate vehicles list
+        # vehicle = boater['vehicle_id']
+        # vehicles.append(vehicle)
 
     # package access points
     putin = Access.query.filter_by(id=trip['put_in']).first()

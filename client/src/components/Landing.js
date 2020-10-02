@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BASE_URL, IMG_KEY } from '../config';
 import TripCard from './cards/TripCard';
 import UserCard from './cards/UserCard';
+import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 import '../styles/landing.css';
 
@@ -15,6 +16,7 @@ const Landing = props => {
     // State
     const [user, setUser] = useState({});
     const [userTrips, setUserTrips] = useState([]);
+    const [userFriends, setUserFriends] = useState([]);
     const [userInvites, setUserInvites] = useState([]);
     const [profilePic, setProfilePic] = useState(defaultPic);
 
@@ -87,6 +89,7 @@ const Landing = props => {
         setUser(props.user);
         setUserInvites(props.invites);
         setUserTrips(props.trips);
+        setUserFriends(props.friends);
         if (user.profile_pic !== null) {
             setProfilePic(`${IMG_KEY}${user.profile_pic}`)
         }
@@ -199,15 +202,15 @@ const Landing = props => {
                                             : <div/>
                                         }
                                     </div>
-                                        </div>
+                                </div>
                             </div>
                             <div className="vita-card__divider"/>
                             <div className="vita-card vita-friends--container">
                                 <div className="vita-card__header">
                                     <span>Friends:</span>
-                                    <div className="vita-friend--container">
-                                        <UserCard user={user}/>
-                                    </div>
+                                    { userFriends.map(
+                                        friend_id => <FriendCard user_id={friend_id}/>)
+                                    }
                                 </div>
                             </div>
                         </div>

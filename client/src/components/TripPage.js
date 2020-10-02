@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
 import '../styles/trippage.css';
+import UserCard from './cards/UserCard';
 
 
 // React Component
@@ -9,7 +10,7 @@ const TripPage = props => {
 
     const token = window.localStorage.getItem("auth_token");
     const options = {
-        weekday: 'short',
+        weekday: 'long',
         year: 'numeric',
         month: 'short',
         day: 'numeric',
@@ -243,6 +244,7 @@ const TripPage = props => {
                 setTripTime(
                     tripTime.toLocaleTimeString('en-US').split(/[:,\s]/)
                 )
+
             }
         }
         getTrip();
@@ -277,6 +279,23 @@ const TripPage = props => {
                                     <span>{access[1].name}</span>
                                 </div>
                             </div>
+                            <div className="trippage__details-c">
+                                <div className="trippage__details">
+                                    <div className="trippage__date">
+                                        <span>Date: </span>
+                                        <div className="trippage__date-value">
+                                            <span>{tripDate[0]}</span>
+                                            <span>{tripDate[2]}</span>
+                                            <span>{tripDate[3]}</span>
+                                            <span>{tripDate[4]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="trippage__time">
+                                        <span>Time:</span>
+                                        <span>{tripTime[0]}:{tripTime[1]}{tripTime[3]}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="trippage__icon--container">
                         </div>
@@ -299,7 +318,26 @@ const TripPage = props => {
                     </div>
                 </div>
                 <div className="trippage-body">
-
+                    <div className="trippage-bottombox">
+                        <div className="trippage-bottombox__cards-c">
+                            <div className="trippage-card trippage-boater--container">
+                                <div className="trippage-card__header">
+                                    <span>Boaters:</span>
+                                    <div className="trippage-user--container">
+                                        { user === tripLeader
+                                            ? <UserCard user={user}/>
+                                            : <UserCard user={tripLeader}/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="trippage-card trippage-trips--container">
+                                <div className="trippage-card__header">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 

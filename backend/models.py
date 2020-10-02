@@ -207,8 +207,12 @@ class Friend(db.Model):
     friend_id = db.Column(db.Integer, nullable=False)
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
+
+    def to_int(self):
+        return self.friend_id
 
 
 class Trip(db.Model):
@@ -273,7 +277,8 @@ class Invite(db.Model):
     )
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
 
 
@@ -297,5 +302,18 @@ class Boater(db.Model):
     meet_at = db.Column(db.String(255))
     date_added = db.Column(
         db.DateTime(timezone=True),
-        nullable=False
+        nullable=False,
+        default=datetime.utcnow
     )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "trip_id": self.trip_id,
+            "user_id": self.user_id,
+            "boat_id": self.boat_id,
+            "vehicle_id": self.vehicle_id,
+            "driver": self.driver,
+            "meet_at": self.meet_at,
+            "date_added": self.date_added
+        }
