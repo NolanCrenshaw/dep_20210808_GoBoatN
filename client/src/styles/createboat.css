@@ -3,6 +3,19 @@
     justify-content: center;
     align-items: center;
 }
+.create-boat__img--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create-boat__img--instruct {
+    color:  black;
+    font-size: 38px;
+    font-style: italic;
+    font-weight: 400;
+    font-family: 'Libre Franklin', sans-serif;
+}
 .create-boat__img-form--input {}
 .create-boat__img-upload {
     width: 500px;
@@ -18,8 +31,8 @@
     border-radius: 20px;
 }
 .create-boat__img-form {
-    width: 80%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -29,6 +42,11 @@
     font-size: 18px;
     font-weight: 900;
     font-family: 'Roboto', sans-serif;
+}
+.boat-sprite--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .create-boat__input {
     width: 120px;

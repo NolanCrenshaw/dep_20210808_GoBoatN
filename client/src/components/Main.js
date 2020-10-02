@@ -36,6 +36,7 @@ const Main = () => {
     const [user, setUser] = useState({});
     const [userTrips, setUserTrips] = useState([]);
     const [userInvites, setUserInvites] = useState([]);
+    const [userFriends, setUserFriends] = useState([]);
     const [profilePic, setProfilePic] = useState(defaultPic);
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
@@ -61,6 +62,7 @@ const Main = () => {
                 setUser(json.user);
                 setUserBoats(json.boats);
                 setUserVehicles(json.vehicles);
+                setUserFriends(json.friends);
                 setUserInvites(json.invites);
                 setUserTrips(json.trips);
                 if (json.user.profile_pic !== null) {
@@ -89,9 +91,9 @@ const Main = () => {
                             <HomeButton/>
                             <div className="main-switch-board__graf-c">
                                 <span>Go Boat</span>
-                                <span className="main-switch__graf--odd">i</span>
+                                <span>i</span>
                                 <span>n</span>
-                                <span className="main-switch__graf--odd">g</span>
+                                <span>g</span>
                                 <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
                             </div>
                             <RiversButton/>
@@ -151,6 +153,7 @@ const Main = () => {
                                         <Landing
                                             user={user}
                                             trips={userTrips}
+                                            friends={userFriends}
                                             invites={userInvites}/>
                                     </Route>
                                 </Switch>

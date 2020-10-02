@@ -2,12 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
 import '../styles/trippage.css';
+import UserCard from './cards/UserCard';
 
 
 // React Component
 const TripPage = props => {
 
     const token = window.localStorage.getItem("auth_token");
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        timezone: 'UTC',
+        hour12: 'false',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short',
+    };
 
     // River State
     const [trip, setTrip] = useState({});
@@ -29,6 +41,8 @@ const TripPage = props => {
     const [month, setMonth] = useState('01');
     const [day, setDay] = useState('01');
     const [hour, setHour] = useState('01');
+    const [tripDate, setTripDate] = useState(new Date);
+    const [tripTime, setTripTime] = useState([])
 
     // Listen
     const updateYear = e => setYear(e.target.value);
@@ -195,6 +209,8 @@ const TripPage = props => {
             }
         };
         getUser();
+
+        // Fetch Trip Obj
         const getTrip = async () => {
             const res = await fetch(`${BASE_URL}/api/trips/${props.match.params.id}`, {
                 method: "GET",
@@ -220,6 +236,15 @@ const TripPage = props => {
                 setCenter([piLat, toLon]);
                 setPutin([piLat, piLon]);
                 setTakeout([toLat, toLon]);
+
+                const tripTime = new Date(json.trip.scheduled_time);
+                setTripDate(
+                    tripTime.toLocaleString('en-US', options).split(/[\,,\s]/)
+                );
+                setTripTime(
+                    tripTime.toLocaleTimeString('en-US').split(/[:,\s]/)
+                )
+
             }
         }
         getTrip();
@@ -232,50 +257,91 @@ const TripPage = props => {
     return (
         <div className="trippage-root--container">
             <div className="trippage">
-                <div className="map-container">
-                    <Map
-                        center={center}
-                        zoom={zoom}>
-                        <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        />
-                        <Marker position={putin}>
-                            {/* <Popup>{access[0].name}</Popup> */}
-                        </Marker>
-                        <Marker position={takeout}>
-                            {/* <Popup>{access[1].name}</Popup> */}
-                        </Marker>
-                    </Map>
-                </div>
-                <div className="trippage-body">
-                    <div className="trippage-body__textbox">
-                        <div className="trippage-body--name-c">
-                            <div className="trippage-body__tripname">
+                <div className="trippage__topbox">
+                    <div className="trippage__infobox">
+                        <div className="trippage--name-c">
+                            <div className="trippage__tripname">
                                 <span>{river.name}</span>
                             </div>
                         </div>
-                        <div className="trippage-body--region-c">
-                            <div className="trippage-body__region">
-                                <span>{river.region}</span>
+                        <div className="trippage__infotext--container">
+                            <div className="trippage--region-c">
+                                <div className="trippage__region">
+                                    <span>Region: </span>
+                                    <span>{river.region}</span>
+                                </div>
+                            </div>
+                            <div className="trippage__access-c">
+                                <div className="trippage__access">
+                                    <span>Put in:</span>
+                                    <span>{access[0].name}</span>
+                                    <span>Take out:</span>
+                                    <span>{access[1].name}</span>
+                                </div>
+                            </div>
+                            <div className="trippage__details-c">
+                                <div className="trippage__details">
+                                    <div className="trippage__date">
+                                        <span>Date: </span>
+                                        <div className="trippage__date-value">
+                                            <span>{tripDate[0]}</span>
+                                            <span>{tripDate[2]}</span>
+                                            <span>{tripDate[3]}</span>
+                                            <span>{tripDate[4]}</span>
+                                        </div>
+                                    </div>
+                                    <div className="trippage__time">
+                                        <span>Time:</span>
+                                        <span>{tripTime[0]}:{tripTime[1]}{tripTime[3]}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="trippage__icon--container">
+                        </div>
+                    </div>
+                    <div className="trippage__map-container">
+                        <Map
+                            center={center}
+                            zoom={zoom}>
+                            <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            />
+                            <Marker position={putin}>
+                                {/* <Popup>{access[0].name}</Popup> */}
+                            </Marker>
+                            <Marker position={takeout}>
+                                {/* <Popup>{access[1].name}</Popup> */}
+                            </Marker>
+                        </Map>
+                    </div>
+                </div>
+                <div className="trippage-body">
+                    <div className="trippage-bottombox">
+                        <div className="trippage-bottombox__cards-c">
+                            <div className="trippage-card trippage-boater--container">
+                                <div className="trippage-card__header">
+                                    <span>Boaters:</span>
+                                    <div className="trippage-user--container">
+                                        { user === tripLeader
+                                            ? <UserCard user={user}/>
+                                            : <UserCard user={tripLeader}/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="trippage-card trippage-trips--container">
+                                <div className="trippage-card__header">
+                                    <span></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="trippage-body__access-c">
-                        <div className="trippage-body__access">
-                            <div className="trippage-body__access--textbox">
-                                <span>Put in:</span>
-                                <span>{access[0].name}</span>
-                            </div>
-                        </div>
-                        <div className="trippage-body__access">
-                            <div className="trippage-body__access--textbox">
-                                <span>Take out:</span>
-                                <span>{access[1].name}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="trippage-body__trip-c">
+
+
+
+                    {/* <div className="trippage-body__trip-c">
                         <div className="trippage-body__trip">
                             <div className="trippage-body__infobox">
                                 <div className="trippage-body__infobox--trip-leader">
@@ -291,7 +357,7 @@ const TripPage = props => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

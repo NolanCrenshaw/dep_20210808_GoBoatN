@@ -7,7 +7,17 @@ load_dotenv()
 
 # Local Requirements
 from backend import app  # noqa
-from backend.models import db, User, River, Access, Boat, Vehicle, Trip  # noqa
+from backend.models import (
+    db,
+    User,
+    River,
+    Access,
+    Boat,
+    Vehicle,
+    Trip,
+    Boater,
+    Friend,
+)  # noqa
 from backend.auth import set_password  # noqa
 
 
@@ -45,6 +55,7 @@ with app.app_context():
                 name=name,
                 region="Tennessee"
             )
+            print(river.id)
             access_one = Access(
                 id=access_index,
                 river_id=river_index,
@@ -69,11 +80,13 @@ with app.app_context():
             db.session.add(access_one)
             db.session.add(access_two)
 
+    db.session.commit()
+
     Demo = User(
         username="DemoUser",
         email="demo@goboatn.com",
         hashed_password=demo_hash,
-        firstname="Demo",
+        firstname="Mary",
         lastname="Rivers",
         zipcode=37409,
         profile_pic="demoUser_profile_pic.png"
@@ -189,6 +202,30 @@ with app.app_context():
         occupancy=2,
         sprite="pickupSprite.png"
     )
+    boater_one = Boater(
+        trip_id=1,
+        user_id=2,
+    )
+    boater_two = Boater(
+        trip_id=1,
+        user_id=3
+    )
+    boater_three = Boater(
+        trip_id=2,
+        user_id=1,
+    )
+    friend_one = Friend(
+        user_id=1,
+        friend_id=2
+    )
+    friend_two = Friend(
+        user_id=1,
+        friend_id=3
+    )
+    friend_three = Friend(
+        user_id=1,
+        friend_id=4
+    )
 
     db.session.add(Demo)
     db.session.add(Bob)
@@ -206,6 +243,14 @@ with app.app_context():
     db.session.add(vehicle_three)
     db.session.add(vehicle_four)
     db.session.add(vehicle_five)
+    db.session.add(trip_one)
+    db.session.add(trip_two)
+    db.session.add(boater_one)
+    db.session.add(boater_two)
+    db.session.add(boater_three)
+    db.session.add(friend_one)
+    db.session.add(friend_two)
+    db.session.add(friend_three)
 
     db.session.commit()
 

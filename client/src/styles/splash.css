@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../images/jpg/josh-wedgwood-river-etive-unsplash.jpg);
+    background-image: url(https://goboatnbucky.s3.us-east-2.amazonaws.com/josh-wedgwood-river-etive-unsplash.jpg);
     background-size: cover;
 }
 .splash__margin {}

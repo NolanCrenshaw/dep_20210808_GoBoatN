@@ -8,7 +8,19 @@ const CreateVehicle = props => {
     const vehicleSprites = [
         {title: "Car", sprite: "carSprite.png"},
         {title: "Truck", sprite: "pickupSprite.png"},
-        {title: "SUV", sprite: "suvSprite.png"}
+        {title: "SUV", sprite: "suvSprite.png"},
+        {title: "white_tacoma", sprite: "white_tacoma.png"},
+        {title: "blue_golf", sprite: "blue_golf.png"},
+        {title: "silver_pickup", sprite: "silver_pickup.png"},
+        {title: "blue_motorcycle", sprite: "blue_motorcycle.png"},
+        {title: "blue_chevy_truck", sprite: "blue_chevy_truck.png"},
+        {title: "Toyota-car", sprite: "Toyota-Car.png"},
+        {title: "red_range_rover", sprite: "red_range_rover.png"},
+        {title: "orange_sportbike", sprite: "orange_sportbike.png"},
+        {title: "mint_classic_pickup", sprite: "mint_classic_pickup.png"},
+        {title: "black_trek_bike", sprite: "black_trek_bike.png"},
+        {title: "black_transam", sprite: "black_transam.png"},
+        {title: "black_ram", sprite: "black_ram.png"},
     ]
 
     // State

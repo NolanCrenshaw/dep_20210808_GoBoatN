@@ -31,7 +31,6 @@ const UserCard = props => {
         setLastname(props.user.lastname)
         setUsername(props.user.username)
         setProfilePic(`${IMG_KEY}${props.user.profile_pic}`)
-        console.log("CYCLING!")
     },[props.user])
 
 // ---- Component Render ---- //

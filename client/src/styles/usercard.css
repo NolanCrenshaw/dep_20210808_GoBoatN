@@ -59,14 +59,7 @@
 .userCard__info-container {
     font-weight: 800;
 }
-/* .userCard__datebox span:nth-child(3) {
-    font-size: 24px;
-    font-weight: bolder;
-}
-.userCard__time span {
+.friendCard-root--container {
     width: auto;
     height: auto;
-    font-size: 18px;
-    /* font-style: italic; */
-    /* font-weight: 400; */
-
+}
