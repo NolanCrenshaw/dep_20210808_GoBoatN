@@ -243,8 +243,7 @@ with app.app_context():
     db.session.add(vehicle_three)
     db.session.add(vehicle_four)
     db.session.add(vehicle_five)
-    db.session.add(trip_one)
-    db.session.add(trip_two)
+
     db.session.add(boater_one)
     db.session.add(boater_two)
     db.session.add(boater_three)
