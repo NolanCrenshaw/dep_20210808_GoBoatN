@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactModal from 'react-modal';
 import { BASE_URL, IMG_KEY } from '../config';
 import TripCard from './cards/TripCard';
 import UserCard from './cards/UserCard';
@@ -8,6 +9,8 @@ import '../styles/landing.css';
 
 // React Component
 const Landing = props => {
+
+    // ReactModal.setAppElement('root');
 
     const imgFile = React.createRef();
     const token = window.localStorage.getItem("auth_token");
@@ -20,11 +23,33 @@ const Landing = props => {
     const [userInvites, setUserInvites] = useState([]);
     const [profilePic, setProfilePic] = useState(defaultPic);
 
+    // REACT-MODAL
+    var subtitle;
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const customStyles = {
+        content : {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+        overlay: {zIndex: 3},
+      };
+
     // Modal State
     const [profileModal, setProfileModal] = useState("profile-modal--hidden");
     const [bannerModal, setBannerModal] = useState("banner-modal--hidden");
 
+
+
     // Listen
+
+    // REACT-MODAL
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
+    // const afterOpenModal = () => subtitle.style.color = '#f00'
 
     // Profile Modal Toggle Function
     const profileToggle = () => {
@@ -101,6 +126,16 @@ const Landing = props => {
     // Render
     return (
         <div className="landing-root--container--obscured">
+            <button onClick={openModal}>Open Modal</button>
+            <ReactModal
+                isOpen={modalIsOpen}
+                // onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example">
+                <h1 ref={_subtitle => (subtitle = +subtitle)}>Hello World!</h1>
+            </ReactModal>
+
             {/* <div className="landing__modals--container">
                 <div className={bannerModal}>
                     <div className="landing-modal">
