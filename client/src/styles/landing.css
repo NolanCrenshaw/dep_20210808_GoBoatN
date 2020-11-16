@@ -1,4 +1,4 @@
-.landing-root--container--obscured {
+.landing-root--container {
     width: 100%;
     height: auto;
     scrollbar-width: none;
@@ -13,7 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* opacity: 20%; */
 }
 .landing__modals--container {
     width: 100%;
@@ -235,25 +234,6 @@
 .vita-friends--container {}
 
 /*~~~ MODAL CONTROLS ~~~*/
-
-.profile-modal--hidden {
-    visibility: hidden;
-    position: absolute;
-}
-.profile-modal--visible {
-    position: absolute;
-    top: 50%;
-    z-index: 10;
-}
-.banner-modal--hidden {
-    visibility: hidden;
-    position: absolute;
-}
-.banner-modal--visible {
-    position: absolute;
-    top: 40%;
-    z-index: 10;
-}
 .landing-modal {
     width: 100%;
     height: 100%;
@@ -264,21 +244,55 @@
     background-color: green;
 }
 .landing-modal--background {
-    width: 600px;
-    height: 500px;
+    width: 90%;
+    height: 90%;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: hotpink;
+    background-color: rgb(161, 216, 238);
+    scrollbar-width: none;
+    scrollbar-height: none;
 }
-.landing-modal__upload-img {
+.banner-edit__container--hidden {
+    visibility: hidden;
+}
+.banner-edit__container--visible {
     width: 500px;
     height: 500px;
-    margin: 0 5px;
+    position: absolute;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'Libre Franklin', sans-serif;
+}
+.banner-edit__container--visible span {
+    margin: 10px;
+}
+.banner-edit__container--visible input {
+    margin: 10px;
+}
+.profile-edit__container--hidden {
+    visibility: hidden;
+}
+.profile-edit__container--visible {
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.profile-edit__container--visible input {
+    margin: 10px;
+    font-weight: 600;
 }
 .landing-modal__upload--button {
     width: 100px;
@@ -289,6 +303,22 @@
     align-items: center;
     border: 3px solid #023E8A;
     border-radius: 90px;
-    background-color: #CAF0F8;
+    background-color: #42f76f;
     cursor: pointer;
+}
+#file-upload {
+    display: none;
+}
+.custom-file-upload {
+    width: 200px;
+    height: 30px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #023E8A;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+
 }

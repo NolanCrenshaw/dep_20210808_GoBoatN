@@ -10,8 +10,6 @@ import '../styles/landing.css';
 // React Component
 const Landing = props => {
 
-    // ReactModal.setAppElement('root');
-
     const imgFile = React.createRef();
     const token = window.localStorage.getItem("auth_token");
     const defaultPic = `${IMG_KEY}default-profile-pic.jpg`;
@@ -23,50 +21,45 @@ const Landing = props => {
     const [userInvites, setUserInvites] = useState([]);
     const [profilePic, setProfilePic] = useState(defaultPic);
 
-    // REACT-MODAL
-    var subtitle;
+    // Modal State
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [profileModal, setProfileModal] = useState("profile-edit__container--hidden");
+    const [bannerModal, setBannerModal] = useState("banner-edit__container--hidden");
     const customStyles = {
         content : {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
+            width: '50%',
+            height: '50%',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            display: 'flex',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'border-radius': '20px',
+            'scrollbar-height': 'none',
         },
         overlay: {zIndex: 3},
-      };
-
-    // Modal State
-    const [profileModal, setProfileModal] = useState("profile-modal--hidden");
-    const [bannerModal, setBannerModal] = useState("banner-modal--hidden");
-
-
+    };
 
     // Listen
 
     // REACT-MODAL
     const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
-    // const afterOpenModal = () => subtitle.style.color = '#f00'
-
-    // Profile Modal Toggle Function
-    const profileToggle = () => {
-        if (profileModal === "profile-modal--hidden") {
-            setProfileModal("profile-modal--visible");
-        } else {
-            setProfileModal("profile-modal--hidden");
-        }
+    const closeModal = () => {
+        setProfileModal("profile-edit__container--hidden");
+        setBannerModal("banner-edit__container--hidden");
+        setIsOpen(false);
     }
-
-    // Banner Modal Toggle Function
-    const bannerToggle = () => {
-        if (bannerModal === "banner-modal--hidden") {
-            setBannerModal("banner-modal--visible");
-        } else {
-            setBannerModal("banner-modal--hidden");
-        }
+    const profileEditOpen = () => {
+        setIsOpen(true);
+        setProfileModal("profile-edit__container--visible");
+    }
+    const bannerEditOpen = () => {
+        setIsOpen(true);
+        setBannerModal("banner-edit__container--visible");
     }
 
     // Profile Upload Function
@@ -125,59 +118,48 @@ const Landing = props => {
 
     // Render
     return (
-        <div className="landing-root--container--obscured">
-            <button onClick={openModal}>Open Modal</button>
+        <div className="landing-root--container">
             <ReactModal
                 isOpen={modalIsOpen}
-                // onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example">
-                <h1 ref={_subtitle => (subtitle = +subtitle)}>Hello World!</h1>
+                <div className="landing-modal--background">
+                    <div className={bannerModal}>
+                        <span>Upload a Banner picture</span>
+                        <input
+                            className=""
+                            type="file"
+                            accept="image/*"
+                            name="file"
+                            ref={imgFile} />
+                        <div
+                            className="landing-modal__upload--button"
+                            >
+                            <span>Submit</span>
+                        </div>
+                    </div>
+                    <div className={profileModal}>
+                        <label
+                            for="file-upload"
+                            className="custom-file-upload">
+                            Upload a Profile picture
+                        </label>
+                            <input
+                                id="file-upload"
+                                className=""
+                                type="file"
+                                accept="image/*"
+                                name="file"
+                                ref={imgFile} />
+                        <div
+                            className="landing-modal__upload--button"
+                            onClick={uploadProfileImg}>
+                            <span>Submit</span>
+                        </div>
+                    </div>
+                </div>
             </ReactModal>
-
-            {/* <div className="landing__modals--container">
-                <div className={bannerModal}>
-                    <div className="landing-modal">
-                        <div className="landing-modal--background">
-                            <div className="landing-modal__upload-img">
-                                <span>Upload a Banner picture</span>
-                                <input
-                                    className=""
-                                    type="file"
-                                    accept="image/*"
-                                    name="file"
-                                    ref={imgFile} />
-                                <div
-                                    className="landing-modal__upload--button"
-                                    onClick={uploadProfileImg}>
-                                    <span>Submit</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={profileModal}>
-                    <div className="landing-modal">
-                        <div className="landing-modal--background">
-                            <div className="landing-modal__upload-img">
-                                <span>Upload a Profile picture</span>
-                                <input
-                                    className=""
-                                    type="file"
-                                    accept="image/*"
-                                    name="file"
-                                    ref={imgFile} />
-                                <div
-                                    className="landing-modal__upload--button"
-                                    onClick={uploadProfileImg}>
-                                    <span>Submit</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <div className="landing">
                 <div className="landing__picture-box">
                     <div className="landing__profile-pic--container">
@@ -185,14 +167,14 @@ const Landing = props => {
                             <img src={profilePic}/>
                             <div
                                 className="landing__profile-edit--button"
-                                onClick={profileToggle}>
+                                onClick={profileEditOpen}>
                                 <BannerEditSVG/>
                             </div>
                         </div>
                     </div>
                     <div
                         className="landing__banner-edit--button"
-                        onClick={bannerToggle}>
+                        onClick={bannerEditOpen}>
                         <BannerEditSVG/>
                     </div>
                 </div>
@@ -257,4 +239,5 @@ const Landing = props => {
         </div>
     )
 }
+
 export default Landing;
