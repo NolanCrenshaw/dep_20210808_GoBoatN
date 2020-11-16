@@ -1,4 +1,4 @@
-.landing-root--container {
+.landing-root--container--obscured {
     width: 100%;
     height: auto;
     scrollbar-width: none;
@@ -13,11 +13,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* opacity: 20%; */
 }
-.landing__picture-modals {
+.landing__modals--container {
     width: 100%;
     height: 100%;
-    /* position: relative; */
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,37 +234,61 @@
 }
 .vita-friends--container {}
 
+/*~~~ MODAL CONTROLS ~~~*/
 
 .profile-modal--hidden {
     visibility: hidden;
     position: absolute;
 }
+.profile-modal--visible {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+}
 .banner-modal--hidden {
     visibility: hidden;
     position: absolute;
 }
-.profile-modal--visible {
+.banner-modal--visible {
     position: absolute;
+    top: 40%;
+    z-index: 10;
 }
 .landing-modal {
     width: 100%;
     height: 100%;
-    /* position: static; */
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: green; */
+    background-color: green;
 }
 .landing-modal--background {
     width: 600px;
     height: 500px;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     background-color: hotpink;
 }
 .landing-modal__upload-img {
     width: 500px;
     height: 500px;
+    margin: 0 5px;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.landing-modal__upload--button {
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #023E8A;
+    border-radius: 90px;
+    background-color: #CAF0F8;
+    cursor: pointer;
 }
