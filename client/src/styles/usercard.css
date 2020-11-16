@@ -1,5 +1,5 @@
 .userCard-root--container {
-    width: 100%;
+    width: 300px;
     height: 60px;
     padding: 20px 0;
     display: flex;
@@ -24,9 +24,9 @@
     padding: 20px;
     position: relative;
     bottom: -30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; */
     /* background-color: aqua; */
 }
 .userCard__profile_pic {
@@ -41,7 +41,7 @@
 
 }
 .userCard__text-container {
-    width: 100%;
+    width: 100px;
     height: 100%;
     margin: 5px;
     padding: 10px;

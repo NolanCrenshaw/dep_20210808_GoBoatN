@@ -40,7 +40,7 @@ const Landing = props => {
         if (bannerModal === "banner-modal--hidden") {
             setBannerModal("banner-modal--visible");
         } else {
-            setBannerModal("profile-modal--hidden");
+            setBannerModal("banner-modal--hidden");
         }
     }
 
@@ -100,34 +100,12 @@ const Landing = props => {
 
     // Render
     return (
-        <div className="landing-root--container">
-            <div className="landing">
-                <div className="landing__picture-modals">
-                    <div className={profileModal}>
-                        <div className="landing-modal">
-                            <div className="landing-modal--background">
-                                <div className="landing-modal__upload-img">
-                                    <span>Upload a Profile picture</span>
-                                    <input
-                                        className=""
-                                        type="file"
-                                        accept="image/*"
-                                        name="file"
-                                        ref={imgFile} />
-                                    <div
-                                        className="landing-modal__upload--button"
-                                        onClick={uploadProfileImg}>
-                                        <span>Submit</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div className="landing-root--container--obscured">
+            {/* <div className="landing__modals--container">
                 <div className={bannerModal}>
                     <div className="landing-modal">
                         <div className="landing-modal--background">
-                            <div className="profile-card__upload-img">
+                            <div className="landing-modal__upload-img">
                                 <span>Upload a Banner picture</span>
                                 <input
                                     className=""
@@ -136,7 +114,7 @@ const Landing = props => {
                                     name="file"
                                     ref={imgFile} />
                                 <div
-                                    className="profile-card__upload--button"
+                                    className="landing-modal__upload--button"
                                     onClick={uploadProfileImg}>
                                     <span>Submit</span>
                                 </div>
@@ -144,18 +122,42 @@ const Landing = props => {
                         </div>
                     </div>
                 </div>
+                <div className={profileModal}>
+                    <div className="landing-modal">
+                        <div className="landing-modal--background">
+                            <div className="landing-modal__upload-img">
+                                <span>Upload a Profile picture</span>
+                                <input
+                                    className=""
+                                    type="file"
+                                    accept="image/*"
+                                    name="file"
+                                    ref={imgFile} />
+                                <div
+                                    className="landing-modal__upload--button"
+                                    onClick={uploadProfileImg}>
+                                    <span>Submit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+            <div className="landing">
                 <div className="landing__picture-box">
                     <div className="landing__profile-pic--container">
                         <div className="landing__profile-pic">
                             <img src={profilePic}/>
                             <div
                                 className="landing__profile-edit--button"
-                                >
+                                onClick={profileToggle}>
                                 <BannerEditSVG/>
                             </div>
                         </div>
                     </div>
-                    <div className="landing__banner-edit--button">
+                    <div
+                        className="landing__banner-edit--button"
+                        onClick={bannerToggle}>
                         <BannerEditSVG/>
                     </div>
                 </div>
