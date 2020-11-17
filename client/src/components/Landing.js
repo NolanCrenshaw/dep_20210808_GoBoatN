@@ -11,6 +11,7 @@ import '../styles/landing.css';
 const Landing = props => {
 
     const imgFile = React.createRef();
+    const imgFile2 = React.createRef();
     const token = window.localStorage.getItem("auth_token");
     const defaultPic = `${IMG_KEY}default-profile-pic.jpg`;
 
@@ -39,7 +40,7 @@ const Landing = props => {
             'justify-content': 'center',
             'align-items': 'center',
             'border-radius': '20px',
-            'scrollbar-height': 'none',
+            'scrollbar-width': 'none',
         },
         overlay: {zIndex: 3},
     };
@@ -54,11 +55,11 @@ const Landing = props => {
         setIsOpen(false);
     }
     const profileEditOpen = () => {
-        setIsOpen(true);
+        openModal();
         setProfileModal("profile-edit__container--visible");
     }
     const bannerEditOpen = () => {
-        setIsOpen(true);
+        openModal();
         setBannerModal("banner-edit__container--visible");
     }
 
@@ -101,6 +102,47 @@ const Landing = props => {
                 console.log(newjson.message)
             }
         };
+        closeModal();
+    };
+    const uploadBannerImg = async () => {
+        if (imgFile.current.files[0] !== undefined) {
+            const formData = new FormData();
+            formData.append('file', imgFile.current.files[0])
+
+            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: formData,
+            });
+            if (!res.ok) {
+                // -- TODO -- Handling
+                console.log("uploadImg res failure")
+            } else {
+                const json = await res.json()
+                setUser(props.user.banner_pic = json.sprite)
+            }
+            const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
+                method: "PUT",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(props.user.banner_pic)
+            })
+            if (!newres.ok) {
+                // -- TODO -- Handling
+                console.log("NewRes User update failed");
+            } else {
+                // -- TODO -- Handling
+                const newjson = await newres.json()
+                console.log(newjson.message)
+            }
+        };
+        closeModal();
     };
 
     useEffect(() => {
@@ -126,32 +168,37 @@ const Landing = props => {
                 contentLabel="Example">
                 <div className="landing-modal--background">
                     <div className={bannerModal}>
-                        <span>Upload a Banner picture</span>
+                        <label
+                            for="banner-upload"
+                            className="custom-file-upload">
+                            Upload a Banner picture
+                        </label>
                         <input
-                            className=""
+                            id="banner-upload"
+                            className="hidden"
                             type="file"
                             accept="image/*"
                             name="file"
                             ref={imgFile} />
                         <div
                             className="landing-modal__upload--button"
-                            >
+                            onClick={uploadBannerImg}>
                             <span>Submit</span>
                         </div>
                     </div>
                     <div className={profileModal}>
                         <label
-                            for="file-upload"
+                            for="profile-upload"
                             className="custom-file-upload">
                             Upload a Profile picture
                         </label>
-                            <input
-                                id="file-upload"
-                                className=""
-                                type="file"
-                                accept="image/*"
-                                name="file"
-                                ref={imgFile} />
+                        <input
+                            id="profile-upload"
+                            className="hidden"
+                            type="file"
+                            accept="image/*"
+                            name="file"
+                            ref={imgFile2} />
                         <div
                             className="landing-modal__upload--button"
                             onClick={uploadProfileImg}>

@@ -260,8 +260,8 @@
     visibility: hidden;
 }
 .banner-edit__container--visible {
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     position: absolute;
     margin: 5px;
     display: flex;
@@ -280,7 +280,7 @@
     visibility: hidden;
 }
 .profile-edit__container--visible {
-    width: 500px;
+    width: 300px;
     height: 300px;
     position: absolute;
     margin: 5px;
@@ -306,9 +306,6 @@
     background-color: #42f76f;
     cursor: pointer;
 }
-#file-upload {
-    display: none;
-}
 .custom-file-upload {
     width: 200px;
     height: 30px;
@@ -320,5 +317,7 @@
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
-
+}
+.hidden {
+    display: none;
 }
