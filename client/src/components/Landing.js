@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactModal from 'react-modal';
 import { BASE_URL, IMG_KEY } from '../config';
 import TripCard from './cards/TripCard';
 import UserCard from './cards/UserCard';
@@ -10,6 +11,7 @@ import '../styles/landing.css';
 const Landing = props => {
 
     const imgFile = React.createRef();
+    const imgFile2 = React.createRef();
     const token = window.localStorage.getItem("auth_token");
     const defaultPic = `${IMG_KEY}default-profile-pic.jpg`;
 
@@ -21,27 +23,44 @@ const Landing = props => {
     const [profilePic, setProfilePic] = useState(defaultPic);
 
     // Modal State
-    const [profileModal, setProfileModal] = useState("profile-modal--hidden");
-    const [bannerModal, setBannerModal] = useState("banner-modal--hidden");
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [profileModal, setProfileModal] = useState("profile-edit__container--hidden");
+    const [bannerModal, setBannerModal] = useState("banner-edit__container--hidden");
+    const customStyles = {
+        content : {
+            width: '50%',
+            height: '50%',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            display: 'flex',
+            'justify-content': 'center',
+            'align-items': 'center',
+            'border-radius': '20px',
+            'scrollbar-width': 'none',
+        },
+        overlay: {zIndex: 3},
+    };
 
     // Listen
 
-    // Profile Modal Toggle Function
-    const profileToggle = () => {
-        if (profileModal === "profile-modal--hidden") {
-            setProfileModal("profile-modal--visible");
-        } else {
-            setProfileModal("profile-modal--hidden");
-        }
+    // REACT-MODAL
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => {
+        setProfileModal("profile-edit__container--hidden");
+        setBannerModal("banner-edit__container--hidden");
+        setIsOpen(false);
     }
-
-    // Banner Modal Toggle Function
-    const bannerToggle = () => {
-        if (bannerModal === "banner-modal--hidden") {
-            setBannerModal("banner-modal--visible");
-        } else {
-            setBannerModal("banner-modal--hidden");
-        }
+    const profileEditOpen = () => {
+        openModal();
+        setProfileModal("profile-edit__container--visible");
+    }
+    const bannerEditOpen = () => {
+        openModal();
+        setBannerModal("banner-edit__container--visible");
     }
 
     // Profile Upload Function
@@ -83,6 +102,47 @@ const Landing = props => {
                 console.log(newjson.message)
             }
         };
+        closeModal();
+    };
+    const uploadBannerImg = async () => {
+        if (imgFile.current.files[0] !== undefined) {
+            const formData = new FormData();
+            formData.append('file', imgFile.current.files[0])
+
+            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: formData,
+            });
+            if (!res.ok) {
+                // -- TODO -- Handling
+                console.log("uploadImg res failure")
+            } else {
+                const json = await res.json()
+                setUser(props.user.banner_pic = json.sprite)
+            }
+            const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
+                method: "PUT",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(props.user.banner_pic)
+            })
+            if (!newres.ok) {
+                // -- TODO -- Handling
+                console.log("NewRes User update failed");
+            } else {
+                // -- TODO -- Handling
+                const newjson = await newres.json()
+                console.log(newjson.message)
+            }
+        };
+        closeModal();
     };
 
     useEffect(() => {
@@ -100,49 +160,53 @@ const Landing = props => {
 
     // Render
     return (
-        <div className="landing-root--container--obscured">
-            {/* <div className="landing__modals--container">
-                <div className={bannerModal}>
-                    <div className="landing-modal">
-                        <div className="landing-modal--background">
-                            <div className="landing-modal__upload-img">
-                                <span>Upload a Banner picture</span>
-                                <input
-                                    className=""
-                                    type="file"
-                                    accept="image/*"
-                                    name="file"
-                                    ref={imgFile} />
-                                <div
-                                    className="landing-modal__upload--button"
-                                    onClick={uploadProfileImg}>
-                                    <span>Submit</span>
-                                </div>
-                            </div>
+        <div className="landing-root--container">
+            <ReactModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example">
+                <div className="landing-modal--background">
+                    <div className={bannerModal}>
+                        <label
+                            for="banner-upload"
+                            className="custom-file-upload">
+                            Upload a Banner picture
+                        </label>
+                        <input
+                            id="banner-upload"
+                            className="hidden"
+                            type="file"
+                            accept="image/*"
+                            name="file"
+                            ref={imgFile} />
+                        <div
+                            className="landing-modal__upload--button"
+                            onClick={uploadBannerImg}>
+                            <span>Submit</span>
+                        </div>
+                    </div>
+                    <div className={profileModal}>
+                        <label
+                            for="profile-upload"
+                            className="custom-file-upload">
+                            Upload a Profile picture
+                        </label>
+                        <input
+                            id="profile-upload"
+                            className="hidden"
+                            type="file"
+                            accept="image/*"
+                            name="file"
+                            ref={imgFile2} />
+                        <div
+                            className="landing-modal__upload--button"
+                            onClick={uploadProfileImg}>
+                            <span>Submit</span>
                         </div>
                     </div>
                 </div>
-                <div className={profileModal}>
-                    <div className="landing-modal">
-                        <div className="landing-modal--background">
-                            <div className="landing-modal__upload-img">
-                                <span>Upload a Profile picture</span>
-                                <input
-                                    className=""
-                                    type="file"
-                                    accept="image/*"
-                                    name="file"
-                                    ref={imgFile} />
-                                <div
-                                    className="landing-modal__upload--button"
-                                    onClick={uploadProfileImg}>
-                                    <span>Submit</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+            </ReactModal>
             <div className="landing">
                 <div className="landing__picture-box">
                     <div className="landing__profile-pic--container">
@@ -150,14 +214,14 @@ const Landing = props => {
                             <img src={profilePic}/>
                             <div
                                 className="landing__profile-edit--button"
-                                onClick={profileToggle}>
+                                onClick={profileEditOpen}>
                                 <BannerEditSVG/>
                             </div>
                         </div>
                     </div>
                     <div
                         className="landing__banner-edit--button"
-                        onClick={bannerToggle}>
+                        onClick={bannerEditOpen}>
                         <BannerEditSVG/>
                     </div>
                 </div>
@@ -218,8 +282,19 @@ const Landing = props => {
                         </div>
                     </div>
                 </div>
+                <div className="apparatibus">
+                    <div className="apparatibus__container">
+                        <div className="apparatibus--vehicles">
+
+                        </div>
+                        <div className="apparatibus--boats">
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
+
 export default Landing;
