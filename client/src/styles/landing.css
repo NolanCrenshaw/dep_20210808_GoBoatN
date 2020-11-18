@@ -179,7 +179,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: tomato; */
+    background-color: tomato;
     scrollbar-width: none;
 }
 .vita-bottombox__cards-c {
@@ -232,6 +232,27 @@
     align-items: center;
 }
 .vita-friends--container {}
+.apparatibus {
+    width: 98%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.apparatibus__container {
+    width: 100%;
+    height: fit-content;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: tomato;
+    scrollbar-width: none;
+}
+.apparatibus--vehicles {}
+.apparatibus--boats {}
 
 /*~~~ MODAL CONTROLS ~~~*/
 .landing-modal {

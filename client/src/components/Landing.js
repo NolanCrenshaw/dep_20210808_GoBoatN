@@ -282,6 +282,16 @@ const Landing = props => {
                         </div>
                     </div>
                 </div>
+                <div className="apparatibus">
+                    <div className="apparatibus__container">
+                        <div className="apparatibus--vehicles">
+
+                        </div>
+                        <div className="apparatibus--boats">
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
