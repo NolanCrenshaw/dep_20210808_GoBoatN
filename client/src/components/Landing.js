@@ -259,7 +259,7 @@ const Landing = props => {
                             <div className="vita-card vita-trips--container">
                                 <div className="vita-card__header">
                                     <span>Trips:</span>
-                                    <div className="vita-trip--container">
+                                    {/* <div className="vita-trip--container">
                                         { userTrips[0]
                                             ? userTrips[0].map(trip => <TripCard trip={trip}/>)
                                             : <div/>
@@ -268,16 +268,16 @@ const Landing = props => {
                                             ? userTrips[1].map(trip => <TripCard trip={trip}/>)
                                             : <div/>
                                         }
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="vita-card__divider"/>
                             <div className="vita-card vita-friends--container">
                                 <div className="vita-card__header">
                                     <span>Friends:</span>
-                                    { userFriends.map(
+                                    {/* { userFriends.map(
                                         friend_id => <FriendCard user_id={friend_id}/>)
-                                    }
+                                    } */}
                                 </div>
                             </div>
                         </div>
