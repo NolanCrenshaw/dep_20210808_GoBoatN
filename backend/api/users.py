@@ -56,7 +56,7 @@ def user_by_id(id):
     trips.append(guest_trips)
 
     return jsonify(
-        user=safe_user,
+        profile=safe_user,
         boats=boats,
         vehicles=vehicles,
         friends=friends,
@@ -113,7 +113,7 @@ def user_by_token():
     trips.append(guest_trips)
 
     return jsonify(
-        user=safe_user,
+        profile=safe_user,
         boats=boats,
         vehicles=vehicles,
         friends=friends,
