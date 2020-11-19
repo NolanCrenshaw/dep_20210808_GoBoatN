@@ -150,11 +150,19 @@
     color:  #023E8A;
     font-size: 38px;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 700;
     font-family: 'Libre Franklin', sans-serif;
 }
-.vita-bio__username span {}
-.vita-bio__email span {}
+.vita-bio__username span {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: 'Libre Franklin', sans-serif;
+}
+.vita-bio__email span {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Libre Franklin', sans-serif;
+}
 .vita-bio__infobox {
     width: 40%;
     height: 100%;

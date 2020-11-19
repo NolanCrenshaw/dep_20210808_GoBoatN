@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
+
 import { BASE_URL, IMG_KEY } from '../config';
+
 import TripCard from './cards/TripCard';
 import UserCard from './cards/UserCard';
 import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
+
 import '../styles/landing.css';
 
 
 // React Component
-const Landing = props => {
+const Landing = () => {
 
+    // Redux State
+    const dispatch = useDispatch();
+    const state = useSelector(state => state.user);
+
+    // Reference Values
     const imgFile = React.createRef();
     const imgFile2 = React.createRef();
     const token = window.localStorage.getItem("auth_token");
@@ -64,7 +73,7 @@ const Landing = props => {
         setBannerModal("banner-edit__container--visible");
     }
 
-    // Profile Upload Function
+    // Profile Image Upload Functions
     const uploadProfileImg = async () => {
         if (imgFile.current.files[0] !== undefined) {
             const formData = new FormData();
@@ -83,7 +92,7 @@ const Landing = props => {
                 console.log("uploadImg res failure")
             } else {
                 const json = await res.json()
-                setUser(props.user.profile_pic = json.sprite)
+                setUser(state.profile.profile_pic = json.sprite)
             }
             const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
                 method: "PUT",
@@ -92,7 +101,7 @@ const Landing = props => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
-                body: JSON.stringify(props.user.profile_pic)
+                body: JSON.stringify(state.profile.profile_pic)
             })
             if (!newres.ok) {
                 // -- TODO -- Handling
@@ -123,7 +132,7 @@ const Landing = props => {
                 console.log("uploadImg res failure")
             } else {
                 const json = await res.json()
-                setUser(props.user.banner_pic = json.sprite)
+                setUser(state.user.profile.banner_pic = json.sprite)
             }
             const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
                 method: "PUT",
@@ -132,7 +141,7 @@ const Landing = props => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
-                body: JSON.stringify(props.user.banner_pic)
+                body: JSON.stringify(state.profile.banner_pic)
             })
             if (!newres.ok) {
                 // -- TODO -- Handling
@@ -146,15 +155,19 @@ const Landing = props => {
         closeModal();
     };
 
-    useEffect(() => {
-        // setUser(props.user);
-        setUserInvites(props.invites);
-        setUserTrips(props.trips);
-        setUserFriends(props.friends);
-        if (user.profile_pic !== null) {
-            setProfilePic(`${IMG_KEY}${user.profile_pic}`)
+    // Profile Image Render Functions
+    const updateProfilePic = () => {
+        if (
+            state.profile !== undefined &&
+            state.profile.profile_pic !== null
+            ) {
+            setProfilePic(`${IMG_KEY}${state.profile.profile_pic}`)
         }
-    })
+    };
+
+    useEffect(() => {
+        updateProfilePic();
+    }, [state])
 
 
 // ---- Component Render ---- //
@@ -231,13 +244,15 @@ const Landing = props => {
                         <div className="vita-bio--container">
                             <div className="vita-bio__textbox">
                                 <div className="vita-bio__name">
-                                    {/* <span>{ user.firstname } { user.lastname }</span> */}
+                                    <span>
+                                        { state.profile.firstname } { state.profile.lastname }
+                                    </span>
                                 </div>
                                 <div className="vita-bio__username">
-                                    {/* <span>{ user.username }</span> */}
+                                    <span>{ state.profile.username }</span>
                                 </div>
                                 <div className="vita-bio__email">
-                                    {/* <span>{ user.email }</span> */}
+                                    <span>{ state.profile.email }</span>
                                 </div>
                             </div>
                             <div className="vita-bio__infobox">
