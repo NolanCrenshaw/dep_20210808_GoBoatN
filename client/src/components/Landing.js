@@ -7,6 +7,7 @@ import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 import '../styles/landing.css';
 
+
 // React Component
 const Landing = props => {
 
@@ -146,7 +147,7 @@ const Landing = props => {
     };
 
     useEffect(() => {
-        setUser(props.user);
+        // setUser(props.user);
         setUserInvites(props.invites);
         setUserTrips(props.trips);
         setUserFriends(props.friends);
@@ -230,13 +231,13 @@ const Landing = props => {
                         <div className="vita-bio--container">
                             <div className="vita-bio__textbox">
                                 <div className="vita-bio__name">
-                                    <span>{ user.firstname } { user.lastname }</span>
+                                    {/* <span>{ user.firstname } { user.lastname }</span> */}
                                 </div>
                                 <div className="vita-bio__username">
-                                    <span>{ user.username }</span>
+                                    {/* <span>{ user.username }</span> */}
                                 </div>
                                 <div className="vita-bio__email">
-                                    <span>{ user.email }</span>
+                                    {/* <span>{ user.email }</span> */}
                                 </div>
                             </div>
                             <div className="vita-bio__infobox">

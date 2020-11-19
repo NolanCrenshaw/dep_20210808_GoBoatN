@@ -22,49 +22,20 @@ import ProfileEditButton from './navbar_buttons/ProfileEditButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
 import '../styles/main.css';
 import '../styles/alt/alt-main.css';
+import { setUser } from '../actions';
 
 
 // React Component
 const Main = () => {
+
     // Redux Controls
     const dispatch = useDispatch();
+    const updatedUser = useSelector(state => state.user)
 
     // Page State
     const token = window.localStorage.getItem("auth_token");
-    const defaultPic = `${IMG_KEY}default-profile-pic.jpg`
-    const [river, setRiver] = useState({});
 
-    // Current User State
-    const [user, setUser] = useState({});
-    const [userTrips, setUserTrips] = useState([]);
-    const [userInvites, setUserInvites] = useState([]);
-    const [userFriends, setUserFriends] = useState([]);
-    const [profilePic, setProfilePic] = useState(defaultPic);
-    const [userBoats, setUserBoats] = useState([]);
-    const [userVehicles, setUserVehicles] = useState([]);
-
-    // Set Redux State Function
-    const setState = (json) => {
-        try {
-            dispatch({
-                type: "SET_USER",
-                payload: {
-                    user: json.user,
-                    boats: json.boats,
-                    vehicles: json.vehicles,
-                    friends: json.friends,
-                    invites: json.invites,
-                    trips: json.trips
-                }
-            });
-            console.log("setState() successful")
-        } catch (e) {
-            console.log("setState() failure");
-            console.log("error: ", e);
-        }
-    };
-
-
+    // Functions
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
@@ -81,17 +52,7 @@ const Main = () => {
                 console.log("getUser res failure");
             } else {
                 const json = await res.json();
-                setState(json);
-
-                // setUser(json.user);
-                // setUserBoats(json.boats);
-                // setUserVehicles(json.vehicles);
-                // setUserFriends(json.friends);
-                // setUserInvites(json.invites);
-                // setUserTrips(json.trips);
-                // if (json.user.profile_pic !== null) {
-                //     setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
-                // }
+                dispatch(setUser(json));
             }
         };
         getUser();
@@ -137,16 +98,12 @@ const Main = () => {
                                     <Route
                                         exact
                                         path="/boats">
-                                        <Boats
-                                            user={user}
-                                            boats={userBoats}/>
+                                        <Boats/>
                                     </Route>
                                     <Route
                                         exact
                                         path="/vehicles">
-                                        <Vehicles
-                                            user={user}
-                                            vehicles={userVehicles}/>
+                                        <Vehicles/>
                                     </Route>
                                     <Route
                                         exact
@@ -160,8 +117,7 @@ const Main = () => {
                                     <Route
                                         exact
                                         path="/profile/edit">
-                                        <ProfileEdit
-                                            user={user}/>
+                                        <ProfileEdit/>
                                     </Route>
                                     <Route
                                         exact
@@ -174,11 +130,7 @@ const Main = () => {
                                     <Route
                                         exact
                                         path="/">
-                                        <Landing
-                                            user={user}
-                                            trips={userTrips}
-                                            friends={userFriends}
-                                            invites={userInvites}/>
+                                        <Landing/>
                                     </Route>
                                 </Switch>
                             </div>
