@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,6 +10,7 @@ import Landing from './Landing';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
 import RiverPage from './RiverPage';
+import TripPage from './TripPage';
 import Rivers from './Rivers';
 import Profile from './Profile';
 import ProfileEdit from './ProfileEdit';
@@ -18,14 +20,14 @@ import VehiclesButton from './navbar_buttons/VehiclesButton';
 import RiversButton from './navbar_buttons/RiversButton';
 import ProfileEditButton from './navbar_buttons/ProfileEditButton';
 import LogoutButton from './navbar_buttons/LogoutButton';
-import TripCard from './cards/TripCard';
 import '../styles/main.css';
 import '../styles/alt/alt-main.css';
-import TripPage from './TripPage';
 
 
 // React Component
 const Main = () => {
+    // Redux Controls
+    const dispatch = useDispatch();
 
     // Page State
     const token = window.localStorage.getItem("auth_token");
@@ -41,8 +43,28 @@ const Main = () => {
     const [userBoats, setUserBoats] = useState([]);
     const [userVehicles, setUserVehicles] = useState([]);
 
+    // Set Redux State Function
+    const setState = (json) => {
+        try {
+            dispatch({
+                type: "SET_USER",
+                payload: {
+                    user: json.user,
+                    boats: json.boats,
+                    vehicles: json.vehicles,
+                    friends: json.friends,
+                    invites: json.invites,
+                    trips: json.trips
+                }
+            });
+            console.log("setState() successful")
+        } catch (e) {
+            console.log("setState() failure");
+            console.log("error: ", e);
+        }
+    };
 
-    // Functions
+
     useEffect(() => {
         // Fetch User by <auth_token>
         const getUser = async () => {
@@ -59,15 +81,17 @@ const Main = () => {
                 console.log("getUser res failure");
             } else {
                 const json = await res.json();
-                setUser(json.user);
-                setUserBoats(json.boats);
-                setUserVehicles(json.vehicles);
-                setUserFriends(json.friends);
-                setUserInvites(json.invites);
-                setUserTrips(json.trips);
-                if (json.user.profile_pic !== null) {
-                    setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
-                }
+                setState(json);
+
+                // setUser(json.user);
+                // setUserBoats(json.boats);
+                // setUserVehicles(json.vehicles);
+                // setUserFriends(json.friends);
+                // setUserInvites(json.invites);
+                // setUserTrips(json.trips);
+                // if (json.user.profile_pic !== null) {
+                //     setProfilePic(`${IMG_KEY}${json.user.profile_pic}`)
+                // }
             }
         };
         getUser();
