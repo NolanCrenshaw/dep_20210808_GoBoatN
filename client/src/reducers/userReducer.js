@@ -5,17 +5,22 @@ import {
 const initState = {
     profile: {
         id: "",
-        username: "initUser",
-        email: "initUser@init.com",
-        firstname: "Inny",
-        lastname: "User",
-        zipcode: "00000",
+        username: "",
+        email: "",
+        firstname: "",
+        lastname: "",
+        zipcode: "",
         about: "",
-        skill: 1,
-        profile_pic: "init",
-        banner_pic: "init",
-        sprite: "init",
-    }
+        skill: 0,
+        profile_pic: "",
+        banner_pic: "",
+        sprite: "",
+    },
+    boats: [],
+    vehicles: [],
+    friends: [],
+    trips: [],
+    invites: [],
 }
 // initial state set to empty object.
 // default values may need to be handled by proper init state

@@ -43,7 +43,6 @@ def user_by_id(id):
 
     # populate user's trips
     user_trips = user.boaters
-    trips = []
     own_trips = []
     guest_trips = []
     for trip in user_trips:
@@ -52,8 +51,7 @@ def user_by_id(id):
     user_own_trips = Trip.query.filter_by(trip_leader=id).all()
     for own_trip in user_own_trips:
         own_trips.append(own_trip.to_dict())
-    trips.append(own_trips)
-    trips.append(guest_trips)
+    trips = [*own_trips, *guest_trips]
 
     return jsonify(
         profile=safe_user,
@@ -100,7 +98,6 @@ def user_by_token():
 
     # populate user's trips
     user_trips = user.boaters
-    trips = []
     own_trips = []
     guest_trips = []
     for trip in user_trips:
@@ -109,8 +106,7 @@ def user_by_token():
     user_own_trips = Trip.query.filter_by(trip_leader=user.id).all()
     for own_trip in user_own_trips:
         own_trips.append(own_trip.to_dict())
-    trips.append(own_trips)
-    trips.append(guest_trips)
+    trips = [*own_trips, *guest_trips]
 
     return jsonify(
         profile=safe_user,

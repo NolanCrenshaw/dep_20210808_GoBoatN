@@ -10,15 +10,14 @@ const FriendCard = props => {
     const token = window.localStorage.getItem("auth_token");
 
     // State
-    const [user, setUser] = useState({});
+    const [friend, setFriend] = useState({});
 
     // Listen
 
     // Function
-
     useEffect(() => {
         const getFriend = async () => {
-            const res = await fetch(`${BASE_URL}/api/users/${props.user_id}`, {
+            const res = await fetch(`${BASE_URL}/api/users/${props.user}`, {
                 method: "GET",
                 mode: "cors",
                 headers: {
@@ -31,7 +30,7 @@ const FriendCard = props => {
                 console.log("getUser res failure");
             } else {
                 const json = await res.json();
-                setUser(json.user);
+                setFriend(json.profile);
             }
         };
         getFriend();
@@ -43,7 +42,7 @@ const FriendCard = props => {
     // Render
     return (
         <div className="friendCard-root--container">
-            <UserCard user={user}/>
+            <UserCard user={friend}/>
         </div>
     )
 };

@@ -11,7 +11,6 @@ const UserCard = props => {
     const defaultPic = `${IMG_KEY}default-profile-pic.jpg`;
 
     // State
-    const [user, setUser] = useState({});
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [username, setUsername] = useState('');
@@ -26,7 +25,6 @@ const UserCard = props => {
     };
 
     useEffect(() => {
-        setUser(props.user)
         setFirstname(props.user.firstname)
         setLastname(props.user.lastname)
         setUsername(props.user.username)
