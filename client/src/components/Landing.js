@@ -4,8 +4,9 @@ import ReactModal from 'react-modal';
 
 import { BASE_URL, IMG_KEY } from '../config';
 
+import Boats from './Boats';
+import Vehicles from './Vehicles';
 import TripCard from './cards/TripCard';
-import UserCard from './cards/UserCard';
 import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 
@@ -298,11 +299,11 @@ const Landing = () => {
                 </div>
                 <div className="apparatibus">
                     <div className="apparatibus__container">
-                        <div className="apparatibus--vehicles">
-
-                        </div>
                         <div className="apparatibus--boats">
-
+                            <Boats user={state.profile} boats={state.boats}/>
+                        </div>
+                        <div className="apparatibus--vehicles">
+                            <Vehicles user={state.profile} vehicles={state.vehicles}/>
                         </div>
                     </div>
                 </div>
