@@ -50,7 +50,7 @@
     height: 70px;
     margin: 5px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 .boat-card__textbox div {

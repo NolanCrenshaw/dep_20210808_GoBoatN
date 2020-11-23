@@ -277,7 +277,7 @@ const Landing = () => {
                                     <span>Trips:</span>
                                     <div className="vita-trip--container">
                                         { state.trips
-                                            ? state.trips.map(trip => <TripCard trip={trip}/>)
+                                            ? state.trips.map(trip => <TripCard trip={trip} key={trip.id}/>)
                                             : <div/>
                                         }
                                     </div>
@@ -288,7 +288,7 @@ const Landing = () => {
                                 <div className="vita-card__header">
                                     <span>Friends:</span>
                                     { state.friends
-                                        ? state.friends.map(friend_id => <FriendCard user={friend_id}/>)
+                                        ? state.friends.map(friend_id => <FriendCard user={friend_id} key={friend_id}/>)
                                         : <div/>
 
                                     }
@@ -302,9 +302,9 @@ const Landing = () => {
                         <div className="apparatibus--boats">
                             <Boats user={state.profile} boats={state.boats}/>
                         </div>
-                        <div className="apparatibus--vehicles">
+                        {/* <div className="apparatibus--vehicles">
                             <Vehicles user={state.profile} vehicles={state.vehicles}/>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

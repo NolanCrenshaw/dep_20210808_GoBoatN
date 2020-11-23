@@ -43,10 +43,10 @@ const BoatCard = props => {
                             <span>Name:</span>
                             <span>{props.boat.name}</span>
                         </div>
-                        <div className="boat-card__make">
+                        {/* <div className="boat-card__make">
                             <span>Make:</span>
                             <span>{props.boat.make}</span>
-                        </div>
+                        </div> */}
                         <div className="boat-card__occupancy">
                             <span>Occupancy:</span>
                             <span>{props.boat.occupancy}</span>
