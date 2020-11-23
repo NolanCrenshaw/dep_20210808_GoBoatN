@@ -1,0 +1,12 @@
+.add-vehicle__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-style: italic;
+    margin-right: 5px;
+}
+.add-vehicle__name span {
+    font-size: 14px;
+    margin-right: 8px;
+}

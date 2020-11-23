@@ -187,7 +187,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: tomato;
+    /* background-color: tomato; */
     scrollbar-width: none;
 }
 .vita-bottombox__cards-c {
@@ -256,11 +256,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: tomato;
+    /* background-color: rgb(27, 13, 10); */
     scrollbar-width: none;
 }
-.apparatibus--vehicles {}
-.apparatibus--boats {}
+.apparatibus--boats {
+    width: 100%;
+}
+.apparatibus--vehicles {
+    width: 100%;
+}
 
 /*~~~ MODAL CONTROLS ~~~*/
 .landing-modal {

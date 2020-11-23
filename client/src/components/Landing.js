@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ReactModal from 'react-modal';
 
 import { BASE_URL, IMG_KEY } from '../config';
 
+import BannerModal from './subComponents/BannerModal';
 import Boats from './Boats';
 import Vehicles from './Vehicles';
 import TripCard from './cards/TripCard';
@@ -11,6 +12,7 @@ import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 
 import '../styles/landing.css';
+import ProfileModal from './subComponents/ProfileModal';
 
 
 // React Component
@@ -28,9 +30,9 @@ const Landing = () => {
 
     // State
     const [user, setUser] = useState({});
-    const [userTrips, setUserTrips] = useState([]);
-    const [userFriends, setUserFriends] = useState([]);
-    const [userInvites, setUserInvites] = useState([]);
+    // const [userTrips, setUserTrips] = useState([]);
+    // const [userFriends, setUserFriends] = useState([]);
+    // const [userInvites, setUserInvites] = useState([]);
     const [profilePic, setProfilePic] = useState(defaultPic);
 
     // Modal State
@@ -75,86 +77,46 @@ const Landing = () => {
     }
 
     // Profile Image Upload Functions
-    const uploadProfileImg = async () => {
-        if (imgFile.current.files[0] !== undefined) {
-            const formData = new FormData();
-            formData.append('file', imgFile.current.files[0])
+    // const uploadProfileImg = async () => {
+    //     if (imgFile.current.files[0] !== undefined) {
+    //         const formData = new FormData();
+    //         formData.append('file', imgFile.current.files[0])
 
-            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: formData,
-            });
-            if (!res.ok) {
-                // -- TODO -- Handling
-                console.log("uploadImg res failure")
-            } else {
-                const json = await res.json()
-                setUser(state.profile.profile_pic = json.sprite)
-            }
-            const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
-                method: "PUT",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify(state.profile.profile_pic)
-            })
-            if (!newres.ok) {
-                // -- TODO -- Handling
-                console.log("NewRes User update failed");
-            } else {
-                // -- TODO -- Handling
-                const newjson = await newres.json()
-                console.log(newjson.message)
-            }
-        };
-        closeModal();
-    };
-    const uploadBannerImg = async () => {
-        if (imgFile.current.files[0] !== undefined) {
-            const formData = new FormData();
-            formData.append('file', imgFile.current.files[0])
-
-            const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: formData,
-            });
-            if (!res.ok) {
-                // -- TODO -- Handling
-                console.log("uploadImg res failure")
-            } else {
-                const json = await res.json()
-                setUser(state.user.profile.banner_pic = json.sprite)
-            }
-            const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
-                method: "PUT",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify(state.profile.banner_pic)
-            })
-            if (!newres.ok) {
-                // -- TODO -- Handling
-                console.log("NewRes User update failed");
-            } else {
-                // -- TODO -- Handling
-                const newjson = await newres.json()
-                console.log(newjson.message)
-            }
-        };
-        closeModal();
-    };
+    //         const res = await fetch(`${BASE_URL}/api/bucket/upload`, {
+    //             method: "POST",
+    //             mode: "cors",
+    //             headers: {
+    //                 "Authorization": `Bearer ${token}`,
+    //             },
+    //             body: formData,
+    //         });
+    //         if (!res.ok) {
+    //             // -- TODO -- Handling
+    //             console.log("uploadImg res failure")
+    //         } else {
+    //             const json = await res.json()
+    //             setUser(state.profile.profile_pic = json.sprite)
+    //         }
+    //         const newres = await fetch(`${BASE_URL}/api/users/token/update`, {
+    //             method: "PUT",
+    //             mode: "cors",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": `Bearer ${token}`,
+    //             },
+    //             body: JSON.stringify(state.profile.profile_pic)
+    //         })
+    //         if (!newres.ok) {
+    //             // -- TODO -- Handling
+    //             console.log("NewRes User update failed");
+    //         } else {
+    //             // -- TODO -- Handling
+    //             const newjson = await newres.json()
+    //             console.log(newjson.message)
+    //         }
+    //     };
+    //     closeModal();
+    // };
 
     // Profile Image Render Functions
     const updateProfilePic = () => {
@@ -183,42 +145,10 @@ const Landing = () => {
                 contentLabel="Example">
                 <div className="landing-modal--background">
                     <div className={bannerModal}>
-                        <label
-                            for="banner-upload"
-                            className="custom-file-upload">
-                            Upload a Banner picture
-                        </label>
-                        <input
-                            id="banner-upload"
-                            className="hidden"
-                            type="file"
-                            accept="image/*"
-                            name="file"
-                            ref={imgFile} />
-                        <div
-                            className="landing-modal__upload--button"
-                            onClick={uploadBannerImg}>
-                            <span>Submit</span>
-                        </div>
+                        <BannerModal closeModal={closeModal}/>
                     </div>
                     <div className={profileModal}>
-                        <label
-                            for="profile-upload"
-                            className="custom-file-upload">
-                            Upload a Profile picture
-                        </label>
-                        <input
-                            id="profile-upload"
-                            className="hidden"
-                            type="file"
-                            accept="image/*"
-                            name="file"
-                            ref={imgFile2} />
-                        <div
-                            className="landing-modal__upload--button"
-                            onClick={uploadProfileImg}>
-                            <span>Submit</span>
-                        </div>
+                        <ProfileModal closeModal={closeModal}/>
                     </div>
                 </div>
             </ReactModal>
@@ -302,9 +232,9 @@ const Landing = () => {
                         <div className="apparatibus--boats">
                             <Boats user={state.profile} boats={state.boats}/>
                         </div>
-                        {/* <div className="apparatibus--vehicles">
+                        <div className="apparatibus--vehicles">
                             <Vehicles user={state.profile} vehicles={state.vehicles}/>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

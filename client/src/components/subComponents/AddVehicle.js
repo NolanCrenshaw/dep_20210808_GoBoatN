@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import '../../styles/addboat.css';
+import '../../styles/addvehicle.css';
 
 
-const AddBoat = props => {
+const AddVehicle = props => {
 
     const token = window.localStorage.getItem("auth_token")
 
@@ -13,8 +13,8 @@ const AddBoat = props => {
     const [name, setName] = useState("");
     const [occupancy, setOccupancy] = useState(1);
 
-   // Component State
-   const [nameRequired, setNameRequired] = useState("no-error");
+    // Component State
+    const [nameRequired, setNameRequired] = useState("no-error");
 
     // Listen
     const updateName = e => setName(e.target.value);
@@ -25,32 +25,31 @@ const AddBoat = props => {
 
     // Render
     return(
-        <div className="boat-card-root--container">
-            <div
-                className="boat-card add-boat-card">
-                <div className="boat-card__img">
-                    <div className="boat-card__header">
-                        <span>Add a Boat</span>
+        <div className="vehicle-card-root--container">
+            <div className="vehicle-card add-vehicle-card">
+                <div className="vehicle-card__header--create">
+                    <div className="vehicle-card__header">
+                        <span>Add a Vehicle</span>
                     </div>
                 </div>
-                <div className="boat-card__textbox--container">
-                    <div className="boat-card__textbox">
-                        <div className="add-boat__name">
+                <div className="vehicle-card__textbox--container">
+                    <div className="vehicle-card__textbox">
+                        <div className="add-vehicle__name">
                             <span>Name:</span>
                             <input
-                                className="create-boat__input"
-                                id="create-boat__name"
+                                className="create-vehicle__input"
+                                id="create-vehicle__name"
                                 type="text"
                                 placeholder=""
                                 value={name}
                                 onChange={updateName} />
                         </div>
-                        <div className="boat-card__occupancy--create">
+                        <div className="vehicle-card__occupancy--create">
                             <span>Occupancy:</span>
-                            <div className="create-boat__select--container">
+                            <div className="create-vehicle__select--container">
                                 <select
-                                    className="create-boat__select"
-                                    id="create-boat__occupancy"
+                                    className="create-vehicle__select"
+                                    id="create-vehicle__occupancy"
                                     value={occupancy}
                                     onChange={updateOccupancy}>
                                     <option value="1" >1</option>
@@ -65,7 +64,7 @@ const AddBoat = props => {
                             </div>
                         </div>
                         <div
-                            className="create-boat__form-button"
+                            className="create-vehicle__form-button"
                             onClick={props.toggleCreate}>
                             <img src="https://img.icons8.com/officel/80/000000/plus.png"/>
                         </div>
@@ -76,4 +75,4 @@ const AddBoat = props => {
     );
 };
 
-export default AddBoat;
+export default AddVehicle;

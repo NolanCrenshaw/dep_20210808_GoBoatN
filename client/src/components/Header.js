@@ -12,6 +12,7 @@ import '../styles/header.css';
 
 const Header = () => {
 
+
 // ---- Component Render ---- //
 
     // Render
@@ -20,11 +21,10 @@ const Header = () => {
             <div className="main-header__left"></div>
             <div className="main-header__bulk">
                 <div className="main-header__switch-board">
-                    <VehiclesButton/>
-                    <div className="main-switch-board__divider"/>
-                    <BoatsButton/>
-                    <div className="main-switch-board__divider"/>
-                    <HomeButton/>
+                    <div className="main-header__buttons--container">
+                        <RiversButton/>
+                        {/* <div className="main-switch-board__divider"/> */}
+                    </div>
                     <div className="main-switch-board__graf-c">
                         <span>Go Boat</span>
                         <span>i</span>
@@ -32,11 +32,10 @@ const Header = () => {
                         <span>g</span>
                         <img src="https://img.icons8.com/ios/50/000000/canoe-slalom.png"/>
                     </div>
-                    <RiversButton/>
-                    <div className="main-switch-board__divider"/>
-                    <ProfileEditButton/>
-                    <div className="main-switch-board__divider"/>
-                    <LogoutButton/>
+                    <div className="main-header__buttons--container">
+                        {/* <div className="main-switch-board__divider"/> */}
+                        <LogoutButton/>
+                    </div>
                 </div>
             </div>
             <div className="main-header__right"></div>
