@@ -50,19 +50,12 @@
 }
 .create-vehicle__input {
     width: 120px;
-    height: 40px;
+    height: 30px;
     margin: 5px 0 5px 0;
     border: 1px solid #023E8A;
     background-color: #CAF0F8;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
-
-    /* width: 95%;
-    height: 40px;
-    max-width: 300px;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px #024e74;
-    */
 }
 .create-vehicle__select {
 	width: 90%;

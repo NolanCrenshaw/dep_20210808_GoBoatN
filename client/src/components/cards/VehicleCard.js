@@ -44,10 +44,6 @@ const VehicleCard = props => {
                             <span>Name:</span>
                             <span>{props.vehicle.name}</span>
                         </div>
-                        <div className="vehicle-card__make">
-                            <span>Make:</span>
-                            <span>{props.vehicle.make}</span>
-                        </div>
                         <div className="vehicle-card__occupancy">
                             <span>Occupancy:</span>
                             <span>{props.vehicle.occupancy}</span>
