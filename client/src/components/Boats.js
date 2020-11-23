@@ -66,7 +66,7 @@ const Boats = props => {
                     </span>
                     <div className="boats__display">
                         { props.boats.map((boat) =>
-                            <BoatCard boat={boat}/>
+                            <BoatCard boat={boat} key={boat.id}/>
                         )}
                         <div className="boat-card-root--container">
                             <div

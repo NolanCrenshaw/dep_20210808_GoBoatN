@@ -4,8 +4,9 @@ import ReactModal from 'react-modal';
 
 import { BASE_URL, IMG_KEY } from '../config';
 
+import Boats from './Boats';
+import Vehicles from './Vehicles';
 import TripCard from './cards/TripCard';
-import UserCard from './cards/UserCard';
 import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 
@@ -276,7 +277,7 @@ const Landing = () => {
                                     <span>Trips:</span>
                                     <div className="vita-trip--container">
                                         { state.trips
-                                            ? state.trips.map(trip => <TripCard trip={trip}/>)
+                                            ? state.trips.map(trip => <TripCard trip={trip} key={trip.id}/>)
                                             : <div/>
                                         }
                                     </div>
@@ -287,7 +288,7 @@ const Landing = () => {
                                 <div className="vita-card__header">
                                     <span>Friends:</span>
                                     { state.friends
-                                        ? state.friends.map(friend_id => <FriendCard user={friend_id}/>)
+                                        ? state.friends.map(friend_id => <FriendCard user={friend_id} key={friend_id}/>)
                                         : <div/>
 
                                     }
@@ -298,12 +299,12 @@ const Landing = () => {
                 </div>
                 <div className="apparatibus">
                     <div className="apparatibus__container">
-                        <div className="apparatibus--vehicles">
-
-                        </div>
                         <div className="apparatibus--boats">
-
+                            <Boats user={state.profile} boats={state.boats}/>
                         </div>
+                        {/* <div className="apparatibus--vehicles">
+                            <Vehicles user={state.profile} vehicles={state.vehicles}/>
+                        </div> */}
                     </div>
                 </div>
             </div>
