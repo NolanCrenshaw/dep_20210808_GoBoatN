@@ -1,9 +1,7 @@
-# Package Requirements
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship, backref
 from datetime import datetime
+# from sqlalchemy.orm import relationship, backref
 
-# Database Declaration
 db = SQLAlchemy()
 
 
@@ -24,36 +22,14 @@ class User(db.Model):
     banner_pic = db.Column(db.String(255))
     sprite = db.Column(db.String(255))
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False,
-        default=datetime.utcnow
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 
-    boats = db.relationship(
-        "Boat",
-        backref="user",
-        lazy=True
-    )
-    vehicles = db.relationship(
-        "Vehicle",
-        backref="user",
-        lazy=True
-    )
-    invites = db.relationship(
-        "Invite",
-        backref="user",
-        lazy=False
-    )
-    boaters = db.relationship(
-        "Boater",
-        backref="user",
-        lazy=True
-    )
-    friends = db.relationship(
-        "Friend",
-        backref="user",
-        lazy=True
-    )
+    boats = db.relationship("Boat", backref="user", lazy=True)
+    vehicles = db.relationship("Vehicle", backref="user", lazy=True)
+    invites = db.relationship("Invite", backref="user", lazy=False)
+    boaters = db.relationship("Boater", backref="user", lazy=True)
+    friends = db.relationship("Friend", backref="user", lazy=True)
 
     def to_safe_object(self):
         return {
@@ -84,11 +60,7 @@ class River(db.Model):
     # latitude = db.Column(db.Integer)
     # longitude = db.Column(db.Integer)
 
-    accesses = db.relationship(
-        "Access",
-        backref="user",
-        lazy=True
-    )
+    accesses = db.relationship("Access", backref="user", lazy=True)
 
     def to_dict(self):
         return {
@@ -107,11 +79,8 @@ class Access(db.Model):
     __tablename__ = "accesses"
 
     id = db.Column(db.Integer, primary_key=True)
-    river_id = db.Column(
-        db.Integer,
-        db.ForeignKey("rivers.id"),
-        nullable=False
-    )
+    river_id = db.Column(db.Integer, db.ForeignKey(
+        "rivers.id"), nullable=False)
     name = db.Column(db.String(255), default="unnamed")
     put_in_option = db.Column(db.Boolean)
     take_out_option = db.Column(db.Boolean)
@@ -135,19 +104,12 @@ class Boat(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     make = db.Column(db.String(255), nullable=False)
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
-    date_added = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
+    date_added = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow)
 
     def __repr__(self):
         return f"{self.name}, {self.make}, {self.user}"
@@ -169,18 +131,12 @@ class Vehicle(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     make = db.Column(db.String(255), nullable=False)
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False,
-        default=datetime.utcnow
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 
     def to_dict(self):
@@ -199,16 +155,10 @@ class Friend(db.Model):
     __tablename__ = "friends"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     friend_id = db.Column(db.Integer, nullable=False)
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False,
-        default=datetime.utcnow
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 
     def to_int(self):
@@ -220,34 +170,17 @@ class Trip(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     scheduled_time = db.Column(db.DateTime)
-    river_id = db.Column(
-        db.Integer,
-        db.ForeignKey("rivers.id"),
-        nullable=False
-    )
+    river_id = db.Column(db.Integer, db.ForeignKey(
+        "rivers.id"), nullable=False)
     trip_leader = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+        db.Integer, db.ForeignKey("users.id"), nullable=False)
     put_in = db.Column(db.Integer, db.ForeignKey("accesses.id"))
     take_out = db.Column(db.Integer, db.ForeignKey("accesses.id"))
-    date_added = db.Column(
-        db.DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
+    date_added = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow)
 
-    invites = db.relationship(
-        "Invite",
-        backref="trip",
-        lazy=True
-    )
-    boaters = db.relationship(
-        "Boater",
-        backref="trip",
-        lazy=True
-    )
+    invites = db.relationship("Invite", backref="trip", lazy=True)
+    boaters = db.relationship("Boater", backref="trip", lazy=True)
 
     def to_dict(self):
         return {
@@ -265,20 +198,10 @@ class Invite(db.Model):
     __tablename__ = "invites"
 
     id = db.Column(db.Integer, primary_key=True)
-    trip_id = db.Column(
-        db.Integer,
-        db.ForeignKey("trips.id"),
-        nullable=False
-    )
-    receiver = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    trip_id = db.Column(db.Integer, db.ForeignKey("trips.id"), nullable=False)
+    receiver = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False,
-        default=datetime.utcnow
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 
 
@@ -286,24 +209,14 @@ class Boater(db.Model):
     __tablename__ = "boaters"
 
     id = db.Column(db.Integer, primary_key=True)
-    trip_id = db.Column(
-        db.Integer,
-        db.ForeignKey("trips.id"),
-        nullable=False
-    )
-    user_id = db.Column(
-        db.Integer,
-        db.ForeignKey("users.id"),
-        nullable=False
-    )
+    trip_id = db.Column(db.Integer, db.ForeignKey("trips.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     boat_id = db.Column(db.Integer, db.ForeignKey("boats.id"))
     vehicle_id = db.Column(db.Integer, db.ForeignKey("vehicles.id"))
     driver = db.Column(db.Boolean)
     meet_at = db.Column(db.String(255))
     date_added = db.Column(
-        db.DateTime(timezone=True),
-        nullable=False,
-        default=datetime.utcnow
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
 
     def to_dict(self):
@@ -315,5 +228,5 @@ class Boater(db.Model):
             "vehicle_id": self.vehicle_id,
             "driver": self.driver,
             "meet_at": self.meet_at,
-            "date_added": self.date_added
+            "date_added": self.date_added,
         }
