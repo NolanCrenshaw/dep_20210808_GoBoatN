@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  background-size: cover;
+  background-position: center;
+}
+
+.scrim {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 15rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 15rem rgba(0, 0, 0, 0.5);
+}
+/*# sourceMappingURL=index.css.map */
