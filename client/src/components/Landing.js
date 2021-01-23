@@ -11,7 +11,7 @@ import TripCard from './cards/TripCard';
 import FriendCard from './cards/FriendCard';
 import BannerEditSVG from '../images/BannerEditSVG';
 
-import '../styles/landing.css';
+// import '../styles/landing.css';
 import ProfileModal from './subComponents/ProfileModal';
 
 

@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "leaflet": "^1.7.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-leaflet": "^2.7.0",
@@ -27,9 +28,9 @@
   },
   "eslintConfig": {
     "extends": [
-        "react-app",
-        "eslint:recommended",
-        "plugin:react/recommended"
+      "react-app",
+      "eslint:recommended",
+      "plugin:react/recommended"
     ]
   },
   "browserslist": {

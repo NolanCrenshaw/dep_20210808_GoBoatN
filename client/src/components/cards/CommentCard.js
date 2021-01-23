@@ -1,3 +1,3 @@
-import React from 'react';
-import UserCard from './UserCard';
-import '../../styles/commentcard.css';
+import React from "react";
+import UserCard from "./UserCard";
+// import '../../styles/commentcard.css';

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../../styles/addboat.css';
+// import '../../styles/addboat.css';
 
 
 const AddBoat = props => {

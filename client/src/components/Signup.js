@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BASE_URL } from '../config';
-import '../styles/signup.css';
+// import '../styles/signup.css';
 
 const Signup = props => {
 

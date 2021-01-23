@@ -51,7 +51,10 @@ const Main = () => {
 
   // Render
   return (
-    <div className="main-container"></div>
+    <div className="main-container">
+      <h1>Hello World</h1>
+      <h2>Main</h2>
+    </div>
 
     // <div className="main-root--container">
     //     <div className="main--container">
