@@ -1,100 +1,103 @@
 import React, { useState } from "react";
-import { BASE_URL, IMG_KEY } from "../config";
+import { BASE_URL } from "../config";
+import { useForm } from "react-hook-form";
 // import Signup from "./Signup";
-// import "../styles/splash.css";
 
 // React Component
 const Splash = () => {
   // Sign up Modal State
-  const [signupShow, setSignupShow] = useState("signup-modal--hidden");
+  // const [signupShow, setSignupShow] = useState("signup-modal--hidden");
 
-  // Log in State & Listen
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const updateEmail = (e) => setEmail(e.target.value);
-  const updatePassword = (e) => setPassword(e.target.value);
+  // // Log in State & Listen
+  // const [email, setEmail] = useState();
+  // const [password, setPassword] = useState();
+  // const updateEmail = (e) => setEmail(e.target.value);
+  // const updatePassword = (e) => setPassword(e.target.value);
 
-  // Log in Function
-  const login = async () => {
-    const res = await fetch(`${BASE_URL}/auth/login`, {
-      method: "POST",
-      mode: "cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: `${email}`, password: `${password}` }),
-    });
-    if (!res.ok) {
-      // -- TODO -- Validation
-      console.log("login res failure");
-    } else {
-      // <"auth_token"> Storage
-      const json = await res.json();
-      if (json.auth_token !== undefined) {
-        window.localStorage.setItem("auth_token", json.auth_token);
-        window.location.reload();
-      }
-    }
-  };
+  // // Log in Function
+  // const login = async () => {
+  //   const res = await fetch(`${BASE_URL}/auth/login`, {
+  //     method: "POST",
+  //     mode: "cors",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ email: `${email}`, password: `${password}` }),
+  //   });
+  //   if (!res.ok) {
+  //     // -- TODO -- Validation
+  //     console.log("login res failure");
+  //   } else {
+  //     // <"auth_token"> Storage
+  //     const json = await res.json();
+  //     if (json.auth_token !== undefined) {
+  //       window.localStorage.setItem("auth_token", json.auth_token);
+  //       window.location.reload();
+  //     }
+  //   }
+  // };
 
-  // Demo User Function
-  const demoUser = async () => {
-    const demoEmail = "demo@goboatn.com",
-      demoPassword = "demoShow123";
-    const speed = 50;
-    let i = 1,
-      j = 1;
+  // // Demo User Function
+  // const demoUser = async () => {
+  //   const demoEmail = "demo@goboatn.com",
+  //     demoPassword = "demoShow123";
+  //   const speed = 50;
+  //   let i = 1,
+  //     j = 1;
 
-    // Clear Inputs
-    setEmail("");
-    setPassword("");
+  //   // Clear Inputs
+  //   setEmail("");
+  //   setPassword("");
 
-    // Ghost Writer Functions
-    const ghostWriteEmail = () => {
-      if (i <= demoEmail.length) {
-        let text = demoEmail.slice(0, i);
-        setEmail(text);
-        i++;
-        setTimeout(ghostWriteEmail, speed);
-      }
-    };
-    const ghostWritePassword = () => {
-      if (j <= demoPassword.length) {
-        let text = demoPassword.slice(0, j);
-        setPassword(text);
-        j++;
-        setTimeout(ghostWritePassword, speed);
-      }
-    };
-    ghostWriteEmail();
-    setTimeout(ghostWritePassword, speed * demoEmail.length);
+  //   // Ghost Writer Functions
+  //   const ghostWriteEmail = () => {
+  //     if (i <= demoEmail.length) {
+  //       let text = demoEmail.slice(0, i);
+  //       setEmail(text);
+  //       i++;
+  //       setTimeout(ghostWriteEmail, speed);
+  //     }
+  //   };
+  //   const ghostWritePassword = () => {
+  //     if (j <= demoPassword.length) {
+  //       let text = demoPassword.slice(0, j);
+  //       setPassword(text);
+  //       j++;
+  //       setTimeout(ghostWritePassword, speed);
+  //     }
+  //   };
+  //   ghostWriteEmail();
+  //   setTimeout(ghostWritePassword, speed * demoEmail.length);
 
-    // Demo Fetch Function
-    const demo = async () => {
-      const response = await fetch(`${BASE_URL}/auth/login`, {
-        method: "POST",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: `${demoEmail}`,
-          password: `${demoPassword}`,
-        }),
-      });
-      const json = await response.json();
-      if (json.auth_token !== undefined) {
-        window.localStorage.setItem("auth_token", json.auth_token);
-        window.location.reload();
-      }
-    };
-    setTimeout(demo, 1200);
-  };
+  //   // Demo Fetch Function
+  //   const demo = async () => {
+  //     const response = await fetch(`${BASE_URL}/auth/login`, {
+  //       method: "POST",
+  //       mode: "cors",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         email: `${demoEmail}`,
+  //         password: `${demoPassword}`,
+  //       }),
+  //     });
+  //     const json = await response.json();
+  //     if (json.auth_token !== undefined) {
+  //       window.localStorage.setItem("auth_token", json.auth_token);
+  //       window.location.reload();
+  //     }
+  //   };
+  //   setTimeout(demo, 1200);
+  // };
 
-  // Signup Toggle Function
-  const toggleSignup = () => {
-    if (signupShow === "signup-modal--hidden") {
-      setSignupShow("signup-modal--visible");
-    } else {
-      setSignupShow("signup-modal--hidden");
-    }
-  };
+  // // Signup Toggle Function
+  // const toggleSignup = () => {
+  //   if (signupShow === "signup-modal--hidden") {
+  //     setSignupShow("signup-modal--visible");
+  //   } else {
+  //     setSignupShow("signup-modal--hidden");
+  //   }
+  // };
+
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   // ---- Component Render ---- //
 
@@ -102,6 +105,23 @@ const Splash = () => {
   return (
     <div className="splash-container">
       <h1>Splash</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label for="username">User Name</label>
+        <input
+          name="username"
+          defaultValue=""
+          ref={register({ required: true, minLength: 4, maxLength: 20 })}
+        />
+        {errors.username && <span>{`${errors.username}`}</span>}
+        <label for="password">Password</label>
+        <input
+          name="password"
+          defaultValue=""
+          ref={register({ required: true })}
+        />
+        {errors.password && <span>Password is Required</span>}
+        <input type="submit" />
+      </form>
     </div>
 
     // <div className="splash-root--container">
