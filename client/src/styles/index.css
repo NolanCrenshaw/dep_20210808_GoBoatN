@@ -26,4 +26,9 @@ a {
   -webkit-box-shadow: 0 0 15rem rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 15rem rgba(0, 0, 0, 0.5);
 }
+
+.splash-container h1 {
+  color: red;
+  font-size: 5rem;
+}
 /*# sourceMappingURL=index.css.map */

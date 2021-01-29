@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 // Local Requirements
-import Splash from "./components/Splash";
+import Splash from "./components/Splash/Splash";
 import Main from "./components/Main";
 
 // React Component
