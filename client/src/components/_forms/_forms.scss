@@ -73,7 +73,15 @@
 }
 
 .loginform-container {
-  height: 400px;
+  height: auto;
   width: 400px;
+  position: relative;
+  justify-content: center;
+}
+
+.signupform-container {
+  height: auto;
+  width: 400px;
+  position: relative;
   justify-content: center;
 }
