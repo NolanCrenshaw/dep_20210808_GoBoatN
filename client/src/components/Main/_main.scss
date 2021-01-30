@@ -42,6 +42,10 @@
       }
       section:nth-child(2) {
         justify-content: center;
+
+        h1 {
+          font-size: 2.5rem;
+        }
       }
       section:nth-child(3) {
         justify-content: flex-end;

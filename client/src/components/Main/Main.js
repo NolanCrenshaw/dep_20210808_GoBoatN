@@ -15,9 +15,7 @@ const Main = ({ loginToggle }) => {
     <div className="main-container">
       <nav>
         <div className="nav_content">
-          <section>
-            <h1>test</h1>
-          </section>
+          <section></section>
           <section>
             <h1>Go Boating</h1>
           </section>
