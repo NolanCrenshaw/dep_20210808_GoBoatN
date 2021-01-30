@@ -41,14 +41,14 @@ const schema = yup.object().shape({
   // lastname: yup.string().required(),
 });
 
-const SignupForm = ({ registerLoginAttempt }) => {
+const SignupForm = ({ loginToggle }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const submitForm = (data, e) => {
     e.preventDefault();
-    registerLoginAttempt();
+    loginToggle();
     console.log(data);
   };
 

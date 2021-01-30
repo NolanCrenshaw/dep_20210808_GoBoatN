@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6),
 });
 
-const LoginForm = ({ registerLoginAttempt }) => {
+const LoginForm = ({ loginToggle }) => {
   const [submittedData, setSubmittedData] = useState({});
 
   // React Hook Form Ctrl w/ Yup Validation
@@ -59,7 +59,7 @@ const LoginForm = ({ registerLoginAttempt }) => {
             console.log("auth_token === undefined");
           } else {
             window.localStorage.setItem("auth_token", json.auth_token);
-            registerLoginAttempt();
+            loginToggle();
           }
         }
       };

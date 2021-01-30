@@ -15,7 +15,7 @@ function App() {
   const [loginAttempt, setLoginAttempt] = useState(false);
 
   // Login Attempt Function for Props
-  const registerLoginAttempt = () => {
+  const loginToggle = () => {
     /*
     ~~ TODO ~~
     This code should be cleaned up in the future.
@@ -32,7 +32,7 @@ function App() {
     Relies on checkToken() to control setIsLoggedIn, which manages render.
     JWT_required on backend secures token authentication.
     loginAttempt state controls useEffect firing.
-    registerLoginAttempt() is passed to subcomponents for event handling.
+    loginToggle() is passed to subcomponents for event handling.
     */
     const token = window.localStorage.getItem("auth_token");
     const checkToken = async (tk) => {
@@ -56,7 +56,7 @@ function App() {
     if (token !== null) {
       checkToken(token);
     } else {
-      console.log("TOKEN IS NULL");
+      setIsLoggedIn(false);
     }
   }, [loginAttempt]);
 
@@ -64,9 +64,9 @@ function App() {
   return (
     <>
       {isLoggedIn ? (
-        <Main />
+        <Main loginToggle={() => loginToggle()} />
       ) : (
-        <Splash registerLoginAttempt={() => registerLoginAttempt()} />
+        <Splash loginToggle={() => loginToggle()} />
       )}
     </>
   );
