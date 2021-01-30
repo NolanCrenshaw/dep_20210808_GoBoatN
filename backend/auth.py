@@ -137,3 +137,15 @@ def signup():
             return jsonify(message="try failed"), 409
     else:
         return jsonify(message="Request Method not recognized"), 400
+
+
+@auth.route("/", methods=["GET"])
+@jwt_required
+def check_token():
+    try:
+        auth_token = get_jwt_identity()
+        admin = Admin.query.filter_by(username=auth_token['username']).first()
+        safe_admin = admin.to_safe_object()
+        return jsonify(admin=safe_admin), 200
+    except Exception:
+        return jsonify(message="Token Check Failed"), 403

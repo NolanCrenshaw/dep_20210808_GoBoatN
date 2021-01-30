@@ -10,6 +10,7 @@ const Splash = () => {
   useEffect(() => {
     toggleUI ? setToggleBtn("Sign Up") : setToggleBtn("Log In");
   }, [toggleUI]);
+
   return (
     <div className="splash-container">
       <nav>
