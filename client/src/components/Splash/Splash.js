@@ -1,9 +1,10 @@
 import React from "react";
+import LoginForm from "../_forms/LoginForm";
 
 const Splash = () => {
   return (
     <div className="splash-container">
-      <h1>Splash Page</h1>
+      <LoginForm />
     </div>
   );
 };
