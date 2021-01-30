@@ -1,5 +1,6 @@
 // Package Requirements
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "./config";
 
 // Local Requirements
 import Splash from "./components/Splash/Splash";
