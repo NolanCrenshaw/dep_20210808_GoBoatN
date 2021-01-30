@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BASE_URL, IMG_KEY } from '../config';
-import '../styles/createvehicle.css';
+// import '../styles/createvehicle.css';
 
 const CreateVehicle = props => {
 

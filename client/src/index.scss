@@ -1,0 +1,41 @@
+// Default Styling
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1 {
+}
+h2 {
+}
+h3 {
+}
+p {
+}
+a {
+  text-decoration: none;
+}
+#root {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  background-size: cover;
+  background-position: center;
+}
+.scrim {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15rem rgba(0, 0, 0, 0.5);
+}
+
+@import "../node_modules/include-media/dist/include-media";
+
+@import "./components/_forms/forms";
+@import "./components/Splash/splash";

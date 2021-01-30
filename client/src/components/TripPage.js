@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { BASE_URL } from '../config';
-import '../styles/trippage.css';
+// import '../styles/trippage.css';
 import UserCard from './cards/UserCard';
 
 
