@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import LoginForm from "../_forms/LoginForm";
 import SignupForm from "../_forms/SignupForm";
 
@@ -25,6 +26,7 @@ const Splash = () => {
       <div className="splash_panel">
         {toggleUI ? <LoginForm /> : <SignupForm />}
       </div>
+      <footer></footer>
     </div>
   );
 };

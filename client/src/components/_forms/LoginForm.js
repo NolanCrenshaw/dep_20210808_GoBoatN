@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -24,16 +24,32 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    errors,
+    reset,
+    formState: { isSubmitted },
+  } = useForm({
     resolver: yupResolver(schema),
   });
+  const [submittedData, setSubmittedData] = useState({});
 
-  const submitForm = (data) => console.log(data);
+  const onSubmit = (data, e) => {
+    e.preventDefault();
+    setSubmittedData(data);
+    e.target.reset();
+  };
+
+  useEffect(() => {
+    if (submittedData.password !== undefined) {
+    }
+  }, [submittedData]);
 
   return (
     <div className="loginform-container form">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         {content.inputs.map((input, key) => {
           return (
             <div className="form_element" key={key}>
