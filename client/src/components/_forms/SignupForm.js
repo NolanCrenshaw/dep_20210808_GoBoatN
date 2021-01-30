@@ -41,12 +41,16 @@ const schema = yup.object().shape({
   // lastname: yup.string().required(),
 });
 
-const SignupForm = () => {
+const SignupForm = ({ registerLoginAttempt }) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data) => console.log(data);
+  const submitForm = (data, e) => {
+    e.preventDefault();
+    registerLoginAttempt();
+    console.log(data);
+  };
 
   return (
     <div className="signupform-container form">

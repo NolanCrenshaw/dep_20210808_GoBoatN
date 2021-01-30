@@ -1,11 +1,11 @@
 # Package Requirements
 from flask import Blueprint, request, jsonify, make_response
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required, create_access_token
 from datetime import datetime
 import bcrypt
 
 # Local Requirements
-from .models import db, User
+from ..models import db, User
 
 
 # Blueprint Declaration
