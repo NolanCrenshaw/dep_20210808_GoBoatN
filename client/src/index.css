@@ -15,6 +15,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
 h3 {
   font-size: 2rem;
 }
@@ -273,6 +281,7 @@ a {
   -ms-grid-row-span: 1;
   grid-row: 3/4;
   height: 30vh;
+  padding: 4rem;
   border-bottom: 1px solid black;
   -webkit-box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
@@ -283,20 +292,25 @@ a {
   min-height: 100vh;
   width: 100%;
   position: relative;
+  background: linear-gradient(45deg, rgba(220, 220, 220, 0.2) 0%, rgba(220, 220, 220, 0.1) 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main-container nav {
   height: 10vh;
   width: 100%;
-  position: absolute;
-  top: 0;
-  border-bottom: 0.5px solid black;
   -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
   background-color: white;
@@ -372,29 +386,30 @@ a {
 .main-container .vis {
   min-height: 100vh;
   width: 100%;
-  max-width: 1080px;
-  margin-top: 10vh;
+  max-width: 1220px;
   overflow: hidden;
   z-index: 1;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.5fr 1fr 0.75fr;
-      grid-template-columns: 0.5fr 1fr 0.75fr;
+  -ms-grid-columns: 0.35fr 1fr 0.45fr;
+      grid-template-columns: 0.35fr 1fr 0.45fr;
 }
 
 .main-container .vis section {
   overflow: hidden;
+  padding-top: 2rem;
 }
 
 .main-container .vis #left_panel {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/2;
-  padding: 6rem 2rem;
+  padding-top: 5rem;
   overflow: hidden;
-  border-left: 0.5px solid rgba(72, 202, 228, 0.5);
-  border-right: 0.5px solid rgba(72, 202, 228, 0.5);
-  background: linear-gradient(45deg, rgba(173, 232, 244, 0.75) 0%, rgba(173, 232, 244, 0.5) 100%);
+  border-left: 0.5px solid rgba(72, 202, 228, 0.8);
+  border-right: 0.5px solid rgba(72, 202, 228, 0.8);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(173, 232, 244, 0.5)), color-stop(50%, rgba(173, 232, 244, 0.2)), to(rgba(173, 232, 244, 0.1)));
+  background: linear-gradient(to bottom, rgba(173, 232, 244, 0.5) 0%, rgba(173, 232, 244, 0.2) 50%, rgba(173, 232, 244, 0.1) 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -434,25 +449,125 @@ a {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container .vis #left_panel nav {
+  height: auto;
+  width: 100%;
+  margin: 2rem 0;
+  padding: 0;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: rgba(0, 0, 0, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container .vis #left_panel nav button {
+  height: 40px;
+  width: 100%;
+  padding-left: 40%;
+  color: black;
+  font-size: 1.6rem;
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+  border: none;
+  background: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.main-container .vis #left_panel nav button:hover {
+  color: white;
+  font-weight: 600;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  background-color: none;
+  border-left: 4px solid #023e8a;
+  background: -webkit-gradient(linear, left top, right top, from(#023e8a), color-stop(20%, rgba(2, 62, 138, 0.4)), color-stop(35%, rgba(2, 62, 138, 0.2)), to(rgba(2, 62, 138, 0)));
+  background: linear-gradient(to right, #023e8a 0%, rgba(2, 62, 138, 0.4) 20%, rgba(2, 62, 138, 0.2) 35%, rgba(2, 62, 138, 0) 100%);
 }
 
 .main-container .vis #center_panel {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
+  padding: 0;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(202, 240, 248, 0.25)), to(rgba(202, 240, 248, 0.15)));
   background: linear-gradient(180deg, rgba(202, 240, 248, 0.25) 0%, rgba(202, 240, 248, 0.15) 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main-container .vis #center_panel .banner-container {
+  height: 350px;
+  background-color: rgba(0, 119, 182, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container .vis #center_panel .banner-container img {
+  height: auto;
+  width: 93%;
+  border: 1px solid white;
+  border-radius: 12px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.main-container .vis #center_panel .user_boats {
+  min-height: 200px;
+  width: 100%;
+  padding: 2rem 3rem;
+  background-color: salmon;
 }
 
 .main-container .vis #right_panel {
   -ms-grid-column: 3;
   -ms-grid-column-span: 1;
   grid-column: 3/4;
-  border-left: 0.5px solid rgba(72, 202, 228, 0.5);
-  border-right: 0.5px solid rgba(72, 202, 228, 0.5);
-  background: linear-gradient(280deg, rgba(173, 232, 244, 0.35) 0%, rgba(173, 232, 244, 0.25) 100%);
+  border-left: 0.5px solid rgba(72, 202, 228, 0.8);
+  border-right: 0.5px solid rgba(72, 202, 228, 0.8);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(173, 232, 244, 0.35)), to(rgba(173, 232, 244, 0.1)));
+  background: linear-gradient(to bottom, rgba(173, 232, 244, 0.35) 0%, rgba(173, 232, 244, 0.1) 100%);
+}
+
+.main-container footer {
+  height: 30vh;
+  width: 100%;
+  padding: 4rem;
+  border-bottom: 1px solid black;
+  -webkit-box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
 }
 /*# sourceMappingURL=index.css.map */
