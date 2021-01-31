@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Main = ({ loginToggle }) => {
   const user = useSelector((state) => state.user.profile);
   const boats = useSelector((state) => state.user.boats);
+  const vehicles = useSelector((state) => state.user.vehicles);
 
   const logOut = (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const Main = ({ loginToggle }) => {
             <h3>{user.username}</h3>
             <h4>{user.email}</h4>
           </hgroup>
+          <div className="left_panel--divider" />
           <nav>
             <button>Home</button>
             <button>Friends</button>
@@ -51,10 +53,18 @@ const Main = ({ loginToggle }) => {
               src="https://goboatnbucky.s3.us-east-2.amazonaws.com/eduardlabar_med.jpg"
             />
           </div>
-          <div className="user_boats">
+          <div className="user_items">
             <div>
               <h2>Boats</h2>
               {boats.map((item, i) => (
+                <div key={i}>{item.name}</div>
+              ))}
+            </div>
+          </div>
+          <div className="user_items">
+            <div>
+              <h2>Vehicles</h2>
+              {vehicles.map((item, i) => (
                 <div key={i}>{item.name}</div>
               ))}
             </div>
