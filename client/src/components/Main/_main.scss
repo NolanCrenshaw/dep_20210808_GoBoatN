@@ -151,63 +151,67 @@
 
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
+        justify-content: center;
+        align-items: flex-start;
 
-        button {
-          height: 45px;
+        a {
           width: 100%;
-          margin: 0.2rem;
-          padding: 0.2rem;
-          // padding-left: 33%;
 
-          // color: black;
-          color: rgba(255, 255, 255, 1);
-          font-size: 2rem;
-          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
-          font-weight: 600;
-          text-align: left;
-          font-variant-caps: all-small-caps;
-          cursor: pointer;
-          transition: all ease-in-out 0.2s;
+          button {
+            height: 45px;
+            width: 100%;
+            margin: 0.2rem;
+            padding: 0.2rem;
+            // padding-left: 33%;
 
-          border: none;
-          background: none;
-          background-color: rgba(0, 0, 0, 0);
-
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-
-          svg {
-            height: 30px;
-            width: 30px;
-            margin: 0 2.5rem 0 4rem;
-            transition: all ease-in-out 0.2s;
-          }
-          label {
-            cursor: pointer;
-          }
-
-          &:hover {
-            // color: rgba(255, 255, 255, 1);
-            color: rgba(169, 214, 229, 1);
-            font-size: 2.3rem;
+            // color: black;
+            color: rgba(255, 255, 255, 1);
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
             font-weight: 600;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            background-color: none;
+            text-align: left;
+            font-variant-caps: all-small-caps;
+            cursor: pointer;
+            transition: all ease-in-out 0.2s;
+
             border: none;
-            background: linear-gradient(
-              to right,
-              rgba(255, 255, 255, 0) 0%,
-              rgba(255, 255, 255, 0.2) 60%,
-              rgba(255, 255, 255, 0.4) 80%,
-              rgba(255, 255, 255, 1) 100%
-            );
+            background: none;
+            background-color: rgba(0, 0, 0, 0);
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
 
             svg {
-              height: 35px;
-              width: 35px;
+              height: 30px;
+              width: 30px;
+              margin: 0 2.5rem 0 4rem;
+              transition: all ease-in-out 0.2s;
+            }
+            label {
+              cursor: pointer;
+            }
+
+            &:hover {
+              // color: rgba(255, 255, 255, 1);
+              color: rgba(169, 214, 229, 1);
+              font-size: 2.3rem;
+              font-weight: 600;
+              text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+              background-color: none;
+              border: none;
+              background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.2) 60%,
+                rgba(255, 255, 255, 0.4) 80%,
+                rgba(255, 255, 255, 1) 100%
+              );
+
+              svg {
+                height: 35px;
+                width: 35px;
+              }
             }
           }
         }
@@ -216,42 +220,6 @@
     #center_panel {
       grid-column: 2/3;
       padding: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(202, 240, 248, 0.25) 0%,
-        rgba(202, 240, 248, 0.15) 100%
-      );
-
-      display: flex;
-      flex-direction: column;
-
-      .banner-container {
-        height: 350px;
-
-        // background-color: rgba(0, 119, 182, 0.2);
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          height: auto;
-          width: 93%;
-
-          border: 1px solid rgba(255, 255, 255, 1);
-          border-radius: 12px;
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9),
-            5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
-        }
-      }
-      .user_items {
-        min-height: 200px;
-        width: 100%;
-
-        padding: 2rem 3rem;
-
-        // background-color: salmon;
-      }
     }
     #right_panel {
       grid-column: 3/4;

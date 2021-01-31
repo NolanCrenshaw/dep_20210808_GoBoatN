@@ -477,15 +477,19 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-.main-container .vis #left_panel nav button {
+.main-container .vis #left_panel nav a {
+  width: 100%;
+}
+
+.main-container .vis #left_panel nav a button {
   height: 45px;
   width: 100%;
   margin: 0.2rem;
@@ -513,7 +517,7 @@ a {
           align-items: center;
 }
 
-.main-container .vis #left_panel nav button svg {
+.main-container .vis #left_panel nav a button svg {
   height: 30px;
   width: 30px;
   margin: 0 2.5rem 0 4rem;
@@ -521,11 +525,11 @@ a {
   transition: all ease-in-out 0.2s;
 }
 
-.main-container .vis #left_panel nav button label {
+.main-container .vis #left_panel nav a button label {
   cursor: pointer;
 }
 
-.main-container .vis #left_panel nav button:hover {
+.main-container .vis #left_panel nav a button:hover {
   color: #a9d6e5;
   font-size: 2.3rem;
   font-weight: 600;
@@ -536,7 +540,7 @@ a {
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 60%, rgba(255, 255, 255, 0.4) 80%, white 100%);
 }
 
-.main-container .vis #left_panel nav button:hover svg {
+.main-container .vis #left_panel nav a button:hover svg {
   height: 35px;
   width: 35px;
 }
@@ -546,43 +550,6 @@ a {
   -ms-grid-column-span: 1;
   grid-column: 2/3;
   padding: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(202, 240, 248, 0.25)), to(rgba(202, 240, 248, 0.15)));
-  background: linear-gradient(180deg, rgba(202, 240, 248, 0.25) 0%, rgba(202, 240, 248, 0.15) 100%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.main-container .vis #center_panel .banner-container {
-  height: 350px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.main-container .vis #center_panel .banner-container img {
-  height: auto;
-  width: 93%;
-  border: 1px solid white;
-  border-radius: 12px;
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.main-container .vis #center_panel .user_items {
-  min-height: 200px;
-  width: 100%;
-  padding: 2rem 3rem;
 }
 
 .main-container .vis #right_panel {
@@ -603,5 +570,47 @@ a {
   -webkit-box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
   background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.home-container {
+  height: auto;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(202, 240, 248, 0.25)), to(rgba(202, 240, 248, 0.15)));
+  background: linear-gradient(180deg, rgba(202, 240, 248, 0.25) 0%, rgba(202, 240, 248, 0.15) 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home-container .banner-container {
+  height: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home-container .banner-container img {
+  height: auto;
+  width: 93%;
+  border: 1px solid white;
+  border-radius: 12px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9), 5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.home-container .user_items {
+  min-height: 200px;
+  width: 100%;
+  padding: 2rem 3rem;
 }
 /*# sourceMappingURL=index.css.map */
