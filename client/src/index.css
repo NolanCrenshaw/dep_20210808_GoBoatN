@@ -438,7 +438,7 @@ a {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/2;
-  padding-top: 5rem;
+  padding-top: 4rem;
   overflow: hidden;
   border-right: 0.5px solid rgba(72, 202, 228, 0.8);
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(173, 232, 244, 0.5)), color-stop(50%, rgba(173, 232, 244, 0.2)), to(rgba(173, 232, 244, 0.1)));
@@ -490,7 +490,7 @@ a {
 .main-container .vis #left_panel .left_panel--divider {
   height: 1px;
   width: 70%;
-  margin: 3rem 0;
+  margin: 2rem 0;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -528,11 +528,10 @@ a {
   margin: 0.2rem;
   padding: 0.2rem;
   color: white;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
   font-weight: 600;
   text-align: left;
-  font-variant-caps: all-small-caps;
   cursor: pointer;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -564,7 +563,7 @@ a {
 
 .main-container .vis #left_panel nav a button:hover {
   color: #a9d6e5;
-  font-size: 2.3rem;
+  font-size: 2rem;
   font-weight: 600;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: none;
@@ -608,6 +607,11 @@ a {
           align-items: center;
 }
 
+.main-container .vis #right_panel header span {
+  color: white;
+  font-size: 1.5rem;
+}
+
 .main-container .vis #right_panel div {
   height: auto;
   min-height: 150px;
@@ -621,14 +625,19 @@ a {
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
 }
 
+.main-container .vis #right_panel div h3 {
+  color: white;
+  text-shadow: 0.5px 0.5px 1px black;
+}
+
 .main-container footer {
   height: 30vh;
   width: 100%;
   padding: 4rem;
   border-bottom: 1px solid black;
-  -webkit-box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+  -webkit-box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, rgba(40, 40, 40, 0.9) 0%, rgba(40, 40, 40, 0.7) 100%);
 }
 
 .home-container {
@@ -671,6 +680,10 @@ a {
   min-height: 200px;
   width: 100%;
   padding: 2rem 3rem;
+}
+
+.home-container .user_items h2 {
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
 }
 
 .home-container p {

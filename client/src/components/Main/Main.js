@@ -1,13 +1,8 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { DateTime } from "luxon";
 
 import Home from "../Home/Home";
 import HomeIcon from "../_svg_library/HomeIcon";
@@ -17,6 +12,7 @@ import RiversIcon from "../_svg_library/RiversIcon";
 import SettingsIcon from "../_svg_library/SettingsIcon";
 
 const Main = ({ loginToggle }) => {
+  const [currentTime, setCurrentTime] = useState({});
   const user = useSelector((state) => state.user.profile);
   const trips = useSelector((state) => state.user.trips);
   const invites = useSelector((state) => state.user.invites);
@@ -26,6 +22,17 @@ const Main = ({ loginToggle }) => {
     window.localStorage.removeItem("auth_token");
     loginToggle();
   };
+
+  // Running Clock Handler
+  useEffect(() => {
+    const setTime = () => {
+      const now = DateTime.local();
+      setCurrentTime(now.toLocaleString(DateTime.DATETIME_MED));
+    };
+    setTime();
+    const minuteInterval = setInterval(() => setTime(), 30000);
+    return () => clearInterval(minuteInterval);
+  }, []);
 
   return (
     <Router>
@@ -120,12 +127,17 @@ const Main = ({ loginToggle }) => {
             </Switch>
           </section>
           <section id="right_panel">
+            <header>
+              <span>{currentTime ? `${currentTime}` : ""}</span>
+            </header>
             <div>
+              <h3>Trips</h3>
               {trips.map((item) => (
                 <div key={item.id}>{item}</div>
               ))}
             </div>
             <div>
+              <h3>Invites</h3>
               {invites.map((item) => (
                 <div key={item.id}>{item}</div>
               ))}
