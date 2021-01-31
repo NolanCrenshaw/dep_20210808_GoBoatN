@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import LoginForm from "../_forms/LoginForm";
 import SignupForm from "../_forms/SignupForm";
@@ -12,7 +13,12 @@ const Splash = ({ loginToggle }) => {
   }, [toggleUI]);
 
   return (
-    <div className="splash-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
+      className="splash-container"
+    >
       <nav>
         <button className="nav_button" onClick={() => setToggleUI(!toggleUI)}>
           {toggleBtn}
@@ -52,8 +58,12 @@ const Splash = ({ loginToggle }) => {
             Unsplash
           </a>
         </span>
+        <span>
+          nav icons by
+          <a href="https://tablericons.com/">Tabler Icons</a>
+        </span>
       </footer>
-    </div>
+    </motion.div>
   );
 };
 

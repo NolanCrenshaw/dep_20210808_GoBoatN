@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 import Home from "../Home/Home";
 import HomeIcon from "../_svg_library/HomeIcon";
@@ -22,7 +23,12 @@ const Main = ({ loginToggle }) => {
 
   return (
     <Router>
-      <div className="main-container">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.5 }}
+        className="main-container"
+      >
         <nav>
           <div className="nav_content">
             <section></section>
@@ -90,12 +96,27 @@ const Main = ({ loginToggle }) => {
                   <h1>Friends</h1>
                 </div>
               </Route>
+              <Route exact path="/trips">
+                <div>
+                  <h1>Trips</h1>
+                </div>
+              </Route>
+              <Route exact path="/rivers">
+                <div>
+                  <h1>Rivers</h1>
+                </div>
+              </Route>
+              <Route exact path="/settings">
+                <div>
+                  <h1>Settings</h1>
+                </div>
+              </Route>
             </Switch>
           </section>
           <section id="right_panel"></section>
         </div>
         <footer></footer>
-      </div>
+      </motion.div>
     </Router>
   );
 };
