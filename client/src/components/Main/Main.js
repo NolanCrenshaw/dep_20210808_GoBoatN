@@ -90,6 +90,21 @@ const Main = ({ loginToggle }) => {
                   <h1>Friends</h1>
                 </div>
               </Route>
+              <Route exact path="/trips">
+                <div>
+                  <h1>Trips</h1>
+                </div>
+              </Route>
+              <Route exact path="/rivers">
+                <div>
+                  <h1>Rivers</h1>
+                </div>
+              </Route>
+              <Route exact path="/settings">
+                <div>
+                  <h1>Settings</h1>
+                </div>
+              </Route>
             </Switch>
           </section>
           <section id="right_panel"></section>
