@@ -21,7 +21,7 @@ const Splash = ({ loginToggle }) => {
       <div className="splash_img">
         <img
           alt="Splash Image"
-          src="https://goboatnbucky.s3.us-east-2.amazonaws.com/josh-wedgwood-river-etive-unsplash.jpg"
+          src="https://goboatnbucky.s3.us-east-2.amazonaws.com/joshwedgwood_river_etive_medium.jpg"
         />
       </div>
       <div className="splash_panel">
@@ -31,7 +31,28 @@ const Splash = ({ loginToggle }) => {
           <SignupForm loginToggle={loginToggle} />
         )}
       </div>
-      <footer></footer>
+      <footer>
+        <span>
+          Photo by{" "}
+          <a href="https://unsplash.com/@j_wedge?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+            Josh Wedgwood
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/collections/49830411/goboating/91051db916769619b8921c9a03751d76?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+            Unsplash
+          </a>
+        </span>
+        <span>
+          Photo by{" "}
+          <a href="https://unsplash.com/@edo_labar_foto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+            Eduard Labár
+          </a>{" "}
+          on{" "}
+          <a href="https://unsplash.com/collections/49830411/goboating/91051db916769619b8921c9a03751d76?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+            Unsplash
+          </a>
+        </span>
+      </footer>
     </div>
   );
 };

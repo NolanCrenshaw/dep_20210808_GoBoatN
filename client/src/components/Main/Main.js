@@ -36,15 +36,33 @@ const Main = ({ loginToggle }) => {
             <h3>{user.username}</h3>
             <h4>{user.email}</h4>
           </hgroup>
-          {/* <div>
-            {boats.map((item, i) => (
-              <div key={i}>{item.name}</div>
-            ))}
-          </div> */}
+          <nav>
+            <button>Home</button>
+            <button>Friends</button>
+            <button>Trips</button>
+            <button>Rivers</button>
+            <button>Settings</button>
+          </nav>
         </section>
-        <section id="center_panel"></section>
+        <section id="center_panel">
+          <div className="banner-container">
+            <img
+              alt="banner image"
+              src="https://goboatnbucky.s3.us-east-2.amazonaws.com/eduardlabar_med.jpg"
+            />
+          </div>
+          <div className="user_boats">
+            <div>
+              <h2>Boats</h2>
+              {boats.map((item, i) => (
+                <div key={i}>{item.name}</div>
+              ))}
+            </div>
+          </div>
+        </section>
         <section id="right_panel"></section>
       </div>
+      <footer></footer>
     </div>
   );
 };
