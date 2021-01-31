@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import LoginForm from "../_forms/LoginForm";
 import SignupForm from "../_forms/SignupForm";
 
-const Splash = () => {
+const Splash = ({ loginToggle }) => {
   const [toggleUI, setToggleUI] = useState(false);
   const [toggleBtn, setToggleBtn] = useState("Log In");
 
@@ -14,7 +14,7 @@ const Splash = () => {
   return (
     <div className="splash-container">
       <nav>
-        <button id="toggleUI_btn" onClick={() => setToggleUI(!toggleUI)}>
+        <button className="nav_button" onClick={() => setToggleUI(!toggleUI)}>
           {toggleBtn}
         </button>
       </nav>
@@ -25,7 +25,11 @@ const Splash = () => {
         />
       </div>
       <div className="splash_panel">
-        {toggleUI ? <LoginForm /> : <SignupForm />}
+        {toggleUI ? (
+          <LoginForm loginToggle={loginToggle} />
+        ) : (
+          <SignupForm loginToggle={loginToggle} />
+        )}
       </div>
       <footer></footer>
     </div>

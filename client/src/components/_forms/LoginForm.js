@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { BASE_URL } from "../../config";
 
 const content = {
   inputs: [
@@ -23,26 +24,46 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6),
 });
 
-const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    reset,
-    formState: { isSubmitted },
-  } = useForm({
+const LoginForm = ({ loginToggle }) => {
+  const [submittedData, setSubmittedData] = useState({});
+
+  // React Hook Form Ctrl w/ Yup Validation
+  const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
-  const [submittedData, setSubmittedData] = useState({});
 
   const onSubmit = (data, e) => {
     e.preventDefault();
     setSubmittedData(data);
-    e.target.reset();
+    // e.target.reset();
   };
 
   useEffect(() => {
     if (submittedData.password !== undefined) {
+      const loginCall = async () => {
+        const res = await fetch(`${BASE_URL}/api/auth/login`, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submittedData),
+        });
+        if (!res.ok) {
+          // -- TODO -- ERROR HANDLING
+          console.log("loginCall res Failure");
+        } else {
+          const json = await res.json();
+          if (json.auth_token === undefined) {
+            // -- TODO -- Handling
+            console.log("auth_token === undefined");
+          } else {
+            window.localStorage.setItem("auth_token", json.auth_token);
+            loginToggle();
+          }
+        }
+      };
+      loginCall();
     }
   }, [submittedData]);
 
