@@ -35,6 +35,12 @@ a {
   background-size: cover;
   background-position: center;
 }
+.loading-splash {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .scrim {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.2);

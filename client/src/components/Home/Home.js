@@ -1,12 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const boats = useSelector((state) => state.user.boats);
   const vehicles = useSelector((state) => state.user.vehicles);
 
   return (
-    <div className="home-container">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
+      className="home-container"
+    >
       <div className="banner-container">
         <img
           alt="banner image"
@@ -29,7 +35,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

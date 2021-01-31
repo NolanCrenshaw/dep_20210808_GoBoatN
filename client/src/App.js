@@ -7,10 +7,12 @@ import { BASE_URL } from "./config";
 // Local Requirements
 import Splash from "./components/Splash/Splash";
 import Main from "./components/Main/Main";
+import LoadingSpinner from "./components/_svg_library/LoadingSpinner";
 
 // React Component
 function App() {
   const dispatch = useDispatch();
+  const [pageRendered, setPageRendered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginAttempt, setLoginAttempt] = useState(false);
 
@@ -60,13 +62,27 @@ function App() {
     }
   }, [loginAttempt]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setPageRendered(true);
+    }, 500);
+  }, []);
+
   // Render
   return (
     <>
-      {isLoggedIn ? (
-        <Main loginToggle={() => loginToggle()} />
+      {!pageRendered ? (
+        <div className="loading-splash">
+          <LoadingSpinner />
+        </div>
       ) : (
-        <Splash loginToggle={() => loginToggle()} />
+        <div>
+          {isLoggedIn ? (
+            <Main loginToggle={() => loginToggle()} />
+          ) : (
+            <Splash loginToggle={() => loginToggle()} />
+          )}
+        </div>
       )}
     </>
   );
