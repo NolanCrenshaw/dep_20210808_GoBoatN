@@ -35,7 +35,7 @@ a {
   background-size: cover;
   background-position: center;
 }
-.loading-splash {
+.loader {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -76,6 +76,7 @@ a {
 @import "../node_modules/include-media/dist/include-media";
 
 @import "./components/_forms/forms";
+@import "./components/_cards/cards";
 @import "./components/Splash/splash";
 @import "./components/Main/main";
 @import "./components/Home/home";

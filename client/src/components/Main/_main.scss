@@ -35,7 +35,7 @@
     .nav_content {
       height: 100%;
       width: 100%;
-      max-width: 1280px;
+      max-width: 1420px;
 
       display: flex;
       justify-content: space-between;
@@ -77,7 +77,7 @@
   }
 
   .vis {
-    min-height: 100vh;
+    min-height: 90vh;
     width: 100%;
     max-width: 1220px;
     overflow: hidden;
@@ -85,6 +85,7 @@
 
     display: grid;
     grid-template-columns: 0.35fr 1fr 0.45fr;
+    // grid-template-rows: 90vh;
 
     section {
       overflow: hidden;
@@ -95,7 +96,7 @@
       padding-top: 5rem;
       overflow: hidden;
 
-      border-left: 0.5px solid rgba(72, 202, 228, 0.8);
+      // border-left: 0.5px solid rgba(72, 202, 228, 0.8);
       border-right: 0.5px solid rgba(72, 202, 228, 0.8);
       background: linear-gradient(
         to bottom,
@@ -183,8 +184,8 @@
             align-items: center;
 
             svg {
-              height: 30px;
-              width: 30px;
+              height: 25px;
+              width: 25px;
               margin: 0 2.5rem 0 4rem;
               transition: all ease-in-out 0.2s;
             }
@@ -209,8 +210,8 @@
               );
 
               svg {
-                height: 35px;
-                width: 35px;
+                height: 30px;
+                width: 30px;
               }
             }
           }
@@ -220,17 +221,46 @@
     #center_panel {
       grid-column: 2/3;
       padding: 0;
+      position: relative;
+      // overflow-y: scroll;
+      // ::-webkit-scrollbar {
+      //   display: none;
+      // }
+      // -ms-overflow-style: none;
     }
     #right_panel {
       grid-column: 3/4;
 
       border-left: 0.5px solid rgba(72, 202, 228, 0.8);
-      border-right: 0.5px solid rgba(72, 202, 228, 0.8);
+      // border-right: 0.5px solid rgba(72, 202, 228, 0.8);
       background: linear-gradient(
         to bottom,
         rgba(173, 232, 244, 0.35) 0%,
         rgba(173, 232, 244, 0.1) 100%
       );
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      div {
+        height: auto;
+        min-height: 150px;
+        width: 90%;
+        margin: 1rem 0;
+        padding: 1rem;
+
+        border: 0.5px solid rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1),
+          -2px 2px 5px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0.2) 100%
+        );
+      }
     }
   }
 

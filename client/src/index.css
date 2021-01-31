@@ -42,7 +42,7 @@ a {
   background-position: center;
 }
 
-.loading-splash {
+.loader {
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -208,6 +208,27 @@ a {
           justify-content: center;
 }
 
+.card-container {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: sandybrown;
+}
+
+.card {
+  height: 50px;
+  width: 100%;
+  background-color: salmon;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .splash-container {
   min-height: 100vh;
   width: 100%;
@@ -342,7 +363,7 @@ a {
 .main-container nav .nav_content {
   height: 100%;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1420px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -397,7 +418,7 @@ a {
 }
 
 .main-container .vis {
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
   max-width: 1220px;
   overflow: hidden;
@@ -419,7 +440,6 @@ a {
   grid-column: 1/2;
   padding-top: 5rem;
   overflow: hidden;
-  border-left: 0.5px solid rgba(72, 202, 228, 0.8);
   border-right: 0.5px solid rgba(72, 202, 228, 0.8);
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(173, 232, 244, 0.5)), color-stop(50%, rgba(173, 232, 244, 0.2)), to(rgba(173, 232, 244, 0.1)));
   background: linear-gradient(to bottom, rgba(173, 232, 244, 0.5) 0%, rgba(173, 232, 244, 0.2) 50%, rgba(173, 232, 244, 0.1) 100%);
@@ -531,8 +551,8 @@ a {
 }
 
 .main-container .vis #left_panel nav a button svg {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   margin: 0 2.5rem 0 4rem;
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -554,8 +574,8 @@ a {
 }
 
 .main-container .vis #left_panel nav a button:hover svg {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
 }
 
 .main-container .vis #center_panel {
@@ -563,6 +583,7 @@ a {
   -ms-grid-column-span: 1;
   grid-column: 2/3;
   padding: 0;
+  position: relative;
 }
 
 .main-container .vis #right_panel {
@@ -570,9 +591,34 @@ a {
   -ms-grid-column-span: 1;
   grid-column: 3/4;
   border-left: 0.5px solid rgba(72, 202, 228, 0.8);
-  border-right: 0.5px solid rgba(72, 202, 228, 0.8);
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(173, 232, 244, 0.35)), to(rgba(173, 232, 244, 0.1)));
   background: linear-gradient(to bottom, rgba(173, 232, 244, 0.35) 0%, rgba(173, 232, 244, 0.1) 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container .vis #right_panel div {
+  height: auto;
+  min-height: 150px;
+  width: 90%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px 2px 5px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px 2px 5px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
 }
 
 .main-container footer {
@@ -625,5 +671,9 @@ a {
   min-height: 200px;
   width: 100%;
   padding: 2rem 3rem;
+}
+
+.home-container p {
+  font-size: 1.8rem;
 }
 /*# sourceMappingURL=index.css.map */

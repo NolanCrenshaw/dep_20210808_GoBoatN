@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
@@ -12,8 +18,8 @@ import SettingsIcon from "../_svg_library/SettingsIcon";
 
 const Main = ({ loginToggle }) => {
   const user = useSelector((state) => state.user.profile);
-  const boats = useSelector((state) => state.user.boats);
-  const vehicles = useSelector((state) => state.user.vehicles);
+  const trips = useSelector((state) => state.user.trips);
+  const invites = useSelector((state) => state.user.invites);
 
   const logOut = (e) => {
     e.preventDefault();
@@ -113,7 +119,18 @@ const Main = ({ loginToggle }) => {
               </Route>
             </Switch>
           </section>
-          <section id="right_panel"></section>
+          <section id="right_panel">
+            <div>
+              {trips.map((item) => (
+                <div key={item.id}>{item}</div>
+              ))}
+            </div>
+            <div>
+              {invites.map((item) => (
+                <div key={item.id}>{item}</div>
+              ))}
+            </div>
+          </section>
         </div>
         <footer></footer>
       </motion.div>

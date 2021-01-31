@@ -72,7 +72,7 @@ function App() {
   return (
     <>
       {!pageRendered ? (
-        <div className="loading-splash">
+        <div className="loader">
           <LoadingSpinner />
         </div>
       ) : (
