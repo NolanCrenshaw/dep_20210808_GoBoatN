@@ -292,7 +292,7 @@ a {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background: linear-gradient(45deg, rgba(220, 220, 220, 0.2) 0%, rgba(220, 220, 220, 0.1) 100%);
+  background: linear-gradient(45deg, #012a4a 0%, rgba(1, 42, 74, 0.9) 100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -486,11 +486,11 @@ a {
 }
 
 .main-container .vis #left_panel nav button {
-  height: 40px;
+  height: 45px;
   width: 100%;
   margin: 0.2rem;
-  padding-left: 33%;
-  color: #0077b6;
+  padding: 0.2rem;
+  color: white;
   font-size: 2rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
   font-weight: 600;
@@ -502,16 +502,43 @@ a {
   border: none;
   background: none;
   background-color: rgba(0, 0, 0, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-container .vis #left_panel nav button svg {
+  height: 30px;
+  width: 30px;
+  margin: 0 2.5rem 0 4rem;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+
+.main-container .vis #left_panel nav button label {
+  cursor: pointer;
 }
 
 .main-container .vis #left_panel nav button:hover {
-  color: white;
+  color: #a9d6e5;
+  font-size: 2.3rem;
   font-weight: 600;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: none;
-  border-left: 4px solid #023e8a;
-  background: -webkit-gradient(linear, left top, right top, from(#023e8a), color-stop(20%, rgba(2, 62, 138, 0.4)), color-stop(35%, rgba(2, 62, 138, 0.2)), to(rgba(2, 62, 138, 0)));
-  background: linear-gradient(to right, #023e8a 0%, rgba(2, 62, 138, 0.4) 20%, rgba(2, 62, 138, 0.2) 35%, rgba(2, 62, 138, 0) 100%);
+  border: none;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(60%, rgba(255, 255, 255, 0.2)), color-stop(80%, rgba(255, 255, 255, 0.4)), to(white));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 60%, rgba(255, 255, 255, 0.4) 80%, white 100%);
+}
+
+.main-container .vis #left_panel nav button:hover svg {
+  height: 35px;
+  width: 35px;
 }
 
 .main-container .vis #center_panel {
