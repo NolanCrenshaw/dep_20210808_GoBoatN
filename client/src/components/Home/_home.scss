@@ -24,8 +24,8 @@
 
       border: 1px solid rgba(255, 255, 255, 1);
       border-radius: 12px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9),
-        5px 5px 20px rgba(0, 0, 0, 0.1), -5px -5px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+        -5px 5px 10px rgba(0, 0, 0, 0.1), 0 7px 10px rgba(0, 0, 0, 0.3);
     }
   }
   .user_items {
@@ -35,7 +35,8 @@
     padding: 2rem 3rem;
 
     h2 {
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
     }
   }
   p {

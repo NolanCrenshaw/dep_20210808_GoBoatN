@@ -11,9 +11,9 @@ const Home = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.5 }}
+      initial={{ opacity: 0, y: 50, scale: 1.1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.1 }}
       className="home-container"
     >
       <div className="banner-container">
@@ -25,17 +25,25 @@ const Home = () => {
       <div className="user_items">
         <h2>Boats</h2>
         {boats.map((item) => (
-          <div className="card-container" key={item.id}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="card-container"
+            key={item.id}
+          >
             <BoatCard boat={item} />
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className="user_items">
         <h2>Vehicles</h2>
         {vehicles.map((item) => (
-          <div className="card-container" key={item.id}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="card-container"
+            key={item.id}
+          >
             <VehicleCard vehicle={item} />
-          </div>
+          </motion.div>
         ))}
       </div>
       <div></div>

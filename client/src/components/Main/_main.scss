@@ -3,11 +3,6 @@
   width: 100%;
   position: relative;
 
-  // background: linear-gradient(
-  //   45deg,
-  //   rgba(220, 220, 220, 0.2) 0%,
-  //   rgba(220, 220, 220, 0.1) 100%
-  // );
   background: linear-gradient(
     45deg,
     rgba(1, 42, 74, 1) 0%,
@@ -50,13 +45,13 @@
       }
       section:nth-child(1) {
         justify-content: flex-start;
+        h1 {
+          margin: 0 5rem;
+          font-size: 2.8rem;
+        }
       }
       section:nth-child(2) {
         justify-content: center;
-
-        h1 {
-          font-size: 2.5rem;
-        }
       }
       section:nth-child(3) {
         justify-content: flex-end;
@@ -64,8 +59,8 @@
         .nav_button {
           background: linear-gradient(
             45deg,
-            rgba(2, 62, 138, 0.8) 0%,
-            rgba(2, 62, 138, 0.5) 100%
+            rgba(1, 42, 74, 0.9) 0%,
+            rgba(1, 42, 74, 0.7) 100%
           );
           &:hover {
             background: none;
@@ -78,6 +73,7 @@
 
   .vis {
     min-height: 90vh;
+    max-height: 120vh;
     width: 100%;
     max-width: 1220px;
     overflow: hidden;
@@ -99,10 +95,10 @@
       // border-left: 0.5px solid rgba(72, 202, 228, 0.8);
       border-right: 0.5px solid rgba(72, 202, 228, 0.8);
       background: linear-gradient(
-        to bottom,
-        rgba(173, 232, 244, 0.5) 0%,
-        rgba(173, 232, 244, 0.2) 50%,
-        rgba(173, 232, 244, 0.1) 100%
+        to right,
+        rgba(1, 42, 74, 1) 0%,
+        rgba(1, 42, 74, 1) 10%,
+        rgba(173, 232, 244, 0.25) 100%
       );
 
       display: flex;
@@ -118,12 +114,14 @@
 
         border-radius: 50%;
         background-color: rgba(128, 128, 128, 0.247);
-        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1),
+          -2px 2px 5px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.3);
       }
 
       hgroup {
         padding: 1rem;
 
+        color: white;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 
         display: flex;
@@ -138,7 +136,7 @@
         margin: 2rem 0;
 
         border-radius: 50%;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
       }
 
       nav {
@@ -187,7 +185,7 @@
               height: 25px;
               width: 25px;
               margin: 0 2.5rem 0 4rem;
-              transition: all ease-in-out 0.2s;
+              transition: all ease-in-out 0.1s;
             }
             label {
               cursor: pointer;
@@ -196,8 +194,8 @@
             &:hover {
               // color: rgba(255, 255, 255, 1);
               color: rgba(169, 214, 229, 1);
-              font-size: 2rem;
-              font-weight: 600;
+              // font-size: 2rem;
+              // font-weight: 600;
               text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
               background-color: none;
               border: none;
@@ -209,10 +207,10 @@
                 rgba(255, 255, 255, 1) 100%
               );
 
-              svg {
-                height: 30px;
-                width: 30px;
-              }
+              // svg {
+              //   height: 30px;
+              //   width: 30px;
+              // }
             }
           }
         }
@@ -220,18 +218,24 @@
     }
     #center_panel {
       grid-column: 2/3;
+      height: 100%;
+      width: calc(100% + 20px);
       padding: 0;
       position: relative;
+      overflow-y: scroll;
+      z-index: 1;
     }
     #right_panel {
       grid-column: 3/4;
+      z-index: 2;
 
       border-left: 0.5px solid rgba(72, 202, 228, 0.8);
       // border-right: 0.5px solid rgba(72, 202, 228, 0.8);
       background: linear-gradient(
-        to bottom,
-        rgba(173, 232, 244, 0.35) 0%,
-        rgba(173, 232, 244, 0.1) 100%
+        to right,
+        rgba(1, 42, 74, 1) 0%,
+        rgba(1, 42, 74, 1) 10%,
+        rgba(173, 232, 244, 0.25) 100%
       );
 
       display: flex;

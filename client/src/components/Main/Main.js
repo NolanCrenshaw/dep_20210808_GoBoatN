@@ -44,10 +44,10 @@ const Main = ({ loginToggle }) => {
       >
         <nav>
           <div className="nav_content">
-            <section></section>
             <section>
               <h1>Go Boating</h1>
             </section>
+            <section></section>
             <section>
               <button className="nav_button" onClick={logOut}>
                 Log Out
@@ -68,36 +68,47 @@ const Main = ({ loginToggle }) => {
             <div className="left_panel--divider" />
             <nav>
               <Link to="/">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <HomeIcon />
                   <label>Home</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/friends">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <FriendsIcon />
                   <label>Friends</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/trips">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <TripsIcon />
                   <label>Trips</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/rivers">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <RiversIcon />
                   <label>Rivers</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/settings">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <SettingsIcon />
                   <label>Settings</label>
-                </button>
+                </motion.button>
               </Link>
             </nav>
+            <div className="left_panel--divider" />
           </section>
           <section id="center_panel">
             <Switch>
