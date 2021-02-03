@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BASE_URL } from "../../config";
+import { motion } from "framer-motion";
 
 const content = {
   inputs: [
@@ -68,7 +69,12 @@ const LoginForm = ({ loginToggle }) => {
   }, [submittedData]);
 
   return (
-    <div className="loginform-container form">
+    <motion.div
+      initial={{ opacity: 0, y: 0, scale: 1.1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.1 }}
+      className="loginform-container form"
+    >
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         {content.inputs.map((input, key) => {
@@ -86,7 +92,7 @@ const LoginForm = ({ loginToggle }) => {
           Submit
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

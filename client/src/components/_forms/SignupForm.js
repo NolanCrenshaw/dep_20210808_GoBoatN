@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { motion } from "framer-motion";
 
 const content = {
   inputs: [
@@ -20,25 +21,13 @@ const content = {
       name: "password",
       type: "password",
     },
-    // {
-    //   label: "First Name",
-    //   name: "firstname",
-    //   type: "text",
-    // },
-    // {
-    //   label: "Last Name",
-    //   name: "lastname",
-    //   type: "text",
-    // },
   ],
 };
 
 const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  username: yup.string().required().min(6),
-  password: yup.string().required().min(6),
-  // firstname: yup.string().required(),
-  // lastname: yup.string().required(),
+  email: yup.string().required().max(50).email(),
+  username: yup.string().required().min(6).max(20),
+  password: yup.string().required().min(6).max(30),
 });
 
 const SignupForm = ({ loginToggle }) => {
@@ -53,7 +42,12 @@ const SignupForm = ({ loginToggle }) => {
   };
 
   return (
-    <div className="signupform-container form">
+    <motion.div
+      initial={{ opacity: 0, y: 0, scale: 1.1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.1 }}
+      className="signupform-container form"
+    >
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit(submitForm)}>
         {content.inputs.map((input, key) => {
@@ -71,7 +65,7 @@ const SignupForm = ({ loginToggle }) => {
           Submit
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

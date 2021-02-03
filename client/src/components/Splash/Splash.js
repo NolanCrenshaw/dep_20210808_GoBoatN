@@ -20,9 +20,20 @@ const Splash = ({ loginToggle }) => {
       className="splash-container"
     >
       <nav>
-        <button className="nav_button" onClick={() => setToggleUI(!toggleUI)}>
-          {toggleBtn}
-        </button>
+        <div className="nav_content">
+          <section>
+            <h1>Go Boating</h1>
+          </section>
+          <section></section>
+          <section>
+            <button
+              className="nav_button"
+              onClick={() => setToggleUI(!toggleUI)}
+            >
+              {toggleBtn}
+            </button>
+          </section>
+        </div>
       </nav>
       <div className="splash_img">
         <img

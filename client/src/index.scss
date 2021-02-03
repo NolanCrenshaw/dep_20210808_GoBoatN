@@ -1,3 +1,7 @@
+// Variable Declarations
+$blue_mid: rgba(1, 79, 134, 1);
+$blue_dark: rgba(1, 42, 74, 1);
+
 // Default Styling
 * {
   padding: 0;
@@ -35,7 +39,7 @@ a {
   background-size: cover;
   background-position: center;
 }
-.loading-splash {
+.loader {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -76,6 +80,8 @@ a {
 @import "../node_modules/include-media/dist/include-media";
 
 @import "./components/_forms/forms";
+@import "./components/_cards/cards";
 @import "./components/Splash/splash";
 @import "./components/Main/main";
 @import "./components/Home/home";
+@import "./components/Rivers/rivers";

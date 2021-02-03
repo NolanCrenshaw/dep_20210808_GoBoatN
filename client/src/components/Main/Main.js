@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { DateTime } from "luxon";
 
 import Home from "../Home/Home";
+import Rivers from "../Rivers/Rivers";
 import HomeIcon from "../_svg_library/HomeIcon";
 import FriendsIcon from "../_svg_library/FriendsIcon";
 import TripsIcon from "../_svg_library/TripsIcon";
@@ -11,15 +13,27 @@ import RiversIcon from "../_svg_library/RiversIcon";
 import SettingsIcon from "../_svg_library/SettingsIcon";
 
 const Main = ({ loginToggle }) => {
+  const [currentTime, setCurrentTime] = useState({});
   const user = useSelector((state) => state.user.profile);
-  const boats = useSelector((state) => state.user.boats);
-  const vehicles = useSelector((state) => state.user.vehicles);
+  const trips = useSelector((state) => state.user.trips);
+  const invites = useSelector((state) => state.user.invites);
 
   const logOut = (e) => {
     e.preventDefault();
     window.localStorage.removeItem("auth_token");
     loginToggle();
   };
+
+  // Running Clock Handler
+  useEffect(() => {
+    const setTime = () => {
+      const now = DateTime.local();
+      setCurrentTime(now.toLocaleString(DateTime.DATETIME_MED));
+    };
+    setTime();
+    const minuteInterval = setInterval(() => setTime(), 30000);
+    return () => clearInterval(minuteInterval);
+  }, []);
 
   return (
     <Router>
@@ -31,10 +45,10 @@ const Main = ({ loginToggle }) => {
       >
         <nav>
           <div className="nav_content">
-            <section></section>
             <section>
               <h1>Go Boating</h1>
             </section>
+            <section></section>
             <section>
               <button className="nav_button" onClick={logOut}>
                 Log Out
@@ -55,36 +69,47 @@ const Main = ({ loginToggle }) => {
             <div className="left_panel--divider" />
             <nav>
               <Link to="/">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <HomeIcon />
                   <label>Home</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/friends">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <FriendsIcon />
                   <label>Friends</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/trips">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <TripsIcon />
                   <label>Trips</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/rivers">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <RiversIcon />
                   <label>Rivers</label>
-                </button>
+                </motion.button>
               </Link>
               <Link to="/settings">
-                <button>
+                <motion.button
+                  whileHover={{ scale: 1.05, transition: { duration: 0.01 } }}
+                >
                   <SettingsIcon />
                   <label>Settings</label>
-                </button>
+                </motion.button>
               </Link>
             </nav>
+            <div className="left_panel--divider" />
           </section>
           <section id="center_panel">
             <Switch>
@@ -102,9 +127,7 @@ const Main = ({ loginToggle }) => {
                 </div>
               </Route>
               <Route exact path="/rivers">
-                <div>
-                  <h1>Rivers</h1>
-                </div>
+                <Rivers />
               </Route>
               <Route exact path="/settings">
                 <div>
@@ -113,7 +136,23 @@ const Main = ({ loginToggle }) => {
               </Route>
             </Switch>
           </section>
-          <section id="right_panel"></section>
+          <section id="right_panel">
+            <header>
+              <span>{currentTime ? `${currentTime}` : ""}</span>
+            </header>
+            <div>
+              <h3>Trips</h3>
+              {trips.map((item) => (
+                <div key={item.id}>{item}</div>
+              ))}
+            </div>
+            <div>
+              <h3>Invites</h3>
+              {invites.map((item) => (
+                <div key={item.id}>{item}</div>
+              ))}
+            </div>
+          </section>
         </div>
         <footer></footer>
       </motion.div>
