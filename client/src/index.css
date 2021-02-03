@@ -741,4 +741,11 @@ a {
 .home-container p {
   font-size: 1.8rem;
 }
+
+.rivers-container {
+  height: auto;
+  width: 100%;
+  padding: 1rem;
+  background-color: salmon;
+}
 /*# sourceMappingURL=index.css.map */

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
 import Home from "../Home/Home";
+import Rivers from "../Rivers/Rivers";
 import HomeIcon from "../_svg_library/HomeIcon";
 import FriendsIcon from "../_svg_library/FriendsIcon";
 import TripsIcon from "../_svg_library/TripsIcon";
@@ -126,9 +127,7 @@ const Main = ({ loginToggle }) => {
                 </div>
               </Route>
               <Route exact path="/rivers">
-                <div>
-                  <h1>Rivers</h1>
-                </div>
+                <Rivers />
               </Route>
               <Route exact path="/settings">
                 <div>
