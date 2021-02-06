@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
+import RiversPages from "./RiversPages";
 import RiverCard from "../_cards/RiverCard";
 
 const Rivers = () => {
@@ -29,7 +30,7 @@ const Rivers = () => {
   // Set Init Displayed Rivers ~~ Limit 20
   useEffect(() => {
     const arr = [];
-    for (let i = 0; i < rivers.length && i < 20; i++) {
+    for (let i = 0; i < rivers.length; i++) {
       arr.push(rivers[i]);
     }
     setRiversDisplayed(arr);
@@ -55,13 +56,7 @@ const Rivers = () => {
           <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
         </div>
       </div>
-      {riversDisplayed[0] !== undefined ? (
-        riversDisplayed.map((river) => <RiverCard river={river} />)
-      ) : (
-        <div>
-          <p>No Rivers</p>
-        </div>
-      )}
+      <RiversPages rivers={riversDisplayed} />
     </motion.div>
   );
 };
