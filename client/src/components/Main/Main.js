@@ -8,6 +8,7 @@ import { DateTime } from "luxon";
 
 import Home from "../Home/Home";
 import Rivers from "../Rivers/Rivers";
+import RiverPage from "../Rivers/RiverPage";
 import HomeIcon from "../_svg_library/HomeIcon";
 import FriendsIcon from "../_svg_library/FriendsIcon";
 import TripsIcon from "../_svg_library/TripsIcon";
@@ -160,6 +161,9 @@ const Main = ({ loginToggle }) => {
               </Route>
               <Route exact path="/rivers">
                 <Rivers />
+              </Route>
+              <Route exact path="/rivers/:id">
+                <RiverPage />
               </Route>
               <Route exact path="/settings">
                 <div>

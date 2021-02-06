@@ -33,6 +33,7 @@ h4 {
 }
 
 a {
+  color: white;
   text-decoration: none;
 }
 
@@ -854,11 +855,11 @@ a {
   width: 90%;
 }
 
-.riverspages-container {
+.riverspagination-container {
   padding: 2rem;
 }
 
-.riverspages-container .pagination {
+.riverspagination-container .pagination {
   height: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -872,7 +873,7 @@ a {
           align-items: center;
 }
 
-.riverspages-container .pagination li {
+.riverspagination-container .pagination li {
   height: 100%;
   width: 30px;
   margin: 0 0.25rem;
@@ -897,21 +898,21 @@ a {
           align-items: center;
 }
 
-.riverspages-container .pagination li:hover {
+.riverspagination-container .pagination li:hover {
   font-size: 1.6rem;
   font-weight: 600;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
-.riverspages-container .pagination .previous,
-.riverspages-container .pagination .next {
+.riverspagination-container .pagination .previous,
+.riverspagination-container .pagination .next {
   width: 60px;
   margin: 0 0.5rem;
   border: none;
   background-color: none;
 }
 
-.riverspages-container .pagination .active {
+.riverspagination-container .pagination .active {
   text-shadow: 2px 2px 4px black, -2px 2px 4px black;
   font-weight: 800;
   background-color: rgba(46, 139, 86, 0.25);

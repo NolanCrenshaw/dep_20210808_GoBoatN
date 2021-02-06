@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
-import RiversPages from "./RiversPages";
+import RiversPagination from "./RiversPagination";
 
 const Rivers = () => {
   const rivers = useSelector((state) => state.rivers);
@@ -57,7 +57,7 @@ const Rivers = () => {
           </div>
         </div>
       </header>
-      <RiversPages rivers={riversDisplayed} />
+      <RiversPagination rivers={riversDisplayed} />
     </motion.div>
   );
 };

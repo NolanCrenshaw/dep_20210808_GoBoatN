@@ -33,7 +33,7 @@ const RiversPages = ({ rivers }) => {
   }, [offset, rivers]);
 
   return (
-    <div className="riverspages-container">
+    <div className="riverspagination-container">
       {data}
       <ReactPaginate
         previousLabel={"prev"}
