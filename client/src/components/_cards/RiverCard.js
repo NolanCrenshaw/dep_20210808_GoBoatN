@@ -1,10 +1,8 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const RiverCard = ({ river }) => {
-  const history = useHistory();
-
   return (
     <Link to={`/rivers/${river[0].id}`}>
       <motion.div
