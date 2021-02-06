@@ -39,7 +39,7 @@ const RiversPages = ({ rivers }) => {
       <h3>Pagination Component</h3>
       {data}
       <ReactPaginate
-        previousLabel={"previous"}
+        previousLabel={"prev"}
         nextLabel={"next"}
         breakLabel={"..."}
         breakClassName={"break-me"}
