@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { setRivers } from "../../actions";
+import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
@@ -13,6 +15,8 @@ import RiversIcon from "../_svg_library/RiversIcon";
 import SettingsIcon from "../_svg_library/SettingsIcon";
 
 const Main = ({ loginToggle }) => {
+  const dispatch = useDispatch();
+
   const [currentTime, setCurrentTime] = useState({});
   const user = useSelector((state) => state.user.profile);
   const trips = useSelector((state) => state.user.trips);
@@ -33,6 +37,34 @@ const Main = ({ loginToggle }) => {
     setTime();
     const minuteInterval = setInterval(() => setTime(), 30000);
     return () => clearInterval(minuteInterval);
+  }, []);
+
+  // Set Rivers State Data
+  useEffect(() => {
+    const token = window.localStorage.getItem("auth_token");
+    const fetchRivers = async (tk) => {
+      const res = await fetch(`${BASE_URL}/api/rivers/`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tk}`,
+        },
+      });
+      if (!res.ok) {
+        // -- TODO -- Handling
+        console.log("fetchRivers res failure");
+      } else {
+        const json = await res.json();
+        dispatch(setRivers(json.rivers));
+      }
+    };
+    if (token !== null) {
+      fetchRivers(token);
+    } else {
+      // ~~ TODO ~~ Null Token Handling
+      console.log("fetchRivers not called / Token is null");
+    }
   }, []);
 
   return (

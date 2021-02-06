@@ -1,4 +1,3 @@
-// Package Requirements
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "./actions";
@@ -12,6 +11,7 @@ import LoadingSpinner from "./components/_svg_library/LoadingSpinner";
 // React Component
 function App() {
   const dispatch = useDispatch();
+
   const [pageRendered, setPageRendered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginAttempt, setLoginAttempt] = useState(false);
