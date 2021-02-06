@@ -242,11 +242,12 @@ a {
   background-color: rgba(252, 252, 252, 0.5);
 }
 
-.rivercard-container .rivercard_textbox {
+.rivercard-container div:nth-of-type(1) {
   height: 100%;
   width: auto;
   padding: 1rem;
-  font-size: 1.8rem;
+  color: black;
+  font-size: 2rem;
   font-weight: 400;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -257,6 +258,10 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.rivercard-container div:nth-of-type(2) span {
+  font-size: 1.4rem;
 }
 
 .splash-container {

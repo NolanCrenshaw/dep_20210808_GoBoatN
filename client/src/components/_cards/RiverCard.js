@@ -11,14 +11,11 @@ const RiverCard = ({ river }) => {
 
   return (
     <div className="rivercard-container card" onClick={navToRiver}>
-      <div className="rivercard_textbox">
+      <div>
         <span>{river[0].name}</span>
       </div>
-      <div className="riverCard__info-container">
-        <div className="riverCard__info--class">
-          <span id="riverCard__info--region-header">Region:</span>
-          <span id="riverCard__info--region">{river[0].region}</span>
-        </div>
+      <div className="riverCard__info--class">
+        <span>{river[0].region}</span>
       </div>
     </div>
   );
