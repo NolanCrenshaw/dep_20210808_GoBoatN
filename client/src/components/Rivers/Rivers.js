@@ -8,6 +8,23 @@ const Rivers = () => {
   const rivers = useSelector((state) => state.rivers);
 
   const [riversDisplayed, setRiversDisplayed] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // Listeners
+  const updateSearch = (e) => setSearch(e.target.value);
+
+  // Search Function
+  const searchRivers = () => {
+    const filterRivers = [];
+    const searchTerm = new RegExp(`${search}`, "i");
+    for (let i = 0; i < rivers.length; i++) {
+      const river = rivers[i][0];
+      if (searchTerm.test(river.name)) {
+        filterRivers.push(rivers[i]);
+      }
+    }
+    setRiversDisplayed(filterRivers);
+  };
 
   // Set Init Displayed Rivers ~~ Limit 20
   useEffect(() => {
@@ -26,6 +43,18 @@ const Rivers = () => {
       className="rivers-container"
     >
       <h1>Rivers Page</h1>
+      <div>
+        <input
+          className="search_input"
+          type="text"
+          placeholder="Search Rivers"
+          value={search}
+          onChange={updateSearch}
+        />
+        <div className="search_button" onClick={searchRivers}>
+          <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
+        </div>
+      </div>
       {riversDisplayed[0] !== undefined ? (
         riversDisplayed.map((river) => <RiverCard river={river} />)
       ) : (
