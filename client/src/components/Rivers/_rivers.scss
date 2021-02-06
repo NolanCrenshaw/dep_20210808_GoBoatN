@@ -2,12 +2,10 @@
   height: auto;
   width: 100%;
   padding: 1rem;
-
-  background-color: salmon;
 }
 
 .riverspages-container {
-  background-color: sandybrown;
+  padding: 2rem;
 
   .pagination {
     height: 40px;
@@ -16,22 +14,18 @@
     justify-content: center;
     align-items: center;
 
-    // border: 2px solid black;
-
-    // background-color: seagreen;
-
     li {
       height: 100%;
       width: 30px;
       margin: 0 0.25rem;
       padding: 0.8rem;
 
+      color: white;
       font-size: 1.5rem;
       font-weight: 400;
 
-      border: 1px solid black;
+      border: 0.5px solid rgba(255, 255, 255, 0.5);
       border-radius: 6px;
-      // background-color: seagreen;
       list-style: none;
       cursor: pointer;
 
@@ -41,16 +35,15 @@
     }
     .previous,
     .next {
-      width: 70px;
+      width: 60px;
       margin: 0 0.5rem;
       border: none;
       background-color: none;
     }
     .active {
-      color: black;
-      text-shadow: 1px 1px 2px white, -1px 1px 2px white;
+      text-shadow: 2px 2px 4px black, -2px 2px 4px black;
       font-weight: 800;
-      background-color: rgba(46, 139, 86, 0.5);
+      background-color: rgba(46, 139, 86, 0.25);
     }
   }
 }

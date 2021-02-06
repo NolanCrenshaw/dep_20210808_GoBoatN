@@ -9,7 +9,9 @@
 .card {
   height: 50px;
   width: 100%;
+
   background-color: salmon;
+  cursor: pointer;
 
   display: flex;
   justify-content: space-between;
@@ -17,4 +19,29 @@
 }
 
 .boatcard-container {
+}
+
+.rivercard-container {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+
+  border: 2px solid white;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1), -2px 2px 5px rgba(0, 0, 0, 0.1),
+    0 3px 3px rgba(0, 0, 0, 0.3);
+  background-color: rgba(252, 252, 252, 0.5);
+
+  .rivercard_textbox {
+    height: 100%;
+    width: auto;
+    padding: 1rem;
+
+    font-size: 1.8rem;
+    font-weight: 400;
+    // background-color: sienna;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
