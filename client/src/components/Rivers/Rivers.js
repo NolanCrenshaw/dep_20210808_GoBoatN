@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
 import RiversPages from "./RiversPages";
-import RiverCard from "../_cards/RiverCard";
 
 const Rivers = () => {
   const rivers = useSelector((state) => state.rivers);
