@@ -1,7 +1,49 @@
 .rivers-container {
   height: auto;
   width: 100%;
+  margin-top: 2rem;
   padding: 1rem;
+
+  header {
+    padding: 0;
+    margin: 0 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div:nth-of-type(1) {
+      width: auto;
+      // background-color: cadetblue;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      input {
+        height: 37px;
+        width: 200px;
+        margin: 1rem;
+        padding: 1rem;
+
+        border-radius: 6px;
+      }
+
+      div {
+        height: 37px;
+        width: 40px;
+
+        border: 1px solid white;
+        border-radius: 6px;
+        background-color: rgba(255, 255, 255, 0.6);
+
+        img {
+          height: 90%;
+          width: 90%;
+        }
+      }
+    }
+  }
 }
 
 .riverspages-container {
@@ -10,7 +52,7 @@
   .pagination {
     height: 40px;
     display: flex;
-    margin: 1rem;
+    margin: 2.5rem 1rem;
     justify-content: center;
     align-items: center;
 
@@ -28,10 +70,17 @@
       border-radius: 6px;
       list-style: none;
       cursor: pointer;
+      transition: all ease-in-out 0.2s;
 
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &:hover {
+        font-size: 1.6rem;
+        font-weight: 600;
+        background-color: rgba(255, 255, 255, 0.4);
+      }
     }
     .previous,
     .next {

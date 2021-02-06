@@ -249,6 +249,8 @@ a {
   color: black;
   font-size: 2rem;
   font-weight: 400;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -262,6 +264,21 @@ a {
 
 .rivercard-container div:nth-of-type(2) span {
   font-size: 1.4rem;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+}
+
+.rivercard-container:hover div:nth-of-type(1) {
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), -2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.rivercard-container:hover div:nth-of-type(2) span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), -1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .splash-container {
@@ -778,7 +795,56 @@ a {
 .rivers-container {
   height: auto;
   width: 100%;
+  margin-top: 2rem;
   padding: 1rem;
+}
+
+.rivers-container header {
+  padding: 0;
+  margin: 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rivers-container header div:nth-of-type(1) {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rivers-container header div:nth-of-type(1) input {
+  height: 37px;
+  width: 200px;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.rivers-container header div:nth-of-type(1) div {
+  height: 37px;
+  width: 40px;
+  border: 1px solid white;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.rivers-container header div:nth-of-type(1) div img {
+  height: 90%;
+  width: 90%;
 }
 
 .riverspages-container {
@@ -790,7 +856,7 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 1rem;
+  margin: 2.5rem 1rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -811,6 +877,8 @@ a {
   border-radius: 6px;
   list-style: none;
   cursor: pointer;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -820,6 +888,12 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.riverspages-container .pagination li:hover {
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .riverspages-container .pagination .previous,

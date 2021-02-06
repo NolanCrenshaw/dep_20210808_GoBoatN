@@ -42,19 +42,21 @@ const Rivers = () => {
       transition={{ ease: "easeInOut", duration: 0.1 }}
       className="rivers-container"
     >
-      <h1>Rivers Page</h1>
-      <div>
-        <input
-          className="search_input"
-          type="text"
-          placeholder="Search Rivers"
-          value={search}
-          onChange={updateSearch}
-        />
-        <div className="search_button" onClick={searchRivers}>
-          <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
+      <header>
+        <h1>Rivers</h1>
+        <div>
+          <input
+            className="search_input"
+            type="text"
+            placeholder="Search Rivers"
+            value={search}
+            onChange={updateSearch}
+          />
+          <div className="search_button" onClick={searchRivers}>
+            <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
+          </div>
         </div>
-      </div>
+      </header>
       <RiversPages rivers={riversDisplayed} />
     </motion.div>
   );
