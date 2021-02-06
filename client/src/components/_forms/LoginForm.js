@@ -41,7 +41,7 @@ const LoginForm = ({ loginToggle }) => {
 
   useEffect(() => {
     if (submittedData.password !== undefined) {
-      const loginCall = async () => {
+      const login = async () => {
         const res = await fetch(`${BASE_URL}/api/auth/login`, {
           method: "POST",
           mode: "cors",
@@ -52,7 +52,7 @@ const LoginForm = ({ loginToggle }) => {
         });
         if (!res.ok) {
           // -- TODO -- ERROR HANDLING
-          console.log("loginCall res Failure");
+          console.log("login res Failure");
         } else {
           const json = await res.json();
           if (json.auth_token === undefined) {
@@ -64,7 +64,7 @@ const LoginForm = ({ loginToggle }) => {
           }
         }
       };
-      loginCall();
+      login();
     }
   }, [submittedData]);
 
