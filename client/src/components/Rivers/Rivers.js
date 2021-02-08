@@ -26,6 +26,12 @@ const Rivers = () => {
     setDisplayed(filterRivers);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      searchRivers();
+    }
+  };
+
   // Set Init Displayed Rivers ~~ Limit 20
   useEffect(() => {
     const arr = [];
@@ -51,6 +57,7 @@ const Rivers = () => {
             placeholder="Search Rivers"
             value={search}
             onChange={updateSearch}
+            onKeyDown={handleKeyDown}
           />
           <div className="search_button" onClick={searchRivers}>
             <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
