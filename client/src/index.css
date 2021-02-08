@@ -933,4 +933,22 @@ a {
   font-weight: 800;
   background-color: rgba(46, 139, 86, 0.25);
 }
+
+.riverpage-container {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+}
+
+.riverpage-container header {
+  padding: 1rem;
+}
+
+.riverpage-container header h1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.riverpage-container header h4 {
+  padding-left: 2rem;
+}
 /*# sourceMappingURL=index.css.map */
