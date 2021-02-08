@@ -14,5 +14,6 @@ class Config:
     AWS_SECRET_KEY = os.environ.get('AWS_SECRET_KEY')
 
     # Security Settings
-    JWT_ACCESS_TOKEN_EXPIRES = False
     CORS_HEADER = 'Content-Type'
+    # Change this value for deployment
+    JWT_ACCESS_TOKEN_EXPIRES = False
