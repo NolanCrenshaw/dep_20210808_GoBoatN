@@ -845,6 +845,9 @@ a {
 .rivers-container header div:nth-of-type(1) div {
   height: 37px;
   width: 40px;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
   border: 1px solid white;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.6);
@@ -853,6 +856,10 @@ a {
 .rivers-container header div:nth-of-type(1) div img {
   height: 90%;
   width: 90%;
+}
+
+.rivers-container header div:nth-of-type(1) div:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .riverspagination-container {

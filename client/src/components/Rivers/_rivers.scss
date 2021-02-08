@@ -33,6 +33,9 @@
         height: 37px;
         width: 40px;
 
+        cursor: pointer;
+        transition: all ease-in-out 0.2s;
+
         border: 1px solid white;
         border-radius: 6px;
         background-color: rgba(255, 255, 255, 0.6);
@@ -40,6 +43,10 @@
         img {
           height: 90%;
           width: 90%;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.25);
         }
       }
     }
