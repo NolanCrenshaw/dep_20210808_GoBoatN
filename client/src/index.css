@@ -44,6 +44,10 @@ a {
   background-position: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .loader {
   height: 100vh;
   display: -webkit-box;
@@ -1007,6 +1011,12 @@ a {
 .riverpage-container header div:nth-of-type(2) button:hover {
   color: white;
   background-color: rgba(252, 252, 252, 0.25);
+}
+
+.riverpage-container section {
+  height: 50px;
+  width: 100%;
+  background-color: salmon;
 }
 
 .riverpage-container .map-container {

@@ -10,6 +10,16 @@ const RiverPage = () => {
   const [river, setRiver] = useState({});
   const [accesses, setAccesses] = useState();
 
+  // Form Toggle
+  const [createFormClass, setCreateFormClass] = useState(
+    "createform-container hidden"
+  );
+  const toggleCreateForm = () => {
+    createFormClass === "createform-container hidden"
+      ? setCreateFormClass("createform-container shown")
+      : setCreateFormClass("createform-container hidden");
+  };
+
   // Map State
   const [center, setCenter] = useState();
   const [zoom, setZoom] = useState(11);
@@ -62,12 +72,17 @@ const RiverPage = () => {
           <h4>{river.region}</h4>
         </div>
         <div>
-          <motion.button whileHover={{ scale: 1.05 }}>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            onClick={() => toggleCreateForm()}
+          >
             + Create Trip
           </motion.button>
         </div>
       </header>
-
+      <section className={createFormClass}>
+        <h3></h3>
+      </section>
       <div className="map-container">
         <Map center={center} zoom={zoom}>
           <TileLayer
