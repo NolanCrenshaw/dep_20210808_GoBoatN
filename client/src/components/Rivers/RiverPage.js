@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Map, TileLayer, Marker } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { motion } from "framer-motion";
 
 const RiverPage = () => {
   const params = useParams();
   const rivers = useSelector((state) => state.rivers);
   const [river, setRiver] = useState({ name: "undefined" });
-  const [accesses, setAccesses] = useState([]);
+  const [accesses, setAccesses] = useState();
 
   // Map State
   const [putin, setPutin] = useState([35.0829, -84.4918]);
@@ -76,6 +76,7 @@ const RiverPage = () => {
           )}
         </ul> */}
       </header>
+
       <div className="map-container">
         <Map center={center} zoom={zoom}>
           <TileLayer
@@ -84,22 +85,13 @@ const RiverPage = () => {
           />
           {accesses ? (
             accesses.map((access) => (
-              <Marker position={[access.latitude, access.longitude]} />
-              // <h4>{access.name}</h4>
-              // <p>{access.id}</p>
-              // <p>{access.latitude}</p>
-              // <p>{access.longitude}</p>
+              <Marker position={[access.latitude, access.longitude]}>
+                <Popup>{access.name}</Popup>
+              </Marker>
             ))
           ) : (
             <div>undefined</div>
           )}
-
-          <Marker position={putin}>
-            {/* <Popup>{access[0].name}</Popup> */}
-          </Marker>
-          <Marker position={takeout}>
-            {/* <Popup>{access[1].name}</Popup> */}
-          </Marker>
         </Map>
       </div>
     </motion.div>

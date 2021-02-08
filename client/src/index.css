@@ -979,14 +979,14 @@ a {
   overflow: hidden;
 }
 
-.riverpage-container .leaflet-container {
+.riverpage-container .map-container .leaflet-container {
   width: 100%;
   height: 100%;
 }
 
-.riverpage-container .leaflet-pane {
+.riverpage-container .map-container .leaflet-container .leaflet-marker-pane {
   width: 100%;
   height: 100%;
-  position: static;
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */
