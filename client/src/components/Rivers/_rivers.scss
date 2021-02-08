@@ -60,34 +60,40 @@
       height: 100%;
       width: 30px;
       margin: 0 0.25rem;
-      padding: 0.8rem;
-
-      color: white;
-      font-size: 1.5rem;
-      font-weight: 400;
-
-      border: 0.5px solid rgba(255, 255, 255, 0.5);
-      border-radius: 6px;
       list-style: none;
-      cursor: pointer;
-      transition: all ease-in-out 0.2s;
+      a {
+        height: 100%;
+        width: 100%;
+        padding: 0.8rem;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 400;
 
-      &:hover {
-        font-size: 1.6rem;
-        font-weight: 600;
-        background-color: rgba(255, 255, 255, 0.4);
+        border: 0.5px solid rgba(255, 255, 255, 0.5);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all ease-in-out 0.2s;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          font-size: 1.6rem;
+          font-weight: 600;
+          background-color: rgba(255, 255, 255, 0.4);
+        }
       }
     }
     .previous,
     .next {
       width: 60px;
-      margin: 0 0.5rem;
-      border: none;
-      background-color: none;
+      a {
+        margin: 0 0.5rem;
+        border: none;
+        background-color: none;
+      }
     }
     .active {
       text-shadow: 2px 2px 4px black, -2px 2px 4px black;

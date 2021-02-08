@@ -7,7 +7,7 @@ import RiversPagination from "./RiversPagination";
 const Rivers = () => {
   const rivers = useSelector((state) => state.rivers);
 
-  const [riversDisplayed, setRiversDisplayed] = useState([]);
+  const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
 
   // Listeners
@@ -18,12 +18,12 @@ const Rivers = () => {
     const filterRivers = [];
     const searchTerm = new RegExp(`${search}`, "i");
     for (let i = 0; i < rivers.length; i++) {
-      const river = rivers[i][0];
+      const river = rivers[i];
       if (searchTerm.test(river.name)) {
         filterRivers.push(rivers[i]);
       }
     }
-    setRiversDisplayed(filterRivers);
+    setDisplayed(filterRivers);
   };
 
   // Set Init Displayed Rivers ~~ Limit 20
@@ -32,7 +32,7 @@ const Rivers = () => {
     for (let i = 0; i < rivers.length; i++) {
       arr.push(rivers[i]);
     }
-    setRiversDisplayed(arr);
+    setDisplayed(arr);
   }, [rivers]);
 
   return (
@@ -57,7 +57,7 @@ const Rivers = () => {
           </div>
         </div>
       </header>
-      <RiversPagination rivers={riversDisplayed} />
+      <RiversPagination rivers={displayed} />
     </motion.div>
   );
 };
