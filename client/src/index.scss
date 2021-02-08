@@ -41,6 +41,9 @@ a {
   background-size: cover;
   background-position: center;
 }
+.hidden {
+  display: none;
+}
 .loader {
   height: 100vh;
   display: flex;

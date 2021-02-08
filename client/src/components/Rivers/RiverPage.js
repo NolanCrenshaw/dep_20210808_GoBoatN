@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { motion } from "framer-motion";
 
 const RiverPage = () => {
   const params = useParams();
   const rivers = useSelector((state) => state.rivers);
-  const [river, setRiver] = useState({ name: "undefined" });
+  const [river, setRiver] = useState({});
+  const [accesses, setAccesses] = useState();
+
+  // Form Toggle
+  const [createFormClass, setCreateFormClass] = useState(
+    "createform-container hidden"
+  );
+  const toggleCreateForm = () => {
+    createFormClass === "createform-container hidden"
+      ? setCreateFormClass("createform-container shown")
+      : setCreateFormClass("createform-container hidden");
+  };
+
+  // Map State
+  const [center, setCenter] = useState();
+  const [zoom, setZoom] = useState(11);
 
   /*
   ~~ TODO ~~
   Refine State request with Param
   Learn to select single piece of State
   */
-
+  // Return River from State by `params.id`
   useEffect(() => {
     const riverSelector = () => {
       for (let i = 0; i < rivers.length; i++) {
@@ -25,13 +42,65 @@ const RiverPage = () => {
     riverSelector();
   }, [rivers]);
 
+  // Set Accesses into State from River Obj
+  useEffect(() => {
+    if (river) {
+      setAccesses(river.accesses);
+    }
+    // console.log("HELLO", accesses);
+  }, [river]);
+
+  useEffect(() => {
+    if (accesses !== undefined && accesses.length !== 0) {
+      console.log("HELLO", accesses);
+      const access = accesses[0];
+      const center = [access.latitude, access.longitude];
+      setCenter(center);
+    }
+  }, [accesses]);
+
   return (
-    <div className="riverpage-container">
-      <h1>{`River ${params.id}`}</h1>
-      <h3>Hello</h3>
-      <h3>{river.name}</h3>
-      <h3>World</h3>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 1.1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.1 }}
+      className="riverpage-container"
+    >
+      <header>
+        <div>
+          <h1>{river.name}</h1>
+          <h4>{river.region}</h4>
+        </div>
+        <div>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            onClick={() => toggleCreateForm()}
+          >
+            + Create Trip
+          </motion.button>
+        </div>
+      </header>
+      <section className={createFormClass}>
+        <h3></h3>
+      </section>
+      <div className="map-container">
+        <Map center={center} zoom={zoom}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {accesses ? (
+            accesses.map((access) => (
+              <Marker position={[access.latitude, access.longitude]}>
+                <Popup>{access.name}</Popup>
+              </Marker>
+            ))
+          ) : (
+            <div>undefined</div>
+          )}
+        </Map>
+      </div>
+    </motion.div>
   );
 };
 

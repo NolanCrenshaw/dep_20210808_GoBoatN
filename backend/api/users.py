@@ -63,10 +63,10 @@ def user_by_id(id):
     ), 200
 
 
-# Get User by Token
+# Get UserSelf by Token
 @user.route('/token')
 @jwt_required
-def user_by_token():
+def get_self_by_token():
     # return user by token
     user_object = get_jwt_identity()
     user = User.query.filter_by(email=user_object['email']).first()
