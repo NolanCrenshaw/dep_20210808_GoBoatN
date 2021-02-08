@@ -7,13 +7,11 @@ import { motion } from "framer-motion";
 const RiverPage = () => {
   const params = useParams();
   const rivers = useSelector((state) => state.rivers);
-  const [river, setRiver] = useState({ name: "undefined" });
+  const [river, setRiver] = useState({});
   const [accesses, setAccesses] = useState();
 
   // Map State
-  const [putin, setPutin] = useState([35.0829, -84.4918]);
-  const [takeout, setTakeout] = useState([35.0829, -84.4918]);
-  const [center, setCenter] = useState([35.0829, -84.4918]);
+  const [center, setCenter] = useState();
   const [zoom, setZoom] = useState(11);
 
   /*
@@ -59,22 +57,15 @@ const RiverPage = () => {
       className="riverpage-container"
     >
       <header>
-        <h1>{river.name}</h1>
-        <h4>{river.region}</h4>
-        {/* <ul>
-          {accesses ? (
-            accesses.map((access) => (
-              <li>
-                <h4>{access.name}</h4>
-                <p>{access.id}</p>
-                <p>{access.latitude}</p>
-                <p>{access.longitude}</p>
-              </li>
-            ))
-          ) : (
-            <div>undefined</div>
-          )}
-        </ul> */}
+        <div>
+          <h1>{river.name}</h1>
+          <h4>{river.region}</h4>
+        </div>
+        <div>
+          <motion.button whileHover={{ scale: 1.05 }}>
+            + Create Trip
+          </motion.button>
+        </div>
       </header>
 
       <div className="map-container">
