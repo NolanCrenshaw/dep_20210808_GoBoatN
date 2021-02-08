@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BASE_URL } from "../../config";
 
 const RiverPage = () => {
   const params = useParams();
@@ -15,10 +14,8 @@ const RiverPage = () => {
   Refine State request with Param
   Learn to select single piece of State
   */
-
+  // Return River from State by `params.id`
   useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-
     const riverSelector = () => {
       for (let i = 0; i < rivers.length; i++) {
         const river = rivers[i];
@@ -27,32 +24,15 @@ const RiverPage = () => {
         }
       }
     };
-    const fetchAccesses = async (tk) => {
-      const res = await fetch(`${BASE_URL}/api/rivers/accesses/${params.id}`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tk}`,
-        },
-      });
-      if (!res.ok) {
-        // -- TODO -- Handling
-        console.log("fetchRivers res failure");
-      } else {
-        const json = await res.json();
-        setAccesses(json.accesses);
-      }
-    };
-    if (token !== null) {
-      fetchAccesses(token);
-    } else {
-      // ~~ TODO ~~ Null Token Handling
-      console.log("fetchRivers not called / Token is null");
-    }
-
     riverSelector();
   }, [rivers]);
+
+  // Set Accesses into State from River Obj
+  useEffect(() => {
+    if (river) {
+      setAccesses(river.accesses);
+    }
+  }, [river]);
 
   return (
     <motion.div
@@ -64,6 +44,20 @@ const RiverPage = () => {
       <header>
         <h1>{river.name}</h1>
         <h4>{river.region}</h4>
+        <ul>
+          {accesses ? (
+            accesses.map((access) => (
+              <li>
+                <h4>{access.name}</h4>
+                <p>{access.id}</p>
+                <p>{access.latitude}</p>
+                <p>{access.longitude}</p>
+              </li>
+            ))
+          ) : (
+            <div>undefined</div>
+          )}
+        </ul>
       </header>
     </motion.div>
   );
