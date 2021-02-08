@@ -16,7 +16,7 @@ const content = {
 };
 
 const schema = yup.object().shape({
-  title: yup.string().required.min(4),
+  title: yup.string().required().min(4),
 });
 
 const CreateTrip = ({ river, accesses }) => {
@@ -30,7 +30,7 @@ const CreateTrip = ({ river, accesses }) => {
   const onSubmit = (data, e) => {
     e.preventDefault();
     setSubmittedData(data);
-    e.target.reset();
+    // e.target.reset();
   };
 
   useEffect(() => {
@@ -45,7 +45,22 @@ const CreateTrip = ({ river, accesses }) => {
       className="createtripform-container form"
     >
       <h2>Create A Trip</h2>
-      <form onSubmit={handleSubmit(onSubmit)}></form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {content.inputs.map((input, key) => {
+          return (
+            <div className="form_element" key={key}>
+              <div>
+                <label>{input.label}</label>
+                <p>{errors[input.name]?.message}</p>
+              </div>
+              <input name={input.name} type={input.type} ref={register} />
+            </div>
+          );
+        })}
+        <button className="form_button" type="submit">
+          Submit
+        </button>
+      </form>
     </motion.div>
   );
 };

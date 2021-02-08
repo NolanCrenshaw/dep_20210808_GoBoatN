@@ -168,10 +168,15 @@
     }
   }
   section {
-    height: 50px;
+    height: auto;
     width: 100%;
+    padding: 2rem;
 
-    background-color: salmon;
+    // background-color: salmon;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .map-container {
     width: 95%;
