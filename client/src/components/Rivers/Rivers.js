@@ -59,9 +59,13 @@ const Rivers = () => {
             onChange={updateSearch}
             onKeyDown={handleKeyDown}
           />
-          <div className="search_button" onClick={searchRivers}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="search_button"
+            onClick={searchRivers}
+          >
             <img src="https://img.icons8.com/cotton/64/000000/search--v2.png" />
-          </div>
+          </motion.div>
         </div>
       </header>
       <RiversPagination rivers={displayed} />
