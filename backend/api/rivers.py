@@ -15,25 +15,25 @@ river = Blueprint('rivers', __name__)
 def rivers_all():
     # return all rivers ordered by name
     river_objects = River.query.order_by(River.name).all()
-    # river_objects = River.query.order_by(func.random).limit(20).all()
     rivers = []
 
     # extract access points
     for river_obj in river_objects:
-        river = []
-
-        # package access list
-        access_list = []
-        access_objects = river_obj.accesses
-        for access in access_objects:
-            access_list.append(access.to_dict())
 
         # package river list
-        river.append(river_obj.to_dict())
-        river.append(access_list)
+        rivers.append(river_obj.to_dict())
 
-        # append main json response with river package
-        rivers.append(river)
+        # # package access list
+        # access_list = []
+        # access_objects = river_obj.accesses
+        # for access in access_objects:
+        #     access_list.append(access.to_dict())
+
+        # river.append(access_list)
+
+    # append main json response with river package
+    # rivers.append(river)
+
     return jsonify(rivers=rivers), 200
 
 
