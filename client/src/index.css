@@ -213,6 +213,16 @@ a {
           justify-content: center;
 }
 
+.createtripform-container {
+  height: auto;
+  width: 400px;
+  position: relative;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .card-container {
   margin: 1rem;
   padding: 1rem;
@@ -1014,9 +1024,18 @@ a {
 }
 
 .riverpage-container section {
-  height: 50px;
+  height: auto;
   width: 100%;
-  background-color: salmon;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .riverpage-container .map-container {

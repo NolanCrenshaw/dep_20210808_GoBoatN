@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { motion } from "framer-motion";
 
+import CreateTripForm from "../_forms/CreateTripForm";
+
 const RiverPage = () => {
   const params = useParams();
   const rivers = useSelector((state) => state.rivers);
@@ -81,7 +83,7 @@ const RiverPage = () => {
         </div>
       </header>
       <section className={createFormClass}>
-        <h3></h3>
+        <CreateTripForm river={river} accesses={accesses} />
       </section>
       <div className="map-container">
         <Map center={center} zoom={zoom}>
