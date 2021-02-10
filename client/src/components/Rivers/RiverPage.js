@@ -82,7 +82,7 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <section className={createFormClass}>
+      <section>
         <CreateTripForm river={river} accesses={accesses} />
       </section>
       <div className="map-container">

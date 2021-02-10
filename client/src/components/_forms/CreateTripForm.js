@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import DatePicker from "react-modern-calendar-datepicker";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BASE_URL } from "../../config";
@@ -13,14 +15,25 @@ const content = {
       type: "text",
     },
   ],
+  datePicker: [
+    {
+      label: "Date",
+      name: "date",
+    },
+  ],
 };
 
 const schema = yup.object().shape({
   title: yup.string().required().min(4),
+  date: yup.date,
 });
 
 const CreateTrip = ({ river, accesses }) => {
+  // React-Hook-Form Data State
+  const { control } = useForm();
   const [submittedData, setSubmittedData] = useState({});
+  // DatePicker State
+  const [dateChoice, setDateChoice] = useState(null);
 
   // React Hook Form Ctrl w/ Yup Validation
   const { register, handleSubmit, errors } = useForm({
@@ -29,6 +42,7 @@ const CreateTrip = ({ river, accesses }) => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
+    console.log("inside OnSubmit in CreateTripForm");
     setSubmittedData(data);
     // e.target.reset();
   };
@@ -55,6 +69,26 @@ const CreateTrip = ({ river, accesses }) => {
               </div>
               <input name={input.name} type={input.type} ref={register} />
             </div>
+          );
+        })}
+        {content.datePicker.map((picker, key) => {
+          return (
+            <Controller
+              key={key}
+              control={control}
+              name={picker.name}
+              render={(
+                { onChange, onBlur, value, name, ref },
+                { invalid, isTouched, isDirty }
+              ) => (
+                <DatePicker
+                  value={dateChoice}
+                  onChange={setDateChoice}
+                  inputPlaceholder="Select a day"
+                  shouldHighlightWeekends
+                />
+              )}
+            />
           );
         })}
         <button className="form_button" type="submit">
