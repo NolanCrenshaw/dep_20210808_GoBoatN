@@ -25,10 +25,10 @@ const content = {
 
 const schema = yup.object().shape({
   title: yup.string().required().min(4),
-  date: yup.date,
+  date: yup.date().required(),
 });
 
-const CreateTrip = ({ river, accesses }) => {
+const CreateTrip = () => {
   // React-Hook-Form Data State
   const { control } = useForm();
   const [submittedData, setSubmittedData] = useState({});
@@ -42,9 +42,9 @@ const CreateTrip = ({ river, accesses }) => {
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log("inside OnSubmit in CreateTripForm");
+    data.date = dateChoice;
     setSubmittedData(data);
-    // e.target.reset();
+    e.target.reset();
   };
 
   useEffect(() => {
@@ -71,26 +71,24 @@ const CreateTrip = ({ river, accesses }) => {
             </div>
           );
         })}
-        {content.datePicker.map((picker, key) => {
-          return (
-            <Controller
-              key={key}
-              control={control}
-              name={picker.name}
-              render={(
-                { onChange, onBlur, value, name, ref },
-                { invalid, isTouched, isDirty }
-              ) => (
-                <DatePicker
-                  value={dateChoice}
-                  onChange={setDateChoice}
-                  inputPlaceholder="Select a day"
-                  shouldHighlightWeekends
-                />
-              )}
+        <Controller
+          control={control}
+          name={content.datePicker[0].name}
+          ref={register}
+          render={(
+            { onChange, onBlur, value, name, ref },
+            { invalid, isTouched, isDirty }
+          ) => (
+            <DatePicker
+              value={dateChoice}
+              onChange={setDateChoice}
+              inputPlaceholder="Select a day"
+              shouldHighlightWeekends
             />
-          );
-        })}
+          )}
+        />
+        <p>{errors[content.datePicker[0].name]?.message}</p>
+
         <button className="form_button" type="submit">
           Submit
         </button>

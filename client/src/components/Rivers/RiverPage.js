@@ -82,10 +82,12 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <section>
-        <CreateTripForm river={river} accesses={accesses} />
-      </section>
-      <div className="map-container">
+      <CreateTripForm
+      // river={river} accesses={accesses}
+      />
+      {/* <section> */}
+      {/* </section> */}
+      {/* <div className="map-container">
         <Map center={center} zoom={zoom} scrollWheelZoom={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -101,7 +103,7 @@ const RiverPage = () => {
             <div>undefined</div>
           )}
         </Map>
-      </div>
+      </div> */}
     </motion.div>
   );
 };
