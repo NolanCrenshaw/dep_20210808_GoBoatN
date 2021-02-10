@@ -92,8 +92,8 @@ const RiverPage = () => {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {accesses ? (
-            accesses.map((access) => (
-              <Marker position={[access.latitude, access.longitude]}>
+            accesses.map((access, i) => (
+              <Marker key={i} position={[access.latitude, access.longitude]}>
                 <Popup>{access.name}</Popup>
               </Marker>
             ))
