@@ -111,7 +111,7 @@
 }
 
 .riverpage-container {
-  height: 100%;
+  height: auto;
   width: 100%;
   padding: 1rem;
 
@@ -168,15 +168,10 @@
     }
   }
   section {
-    height: auto;
+    height: 100%;
     width: 100%;
-    padding: 2rem;
-
-    // background-color: salmon;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: visible;
+    z-index: 5;
   }
   .map-container {
     width: 95%;
@@ -184,6 +179,7 @@
     margin: 1rem;
     border-radius: 6px;
     overflow: hidden;
+    z-index: 2;
     // position: relative;
 
     .leaflet-container {

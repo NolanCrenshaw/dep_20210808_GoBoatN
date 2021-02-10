@@ -94,7 +94,7 @@ const CreateTrip = ({ river, accesses }) => {
       initial={{ opacity: 0, y: 0, scale: 1.1 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ease: "easeInOut", duration: 0.1 }}
-      className="createform-container form"
+      className="createtripform-container form"
     >
       <h2>Create A Trip</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -153,6 +153,7 @@ const CreateTrip = ({ river, accesses }) => {
                     value={value}
                     onChange={onChange}
                     options={putInOptions}
+                    classNamePrefix={"react-select"}
                   />
                 )}
               />
@@ -177,6 +178,7 @@ const CreateTrip = ({ river, accesses }) => {
                     value={value}
                     onChange={onChange}
                     options={takeOutOptions}
+                    classNamePrefix={"react-select"}
                   />
                 )}
               />

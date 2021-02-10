@@ -80,9 +80,9 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <div className={createFormClass}>
+      <section className={createFormClass}>
         <CreateTripForm river={river} accesses={accesses} />
-      </div>
+      </section>
       <div className="map-container">
         <Map center={center} zoom={zoom} scrollWheelZoom={false}>
           <TileLayer
