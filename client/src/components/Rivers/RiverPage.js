@@ -86,7 +86,7 @@ const RiverPage = () => {
         <CreateTripForm river={river} accesses={accesses} />
       </section>
       <div className="map-container">
-        <Map center={center} zoom={zoom}>
+        <Map center={center} zoom={zoom} scrollWheelZoom={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
