@@ -54,7 +54,7 @@ const RiverPage = () => {
 
   useEffect(() => {
     if (accesses !== undefined && accesses.length !== 0) {
-      console.log("HELLO", accesses);
+      // console.log("HELLO", accesses);
       const access = accesses[0];
       const center = [access.latitude, access.longitude];
       setCenter(center);
@@ -82,9 +82,7 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <CreateTripForm
-      // river={river} accesses={accesses}
-      />
+      <CreateTripForm river={river} accesses={accesses} />
       {/* <section> */}
       {/* </section> */}
       {/* <div className="map-container">
