@@ -158,7 +158,7 @@ a {
   font-size: 1.8rem;
 }
 
-.form form .form_element div:nth-child(1) p {
+.form form .form_element p {
   margin: 0.5rem 0;
   padding: 0.4rem 0;
   color: red;

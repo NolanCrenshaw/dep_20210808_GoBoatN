@@ -13,13 +13,11 @@ const RiverPage = () => {
   const [accesses, setAccesses] = useState();
 
   // Form Toggle
-  const [createFormClass, setCreateFormClass] = useState(
-    "createform-container hidden"
-  );
+  const [createFormClass, setCreateFormClass] = useState("hidden");
   const toggleCreateForm = () => {
-    createFormClass === "createform-container hidden"
-      ? setCreateFormClass("createform-container shown")
-      : setCreateFormClass("createform-container hidden");
+    createFormClass === "hidden"
+      ? setCreateFormClass("shown")
+      : setCreateFormClass("hidden");
   };
 
   // Map State
@@ -82,10 +80,10 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <CreateTripForm river={river} accesses={accesses} />
-      {/* <section> */}
-      {/* </section> */}
-      {/* <div className="map-container">
+      <div className={createFormClass}>
+        <CreateTripForm river={river} accesses={accesses} />
+      </div>
+      <div className="map-container">
         <Map center={center} zoom={zoom} scrollWheelZoom={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -101,7 +99,7 @@ const RiverPage = () => {
             <div>undefined</div>
           )}
         </Map>
-      </div> */}
+      </div>
     </motion.div>
   );
 };

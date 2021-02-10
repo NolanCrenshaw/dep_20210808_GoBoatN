@@ -94,7 +94,7 @@ const CreateTrip = ({ river, accesses }) => {
       initial={{ opacity: 0, y: 0, scale: 1.1 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ ease: "easeInOut", duration: 0.1 }}
-      className="createtripform-container form"
+      className="createform-container form"
     >
       <h2>Create A Trip</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -111,7 +111,7 @@ const CreateTrip = ({ river, accesses }) => {
         })}
         {content.datePicker.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 key={key}
@@ -133,12 +133,12 @@ const CreateTrip = ({ river, accesses }) => {
                 )}
               />
               <p>{errors[input.name]?.message}</p>
-            </>
+            </div>
           );
         })}
         {content.putInSelect.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 control={control}
@@ -157,12 +157,12 @@ const CreateTrip = ({ river, accesses }) => {
                 )}
               />
               <p>{errors[content.putInSelect[0].name]?.message}</p>
-            </>
+            </div>
           );
         })}
         {content.takeOutSelect.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 control={control}
@@ -181,7 +181,7 @@ const CreateTrip = ({ river, accesses }) => {
                 )}
               />
               <p>{errors[content.takeOutSelect[0].name]?.message}</p>
-            </>
+            </div>
           );
         })}
 
