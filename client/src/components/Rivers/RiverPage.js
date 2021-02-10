@@ -54,7 +54,7 @@ const RiverPage = () => {
 
   useEffect(() => {
     if (accesses !== undefined && accesses.length !== 0) {
-      console.log("HELLO", accesses);
+      // console.log("HELLO", accesses);
       const access = accesses[0];
       const center = [access.latitude, access.longitude];
       setCenter(center);
@@ -82,18 +82,18 @@ const RiverPage = () => {
           </motion.button>
         </div>
       </header>
-      <section className={createFormClass}>
-        <CreateTripForm river={river} accesses={accesses} />
-      </section>
-      <div className="map-container">
-        <Map center={center} zoom={zoom}>
+      <CreateTripForm river={river} accesses={accesses} />
+      {/* <section> */}
+      {/* </section> */}
+      {/* <div className="map-container">
+        <Map center={center} zoom={zoom} scrollWheelZoom={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {accesses ? (
-            accesses.map((access) => (
-              <Marker position={[access.latitude, access.longitude]}>
+            accesses.map((access, i) => (
+              <Marker key={i} position={[access.latitude, access.longitude]}>
                 <Popup>{access.name}</Popup>
               </Marker>
             ))
@@ -101,7 +101,7 @@ const RiverPage = () => {
             <div>undefined</div>
           )}
         </Map>
-      </div>
+      </div> */}
     </motion.div>
   );
 };
