@@ -6,13 +6,13 @@ import {
 
 const riverReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = { ...state };
+  let nextState = { ...state };
   switch (action.type) {
     case SET_RIVERS_START:
       nextState.loading = true;
       return nextState;
     case SET_RIVERS_SUCCESS:
-      nextState.rivers = action.rivers;
+      nextState = action.rivers;
       nextState.loading = false;
       return nextState;
     case SET_RIVERS_FAILURE:

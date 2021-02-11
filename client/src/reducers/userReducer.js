@@ -29,18 +29,13 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
   Object.freeze(state);
-  const nextState = { ...state };
+  let nextState = { ...state };
   switch (action.type) {
     case SET_USER_START:
       nextState.loading = true;
       return nextState;
     case SET_USER_SUCCESS:
-      nextState.profile = action.user.profile;
-      nextState.boats = action.user.boats;
-      nextState.vehicles = action.user.vehicles;
-      nextState.friends = action.user.friends;
-      nextState.trips = action.user.trips;
-      nextState.invites = action.user.invites;
+      nextState = action.user;
       nextState.loading = false;
       return nextState;
     case SET_USER_FAILURE:

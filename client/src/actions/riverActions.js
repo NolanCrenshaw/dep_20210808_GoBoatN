@@ -3,7 +3,7 @@ export const SET_RIVERS_SUCCESS = "SET_RIVERS_SUCCESS";
 export const SET_RIVERS_FAILURE = "SET_RIVERS_FAILURE";
 
 export const setRiversStart = () => ({
-  type: SET_RIVERS_SUCCESS,
+  type: SET_RIVERS_START,
 });
 export const setRiversSuccess = (rivers) => ({
   type: SET_RIVERS_SUCCESS,
