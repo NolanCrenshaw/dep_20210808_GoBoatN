@@ -111,7 +111,7 @@ const CreateTrip = ({ river, accesses }) => {
         })}
         {content.datePicker.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 key={key}
@@ -133,12 +133,12 @@ const CreateTrip = ({ river, accesses }) => {
                 )}
               />
               <p>{errors[input.name]?.message}</p>
-            </>
+            </div>
           );
         })}
         {content.putInSelect.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 control={control}
@@ -153,16 +153,17 @@ const CreateTrip = ({ river, accesses }) => {
                     value={value}
                     onChange={onChange}
                     options={putInOptions}
+                    classNamePrefix={"react-select"}
                   />
                 )}
               />
               <p>{errors[content.putInSelect[0].name]?.message}</p>
-            </>
+            </div>
           );
         })}
         {content.takeOutSelect.map((input, key) => {
           return (
-            <>
+            <div className="form_element">
               <label>{input.label}</label>
               <Controller
                 control={control}
@@ -177,11 +178,12 @@ const CreateTrip = ({ river, accesses }) => {
                     value={value}
                     onChange={onChange}
                     options={takeOutOptions}
+                    classNamePrefix={"react-select"}
                   />
                 )}
               />
               <p>{errors[content.takeOutSelect[0].name]?.message}</p>
-            </>
+            </div>
           );
         })}
 

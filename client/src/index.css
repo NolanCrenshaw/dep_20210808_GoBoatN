@@ -48,6 +48,11 @@ a {
   display: none;
 }
 
+.shown {
+  height: auto;
+  overflow: scroll;
+}
+
 .loader {
   height: 100vh;
   display: -webkit-box;
@@ -112,7 +117,8 @@ a {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  z-index: 11;
+  overflow: visible;
+  z-index: 5;
 }
 
 .form h2 {
@@ -125,6 +131,7 @@ a {
 .form form {
   height: 100%;
   width: 100%;
+  z-index: 6;
 }
 
 .form form .form_element {
@@ -143,22 +150,13 @@ a {
           align-items: flex-start;
 }
 
-.form form .form_element div:nth-child(1) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.form form .form_element div:nth-child(1) label {
-  margin: 0.5rem 1rem 0.5rem 0;
+.form form .form_element label {
+  margin: 0.5rem 0rem 0.5rem 0;
   padding: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
-.form form .form_element div:nth-child(1) p {
+.form form .form_element p {
   margin: 0.5rem 0;
   padding: 0.4rem 0;
   color: red;
@@ -170,6 +168,28 @@ a {
   width: 280px;
   padding: 0 0.5rem;
   border: 2px solid black;
+}
+
+.form form .form_element .DatePicker input {
+  color: black;
+  overflow: visible;
+}
+
+.form form .form_element .DatePicker .DatePicker__calendarContainer {
+  z-index: 10;
+}
+
+.form form .form_element .react-select__control {
+  width: 280px;
+}
+
+.form form .form_element .react-select__control .react-select__value-container {
+  height: 30px;
+}
+
+.form form .form_element .react-select__menu {
+  color: black;
+  font-size: 1.2rem;
 }
 
 .form form .form_button {
@@ -215,9 +235,10 @@ a {
 }
 
 .createtripform-container {
-  height: auto;
-  width: 400px;
+  width: 95%;
+  padding: 0 2rem;
   position: relative;
+  overflow: visible;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -950,7 +971,7 @@ a {
 }
 
 .riverpage-container {
-  height: 100%;
+  height: auto;
   width: 100%;
   padding: 1rem;
   display: -webkit-box;
@@ -1025,18 +1046,10 @@ a {
 }
 
 .riverpage-container section {
-  height: auto;
+  height: 100%;
   width: 100%;
-  padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  overflow: visible;
+  z-index: 5;
 }
 
 .riverpage-container .map-container {
@@ -1045,6 +1058,7 @@ a {
   margin: 1rem;
   border-radius: 6px;
   overflow: hidden;
+  z-index: 2;
 }
 
 .riverpage-container .map-container .leaflet-container {
