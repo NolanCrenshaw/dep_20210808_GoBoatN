@@ -50,6 +50,7 @@ a {
 
 .shown {
   height: auto;
+  overflow: scroll;
 }
 
 .loader {
@@ -175,7 +176,6 @@ a {
 }
 
 .form form .form_element .DatePicker .DatePicker__calendarContainer {
-  overflow: visible;
   z-index: 10;
 }
 
