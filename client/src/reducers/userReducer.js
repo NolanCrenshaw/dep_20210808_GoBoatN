@@ -5,6 +5,8 @@ import {
 } from "../actions/userActions";
 
 const initState = {
+  loading: false,
+  error: {},
   profile: {
     id: "",
     username: "",
@@ -24,8 +26,7 @@ const initState = {
   trips: [],
   invites: [],
 };
-// initial state set to empty object.
-// default values may need to be handled by proper init state
+
 const userReducer = (state = initState, action) => {
   Object.freeze(state);
   const nextState = { ...state };
@@ -34,7 +35,12 @@ const userReducer = (state = initState, action) => {
       nextState.loading = true;
       return nextState;
     case SET_USER_SUCCESS:
-      nextState.user = action.user;
+      nextState.profile = action.user.profile;
+      nextState.boats = action.user.boats;
+      nextState.vehicles = action.user.vehicles;
+      nextState.friends = action.user.friends;
+      nextState.trips = action.user.trips;
+      nextState.invites = action.user.invites;
       nextState.loading = false;
       return nextState;
     case SET_USER_FAILURE:
