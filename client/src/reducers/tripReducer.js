@@ -2,7 +2,7 @@ import {
   CREATE_TRIP_START,
   CREATE_TRIP_SUCCESS,
   CREATE_TRIP_FAILURE,
-} from "../components/actions/userActions";
+} from "../actions/userActions";
 
 const tripReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -13,9 +13,11 @@ const tripReducer = (state = {}, action) => {
       return nextState;
     case CREATE_TRIP_SUCCESS:
       nextState.user = action.user;
+      nextState.loading = false;
       return nextState;
     case CREATE_TRIP_FAILURE:
       nextState.error = action.error;
+      nextState.loading = false;
       return nextState;
     default:
       return state;

@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import userReducer from "./userReducer";
-import riversReducer from "./riversReducer";
+import riverReducer from "./riversReducer";
 import pageReducer from "./pageReducer";
 import tripReducer from "./tripReducer";
 
 const rootReducer = combineReducers({
   pageState: pageReducer,
   user: userReducer,
-  rivers: riversReducer,
-  trip: tripReducer,
+  rivers: riverReducer,
+  trips: tripReducer,
 });
 
 export default rootReducer;

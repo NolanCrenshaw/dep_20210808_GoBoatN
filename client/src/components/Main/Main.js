@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setRivers } from "../actions/userActions";
+import {
+  setRiversStart,
+  setRiversSuccess,
+  setRiversFailure,
+} from "../../actions/userActions";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
@@ -40,7 +44,7 @@ const Main = ({ loginToggle }) => {
     return () => clearInterval(minuteInterval);
   }, []);
 
-  // Set Rivers State Data
+  // state.rivers ~ Fetch & Redux Management
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
     const fetchRivers = async (tk) => {
@@ -53,18 +57,15 @@ const Main = ({ loginToggle }) => {
         },
       });
       if (!res.ok) {
-        // -- TODO -- Handling
-        console.log("fetchRivers res failure");
+        dispatch(setRiversFailure(res.statusText));
       } else {
         const json = await res.json();
-        dispatch(setRivers(json.rivers));
+        dispatch(setRiversSuccess(json.rivers));
       }
     };
     if (token !== null) {
+      dispatch(setRiversStart());
       fetchRivers(token);
-    } else {
-      // ~~ TODO ~~ Null Token Handling
-      console.log("fetchRivers not called / Token is null");
     }
   }, []);
 

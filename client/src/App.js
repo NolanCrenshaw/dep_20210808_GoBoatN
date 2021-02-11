@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "./actions";
+import { setUserStart, setUserSuccess, setUserFailure } from "./actions";
 import { BASE_URL } from "./config";
 
 // Local Requirements
@@ -48,14 +48,15 @@ function App() {
       });
       if (!res.ok) {
         setIsLoggedIn(false);
-        console.log("checkToken res failure");
+        dispatch(setUserFailure(res.statusText));
       } else {
         const json = await res.json();
-        dispatch(setUser(json));
+        dispatch(setUserSuccess(json));
         setIsLoggedIn(true);
       }
     };
     if (token !== null) {
+      dispatch(setUserStart());
       checkToken(token);
     } else {
       setIsLoggedIn(false);
