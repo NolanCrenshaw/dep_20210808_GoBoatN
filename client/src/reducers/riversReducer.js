@@ -1,4 +1,4 @@
-import { SET_RIVERS } from "../actions";
+import { SET_RIVERS } from "../components/actions/userActions";
 
 const riversReducer = (state = {}, action) => {
   switch (action.type) {
