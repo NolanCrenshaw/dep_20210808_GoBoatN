@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
+import {} from "../../actions";
 
 const content = {
   inputs: [
@@ -26,6 +28,8 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = ({ loginToggle }) => {
+  const dispatch = useDispatch();
+
   const [submittedData, setSubmittedData] = useState({});
 
   // React Hook Form Ctrl w/ Yup Validation
@@ -51,8 +55,8 @@ const LoginForm = ({ loginToggle }) => {
           body: JSON.stringify(submittedData),
         });
         if (!res.ok) {
-          // -- TODO -- ERROR HANDLING
-          console.log("login res Failure");
+          // TODO
+          // dispatch(setUserFailure(res.statusText));
         } else {
           const json = await res.json();
           if (json.auth_token === undefined) {
