@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setRivers } from "../../actions";
+import { setRivers } from "../actions/userActions";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
