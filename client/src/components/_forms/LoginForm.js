@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
-import {} from "../../actions";
+// import {} from "../../actions";
 
 const content = {
   inputs: [

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUserStart, setUserSuccess, setUserFailure } from "./actions";
+import {
+  setUserStart,
+  setUserSuccess,
+  setUserFailure,
+} from "./actions/userActions";
 import { BASE_URL } from "./config";
 
 // Local Requirements

@@ -5,7 +5,7 @@ import {
   setRiversStart,
   setRiversSuccess,
   setRiversFailure,
-} from "../../actions/userActions";
+} from "../../actions/riverActions";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";

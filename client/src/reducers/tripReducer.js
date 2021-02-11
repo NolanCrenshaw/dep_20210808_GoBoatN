@@ -2,7 +2,7 @@ import {
   CREATE_TRIP_START,
   CREATE_TRIP_SUCCESS,
   CREATE_TRIP_FAILURE,
-} from "../actions/userActions";
+} from "../actions/tripActions";
 
 const tripReducer = (state = {}, action) => {
   Object.freeze(state);
