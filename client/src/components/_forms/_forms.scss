@@ -48,13 +48,23 @@
 
         border: 2px solid black;
       }
-      .DatePicker {
-        input {
-          color: black;
-          overflow: visible;
-        }
-        .DatePicker__calendarContainer {
-          z-index: 10;
+      .react-datetime-picker {
+        width: 280px;
+        .react-datetime-picker__inputGroup {
+          // background-color: red;
+          .react-datetime-picker__inputGroup__input {
+            min-width: 15px;
+            color: white;
+            // background-color: purple;
+            font-size: 1.5rem;
+            border: none;
+          }
+          .react-datetime-picker__inputGroup__input--hasLeadingZero {
+            min-width: 20px;
+            padding-left: 8px;
+            font-size: 1.5rem;
+            background-color: red;
+          }
         }
       }
       .react-select__control {

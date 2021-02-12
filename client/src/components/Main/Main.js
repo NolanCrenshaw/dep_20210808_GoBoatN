@@ -57,7 +57,7 @@ const Main = ({ loginToggle }) => {
         },
       });
       if (!res.ok) {
-        dispatch(setRiversFailure(res.statusText));
+        dispatch(setRiversFailure("Fetch Rivers Failure"));
       } else {
         const json = await res.json();
         dispatch(setRiversSuccess(json.rivers));

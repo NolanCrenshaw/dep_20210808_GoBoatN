@@ -106,23 +106,25 @@ def update_trip_time(id):
         return jsonify(message="update trip time failure")
 
 
-@trip.route('/create', methods=["POST"])
+@trip.route('/create', methods=["POST", "OPTIONS"])
 @jwt_required
 def create_trip():
     try:
         data = request.get_json()
-        count = Trip.query.count()
-        trip = Trip(
-            id=count+1,
-            river_id=data['river'],
-            trip_leader=data['user'],
-            put_in=data['putin'],
-            take_out=data['takeout']
-        )
-        db.session.add(trip)
-        print('before commit -------')
-        db.session.commit()
+        print("HELLO MESSAGE", data)
+        # count = Trip.query.count()
+        # trip = Trip(
+        #     id=count+1,
+        #     river_id=data['river'],
+        #     trip_leader=data['user'],
+        #     put_in=data['putin'],
+        #     take_out=data['takeout']
+        # )
+        # db.session.add(trip)
+        # print('before commit -------')
+        # db.session.commit()
 
-        return jsonify(trip_id=count+1), 200
+        # return jsonify(trip_id=count+1), 200
+        return jsonify(message="create_trip success"), 200
     except Exception:
         return jsonify(message="create_trip failed"), 400
