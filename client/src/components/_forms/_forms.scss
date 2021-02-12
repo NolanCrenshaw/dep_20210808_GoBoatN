@@ -60,10 +60,11 @@
             border: none;
           }
           .react-datetime-picker__inputGroup__input--hasLeadingZero {
+            height: 40px;
             min-width: 20px;
             padding-left: 8px;
             font-size: 1.5rem;
-            background-color: red;
+            // background-color: red;
           }
         }
       }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   createTripStart,
   createTripSuccess,
@@ -60,6 +60,7 @@ const schema = yup.object().shape({
 
 const CreateTrip = ({ river, accesses }) => {
   const dispatch = useDispatch();
+  const userID = useSelector((state) => state.user.profile.id);
   const [dateVal, setDateVal] = useState(new Date());
   const dateValHandler = (e) => setDateVal(e.target.value);
 
@@ -102,8 +103,7 @@ const CreateTrip = ({ river, accesses }) => {
   }, [accesses]);
 
   useEffect(() => {
-    const test = { text: "hello world" };
-    const createTrip = async (tk) => {
+    const createTrip = async (tk, data) => {
       const res = fetch(`${BASE_URL}/api/trips/create`, {
         method: "POST",
         mode: "cors",
@@ -111,7 +111,7 @@ const CreateTrip = ({ river, accesses }) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${tk}`,
         },
-        body: JSON.stringify(test),
+        body: JSON.stringify(data),
       });
       if (!res.ok) {
         dispatch(createTripFailure("Create Trip Failure"));
@@ -122,8 +122,22 @@ const CreateTrip = ({ river, accesses }) => {
     };
     if (submittedData.title !== undefined) {
       const token = window.localStorage.getItem("auth_token");
+      const data = {
+        title: submittedData.title,
+        dateTime: submittedData.date,
+        putinID: submittedData.putIn.value,
+        takeoutID: submittedData.takeOut.value,
+        riverID: river.id,
+        userID: userID,
+      };
+      console.log(`Submitted Data: ${submittedData.title}`);
+      console.log(`Submitted Data: ${submittedData.date}`);
+      console.log(`Submitted Data: ${submittedData.putIn.value}`);
+      console.log(`Submitted Data: ${submittedData.takeOut.value}`);
+      console.log(`Submitted Data: ${submittedData.riverID}`);
+      console.log(`Submitted Data: ${submittedData.userID}`);
       dispatch(createTripStart);
-      createTrip(token);
+      createTrip(token, data);
     }
   }, [submittedData]);
 

@@ -179,9 +179,9 @@ const Main = ({ loginToggle }) => {
             </header>
             <div>
               <h3>Trips</h3>
-              {trips.map((item) => (
+              {/* {trips.map((item) => (
                 <div key={item.id}>{item}</div>
-              ))}
+              ))} */}
             </div>
             <div>
               <h3>Invites</h3>
