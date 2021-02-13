@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setRiversStart,
-  setRiversSuccess,
-  setRiversFailure,
-  fetchRiversThunk,
-} from "../../actions/riverActions";
+import { fetchRiversThunk } from "../../actions/riverActions";
 import {
   populateTripsStart,
   populateTripsSuccess,
@@ -57,6 +52,14 @@ const Main = ({ loginToggle }) => {
       dispatch(fetchRiversThunk(token));
     }
   }, []);
+
+  useEffect(() => {
+    console.log(`trips = ${trips}`);
+    if (trips !== undefined && trips.length > 0) {
+      dispatch(populateTripsStart());
+      dispatch(populateTripsSuccess(trips));
+    }
+  }, [trips]);
 
   return (
     <Router>
