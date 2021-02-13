@@ -170,13 +170,22 @@ a {
   border: 2px solid black;
 }
 
-.form form .form_element .DatePicker input {
-  color: black;
-  overflow: visible;
+.form form .form_element .react-datetime-picker {
+  width: 280px;
 }
 
-.form form .form_element .DatePicker .DatePicker__calendarContainer {
-  z-index: 10;
+.form form .form_element .react-datetime-picker .react-datetime-picker__inputGroup .react-datetime-picker__inputGroup__input {
+  min-width: 15px;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+}
+
+.form form .form_element .react-datetime-picker .react-datetime-picker__inputGroup .react-datetime-picker__inputGroup__input--hasLeadingZero {
+  height: 40px;
+  min-width: 20px;
+  padding-left: 8px;
+  font-size: 1.5rem;
 }
 
 .form form .form_element .react-select__control {

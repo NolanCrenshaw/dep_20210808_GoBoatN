@@ -169,6 +169,7 @@ class Trip(db.Model):
     __tablename__ = "trips"
 
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String, nullable=False)
     scheduled_time = db.Column(db.DateTime)
     river_id = db.Column(db.Integer, db.ForeignKey(
         "rivers.id"), nullable=False)

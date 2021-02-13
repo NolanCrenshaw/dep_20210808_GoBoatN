@@ -57,7 +57,7 @@ const Main = ({ loginToggle }) => {
         },
       });
       if (!res.ok) {
-        dispatch(setRiversFailure(res.statusText));
+        dispatch(setRiversFailure("Fetch Rivers Failure"));
       } else {
         const json = await res.json();
         dispatch(setRiversSuccess(json.rivers));
@@ -180,7 +180,13 @@ const Main = ({ loginToggle }) => {
             <div>
               <h3>Trips</h3>
               {trips.map((item) => (
-                <div key={item.id}>{item}</div>
+                <div key={item.id}>
+                  <span>{item.river_id}</span>
+                  <p> | </p>
+                  <span>{item.put_in}</span>
+                  <p> | </p>
+                  <span>{item.take_out}</span>
+                </div>
               ))}
             </div>
             <div>

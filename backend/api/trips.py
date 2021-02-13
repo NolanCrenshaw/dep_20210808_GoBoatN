@@ -1,5 +1,5 @@
 # Package Requirements
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request,  make_response
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from datetime import datetime
 
@@ -9,6 +9,21 @@ from ..models import db, Trip, Access, River, User
 
 # Blueprint Declaration
 trip = Blueprint('trips', __name__)
+
+
+# CORS Preflight Header Handling
+def cors_preflight_res():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
+    return response
+
+
+# CORS JSON Response Header Handling
+def corsify_res(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 @trip.route('/')
@@ -106,23 +121,30 @@ def update_trip_time(id):
         return jsonify(message="update trip time failure")
 
 
-@trip.route('/create', methods=["POST"])
+@trip.route('/create', methods=["POST", "OPTIONS"])
 @jwt_required
 def create_trip():
-    try:
-        data = request.get_json()
-        count = Trip.query.count()
-        trip = Trip(
-            id=count+1,
-            river_id=data['river'],
-            trip_leader=data['user'],
-            put_in=data['putin'],
-            take_out=data['takeout']
-        )
-        db.session.add(trip)
-        print('before commit -------')
-        db.session.commit()
+    data = request.get_json()
 
-        return jsonify(trip_id=count+1), 200
-    except Exception:
-        return jsonify(message="create_trip failed"), 400
+    if request.method == "OPTIONS":
+        return cors_preflight_res()
+
+    elif request.method == "POST":
+        try:
+            print("HELLO MESSAGE", data)
+            # count = Trip.query.count()
+            trip = Trip(
+                # id=count+1,
+                scheduled_time=data['dateTime'],
+                river_id=data['riverID'],
+                trip_leader=data['userID'],
+                put_in=data['putinID'],
+                take_out=data['takeoutID']
+            )
+            db.session.add(trip)
+            print('before commit -------')
+            db.session.commit()
+
+            return jsonify(message="Success"), 200
+        except Exception:
+            return jsonify(message="create_trip failed"), 400

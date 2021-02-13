@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createTripStart,
+  createTripSuccess,
+  createTripFailure,
+} from "../../actions/tripActions";
+import { DateTime } from "luxon";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
-import DatePicker from "react-modern-calendar-datepicker";
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
+// import DatePicker from "react-modern-calendar-datepicker";
+// import "react-modern-calendar-datepicker/lib/DatePicker.css";
+
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+
+import DateTimePicker from "react-datetime-picker";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { BASE_URL } from "../../config";
@@ -38,7 +51,7 @@ const content = {
 
 const schema = yup.object().shape({
   title: yup.string().required().min(4),
-  date: yup.object().required(),
+  date: yup.date().required(),
   putIn: yup.object().required(),
   takeOut: yup.object().required(),
 });
@@ -46,6 +59,11 @@ const schema = yup.object().shape({
 // let putInObjects = [];
 
 const CreateTrip = ({ river, accesses }) => {
+  const dispatch = useDispatch();
+  const userID = useSelector((state) => state.user.profile.id);
+  const [dateVal, setDateVal] = useState(new Date());
+  const dateValHandler = (e) => setDateVal(e.target.value);
+
   // React-Hook-Form Data State
   const [submittedData, setSubmittedData] = useState({});
   const [putInOptions, setPutInOptions] = useState([]);
@@ -85,7 +103,41 @@ const CreateTrip = ({ river, accesses }) => {
   }, [accesses]);
 
   useEffect(() => {
+    const createTrip = async (tk, data) => {
+      const res = fetch(`${BASE_URL}/api/trips/create`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tk}`,
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        dispatch(createTripFailure("Create Trip Failure"));
+      } else {
+        const json = await res.json();
+        dispatch(createTripSuccess(json));
+      }
+    };
     if (submittedData.title !== undefined) {
+      const token = window.localStorage.getItem("auth_token");
+      const data = {
+        title: submittedData.title,
+        dateTime: submittedData.date,
+        putinID: submittedData.putIn.value,
+        takeoutID: submittedData.takeOut.value,
+        riverID: river.id,
+        userID: userID,
+      };
+      console.log(`Submitted Data: ${submittedData.title}`);
+      console.log(`Submitted Data: ${submittedData.date}`);
+      console.log(`Submitted Data: ${submittedData.putIn.value}`);
+      console.log(`Submitted Data: ${submittedData.takeOut.value}`);
+      console.log(`Submitted Data: ${submittedData.riverID}`);
+      console.log(`Submitted Data: ${submittedData.userID}`);
+      dispatch(createTripStart);
+      createTrip(token, data);
     }
   }, [submittedData]);
 
@@ -117,18 +169,18 @@ const CreateTrip = ({ river, accesses }) => {
                 key={key}
                 name={input.name}
                 control={control}
+                onChange={dateValHandler}
+                defaultValue={dateVal}
                 // ref={register}
                 render={(
                   { onChange, onBlur, value, name, ref },
                   { invalid, isTouched, isDirty }
                 ) => (
-                  <DatePicker
+                  <DateTimePicker
                     name={input.name}
                     value={value}
                     onChange={onChange}
                     ref={register}
-                    inputPlaceholder="Select a day"
-                    shouldHighlightWeekends
                   />
                 )}
               />
