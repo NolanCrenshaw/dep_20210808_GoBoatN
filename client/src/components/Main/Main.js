@@ -5,7 +5,13 @@ import {
   setRiversStart,
   setRiversSuccess,
   setRiversFailure,
+  fetchRiversThunk,
 } from "../../actions/riverActions";
+import {
+  populateTripsStart,
+  populateTripsSuccess,
+  populateTripsFailure,
+} from "../../actions/tripActions";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
@@ -47,25 +53,8 @@ const Main = ({ loginToggle }) => {
   // state.rivers ~ Fetch & Redux Management
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    const fetchRivers = async (tk) => {
-      const res = await fetch(`${BASE_URL}/api/rivers/`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tk}`,
-        },
-      });
-      if (!res.ok) {
-        dispatch(setRiversFailure("Fetch Rivers Failure"));
-      } else {
-        const json = await res.json();
-        dispatch(setRiversSuccess(json.rivers));
-      }
-    };
     if (token !== null) {
-      dispatch(setRiversStart());
-      fetchRivers(token);
+      dispatch(fetchRiversThunk(token));
     }
   }, []);
 
