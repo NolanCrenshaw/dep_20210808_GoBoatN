@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchRiversThunk } from "../../actions/riverActions";
 import {
-  setRiversStart,
-  setRiversSuccess,
-  setRiversFailure,
-} from "../../actions/riverActions";
+  populateTripsStart,
+  populateTripsSuccess,
+  populateTripsFailure,
+} from "../../actions/tripActions";
 import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
@@ -47,27 +48,18 @@ const Main = ({ loginToggle }) => {
   // state.rivers ~ Fetch & Redux Management
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    const fetchRivers = async (tk) => {
-      const res = await fetch(`${BASE_URL}/api/rivers/`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tk}`,
-        },
-      });
-      if (!res.ok) {
-        dispatch(setRiversFailure("Fetch Rivers Failure"));
-      } else {
-        const json = await res.json();
-        dispatch(setRiversSuccess(json.rivers));
-      }
-    };
     if (token !== null) {
-      dispatch(setRiversStart());
-      fetchRivers(token);
+      dispatch(fetchRiversThunk(token));
     }
   }, []);
+
+  useEffect(() => {
+    console.log(`trips = ${trips}`);
+    if (trips !== undefined && trips.length > 0) {
+      dispatch(populateTripsStart());
+      dispatch(populateTripsSuccess(trips));
+    }
+  }, [trips]);
 
   return (
     <Router>

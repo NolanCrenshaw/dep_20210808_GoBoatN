@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createTripStart,
-  createTripSuccess,
-  createTripFailure,
-} from "../../actions/tripActions";
+import { createTripThunk } from "../../actions/tripActions";
 import { DateTime } from "luxon";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
@@ -103,23 +99,6 @@ const CreateTrip = ({ river, accesses }) => {
   }, [accesses]);
 
   useEffect(() => {
-    const createTrip = async (tk, data) => {
-      const res = fetch(`${BASE_URL}/api/trips/create`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tk}`,
-        },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) {
-        dispatch(createTripFailure("Create Trip Failure"));
-      } else {
-        const json = await res.json();
-        dispatch(createTripSuccess(json));
-      }
-    };
     if (submittedData.title !== undefined) {
       const token = window.localStorage.getItem("auth_token");
       const data = {
@@ -130,14 +109,7 @@ const CreateTrip = ({ river, accesses }) => {
         riverID: river.id,
         userID: userID,
       };
-      console.log(`Submitted Data: ${submittedData.title}`);
-      console.log(`Submitted Data: ${submittedData.date}`);
-      console.log(`Submitted Data: ${submittedData.putIn.value}`);
-      console.log(`Submitted Data: ${submittedData.takeOut.value}`);
-      console.log(`Submitted Data: ${submittedData.riverID}`);
-      console.log(`Submitted Data: ${submittedData.userID}`);
-      dispatch(createTripStart);
-      createTrip(token, data);
+      dispatch(createTripThunk(token, data));
     }
   }, [submittedData]);
 
