@@ -4,15 +4,22 @@ import {
   CREATE_TRIP_FAILURE,
 } from "../actions/tripActions";
 
-const tripReducer = (state = {}, action) => {
+const initialState = {
+  loading: false,
+  error: "",
+  list: {},
+};
+
+const tripReducer = (state = initialState, action) => {
   Object.freeze(state);
-  const nextState = { ...state };
+  let nextState = { ...state };
   switch (action.type) {
     case CREATE_TRIP_START:
       nextState.loading = true;
       return nextState;
     case CREATE_TRIP_SUCCESS:
-      nextState.user = action.user;
+      const trip = action.trip;
+      nextState.list[trip.id] = trip;
       nextState.loading = false;
       return nextState;
     case CREATE_TRIP_FAILURE:
