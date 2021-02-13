@@ -179,9 +179,15 @@ const Main = ({ loginToggle }) => {
             </header>
             <div>
               <h3>Trips</h3>
-              {/* {trips.map((item) => (
-                <div key={item.id}>{item}</div>
-              ))} */}
+              {trips.map((item) => (
+                <div key={item.id}>
+                  <span>{item.river_id}</span>
+                  <p> | </p>
+                  <span>{item.put_in}</span>
+                  <p> | </p>
+                  <span>{item.take_out}</span>
+                </div>
+              ))}
             </div>
             <div>
               <h3>Invites</h3>
