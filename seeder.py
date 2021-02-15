@@ -18,7 +18,7 @@ from backend.models import (
     Boater,
     Friend,
 )  # noqa
-from backend.auth import set_password  # noqa
+from backend.api.auth import set_password  # noqa
 
 
 file = open('./seeder/tn_rivers.jl')
