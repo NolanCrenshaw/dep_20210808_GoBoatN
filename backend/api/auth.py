@@ -64,12 +64,12 @@ def login():
             # Query
             user = User.query.filter_by(email=email).first()
 
-            elif not user:
+            if not user:
                 return jsonify(message='Email Not Valid'), 400
 
             verified = verify_password(password, user.hashed_password)
 
-            elif not verified:
+            if not verified:
                 # Error needs handling decision
                 return jsonify(message='Incorrect Password'), 403
             else:
