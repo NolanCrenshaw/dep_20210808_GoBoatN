@@ -69,7 +69,7 @@ def user_by_id(id):
 def get_self_by_token():
     # return user by token
     user_object = get_jwt_identity()
-    user = User.query.filter_by(email=user_object['email']).first()
+    user = User.query.filter_by(email=user_object).first()
     safe_user = user.to_safe_object()
 
     # populate user's boats
@@ -126,7 +126,7 @@ def update_user_by_token():
         try:
             data = request.get_json()
             user_object = get_jwt_identity()
-            user = User.query.filter_by(email=user_object['email']).first()
+            user = User.query.filter_by(email=user_object).first()
             user.profile_pic = data
             db.session.commit()
             return jsonify(message="Update user success"), 200

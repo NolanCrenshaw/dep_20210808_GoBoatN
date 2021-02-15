@@ -60,6 +60,7 @@ function App() {
       }
     };
     if (token !== null) {
+      console.log(`token: ${token}`);
       dispatch(setUserStart());
       checkToken(token);
     } else {

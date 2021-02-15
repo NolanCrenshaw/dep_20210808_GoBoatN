@@ -72,12 +72,10 @@ def login():
             if not verified:
                 # Error needs handling decision
                 return jsonify(message='Incorrect Password'), 403
-            # else:
-            #     auth_token = create_access_token(
-            #         identity={"email": user.email}
-            #     )
-            # return jsonify(auth_token=auth_token), 200
-            return jsonify(message="Hit Login Success"), 200
+            else:
+                auth_token = create_access_token(identity=user.email)
+            return jsonify(auth_token=auth_token), 200
+            # return jsonify(message="Hit Login Success"), 200
 
         except Exception:
             return jsonify(message='Login Failed'), 400
@@ -146,7 +144,7 @@ def signup():
 def check_token():
     try:
         auth_token = get_jwt_identity()
-        admin = Admin.query.filter_by(username=auth_token['username']).first()
+        admin = Admin.query.filter_by(email=auth_token).first()
         safe_admin = admin.to_safe_object()
         return jsonify(admin=safe_admin), 200
     except Exception:

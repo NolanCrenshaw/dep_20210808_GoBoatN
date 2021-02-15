@@ -63,6 +63,7 @@ const LoginForm = ({ loginToggle }) => {
             // -- TODO -- Handling
             console.log("auth_token === undefined");
           } else {
+            console.log("setting token", json);
             window.localStorage.setItem("auth_token", json.auth_token);
             loginToggle();
           }
