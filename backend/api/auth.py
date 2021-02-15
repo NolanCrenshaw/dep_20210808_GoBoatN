@@ -75,15 +75,15 @@ def login():
                 auth_token = create_access_token(
                     identity={"email": user.email}
                 )
-            return corsify_res(jsonify(auth_token=auth_token)), 200
+            return jsonify(auth_token=auth_token), 200
 
         except Exception:
-            return jsonify(message='Login Failed'), 408
+            return jsonify(message='Login Failed'), 400
     else:
         return jsonify(message="Request Method not recognized"), 400
 
 
-@auth.route('/signup', methods=["POST", "OPTIONS"])
+@ auth.route('/signup', methods=["POST", "OPTIONS"])
 def signup():
     print("inside signup")
     data = request.get_json()
@@ -139,8 +139,8 @@ def signup():
         return jsonify(message="Request Method not recognized"), 400
 
 
-@auth.route("/", methods=["GET"])
-@jwt_required
+@ auth.route("/", methods=["GET"])
+@ jwt_required
 def check_token():
     try:
         auth_token = get_jwt_identity()
