@@ -49,6 +49,7 @@ def login():
 
     # CORS Preflight Handling
     if request.method == "OPTIONS":
+        print("HIT OPTIONS REQUEST")
         return cors_preflight_res()
 
     elif request.method == "POST":
@@ -75,7 +76,7 @@ def login():
                 auth_token = create_access_token(
                     identity={"email": user.email}
                 )
-            return jsonify(auth_token=auth_token), 200
+            return corsify_res(jsonify(auth_token=auth_token)), 200
 
         except Exception:
             return jsonify(message='Login Failed'), 400
