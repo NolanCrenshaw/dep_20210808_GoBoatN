@@ -64,19 +64,19 @@ def login():
             # Query
             user = User.query.filter_by(email=email).first()
 
-            if not user:
+            elif not user:
                 return jsonify(message='Email Not Valid'), 400
 
             verified = verify_password(password, user.hashed_password)
 
-            if not verified:
+            elif not verified:
                 # Error needs handling decision
                 return jsonify(message='Incorrect Password'), 403
             else:
                 auth_token = create_access_token(
                     identity={"email": user.email}
                 )
-            return corsify_res(jsonify(auth_token=auth_token)), 200
+            return jsonify(auth_token=auth_token), 200
 
         except Exception:
             return jsonify(message='Login Failed'), 400
