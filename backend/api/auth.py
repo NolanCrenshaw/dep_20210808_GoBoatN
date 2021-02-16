@@ -72,8 +72,8 @@ def login():
             if not verified:
                 # Error needs handling decision
                 return jsonify(message='Incorrect Password'), 403
-            else:
-                auth_token = create_access_token(identity=user.email)
+
+            auth_token = create_access_token(identity=user.email)
             return jsonify(auth_token=auth_token), 200
             # return jsonify(message="Hit Login Success"), 200
 
