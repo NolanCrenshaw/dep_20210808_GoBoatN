@@ -53,33 +53,29 @@ def login():
         return cors_preflight_res()
 
     elif request.method == "POST":
-        try:
-            email = data['email']
-            password = data['password']
-            if not email:
-                return jsonify(message="Email Required"), 400
-            elif not password:
-                return jsonify(message='Password Required'), 400
+        email = data['email']
+        password = data['password']
+        if not email:
+            return jsonify(message="Email Required"), 400
+        elif not password:
+            return jsonify(message='Password Required'), 400
 
-            # Query
-            user = User.query.filter_by(email=email).first()
+        # Query
+        user = User.query.filter_by(email=email).first()
 
-            if not user:
-                return jsonify(message='Email Not Valid'), 400
+        if not user:
+            return jsonify(message='Email Not Valid'), 400
 
-            verified = verify_password(password, user.hashed_password)
+        verified = verify_password(password, user.hashed_password)
 
-            if not verified:
-                # Error needs handling decision
-                return jsonify(message='Incorrect Password'), 403
+        if not verified:
+            # Error needs handling decision
+            return jsonify(message='Incorrect Password'), 403
 
-            email = user.email
-            auth_token = create_access_token(identity=email)
-            return jsonify(auth_token=auth_token), 200
-            # return jsonify(email=email), 200
-
-        except Exception:
-            return jsonify(message='Login Failed'), 400
+        email = user.email
+        auth_token = create_access_token(identity=email)
+        return jsonify(auth_token=auth_token), 200
+        # return jsonify(email=email), 200
     else:
         return jsonify(message="Request Method not recognized"), 400
 
