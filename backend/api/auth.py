@@ -73,9 +73,10 @@ def login():
                 # Error needs handling decision
                 return jsonify(message='Incorrect Password'), 403
 
-            auth_token = create_access_token(identity=user.email)
+            email = user.email
+            # auth_token = create_access_token(identity=user.email)
             # return jsonify(auth_token=auth_token), 200
-            return jsonify(message="Hit Login Success"), 200
+            return jsonify(email=email), 200
 
         except Exception:
             return jsonify(message='Login Failed'), 400
