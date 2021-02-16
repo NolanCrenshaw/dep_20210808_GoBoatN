@@ -137,7 +137,7 @@ def signup():
 
 
 @ auth.route("/", methods=["GET"])
-@ jwt_required
+@ jwt_required()
 def check_token():
     try:
         auth_token = get_jwt_identity()

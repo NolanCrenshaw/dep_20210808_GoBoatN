@@ -10,7 +10,7 @@ vehicle = Blueprint('vehicles', __name__)
 
 # Creates new vehicle row entree
 @vehicle.route('/', methods=["POST"])
-@jwt_required
+@jwt_required()
 def create_vehicle():
     data = request.get_json()
     try:
@@ -30,7 +30,7 @@ def create_vehicle():
 
 # Deletes a Vehicle row entree
 @vehicle.route('/<id>/delete', methods=["DELETE"])
-@jwt_required
+@jwt_required()
 def destroy_vehicle(id):
     try:
         vehicle = Vehicle.query.filter_by(id=id).first()

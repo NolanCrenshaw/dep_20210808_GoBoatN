@@ -11,7 +11,7 @@ river = Blueprint('rivers', __name__)
 
 
 @river.route('/')
-@jwt_required
+@jwt_required()
 def rivers_all():
     # return all rivers ordered by name
     river_objects = River.query.order_by(River.name).all()
@@ -40,7 +40,7 @@ def rivers_all():
 
 
 # @river.route('/accesses/<id>')
-# @jwt_required
+# @jwt_required()
 # def accesses_by_riverid(id):
 #     # return river
 #     river_obj = River.query.filter_by(id=id).first()

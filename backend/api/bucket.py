@@ -22,7 +22,7 @@ s3_bucket_name = 'goboatnbucky'
 
 # Routes
 @bucket.route('/upload', methods=["POST"])
-@jwt_required
+@jwt_required()
 def upload():
     if request.method == "POST":
         img = request.files['file']

@@ -27,7 +27,7 @@ def corsify_res(response):
 
 
 @trip.route('/')
-@jwt_required
+@jwt_required()
 def trips_all():
     # return all trips ordered by name
     trip_objects = Trip.query.order_by(trip.name).all()
@@ -58,7 +58,7 @@ def trips_all():
 
 
 @trip.route('/<id>')
-@jwt_required
+@jwt_required()
 def trip_by_id(id):
     # return trip
     trip_obj = Trip.query.filter_by(id=id).first()
@@ -109,7 +109,7 @@ def trip_by_id(id):
 
 
 @trip.route('/<id>/update', methods=["PUT"])
-@jwt_required
+@jwt_required()
 def update_trip_time(id):
     try:
         data = request.get_json()
@@ -122,7 +122,7 @@ def update_trip_time(id):
 
 
 @trip.route('/create', methods=["POST", "OPTIONS"])
-@jwt_required
+@jwt_required()
 def create_trip():
     data = request.get_json()
 

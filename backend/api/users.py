@@ -12,7 +12,7 @@ user = Blueprint('users', __name__)
 
 # Get User by ID
 @user.route('/<id>')
-@jwt_required
+@jwt_required()
 def user_by_id(id):
     user = User.query.filter_by(id=id).first()
     safe_user = user.to_safe_object()
@@ -65,7 +65,7 @@ def user_by_id(id):
 
 # Get UserSelf by Token
 @user.route('/token')
-@jwt_required
+@jwt_required()
 def get_self_by_token():
     # return user by token
     user_object = get_jwt_identity()
@@ -120,7 +120,7 @@ def get_self_by_token():
 
 # Update User Obj
 @user.route('/token/update', methods=["PUT"])
-@jwt_required
+@jwt_required()
 def update_user_by_token():
     if request.method == "PUT":
         try:
