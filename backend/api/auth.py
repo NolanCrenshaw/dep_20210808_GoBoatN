@@ -74,9 +74,9 @@ def login():
                 return jsonify(message='Incorrect Password'), 403
 
             email = user.email
-            # auth_token = create_access_token(identity=user.email)
-            # return jsonify(auth_token=auth_token), 200
-            return jsonify(email=email), 200
+            auth_token = create_access_token(identity=email)
+            return jsonify(auth_token=auth_token), 200
+            # return jsonify(email=email), 200
 
         except Exception:
             return jsonify(message='Login Failed'), 400
