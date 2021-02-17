@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  setUser,
   setUserStart,
   setUserSuccess,
   setUserFailure,
@@ -16,8 +17,9 @@ import LoadingSpinner from "./components/_svg_library/LoadingSpinner";
 function App() {
   const dispatch = useDispatch();
 
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [pageRendered, setPageRendered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginAttempt, setLoginAttempt] = useState(false);
 
   // Login Attempt Function for Props
@@ -41,30 +43,28 @@ function App() {
     loginToggle() is passed to subcomponents for event handling.
     */
     const token = window.localStorage.getItem("auth_token");
-    const checkToken = async (tk) => {
-      const res = await fetch(`${BASE_URL}/api/users/token`, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${tk}`,
-        },
-      });
-      if (!res.ok) {
-        setIsLoggedIn(false);
-        dispatch(setUserFailure(res.statusText));
-      } else {
-        const json = await res.json();
-        dispatch(setUserSuccess(json));
-        setIsLoggedIn(true);
-      }
-    };
+    // const checkToken = async (tk) => {
+    //   const res = await fetch(`${BASE_URL}/api/users/token`, {
+    //     method: "GET",
+    //     mode: "cors",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${tk}`,
+    //     },
+    //   });
+    //   if (!res.ok) {
+    //     setIsLoggedIn(false);
+    //     dispatch(setUserFailure(res.statusText));
+    //   } else {
+    //     const json = await res.json();
+    //     dispatch(setUserSuccess(json));
+    //     setIsLoggedIn(true);
+    //   }
+    // };
     if (token !== null) {
-      console.log(`token: ${token}`);
-      dispatch(setUserStart());
       checkToken(token);
     } else {
-      setIsLoggedIn(false);
+      // setIsLoggedIn(false);
     }
   }, [loginAttempt]);
 
