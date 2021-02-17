@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -30,16 +31,24 @@ const schema = yup.object().shape({
   password: yup.string().required().min(6).max(30),
 });
 
-const SignupForm = ({ loginToggle }) => {
+const SignupForm = () => {
+  const dispatch = useDispatch();
+  const [submittedData, setSubmittedData] = useState({});
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const submitForm = (data, e) => {
     e.preventDefault();
-    loginToggle();
-    console.log(data);
+    setSubmittedData(data);
+    e.target.reset();
   };
+
+  useEffect(() => {
+    if (submittedData.password !== undefined) {
+      dispatch(login(submittedData));
+    }
+  }, [submittedData]);
 
   return (
     <motion.div
