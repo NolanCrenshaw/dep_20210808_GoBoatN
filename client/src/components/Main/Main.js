@@ -5,9 +5,7 @@ import { fetchRiversThunk } from "../../actions/riverActions";
 import {
   populateTripsStart,
   populateTripsSuccess,
-  populateTripsFailure,
 } from "../../actions/tripActions";
-import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
@@ -54,7 +52,11 @@ const Main = ({ loginToggle }) => {
   }, []);
 
   useEffect(() => {
-    console.log(`trips = ${trips}`);
+    /*
+    ~~ TODO ~~
+    Will possibly need to change initial trip fetch call.
+    Currently being returned through user object.
+    */
     if (trips !== undefined && trips.length > 0) {
       dispatch(populateTripsStart());
       dispatch(populateTripsSuccess(trips));

@@ -22,7 +22,6 @@ function App() {
     It is functional, but relies on a boolean.
     Semantically a boolean is inappropriate.
     */
-    console.log("loginToggle fired");
     setLoginAttempt(!loginAttempt);
   };
 
@@ -30,7 +29,6 @@ function App() {
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
     if (token !== null) {
-      console.log("token is not null/ firing dispatch");
       dispatch(setUser(token));
     }
   }, [loginAttempt]);
