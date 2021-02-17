@@ -45,30 +45,6 @@ const LoginForm = ({ loginToggle }) => {
   useEffect(() => {
     if (submittedData.password !== undefined) {
       dispatch(login(submittedData));
-      // const login = async () => {
-      //   const res = await fetch(`${BASE_URL}/api/auth/login`, {
-      //     method: "POST",
-      //     mode: "cors",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(submittedData),
-      //   });
-      //   if (!res.ok) {
-      //     // TODO
-      //     // dispatch(setUserFailure(res.statusText));
-      //   } else {
-      //     const json = await res.json();
-      //     if (json.auth_token === undefined) {
-      //       // -- TODO -- Handling
-      //       console.log("auth_token === undefined");
-      //     } else {
-      //       window.localStorage.setItem("auth_token", json.auth_token);
-      //       loginToggle();
-      //     }
-      //   }
-      // };
-      // login();
     }
   }, [submittedData]);
 

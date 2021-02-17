@@ -2,6 +2,10 @@ import {
   SET_USER_START,
   SET_USER_SUCCESS,
   SET_USER_FAILURE,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
 } from "../actions/userActions";
 
 const initState = {
@@ -44,6 +48,19 @@ const userReducer = (state = initState, action) => {
       nextState.error = action.error;
       nextState.isLoggedIn = false;
       nextState.loading = false;
+      return nextState;
+    case LOGIN_START:
+      nextState.loading = true;
+      return nextState;
+    case LOGIN_SUCCESS:
+      nextState.loading = false;
+      return nextState;
+    case LOGIN_FAILURE:
+      nextState.error = action.error;
+      nextState.loading = false;
+      return nextState;
+    case LOGOUT:
+      nextState = initState;
       return nextState;
     default:
       return state;

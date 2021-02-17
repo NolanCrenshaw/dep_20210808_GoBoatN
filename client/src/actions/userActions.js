@@ -6,6 +6,7 @@ export const SET_USER_FAILURE = "SET_USER_FAILURE";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGOUT = "LOGOUT";
 
 export const setUserStart = () => ({
   type: SET_USER_START,
@@ -27,6 +28,9 @@ export const loginSuccess = () => ({
 export const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
   error,
+});
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 export const setUser = (tk) => async (dispatch) => {

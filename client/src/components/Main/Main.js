@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/userActions";
 import { fetchRiversThunk } from "../../actions/riverActions";
 import {
   populateTripsStart,
@@ -18,7 +19,7 @@ import TripsIcon from "../_svg_library/TripsIcon";
 import RiversIcon from "../_svg_library/RiversIcon";
 import SettingsIcon from "../_svg_library/SettingsIcon";
 
-const Main = ({ loginToggle }) => {
+const Main = () => {
   const dispatch = useDispatch();
 
   const [currentTime, setCurrentTime] = useState({});
@@ -26,10 +27,11 @@ const Main = ({ loginToggle }) => {
   const trips = useSelector((state) => state.user.trips);
   const invites = useSelector((state) => state.user.invites);
 
+  // Logout Function
   const logOut = (e) => {
     e.preventDefault();
     window.localStorage.removeItem("auth_token");
-    loginToggle();
+    dispatch(logout());
   };
 
   // Running Clock Handler
