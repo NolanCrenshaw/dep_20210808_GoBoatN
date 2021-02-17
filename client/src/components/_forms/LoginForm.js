@@ -22,13 +22,12 @@ const content = {
 };
 
 const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(6),
+  email: yup.string().required().max(50).email(),
+  password: yup.string().required().min(6).max(30),
 });
 
-const LoginForm = ({ loginToggle }) => {
+const LoginForm = () => {
   const dispatch = useDispatch();
-
   const [submittedData, setSubmittedData] = useState({});
 
   // React Hook Form Ctrl w/ Yup Validation
@@ -39,7 +38,7 @@ const LoginForm = ({ loginToggle }) => {
   const onSubmit = (data, e) => {
     e.preventDefault();
     setSubmittedData(data);
-    // e.target.reset();
+    e.target.reset();
   };
 
   useEffect(() => {

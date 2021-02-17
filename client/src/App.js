@@ -12,18 +12,6 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [pageRendered, setPageRendered] = useState(false);
-  const [loginAttempt, setLoginAttempt] = useState(false);
-
-  // Login Attempt Function for Props
-  const loginToggle = () => {
-    /*
-    ~~ TODO ~~
-    This code should be cleaned up in the future.
-    It is functional, but relies on a boolean.
-    Semantically a boolean is inappropriate.
-    */
-    setLoginAttempt(!loginAttempt);
-  };
 
   // Login Control
   useEffect(() => {
@@ -31,7 +19,7 @@ function App() {
     if (token !== null) {
       dispatch(setUser(token));
     }
-  }, [loginAttempt]);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,13 +35,7 @@ function App() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div>
-          {isLoggedIn ? (
-            <Main loginToggle={() => loginToggle()} />
-          ) : (
-            <Splash loginToggle={() => loginToggle()} />
-          )}
-        </div>
+        <div>{isLoggedIn ? <Main /> : <Splash />}</div>
       )}
     </>
   );
