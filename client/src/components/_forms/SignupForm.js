@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -47,7 +47,7 @@ const SignupForm = () => {
 
   useEffect(() => {
     if (submittedData.password !== undefined) {
-      dispatch(login(submittedData));
+      dispatch(signup(submittedData));
     }
   }, [submittedData]);
 

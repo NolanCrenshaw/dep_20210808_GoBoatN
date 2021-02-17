@@ -35,13 +35,7 @@ function App() {
           <LoadingSpinner />
         </div>
       ) : (
-        <div>
-          {isLoggedIn ? (
-            <Main loginToggle={() => loginToggle()} />
-          ) : (
-            <Splash loginToggle={() => loginToggle()} />
-          )}
-        </div>
+        <div>{isLoggedIn ? <Main /> : <Splash />}</div>
       )}
     </>
   );
