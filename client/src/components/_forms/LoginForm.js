@@ -3,9 +3,8 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
-// import {} from "../../actions";
+import { login } from "../../actions/userActions";
 
 const content = {
   inputs: [
@@ -45,30 +44,31 @@ const LoginForm = ({ loginToggle }) => {
 
   useEffect(() => {
     if (submittedData.password !== undefined) {
-      const login = async () => {
-        const res = await fetch(`${BASE_URL}/api/auth/login`, {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(submittedData),
-        });
-        if (!res.ok) {
-          // TODO
-          // dispatch(setUserFailure(res.statusText));
-        } else {
-          const json = await res.json();
-          if (json.auth_token === undefined) {
-            // -- TODO -- Handling
-            console.log("auth_token === undefined");
-          } else {
-            window.localStorage.setItem("auth_token", json.auth_token);
-            loginToggle();
-          }
-        }
-      };
-      login();
+      dispatch(login(submittedData));
+      // const login = async () => {
+      //   const res = await fetch(`${BASE_URL}/api/auth/login`, {
+      //     method: "POST",
+      //     mode: "cors",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(submittedData),
+      //   });
+      //   if (!res.ok) {
+      //     // TODO
+      //     // dispatch(setUserFailure(res.statusText));
+      //   } else {
+      //     const json = await res.json();
+      //     if (json.auth_token === undefined) {
+      //       // -- TODO -- Handling
+      //       console.log("auth_token === undefined");
+      //     } else {
+      //       window.localStorage.setItem("auth_token", json.auth_token);
+      //       loginToggle();
+      //     }
+      //   }
+      // };
+      // login();
     }
   }, [submittedData]);
 
