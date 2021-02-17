@@ -5,6 +5,9 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SIGNUP_START,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
   LOGOUT,
 } from "../actions/userActions";
 
@@ -56,6 +59,16 @@ const userReducer = (state = initState, action) => {
       nextState.loading = false;
       return nextState;
     case LOGIN_FAILURE:
+      nextState.error = action.error;
+      nextState.loading = false;
+      return nextState;
+    case SIGNUP_START:
+      nextState.loading = true;
+      return nextState;
+    case SIGNUP_SUCCESS:
+      nextState.loading = false;
+      return nextState;
+    case SIGNUP_FAILURE:
       nextState.error = action.error;
       nextState.loading = false;
       return nextState;

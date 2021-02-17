@@ -22,8 +22,8 @@ const content = {
 };
 
 const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(6),
+  email: yup.string().required().max(50).email(),
+  password: yup.string().required().min(6).max(30),
 });
 
 const LoginForm = () => {

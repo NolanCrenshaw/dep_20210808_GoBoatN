@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { motion } from "framer-motion";
+import { signup } from "../../actions/userActions";
 
 const content = {
   inputs: [
