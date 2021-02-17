@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import {
-  setUser,
-  setUserStart,
-  setUserSuccess,
-  setUserFailure,
-} from "./actions/userActions";
-import { BASE_URL } from "./config";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./actions/userActions";
 
 // Local Requirements
 import Splash from "./components/Splash/Splash";
@@ -15,9 +9,9 @@ import LoadingSpinner from "./components/_svg_library/LoadingSpinner";
 
 // React Component
 function App() {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [pageRendered, setPageRendered] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginAttempt, setLoginAttempt] = useState(false);
 
   // Login Attempt Function for Props
@@ -28,6 +22,7 @@ function App() {
     It is functional, but relies on a boolean.
     Semantically a boolean is inappropriate.
     */
+    console.log("loginToggle fired");
     setLoginAttempt(!loginAttempt);
   };
 
@@ -35,7 +30,8 @@ function App() {
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
     if (token !== null) {
-      setUser(token);
+      console.log("token is not null/ firing dispatch");
+      dispatch(setUser(token));
     }
   }, [loginAttempt]);
 
