@@ -6,7 +6,7 @@ import {
 
 const initState = {
   loading: false,
-  error: {},
+  error: "",
   isLoggedIn: false,
   profile: {
     id: "",
@@ -37,11 +37,12 @@ const userReducer = (state = initState, action) => {
       return nextState;
     case SET_USER_SUCCESS:
       nextState = action.user;
-      nextState.loading = false;
       nextState.isLoggedIn = true;
+      nextState.loading = false;
       return nextState;
     case SET_USER_FAILURE:
       nextState.error = action.error;
+      nextState.isLoggedIn = false;
       nextState.loading = false;
       return nextState;
     default:
