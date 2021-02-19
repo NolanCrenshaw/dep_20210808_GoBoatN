@@ -22,16 +22,15 @@ def rivers_all():
     return jsonify(rivers=rivers), 200
 
 
-# @river.route('/accesses/<id>')
-# @jwt_required()
-# def accesses_by_riverid(id):
-#     # return river
-#     river_obj = River.query.filter_by(id=id).first()
+@river.route('/accesses/<id>/')
+@jwt_required()
+def accesses_by_riverid(id):
+    river_obj = River.query.filter_by(id=id).first()
 
-#     # package access list
-#     access_list = []
-#     access_objects = river_obj.accesses
-#     for access in access_objects:
-#         access_list.append(access.to_dict())
+    # package access list
+    access_list = []
+    access_objects = river_obj.accesses
+    for access in access_objects:
+        access_list.append(access.to_dict())
 
-#     return jsonify(accesses=access_list)
+    return jsonify(accesses=access_list), 200
