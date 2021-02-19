@@ -1,4 +1,3 @@
-import Signup from "../components/_legacy_components/Signup";
 import { BASE_URL } from "../config";
 
 export const SET_USER_START = "SET_USER_START";

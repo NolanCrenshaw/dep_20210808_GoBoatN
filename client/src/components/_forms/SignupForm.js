@@ -42,7 +42,7 @@ const SignupForm = () => {
   const submitForm = (data, e) => {
     e.preventDefault();
     setSubmittedData(data);
-    e.target.reset();
+    // e.target.reset();
   };
 
   useEffect(() => {
