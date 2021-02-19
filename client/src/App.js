@@ -13,11 +13,15 @@ function App() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [pageRendered, setPageRendered] = useState(false);
 
-  // Login Control
+  // Login Control ~~ based on stored auth_token
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    if (token !== null) {
+    // undefined token instances require being interpolated
+    if (token !== null && token !== `${undefined}`) {
       dispatch(setUser(token));
+    } else if (token === `${undefined}`) {
+      // remove corrupt auth_token instances
+      window.localStorage.removeItem("auth_token");
     }
   }, []);
 
