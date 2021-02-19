@@ -93,11 +93,8 @@ def signup():
         db.session.add(user)
         db.session.commit()
 
-        # auth_token = create_access_token(
-        #     identity={"email": data['email']})
-        # return jsonify(auth_token=auth_token), 200
-        print("Clean exit from signup route")
-        return jsonify(message="Signup route returning")
+        auth_token = create_access_token(identity=data['email'])
+        return jsonify(auth_token=auth_token), 200
 
     else:
         return jsonify(message="Request Method not recognized"), 400
