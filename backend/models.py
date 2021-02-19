@@ -27,7 +27,7 @@ class User(db.Model):
 
     boats = db.relationship("Boat", backref="user", lazy=True)
     vehicles = db.relationship("Vehicle", backref="user", lazy=True)
-    invites = db.relationship("Invite", backref="user", lazy=False)
+    invites = db.relationship("Invite", backref="user", lazy=True)
     boaters = db.relationship("Boater", backref="user", lazy=True)
     friends = db.relationship("Friend", backref="user", lazy=True)
 

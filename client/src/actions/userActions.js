@@ -84,7 +84,7 @@ export const login = (data) => async (dispatch) => {
 
 export const signup = (data) => async (dispatch) => {
   dispatch(signupStart());
-  const res = await fetch(`${BASE_URL}/auth/signup`, {
+  const res = await fetch(`${BASE_URL}/api/auth/signup`, {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },

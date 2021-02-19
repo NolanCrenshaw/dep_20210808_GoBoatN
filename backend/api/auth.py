@@ -68,7 +68,6 @@ def login():
 def signup():
     data = request.get_json()
 
-    # CORS Preflight Handling
     if request.method == "OPTIONS":
         return jsonify(message="hello options"), 200
 
