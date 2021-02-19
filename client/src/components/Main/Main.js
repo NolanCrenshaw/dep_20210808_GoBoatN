@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
-import { fetchRiversThunk } from "../../actions/riverActions";
+import { fetchRivers } from "../../actions/riverActions";
 import {
   populateTripsStart,
   populateTripsSuccess,
@@ -49,7 +49,7 @@ const Main = () => {
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
     if (token !== null) {
-      dispatch(fetchRiversThunk(token));
+      dispatch(fetchRivers(token));
     }
   }, []);
 

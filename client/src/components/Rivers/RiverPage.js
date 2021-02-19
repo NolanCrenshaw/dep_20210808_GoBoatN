@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { motion } from "framer-motion";
+import { fetchAccesses } from "../../actions/riverActions";
 
 import CreateTripForm from "../_forms/CreateTripForm";
 
 const RiverPage = () => {
   const params = useParams();
+  const dispatch = useDispatch();
   const rivers = useSelector((state) => state.rivers);
   const [river, setRiver] = useState({});
   const [accesses, setAccesses] = useState();
@@ -44,11 +46,11 @@ const RiverPage = () => {
 
   // Set Accesses into State from River Obj
   useEffect(() => {
-    if (river) {
-      setAccesses(river.accesses);
-    }
+    const token = window.localStorage.getItem("auth_token");
+    dispatch(fetchAccesses(token, params.id));
+    // setAccesses(river.accesses);
     // console.log("HELLO", accesses);
-  }, [river]);
+  }, []);
 
   useEffect(() => {
     if (accesses !== undefined && accesses.length !== 0) {
