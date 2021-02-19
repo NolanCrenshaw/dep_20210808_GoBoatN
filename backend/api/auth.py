@@ -27,21 +27,6 @@ def verify_password(password, hashed_password):
         return False
 
 
-# CORS Preflight Header Handling
-def cors_preflight_res():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "*")
-    response.headers.add("Access-Control-Allow-Methods", "*")
-    return response
-
-
-# CORS JSON Response Header Handling
-def corsify_res(response):
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-
 # Routes
 @auth.route('/login', methods=['POST', "OPTIONS"])
 def login():
@@ -49,8 +34,7 @@ def login():
 
     # CORS Preflight Handling
     if request.method == "OPTIONS":
-        print("HIT OPTIONS REQUEST")
-        return cors_preflight_res()
+        return jsonify(message="hello options"), 200
 
     elif request.method == "POST":
         email = data['email']
@@ -82,56 +66,40 @@ def login():
 
 @ auth.route('/signup', methods=["POST", "OPTIONS"])
 def signup():
-    print("inside signup")
     data = request.get_json()
 
     # CORS Preflight Handling
     if request.method == "OPTIONS":
-        return cors_preflight_res()
+        return jsonify(message="hello options"), 200
 
     elif request.method == "POST":
+        username = data['username']
+        email = data['email']
+
+        if not username:
+            return jsonify(message="Username Required"), 400
+        elif not email:
+            return jsonify(message='Email Required'), 400
+
         try:
-            username = data['username']
-            email = data['email']
-            firstname = data['firstname']
-            lastname = data['lastname']
-            zipcode = int(data['zipcode'])
-
-            if not username:
-                return jsonify(message="Username Required"), 400
-            elif not email:
-                return jsonify(message='Email Required'), 400
-            elif not firstname:
-                return jsonify(message='First Name Required'), 400
-            elif not lastname:
-                return jsonify(message='Last Name Required'), 400
-            elif not zipcode:
-                return jsonify(message='Zipcode Required'), 400
-
-            try:
-                hashed_password = set_password(data['password'])
-            except Exception:
-                return jsonify(message='Password Required'), 400
-
-            user = User(
-                username=username,
-                email=email,
-                hashed_password=hashed_password,
-                firstname=firstname,
-                lastname=lastname,
-                zipcode=zipcode,
-            )
-            db.session.add(user)
-            db.session.commit()
-
-            auth_token = create_access_token(
-                identity={"email": data['email']})
-            return jsonify(auth_token=auth_token), 200
-            print("Clean exit from signup route")
-            return jsonify(message="Signup route returning")
-
+            hashed_password = set_password(data['password'])
         except Exception:
-            return jsonify(message="try failed"), 409
+            return jsonify(message='Password Required: '), 400
+
+        user = User(
+            username=username,
+            email=email,
+            hashed_password=hashed_password,
+        )
+        db.session.add(user)
+        db.session.commit()
+
+        # auth_token = create_access_token(
+        #     identity={"email": data['email']})
+        # return jsonify(auth_token=auth_token), 200
+        print("Clean exit from signup route")
+        return jsonify(message="Signup route returning")
+
     else:
         return jsonify(message="Request Method not recognized"), 400
 
