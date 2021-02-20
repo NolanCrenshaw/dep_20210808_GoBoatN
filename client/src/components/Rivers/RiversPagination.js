@@ -12,8 +12,8 @@ const RiversPages = ({ rivers }) => {
   const getData = () => {
     const offsetValue = offset * perPage;
     const slice = rivers.slice(offsetValue, offsetValue + perPage);
-    const postData = slice.map((river) => (
-      <div key={river.id}>
+    const postData = slice.map((river, i) => (
+      <div key={i}>
         <RiverCard river={river} />
       </div>
     ));
