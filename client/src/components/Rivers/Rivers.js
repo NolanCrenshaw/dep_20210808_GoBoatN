@@ -7,6 +7,7 @@ import RiversPagination from "./RiversPagination";
 const Rivers = () => {
   const rivers = useSelector((state) => state.rivers);
 
+  const [sortedRivers, setSortedRivers] = useState([]);
   const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -15,15 +16,14 @@ const Rivers = () => {
 
   // Search Function
   const searchRivers = () => {
-    const filterRivers = [];
+    const filteredRivers = [];
     const searchTerm = new RegExp(`${search}`, "i");
-    for (let i = 0; i < rivers.length; i++) {
-      const river = rivers[i];
-      if (searchTerm.test(river.name)) {
-        filterRivers.push(rivers[i]);
+    for (const river in sortedRivers) {
+      if (searchTerm.test(sortedRivers[river].name)) {
+        filteredRivers.push(sortedRivers[river]);
       }
     }
-    setDisplayed(filterRivers);
+    setDisplayed(filteredRivers);
   };
 
   const handleKeyDown = (e) => {
@@ -32,12 +32,14 @@ const Rivers = () => {
     }
   };
 
-  // Set Init Displayed Rivers ~~ Limit 20
+  // Set Init Displayed Rivers
   useEffect(() => {
     const arr = [];
-    for (let i = 0; i < rivers.length; i++) {
-      arr.push(rivers[i]);
+    for (const river in rivers) {
+      arr.push(rivers[river]);
     }
+    arr.sort((a, b) => a.name > b.name);
+    setSortedRivers(arr);
     setDisplayed(arr);
   }, [rivers]);
 

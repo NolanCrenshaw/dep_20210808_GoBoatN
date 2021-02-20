@@ -10,8 +10,7 @@ import CreateTripForm from "../_forms/CreateTripForm";
 const RiverPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const rivers = useSelector((state) => state.rivers);
-  const [river, setRiver] = useState({});
+  const river = useSelector((state) => state.rivers[`${params.id}`]);
   const [accesses, setAccesses] = useState();
 
   // Form Toggle
@@ -26,35 +25,22 @@ const RiverPage = () => {
   const [center, setCenter] = useState();
   const [zoom, setZoom] = useState(11);
 
-  /*
-  ~~ TODO ~~
-  Refine State request with Param
-  Learn to select single piece of State
-  */
-  // Return River from State by `params.id`
-  useEffect(() => {
-    const riverSelector = () => {
-      for (let i = 0; i < rivers.length; i++) {
-        const river = rivers[i];
-        if (`${river.id}` === `${params.id}`) {
-          setRiver(river);
-        }
-      }
-    };
-    riverSelector();
-  }, [rivers]);
-
   // Set Accesses into State from River Obj
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    dispatch(fetchAccesses(token, params.id));
+    // dispatch(fetchAccesses(token, params.id));
     // setAccesses(river.accesses);
     // console.log("HELLO", accesses);
   }, []);
 
+  /*
+  ~~ Creates center point for Map
+  Map does not set without accesses being loaded
+  ~~ Future TODO ~~
+  Added default center value to River Objects
+  */
   useEffect(() => {
     if (accesses !== undefined && accesses.length !== 0) {
-      // console.log("HELLO", accesses);
       const access = accesses[0];
       const center = [access.latitude, access.longitude];
       setCenter(center);
@@ -70,8 +56,17 @@ const RiverPage = () => {
     >
       <header>
         <div>
-          <h1>{river.name}</h1>
-          <h4>{river.region}</h4>
+          {river ? (
+            <>
+              <h1>{river.name}</h1>
+              <h4>{river.region}</h4>
+            </>
+          ) : (
+            <>
+              <h1>loading Name</h1>
+              <h4>loading Region</h4>
+            </>
+          )}
         </div>
         <div>
           <motion.button
