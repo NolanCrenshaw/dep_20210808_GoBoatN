@@ -17,10 +17,15 @@ const Rivers = () => {
   const searchRivers = () => {
     const filterRivers = [];
     const searchTerm = new RegExp(`${search}`, "i");
-    for (let i = 0; i < rivers.length; i++) {
-      const river = rivers[i];
+    // for (let i = 0; i < rivers.length; i++) {
+    //   const river = rivers[i];
+    //   if (searchTerm.test(river.name)) {
+    //     filterRivers.push(rivers[i]);
+    //   }
+    // }
+    for (const river in rivers) {
       if (searchTerm.test(river.name)) {
-        filterRivers.push(rivers[i]);
+        filterRivers.push(river);
       }
     }
     setDisplayed(filterRivers);
@@ -35,9 +40,10 @@ const Rivers = () => {
   // Set Init Displayed Rivers ~~ Limit 20
   useEffect(() => {
     const arr = [];
-    for (let i = 0; i < rivers.length; i++) {
-      arr.push(rivers[i]);
+    for (const river in rivers) {
+      arr.push(rivers[river]);
     }
+    arr.sort((a, b) => a.name > b.name);
     setDisplayed(arr);
   }, [rivers]);
 

@@ -15,7 +15,14 @@ const riverReducer = (state = {}, action) => {
       nextState.loading = true;
       return nextState;
     case SET_RIVERS_SUCCESS:
-      nextState = action.rivers;
+      // nextState = action.rivers;
+      const raw_rivers = action.rivers;
+      const rivers = {};
+      for (const river in raw_rivers) {
+        const riversID = raw_rivers[river].id;
+        rivers[riversID] = raw_rivers[river];
+      }
+      nextState = rivers;
       nextState.loading = false;
       return nextState;
     case SET_RIVERS_FAILURE:

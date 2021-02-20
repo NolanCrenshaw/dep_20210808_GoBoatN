@@ -47,7 +47,7 @@ const RiverPage = () => {
   // Set Accesses into State from River Obj
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    dispatch(fetchAccesses(token, params.id));
+    // dispatch(fetchAccesses(token, params.id));
     // setAccesses(river.accesses);
     // console.log("HELLO", accesses);
   }, []);
