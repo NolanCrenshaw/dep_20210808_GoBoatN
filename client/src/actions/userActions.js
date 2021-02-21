@@ -1,5 +1,7 @@
 import { BASE_URL } from "../config";
 
+import { setFriendsSuccess } from "./friendsActions";
+
 export const SET_USER_START = "SET_USER_START";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
 export const SET_USER_FAILURE = "SET_USER_FAILURE";
@@ -60,6 +62,11 @@ export const setUser = (tk) => async (dispatch) => {
     dispatch(setUserFailure("setUser failure"));
   } else {
     const json = await res.json();
+    /*
+    CURRENTLY DISPATCHING FRIENDS FROM THIS FETCH FUNCTION
+    NEED TO MIGRATE INTO OWN FUNCTION
+    */
+    dispatch(setFriendsSuccess(json.friends));
     dispatch(setUserSuccess(json));
   }
 };

@@ -76,7 +76,7 @@ const userReducer = (state = initialState, action) => {
       nextState = initialState;
       return nextState;
     default:
-      return state;
+      return nextState;
   }
 };
 
