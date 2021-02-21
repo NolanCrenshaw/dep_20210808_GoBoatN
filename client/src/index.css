@@ -99,6 +99,74 @@ a {
   background-color: white;
 }
 
+.pagination {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2.5rem 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pagination li {
+  height: 100%;
+  width: 30px;
+  margin: 0 0.25rem;
+  list-style: none;
+}
+
+.pagination li a {
+  height: 100%;
+  width: 100%;
+  padding: 0.8rem;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 400;
+  border: 0.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pagination li a:hover {
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.pagination .previous,
+.pagination .next {
+  width: 60px;
+}
+
+.pagination .previous a,
+.pagination .next a {
+  margin: 0 0.5rem;
+  border: none;
+  background-color: none;
+}
+
+.pagination .active {
+  text-shadow: 2px 2px 4px black, -2px 2px 4px black;
+  font-weight: 800;
+  background-color: rgba(46, 139, 86, 0.25);
+}
+
 .form {
   height: 100%;
   width: 100%;
@@ -911,74 +979,6 @@ a {
   padding: 2rem;
 }
 
-.riverspagination-container .pagination {
-  height: 40px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 2.5rem 1rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.riverspagination-container .pagination li {
-  height: 100%;
-  width: 30px;
-  margin: 0 0.25rem;
-  list-style: none;
-}
-
-.riverspagination-container .pagination li a {
-  height: 100%;
-  width: 100%;
-  padding: 0.8rem;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 400;
-  border: 0.5px solid rgba(255, 255, 255, 0.5);
-  border-radius: 6px;
-  cursor: pointer;
-  -webkit-transition: all ease-in-out 0.2s;
-  transition: all ease-in-out 0.2s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.riverspagination-container .pagination li a:hover {
-  font-size: 1.6rem;
-  font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.riverspagination-container .pagination .previous,
-.riverspagination-container .pagination .next {
-  width: 60px;
-}
-
-.riverspagination-container .pagination .previous a,
-.riverspagination-container .pagination .next a {
-  margin: 0 0.5rem;
-  border: none;
-  background-color: none;
-}
-
-.riverspagination-container .pagination .active {
-  text-shadow: 2px 2px 4px black, -2px 2px 4px black;
-  font-weight: 800;
-  background-color: rgba(46, 139, 86, 0.25);
-}
-
 .riverpage-container {
   height: auto;
   width: 100%;
@@ -1079,5 +1079,71 @@ a {
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.friends-container {
+  height: auto;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.friends-container header {
+  padding: 0;
+  margin: 0 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.friends-container header div:nth-of-type(1) {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.friends-container header div:nth-of-type(1) input {
+  height: 37px;
+  width: 200px;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.friends-container header div:nth-of-type(1) div {
+  height: 37px;
+  width: 40px;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
+  border: 1px solid white;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.friends-container header div:nth-of-type(1) div img {
+  height: 90%;
+  width: 90%;
+}
+
+.friends-container header div:nth-of-type(1) div:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.friendspagination-container {
+  padding: 2rem;
 }
 /*# sourceMappingURL=index.css.map */
