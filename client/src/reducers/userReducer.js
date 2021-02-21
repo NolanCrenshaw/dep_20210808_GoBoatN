@@ -11,9 +11,9 @@ import {
   LOGOUT,
 } from "../actions/userActions";
 
-const initState = {
+const initialState = {
   loading: false,
-  error: "",
+  error: false,
   isLoggedIn: false,
   profile: {
     id: "",
@@ -35,7 +35,7 @@ const initState = {
   invites: [],
 };
 
-const userReducer = (state = initState, action) => {
+const userReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = { ...state };
   switch (action.type) {
@@ -45,6 +45,7 @@ const userReducer = (state = initState, action) => {
     case SET_USER_SUCCESS:
       nextState = action.user;
       nextState.isLoggedIn = true;
+      nextState.error = false;
       nextState.loading = false;
       return nextState;
     case SET_USER_FAILURE:
@@ -56,6 +57,11 @@ const userReducer = (state = initState, action) => {
       nextState.loading = true;
       return nextState;
     case LOGIN_SUCCESS:
+      /*
+      No login redux action required.
+      auth_token handles login state.
+      auth_token is watched by useEffect().
+      */
       nextState.loading = false;
       return nextState;
     case LOGIN_FAILURE:
@@ -73,10 +79,10 @@ const userReducer = (state = initState, action) => {
       nextState.loading = false;
       return nextState;
     case LOGOUT:
-      nextState = initState;
+      nextState = initialState;
       return nextState;
     default:
-      return state;
+      return nextState;
   }
 };
 

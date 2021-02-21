@@ -10,14 +10,17 @@ import {
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
-import Home from "../Home/Home";
-import Rivers from "../Rivers/Rivers";
-import RiverPage from "../Rivers/RiverPage";
+// Icon Imports
 import HomeIcon from "../_svg_library/HomeIcon";
 import FriendsIcon from "../_svg_library/FriendsIcon";
 import TripsIcon from "../_svg_library/TripsIcon";
 import RiversIcon from "../_svg_library/RiversIcon";
 import SettingsIcon from "../_svg_library/SettingsIcon";
+
+import Home from "../Home/Home";
+import Rivers from "../Rivers/Rivers";
+import RiverPage from "../Rivers/RiverPage";
+import Friends from "../Friends/Friends";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -147,9 +150,7 @@ const Main = () => {
                 <Home />
               </Route>
               <Route exact path="/friends">
-                <div>
-                  <h1>Friends</h1>
-                </div>
+                <Friends />
               </Route>
               <Route exact path="/trips">
                 <div>

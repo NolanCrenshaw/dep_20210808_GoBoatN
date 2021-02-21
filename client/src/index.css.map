@@ -9,7 +9,8 @@
         "components/Splash/_splash.scss",
         "components/Main/_main.scss",
         "components/Home/_home.scss",
-        "components/Rivers/_rivers.scss"
+        "components/Rivers/_rivers.scss",
+        "components/Friends/_friends.scss"
     ],
     "names": [],
     "file": "index.css"
