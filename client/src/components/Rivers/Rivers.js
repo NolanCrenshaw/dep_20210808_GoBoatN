@@ -35,9 +35,7 @@ const Rivers = () => {
   // Set Init Displayed Rivers
   useEffect(() => {
     const arr = [];
-    for (const river in rivers) {
-      arr.push(rivers[river]);
-    }
+    Object.values(rivers).map((river) => arr.push(river));
     arr.sort((a, b) => a.name > b.name);
     setSortedRivers(arr);
     setDisplayed(arr);
