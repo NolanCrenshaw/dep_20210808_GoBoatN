@@ -41,12 +41,6 @@ def get_self_by_token():
     for vehicle in user_vehicles:
         vehicles.append(vehicle.to_dict())
 
-    # # populate user's friends
-    # user_friends = user.friends
-    # friends = []
-    # for friend in user_friends:
-    #     friends.append(friend.to_int())
-
     # populate user's invites
     user_invites = user.invites
     invites = []
@@ -69,7 +63,6 @@ def get_self_by_token():
         profile=safe_user,
         boats=boats,
         vehicles=vehicles,
-        # friends=friends,
         invites=invites,
         trips=trips
     ), 200
@@ -98,3 +91,10 @@ def update_user_by_token():
 @jwt_required()
 def get_friends_by_token():
     user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
+    user_friends = user.friends
+
+    friends_list = []
+    for friend in user_friends:
+        print("Friend: ", friend)
+        # friends_list.append(friend.to_int())
