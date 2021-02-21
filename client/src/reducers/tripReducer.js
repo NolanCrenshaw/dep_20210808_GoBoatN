@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   loading: false,
-  error: "",
+  error: false,
   list: {},
 };
 

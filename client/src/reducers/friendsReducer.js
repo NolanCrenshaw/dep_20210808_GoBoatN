@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  error: undefined,
+  error: false,
 };
 
 const friendsReducer = (state = initialState, action) => {
@@ -17,8 +17,10 @@ const friendsReducer = (state = initialState, action) => {
       nextState.loading = true;
       return nextState;
     case SET_FRIENDS_SUCCESS:
-      nextState = [...action.friends];
-      nextState.loading = false;
+      // const friends = action.friends;
+      // nextState.friends = action.friends;
+
+      // nextState.loading = false;
       return nextState;
     case SET_FRIENDS_FAILURE:
       nextState.error = action.error;

@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   loading: false,
-  error: "",
+  error: false,
   isLoggedIn: false,
   profile: {
     id: "",
@@ -45,6 +45,7 @@ const userReducer = (state = initialState, action) => {
     case SET_USER_SUCCESS:
       nextState = action.user;
       nextState.isLoggedIn = true;
+      nextState.error = false;
       nextState.loading = false;
       return nextState;
     case SET_USER_FAILURE:
@@ -56,6 +57,11 @@ const userReducer = (state = initialState, action) => {
       nextState.loading = true;
       return nextState;
     case LOGIN_SUCCESS:
+      /*
+      No login redux action required.
+      auth_token handles login state.
+      auth_token is watched by useEffect().
+      */
       nextState.loading = false;
       return nextState;
     case LOGIN_FAILURE:
