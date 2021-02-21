@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { fetchRivers } from "../../actions/riverActions";
+import { setFriends } from "../../actions/friendsActions";
 import {
   populateTripsStart,
   populateTripsSuccess,
@@ -48,12 +49,18 @@ const Main = () => {
     return () => clearInterval(minuteInterval);
   }, []);
 
-  // state.rivers ~ Fetch & Redux Management
+  // state.rivers ~ Fetch & Redux management
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
     if (token !== null) {
       dispatch(fetchRivers(token));
     }
+  }, []);
+
+  // state.friends ~ Fetch & Redux management
+  useEffect(() => {
+    const token = window.localStorage.getItem("auth_token");
+    dispatch(setFriends(token));
   }, []);
 
   useEffect(() => {

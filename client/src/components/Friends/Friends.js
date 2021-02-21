@@ -1,16 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import { setFriends } from "../../actions/friendsActions";
+
+import UserCard from "../_cards/UserCard";
 
 const Friends = () => {
-  const dispatch = useDispatch();
   const friends = useSelector((state) => state.friends);
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    dispatch(setFriends(token));
-  }, []);
 
   return (
     <motion.div
@@ -23,7 +18,7 @@ const Friends = () => {
       {friends ? (
         <>
           {Object.values(friends).map((friend) => (
-            <span>{friend.username}</span>
+            <UserCard user={friend} />
           ))}
         </>
       ) : (
