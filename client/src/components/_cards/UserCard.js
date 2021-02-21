@@ -13,7 +13,7 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <div className="usercard-container">
+    <div className="usercard-container card">
       <div className="userCard" onClick={navToUser}>
         <div className="userCard__sidebox">
           <div className="userCard__profile_pic"></div>

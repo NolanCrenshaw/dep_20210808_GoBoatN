@@ -19,7 +19,7 @@ const Friends = () => {
     const filteredFriends = [];
     const searchTerm = new RegExp(`${search}`, "i");
     for (const friend in sortedFriends) {
-      if (searchTerm.test(sortedFriends[friend].name)) {
+      if (searchTerm.test(sortedFriends[friend].lastname)) {
         filteredFriends.push(sortedFriends[friend]);
       }
     }
@@ -35,7 +35,11 @@ const Friends = () => {
   // Set Init Displayed Friends
   useEffect(() => {
     const arr = [];
-    Object.values(friends).map((friend) => arr.push(friend));
+    Object.values(friends).map((friend) => {
+      if (friend !== false) {
+        arr.push(friend);
+      }
+    });
     arr.sort((a, b) => a.lastname > b.lastname);
     setSortedFriends(arr);
     setDisplayed(arr);
