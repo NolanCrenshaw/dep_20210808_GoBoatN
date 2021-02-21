@@ -11,7 +11,7 @@ import {
   LOGOUT,
 } from "../actions/userActions";
 
-const initState = {
+const initialState = {
   loading: false,
   error: "",
   isLoggedIn: false,
@@ -35,7 +35,7 @@ const initState = {
   invites: [],
 };
 
-const userReducer = (state = initState, action) => {
+const userReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = { ...state };
   switch (action.type) {
@@ -73,7 +73,7 @@ const userReducer = (state = initState, action) => {
       nextState.loading = false;
       return nextState;
     case LOGOUT:
-      nextState = initState;
+      nextState = initialState;
       return nextState;
     default:
       return state;
