@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
-import UserCard from "../_cards/UserCard";
 import FriendsPagination from "./FriendsPagination";
 
 const Friends = () => {

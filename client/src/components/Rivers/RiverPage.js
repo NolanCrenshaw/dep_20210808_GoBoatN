@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { motion } from "framer-motion";
-import { fetchAccesses } from "../../actions/riverActions";
+import { BASE_URL } from "../../config";
 
 import CreateTripForm from "../_forms/CreateTripForm";
 
 const RiverPage = () => {
   const params = useParams();
-  const dispatch = useDispatch();
   const river = useSelector((state) => state.rivers[`${params.id}`]);
   const [accesses, setAccesses] = useState();
 
@@ -28,9 +27,23 @@ const RiverPage = () => {
   // Set Accesses into State from River Obj
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    // dispatch(fetchAccesses(token, params.id));
-    // setAccesses(river.accesses);
-    // console.log("HELLO", accesses);
+    const fetchAccesses = async (tk, id) => {
+      const res = await fetch(`${BASE_URL}/api/rivers/accesses/${id}/`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${tk}`,
+        },
+      });
+      if (!res.ok) {
+        // ~~ TODO ~~ Handling
+      } else {
+        const json = await res.json();
+        setAccesses(json.accesses);
+      }
+    };
+    fetchAccesses(token, params.id);
   }, []);
 
   /*

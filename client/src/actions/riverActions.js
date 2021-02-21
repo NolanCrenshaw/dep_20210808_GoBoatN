@@ -49,22 +49,22 @@ export const fetchRivers = (tk) => async (dispatch) => {
   }
 };
 
-export const fetchAccesses = (tk, id) => async (dispatch) => {
-  dispatch(setAccessesStart());
-  const res = await fetch(`${BASE_URL}/api/rivers/accesses/${id}/`, {
-    method: "GET",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${tk}`,
-    },
-  });
-  if (!res.ok) {
-    const text = await res.status;
-    console.log(`res: ${text}`);
-    dispatch(setAccessesFailure("fetchAccesses failure"));
-  } else {
-    const json = await (await res).json;
-    dispatch(setAccessesSuccess(json.accesses, id));
-  }
-};
+// export const fetchAccesses = (tk, id) => async (dispatch) => {
+//   dispatch(setAccessesStart());
+//   const res = await fetch(`${BASE_URL}/api/rivers/accesses/${id}/`, {
+//     method: "GET",
+//     mode: "cors",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${tk}`,
+//     },
+//   });
+//   if (!res.ok) {
+//     const text = await res.status;
+//     console.log(`res: ${text}`);
+//     dispatch(setAccessesFailure("fetchAccesses failure"));
+//   } else {
+//     const json = await (await res).json;
+//     dispatch(setAccessesSuccess(json.accesses, id));
+//   }
+// };
