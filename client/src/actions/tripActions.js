@@ -33,7 +33,7 @@ export const createTripFailure = (error) => ({
 
 export const setTrips = (tk) => async (dispatch) => {
   dispatch(setTripsStart());
-  const res = await fetch(`${BASE_URL}/api/trips`, {
+  const res = await fetch(`${BASE_URL}/api/trips/`, {
     method: "GET",
     mode: "cors",
     headers: {

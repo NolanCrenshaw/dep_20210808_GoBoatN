@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { fetchRivers } from "../../actions/riverActions";
 import { setFriends } from "../../actions/friendsActions";
+import { setTrips } from "../../actions/tripActions";
 import { setTripsStart, setTripsSuccess } from "../../actions/tripActions";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
@@ -25,7 +26,7 @@ const Main = () => {
 
   const [currentTime, setCurrentTime] = useState({});
   const user = useSelector((state) => state.user.profile);
-  const trips = useSelector((state) => state.user.trips);
+  const trips = useSelector((state) => state.trips);
   const invites = useSelector((state) => state.user.invites);
 
   // Logout Function
@@ -49,9 +50,7 @@ const Main = () => {
   // state.rivers ~ Fetch & Redux management
   useEffect(() => {
     const token = window.localStorage.getItem("auth_token");
-    if (token !== null) {
-      dispatch(fetchRivers(token));
-    }
+    dispatch(fetchRivers(token));
   }, []);
 
   // state.friends ~ Fetch & Redux management
@@ -60,17 +59,23 @@ const Main = () => {
     dispatch(setFriends(token));
   }, []);
 
+  // state.trips ~ Fetch & Redux management
   useEffect(() => {
-    /*
-    ~~ TODO ~~
-    Will possibly need to change initial trip fetch call.
-    Currently being returned through user object.
-    */
-    if (trips !== undefined && trips.length > 0) {
-      dispatch(setTripsStart());
-      dispatch(setTripsSuccess(trips));
-    }
-  }, [trips]);
+    const token = window.localStorage.getItem("auth_token");
+    dispatch(setTrips(token));
+  }, []);
+
+  // useEffect(() => {
+  //   /*
+  //   ~~ TODO ~~
+  //   Will possibly need to change initial trip fetch call.
+  //   Currently being returned through user object.
+  //   */
+  //   if (trips !== undefined && trips.length > 0) {
+  //     dispatch(setTripsStart());
+  //     dispatch(setTripsSuccess(trips));
+  //   }
+  // }, [trips]);
 
   return (
     <Router>
@@ -180,7 +185,7 @@ const Main = () => {
             </header>
             <div>
               <h3>Trips</h3>
-              {trips.map((item) => (
+              {Object.values(trips).map((item) => (
                 <div key={item.id}>
                   <span>{item.river_id}</span>
                   <p> | </p>

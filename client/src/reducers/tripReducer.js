@@ -10,7 +10,6 @@ import {
 const initialState = {
   loading: false,
   error: false,
-  list: {},
 };
 
 const tripReducer = (state = initialState, action) => {
@@ -21,7 +20,8 @@ const tripReducer = (state = initialState, action) => {
       nextState.loading = true;
       return nextState;
     case SET_TRIPS_SUCCESS:
-      nextState.list = action.trips;
+      nextState = action.trips;
+      nextState.error = false;
       nextState.loading = false;
       return nextState;
     case SET_TRIPS_FAILURE:
