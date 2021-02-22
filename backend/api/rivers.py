@@ -12,25 +12,29 @@ river = Blueprint('rivers', __name__)
 
 @river.route('/')
 @jwt_required()
-def rivers_all():
+def get_rivers():
     # return all rivers ordered by name
-    river_objects = River.query.order_by(River.name).all()
     rivers = []
+    river_objects = River.query.order_by(River.name).all()
     for river_obj in river_objects:
         river = river_obj.to_dict()
         rivers.append(river)
     return jsonify(rivers=rivers), 200
 
 
-@river.route('/accesses/<id>/')
+@river.route('/accesses/<id>/', methods=["GET", "PUT"])
 @jwt_required()
-def accesses_by_riverid(id):
-    river_obj = River.query.filter_by(id=id).first()
+def accesses_by_river(id):
 
-    # package access list
-    access_list = []
-    access_objects = river_obj.accesses
-    for access in access_objects:
-        access_list.append(access.to_dict())
+    # GET path
+    if request.method == "GET":
+        access_list = []
+        river_obj = River.query.filter_by(id=id).first()
+        access_objects = river_obj.accesses
+        for access in access_objects:
+            access_list.append(access.to_dict())
 
-    return jsonify(accesses=access_list), 200
+        return jsonify(accesses=access_list), 200
+
+    if request.method == "PUT":
+        return jsonify(message="reached accesses PUT route successfully"), 200

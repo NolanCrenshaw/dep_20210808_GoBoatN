@@ -48,7 +48,7 @@ export const logout = () => ({
 
 export const setUser = (tk) => async (dispatch) => {
   dispatch(setUserStart());
-  const res = await fetch(`${BASE_URL}/api/users/token`, {
+  const res = await fetch(`${BASE_URL}/api/users/`, {
     method: "GET",
     mode: "cors",
     headers: {
