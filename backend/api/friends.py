@@ -46,4 +46,7 @@ def friend_by_id(id):
         return jsonify(message="hit PUT method"), 200
 
 
-@friend.route('/')
+@friend.route('/delete', methods=["DELETE"])
+@jwt_required()
+def delete_friend():
+    return jsonify(message="friend deleted successfully"), 200
