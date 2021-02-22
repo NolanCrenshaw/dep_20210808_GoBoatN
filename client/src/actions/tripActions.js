@@ -31,6 +31,24 @@ export const createTripFailure = (error) => ({
   error,
 });
 
+export const setTrips = (tk) => async (dispatch) => {
+  dispatch(setTripsStart());
+  const res = await fetch(`${BASE_URL}/api/trips`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tk}`,
+    },
+  });
+  if (!res.ok) {
+    dispatch(setTripsFailure("setTrips failure"));
+  } else {
+    const json = await res.json();
+    dispatch(setTripsSuccess(json.trips));
+  }
+};
+
 export const createTrip = (tk, data) => async (dispatch) => {
   dispatch(createTripStart());
   const res = await fetch(`${BASE_URL}/api/trips/create`, {
