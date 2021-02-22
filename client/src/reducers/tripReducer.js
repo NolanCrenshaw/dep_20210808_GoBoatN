@@ -20,7 +20,7 @@ const tripReducer = (state = initialState, action) => {
       nextState.loading = true;
       return nextState;
     case SET_TRIPS_SUCCESS:
-      nextState = action.trips;
+      nextState = { ...action.trips };
       nextState.error = false;
       nextState.loading = false;
       return nextState;

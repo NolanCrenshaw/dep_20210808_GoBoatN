@@ -31,7 +31,7 @@ export const setAccessesFailure = (error) => ({
   error,
 });
 
-export const fetchRivers = (tk) => async (dispatch) => {
+export const setRivers = (tk) => async (dispatch) => {
   dispatch(setRiversStart());
   const res = await fetch(`${BASE_URL}/api/rivers/`, {
     method: "GET",

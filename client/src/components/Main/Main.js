@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
-import { fetchRivers } from "../../actions/riverActions";
+import { setRivers } from "../../actions/riverActions";
 import { setFriends } from "../../actions/friendsActions";
 import { setTrips } from "../../actions/tripActions";
-import { setTripsStart, setTripsSuccess } from "../../actions/tripActions";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
@@ -47,35 +46,18 @@ const Main = () => {
     return () => clearInterval(minuteInterval);
   }, []);
 
-  // state.rivers ~ Fetch & Redux management
   useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    dispatch(fetchRivers(token));
+    const stageReduxSetStates = async () => {
+      const token = window.localStorage.getItem("auth_token");
+      // state.rivers ~ Fetch & Redux management
+      await dispatch(setRivers(token));
+      // state.friends ~ Fetch & Redux management
+      await dispatch(setFriends(token));
+      // state.trips ~ Fetch & Redux management
+      await dispatch(setTrips(token));
+    };
+    stageReduxSetStates();
   }, []);
-
-  // state.friends ~ Fetch & Redux management
-  useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    dispatch(setFriends(token));
-  }, []);
-
-  // state.trips ~ Fetch & Redux management
-  useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    dispatch(setTrips(token));
-  }, []);
-
-  // useEffect(() => {
-  //   /*
-  //   ~~ TODO ~~
-  //   Will possibly need to change initial trip fetch call.
-  //   Currently being returned through user object.
-  //   */
-  //   if (trips !== undefined && trips.length > 0) {
-  //     dispatch(setTripsStart());
-  //     dispatch(setTripsSuccess(trips));
-  //   }
-  // }, [trips]);
 
   return (
     <Router>
@@ -185,15 +167,17 @@ const Main = () => {
             </header>
             <div>
               <h3>Trips</h3>
-              {Object.values(trips).map((item) => (
-                <div key={item.id}>
-                  <span>{item.river_id}</span>
-                  <p> | </p>
-                  <span>{item.put_in}</span>
-                  <p> | </p>
-                  <span>{item.take_out}</span>
-                </div>
-              ))}
+              {Object.values(trips).map((item) => {
+                if (item !== false) {
+                  return (
+                    <div key={item.id}>
+                      <span>{item.river_id}</span>
+                      <span>{item.put_in}</span>
+                      <span>{item.take_out}</span>
+                    </div>
+                  );
+                }
+              })}
             </div>
             <div>
               <h3>Invites</h3>
