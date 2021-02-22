@@ -18,7 +18,7 @@ export const setFriendsFailure = (error) => ({
 
 export const setFriends = (tk) => async (dispatch) => {
   dispatch(setFriendsStart());
-  const res = await fetch(`${BASE_URL}/api/users/friends`, {
+  const res = await fetch(`${BASE_URL}/api/friends`, {
     method: "GET",
     mode: "cors",
     headers: {

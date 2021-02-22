@@ -13,6 +13,7 @@ from .api.boats import boat
 from .api.vehicles import vehicle
 from .api.rivers import river
 from .api.trips import trip
+from .api.friends import friend
 from .api.bucket import bucket
 
 
