@@ -11,44 +11,39 @@ from ..models import db, Trip, Access, River, User
 trip = Blueprint('trips', __name__)
 
 
-@trip.route('/', methods=["GET"])
+@trip.route('/', methods=["GET", "POST"])
 @jwt_required()
-def get_user_trips():
-    user_email = get_jwt_identity()
-    user = User.query.filter_by(email=user_email).first()
+def trips():
 
-    user_trips = []
-    user_boater_instances = user.boaters
-    for instance in user_boater_instances:
-        user_trips.append(instance.trip_id)
+    # GET path
+    if request.method == "GET":
+        user_email = get_jwt_identity()
+        user = User.query.filter_by(email=user_email).first()
 
-    trips = []
-    trip_objects = Trip.query.filter(Trip.id.in_(user_trips)).all()
-    for trip in trip_objects:
-        trips.append(trip.to_dict())
+        user_trips = []
+        user_boater_instances = user.boaters
+        for instance in user_boater_instances:
+            user_trips.append(instance.trip_id)
 
-    # # extract relationships
-    # for trip_obj in trip_objects:
-    #     trip = [trip_obj.to_dict()]
-    #     invites = []
-    #     boaters = []
+        trips = []
+        trip_objects = Trip.query.filter(Trip.id.in_(user_trips)).all()
+        for trip in trip_objects:
+            trips.append(trip.to_dict())
+        return jsonify(trips=trips), 200
 
-    #     # package invite list
-    #     invite_objects = trip_obj.invites
-    #     for invite in invite_objects:
-    #         invites.append(invite.to_dict())
-    #     trip.append(invites)
-
-    #     # package boater list
-    #     boater_objects = trip_obj.boaters
-    #     for boater in boater_objects:
-    #         boaters.append(boater.to_dict())
-    #     trip.append(boaters)
-
-    #     # append main json response with trip package
-    #     trips.append(trip)
-
-    return jsonify(trips=trips), 200
+    # POST path
+    if request.method == "POST":
+        data = request.get_json()
+        trip = Trip(
+            scheduled_time=data['dateTime'],
+            river_id=data['riverID'],
+            trip_leader=data['userID'],
+            put_in=data['putinID'],
+            take_out=data['takeoutID']
+        )
+        db.session.add(trip)
+        db.session.commit()
+        return jsonify(message="Success"), 200
 
 
 @trip.route('/<id>')
@@ -113,32 +108,3 @@ def update_trip_time(id):
         return jsonify(message="update trip time success")
     except Exception:
         return jsonify(message="update trip time failure")
-
-
-@trip.route('/create', methods=["POST", "OPTIONS"])
-@jwt_required()
-def create_trip():
-    data = request.get_json()
-
-    if request.method == "OPTIONS":
-        return cors_preflight_res()
-
-    elif request.method == "POST":
-        try:
-            print("HELLO MESSAGE", data)
-            # count = Trip.query.count()
-            trip = Trip(
-                # id=count+1,
-                scheduled_time=data['dateTime'],
-                river_id=data['riverID'],
-                trip_leader=data['userID'],
-                put_in=data['putinID'],
-                take_out=data['takeoutID']
-            )
-            db.session.add(trip)
-            print('before commit -------')
-            db.session.commit()
-
-            return jsonify(message="Success"), 200
-        except Exception:
-            return jsonify(message="create_trip failed"), 400

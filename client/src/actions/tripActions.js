@@ -51,7 +51,7 @@ export const setTrips = (tk) => async (dispatch) => {
 
 export const createTrip = (tk, data) => async (dispatch) => {
   dispatch(createTripStart());
-  const res = await fetch(`${BASE_URL}/api/trips/create`, {
+  const res = await fetch(`${BASE_URL}/api/trips`, {
     method: "POST",
     mode: "cors",
     headers: {
