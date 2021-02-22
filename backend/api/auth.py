@@ -64,37 +64,26 @@ def login():
     return jsonify(auth_token=auth_token), 200
 
 
-@ auth.route('/signup', methods=["POST", "OPTIONS"])
+@ auth.route('/signup', methods=["POST"])
 def signup():
     data = request.get_json()
 
-    if request.method == "OPTIONS":
-        return jsonify(message="hello options"), 200
+    username = data['username']
+    email = data['email']
+    if not username:
+        return jsonify(message="Username Required"), 400
+    elif not email:
+        return jsonify(message='Email Required'), 400
 
-    elif request.method == "POST":
-        username = data['username']
-        email = data['email']
+    hashed_password = set_password(data['password'])
 
-        if not username:
-            return jsonify(message="Username Required"), 400
-        elif not email:
-            return jsonify(message='Email Required'), 400
+    user = User(
+        username=username,
+        email=email,
+        hashed_password=hashed_password,
+    )
+    db.session.add(user)
+    db.session.commit()
 
-        try:
-            hashed_password = set_password(data['password'])
-        except Exception:
-            return jsonify(message='Password Required: '), 400
-
-        user = User(
-            username=username,
-            email=email,
-            hashed_password=hashed_password,
-        )
-        db.session.add(user)
-        db.session.commit()
-
-        auth_token = create_access_token(identity=data['email'])
-        return jsonify(auth_token=auth_token), 200
-
-    else:
-        return jsonify(message="Request Method not recognized"), 400
+    auth_token = create_access_token(identity=data['email'])
+    return jsonify(auth_token=auth_token), 200
