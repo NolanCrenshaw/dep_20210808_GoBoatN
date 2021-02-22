@@ -29,3 +29,21 @@ def get_friends_by_token():
         friends.append(friend)
 
     return jsonify(friends=friends), 200
+
+
+@friend.route('/<id>', methods=["GET", "PUT"])
+@jwt_required()
+def friend_by_id(id):
+
+    # GET path
+    if request.method == "GET":
+        user = User.query.filter_by(id=id).first()
+        return jsonify(friend=friend.to_safe_object()), 200
+
+    # PUT path
+    if request.method == "PUT":
+        data = request.get_json()
+        return jsonify(message="hit PUT method"), 200
+
+
+@friend.route('/')
