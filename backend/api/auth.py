@@ -27,15 +27,6 @@ def verify_password(password, hashed_password):
         return False
 
 
-@ auth.route("/", methods=["GET"])
-@ jwt_required()
-def check_token():
-    auth_token = get_jwt_identity()
-    admin = Admin.query.filter_by(email=auth_token).first()
-    safe_admin = admin.to_safe_object()
-    return jsonify(admin=safe_admin), 200
-
-
 @auth.route('/login', methods=["POST"])
 def login():
     data = request.get_json()
