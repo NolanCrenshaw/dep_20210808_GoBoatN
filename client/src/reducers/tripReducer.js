@@ -1,7 +1,7 @@
 import {
-  POPULATE_TRIPS_START,
-  POPULATE_TRIPS_SUCCESS,
-  POPULATE_TRIPS_FAILURE,
+  SET_TRIPS_START,
+  SET_TRIPS_SUCCESS,
+  SET_TRIPS_FAILURE,
   CREATE_TRIP_START,
   CREATE_TRIP_SUCCESS,
   CREATE_TRIP_FAILURE,
@@ -10,21 +10,21 @@ import {
 const initialState = {
   loading: false,
   error: false,
-  list: {},
 };
 
 const tripReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = { ...state };
   switch (action.type) {
-    case POPULATE_TRIPS_START:
+    case SET_TRIPS_START:
       nextState.loading = true;
       return nextState;
-    case POPULATE_TRIPS_SUCCESS:
-      nextState.list = action.trips;
+    case SET_TRIPS_SUCCESS:
+      nextState = { ...action.trips };
+      nextState.error = false;
       nextState.loading = false;
       return nextState;
-    case POPULATE_TRIPS_FAILURE:
+    case SET_TRIPS_FAILURE:
       nextState.error = action.error;
       nextState.loading = false;
       return nextState;

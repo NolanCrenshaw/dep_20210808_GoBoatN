@@ -11,48 +11,42 @@ from ..models import db, Trip, Access, River, User
 trip = Blueprint('trips', __name__)
 
 
-# CORS Preflight Header Handling
-def cors_preflight_res():
-    response = make_response()
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Headers", "*")
-    response.headers.add("Access-Control-Allow-Methods", "*")
-    return response
-
-
-# CORS JSON Response Header Handling
-def corsify_res(response):
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-
-@trip.route('/')
+@trip.route('/', methods=["GET"])
 @jwt_required()
-def trips_all():
-    # return all trips ordered by name
-    trip_objects = Trip.query.order_by(trip.name).all()
+def get_user_trips():
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
+
+    user_trips = []
+    user_boater_instances = user.boaters
+    for instance in user_boater_instances:
+        user_trips.append(instance.trip_id)
+
     trips = []
+    trip_objects = Trip.query.filter(Trip.id.in_(user_trips)).all()
+    for trip in trip_objects:
+        trips.append(trip.to_dict())
 
-    # extract relationships
-    for trip_obj in trip_objects:
-        trip = [trip_obj.to_dict()]
-        invites = []
-        boaters = []
+    # # extract relationships
+    # for trip_obj in trip_objects:
+    #     trip = [trip_obj.to_dict()]
+    #     invites = []
+    #     boaters = []
 
-        # package invite list
-        invite_objects = trip_obj.invites
-        for invite in invite_objects:
-            invites.append(invite.to_dict())
-        trip.append(invites)
+    #     # package invite list
+    #     invite_objects = trip_obj.invites
+    #     for invite in invite_objects:
+    #         invites.append(invite.to_dict())
+    #     trip.append(invites)
 
-        # package boater list
-        boater_objects = trip_obj.boaters
-        for boater in boater_objects:
-            boaters.append(boater.to_dict())
-        trip.append(boaters)
+    #     # package boater list
+    #     boater_objects = trip_obj.boaters
+    #     for boater in boater_objects:
+    #         boaters.append(boater.to_dict())
+    #     trip.append(boaters)
 
-        # append main json response with trip package
-        trips.append(trip)
+    #     # append main json response with trip package
+    #     trips.append(trip)
 
     return jsonify(trips=trips), 200
 

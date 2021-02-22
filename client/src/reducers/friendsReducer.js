@@ -17,7 +17,7 @@ const friendsReducer = (state = initialState, action) => {
       nextState.loading = true;
       return nextState;
     case SET_FRIENDS_SUCCESS:
-      nextState = action.friends;
+      nextState = { ...action.friends };
       nextState.error = false;
       nextState.loading = false;
       return nextState;

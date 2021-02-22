@@ -1,21 +1,21 @@
 import { BASE_URL } from "../config";
 
-export const POPULATE_TRIPS_START = "POPULATE_TRIPS_START";
-export const POPULATE_TRIPS_SUCCESS = "POPULATE_TRIPS_SUCCESS";
-export const POPULATE_TRIPS_FAILURE = "POPULATE_TRIPS_FAILURE";
+export const SET_TRIPS_START = "SET_TRIPS_START";
+export const SET_TRIPS_SUCCESS = "SET_TRIPS_SUCCESS";
+export const SET_TRIPS_FAILURE = "SET_TRIPS_FAILURE";
 export const CREATE_TRIP_START = "CREATE_TRIP_START";
 export const CREATE_TRIP_SUCCESS = "CREATE_TRIP_SUCCESS";
 export const CREATE_TRIP_FAILURE = "CREATE_TRIP_FAILURE";
 
-export const populateTripsStart = () => ({
-  type: POPULATE_TRIPS_START,
+export const setTripsStart = () => ({
+  type: SET_TRIPS_START,
 });
-export const populateTripsSuccess = (trips) => ({
-  type: POPULATE_TRIPS_SUCCESS,
+export const setTripsSuccess = (trips) => ({
+  type: SET_TRIPS_SUCCESS,
   trips,
 });
-export const populateTripsFailure = (error) => ({
-  type: POPULATE_TRIPS_FAILURE,
+export const setTripsFailure = (error) => ({
+  type: SET_TRIPS_FAILURE,
   error,
 });
 
@@ -31,7 +31,25 @@ export const createTripFailure = (error) => ({
   error,
 });
 
-export const createTripThunk = (tk, data) => async (dispatch) => {
+export const setTrips = (tk) => async (dispatch) => {
+  dispatch(setTripsStart());
+  const res = await fetch(`${BASE_URL}/api/trips/`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tk}`,
+    },
+  });
+  if (!res.ok) {
+    dispatch(setTripsFailure("setTrips failure"));
+  } else {
+    const json = await res.json();
+    dispatch(setTripsSuccess(json.trips));
+  }
+};
+
+export const createTrip = (tk, data) => async (dispatch) => {
   dispatch(createTripStart());
   const res = await fetch(`${BASE_URL}/api/trips/create`, {
     method: "POST",

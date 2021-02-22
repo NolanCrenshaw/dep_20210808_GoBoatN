@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
-import { fetchRivers } from "../../actions/riverActions";
+import { setRivers } from "../../actions/riverActions";
 import { setFriends } from "../../actions/friendsActions";
-import {
-  populateTripsStart,
-  populateTripsSuccess,
-} from "../../actions/tripActions";
+import { setTrips } from "../../actions/tripActions";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
@@ -28,7 +25,7 @@ const Main = () => {
 
   const [currentTime, setCurrentTime] = useState({});
   const user = useSelector((state) => state.user.profile);
-  const trips = useSelector((state) => state.user.trips);
+  const trips = useSelector((state) => state.trips);
   const invites = useSelector((state) => state.user.invites);
 
   // Logout Function
@@ -49,31 +46,18 @@ const Main = () => {
     return () => clearInterval(minuteInterval);
   }, []);
 
-  // state.rivers ~ Fetch & Redux management
   useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    if (token !== null) {
-      dispatch(fetchRivers(token));
-    }
+    const stageReduxSetStates = async () => {
+      const token = window.localStorage.getItem("auth_token");
+      // state.rivers ~ Fetch & Redux management
+      await dispatch(setRivers(token));
+      // state.friends ~ Fetch & Redux management
+      await dispatch(setFriends(token));
+      // state.trips ~ Fetch & Redux management
+      await dispatch(setTrips(token));
+    };
+    stageReduxSetStates();
   }, []);
-
-  // state.friends ~ Fetch & Redux management
-  useEffect(() => {
-    const token = window.localStorage.getItem("auth_token");
-    dispatch(setFriends(token));
-  }, []);
-
-  useEffect(() => {
-    /*
-    ~~ TODO ~~
-    Will possibly need to change initial trip fetch call.
-    Currently being returned through user object.
-    */
-    if (trips !== undefined && trips.length > 0) {
-      dispatch(populateTripsStart());
-      dispatch(populateTripsSuccess(trips));
-    }
-  }, [trips]);
 
   return (
     <Router>
@@ -85,7 +69,7 @@ const Main = () => {
       >
         <nav>
           <div className="nav_content">
-            <section>
+            <section className="nav_title">
               <h1>Go Boating</h1>
             </section>
             <section></section>
@@ -183,15 +167,17 @@ const Main = () => {
             </header>
             <div>
               <h3>Trips</h3>
-              {trips.map((item) => (
-                <div key={item.id}>
-                  <span>{item.river_id}</span>
-                  <p> | </p>
-                  <span>{item.put_in}</span>
-                  <p> | </p>
-                  <span>{item.take_out}</span>
-                </div>
-              ))}
+              {Object.values(trips).map((item) => {
+                if (item !== false) {
+                  return (
+                    <div key={item.id}>
+                      <span>{item.river_id}</span>
+                      <span>{item.put_in}</span>
+                      <span>{item.take_out}</span>
+                    </div>
+                  );
+                }
+              })}
             </div>
             <div>
               <h3>Invites</h3>

@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTripThunk } from "../../actions/tripActions";
 import { DateTime } from "luxon";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
-// import DatePicker from "react-modern-calendar-datepicker";
-// import "react-modern-calendar-datepicker/lib/DatePicker.css";
-
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-
 import DateTimePicker from "react-datetime-picker";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { BASE_URL } from "../../config";
 import { motion } from "framer-motion";
+import { createTrip } from "../../actions/tripActions";
 
 const content = {
   inputs: [
@@ -109,7 +101,7 @@ const CreateTrip = ({ river, accesses }) => {
         riverID: river.id,
         userID: userID,
       };
-      dispatch(createTripThunk(token, data));
+      dispatch(createTrip(token, data));
     }
   }, [submittedData]);
 

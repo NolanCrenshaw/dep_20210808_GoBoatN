@@ -47,24 +47,11 @@ def get_self_by_token():
     for invite in user_invites:
         invites.append(invite.to_dict())
 
-    # populate user's trips
-    user_trips = user.boaters
-    own_trips = []
-    guest_trips = []
-    for trip in user_trips:
-        t = Trip.query.filter_by(id=trip.trip_id).first()
-        guest_trips.append(t.to_dict())
-    user_own_trips = Trip.query.filter_by(trip_leader=user.id).all()
-    for own_trip in user_own_trips:
-        own_trips.append(own_trip.to_dict())
-    trips = [*own_trips, *guest_trips]
-
     return jsonify(
         profile=safe_user,
         boats=boats,
         vehicles=vehicles,
         invites=invites,
-        trips=trips
     ), 200
 
 
