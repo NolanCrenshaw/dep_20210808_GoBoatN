@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { fetchRivers } from "../../actions/riverActions";
 import { setFriends } from "../../actions/friendsActions";
-import {
-  populateTripsStart,
-  populateTripsSuccess,
-} from "../../actions/tripActions";
+import { setTripsStart, setTripsSuccess } from "../../actions/tripActions";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
 
@@ -70,8 +67,8 @@ const Main = () => {
     Currently being returned through user object.
     */
     if (trips !== undefined && trips.length > 0) {
-      dispatch(populateTripsStart());
-      dispatch(populateTripsSuccess(trips));
+      dispatch(setTripsStart());
+      dispatch(setTripsSuccess(trips));
     }
   }, [trips]);
 
@@ -85,7 +82,7 @@ const Main = () => {
       >
         <nav>
           <div className="nav_content">
-            <section>
+            <section className="nav_title">
               <h1>Go Boating</h1>
             </section>
             <section></section>
