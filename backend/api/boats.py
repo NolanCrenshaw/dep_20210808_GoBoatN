@@ -1,9 +1,7 @@
-# Package Requirements
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-# Local Requirements
-from ..models import db, Boat
+from ..models import db, User, Boat
 
 boat = Blueprint('boats', __name__)
 
@@ -48,10 +46,10 @@ def handle_boat_by_id(id):
 
     # PUT path
     if request.method == "PUT":
+        # ~~ TODO ~~
         return jsonify(message="reached boat PUT successfully"), 200
 
 
-# Deletes Boat instance
 @boat.route('/delete', methods=["DELETE"])
 @jwt_required()
 def destroy_boat():
