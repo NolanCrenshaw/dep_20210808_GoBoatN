@@ -5,6 +5,7 @@ import pageReducer from "./pageReducer";
 import tripReducer from "./tripReducer";
 import friendReducer from "./friendReducer";
 import boatReducer from "./boatReducer";
+import vehicleReducer from "./vehicleReducer";
 
 const rootReducer = combineReducers({
   pageState: pageReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   trips: tripReducer,
   friends: friendReducer,
   boats: boatReducer,
+  vehicles: vehicleReducer,
 });
 
 export default rootReducer;
