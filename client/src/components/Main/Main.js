@@ -24,9 +24,9 @@ const Main = () => {
   const dispatch = useDispatch();
 
   const [currentTime, setCurrentTime] = useState({});
-  const user = useSelector((state) => state.user.profile);
+  const user = useSelector((state) => state.user);
   const trips = useSelector((state) => state.trips);
-  const invites = useSelector((state) => state.user.invites);
+  const invites = useSelector((state) => state.invites);
 
   // Logout Function
   const logOut = (e) => {
@@ -181,9 +181,15 @@ const Main = () => {
             </div>
             <div>
               <h3>Invites</h3>
-              {invites.map((item) => (
-                <div key={item.id}>{item}</div>
-              ))}
+              {invites ? (
+                Object.values(invites).map((item) => {
+                  if (item !== false) {
+                    return <div key={item.id}>Invite</div>;
+                  }
+                })
+              ) : (
+                <span>Invites Loading</span>
+              )}
             </div>
           </section>
         </div>
