@@ -200,10 +200,28 @@ class Invite(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey("trips.id"), nullable=False)
-    receiver = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    sender_id = db.Column(
+        db.Integer, db.ForeignKey("users.id"), nullable=False)
+    receiver_id = db.Column(
+        db.Integer, db.ForeignKey("users.id"), nullable=False)
+    accepted = db.Column(db.Boolean, nullable=False, default=False)
+    updated_at = db.Column(
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
+    )
     date_added = db.Column(
         db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "trip_id": self.trip_id,
+            "sender_id": self.sender_id,
+            "receiver_id": self.receiver_id,
+            "accepted": self.accepted,
+            "updated_at": self.updated_at,
+            "date_added": self.date_added,
+        }
 
 
 class Boater(db.Model):
