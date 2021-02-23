@@ -2,14 +2,14 @@ import {
   SET_FRIENDS_START,
   SET_FRIENDS_SUCCESS,
   SET_FRIENDS_FAILURE,
-} from "../actions/friendsActions";
+} from "../actions/friendActions";
 
 const initialState = {
   loading: false,
   error: false,
 };
 
-const friendsReducer = (state = initialState, action) => {
+const friendReducer = (state = initialState, action) => {
   Object.freeze(state);
   let nextState = { ...state };
   switch (action.type) {
@@ -30,4 +30,4 @@ const friendsReducer = (state = initialState, action) => {
   }
 };
 
-export default friendsReducer;
+export default friendReducer;

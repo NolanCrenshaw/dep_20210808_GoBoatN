@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
 import { setRivers } from "../../actions/riverActions";
-import { setFriends } from "../../actions/friendsActions";
+import { setFriends } from "../../actions/friendActions";
 import { setTrips } from "../../actions/tripActions";
 import { motion } from "framer-motion";
 import { DateTime } from "luxon";
