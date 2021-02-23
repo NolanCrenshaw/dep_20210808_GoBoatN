@@ -33,6 +33,7 @@ const riverReducer = (state = {}, action) => {
       nextState.loading = true;
       return nextState;
     case SET_ACCESSES_SUCCESS:
+      // ~~ TODO ~~
       console.log(nextState[0].id);
       nextState.loading = false;
       return nextState;

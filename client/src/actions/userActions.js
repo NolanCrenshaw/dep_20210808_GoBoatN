@@ -60,7 +60,7 @@ export const setUser = (tk) => async (dispatch) => {
     dispatch(setUserFailure("setUser failure"));
   } else {
     const json = await res.json();
-    dispatch(setUserSuccess(json));
+    dispatch(setUserSuccess(json.user));
   }
 };
 

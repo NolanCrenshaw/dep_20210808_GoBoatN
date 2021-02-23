@@ -46,55 +46,57 @@ def trips():
         return jsonify(message="Success"), 200
 
 
-@trip.route('/<id>')
+@trip.route('/<id>', methods=["GET", "PUT"])
 @jwt_required()
 def trip_by_id(id):
-    # return trip
-    trip_obj = Trip.query.filter_by(id=id).first()
-    trip = trip_obj.to_dict()
-    invites = []
-    boaters = []
-    boats = []
-    vehicles = []
-    access = []
+    trip_object = Trip.query.filter_by(id=id).first()
 
-    # package invite list
-    invite_objects = trip_obj.invites
-    for invite in invite_objects:
-        invites.append(invite.to_dict())
+    if request.method == "GET":
+        # return trip
+        invites = []
+        boaters = []
+        boats = []
+        vehicles = []
+        access = []
 
-    # package boater list
-    boater_objects = trip_obj.boaters
-    for boater in boater_objects:
-        boaters.append(boater.to_dict())
+        # package invite list
+        invite_objects = trip_object.invites
+        for invite in invite_objects:
+            invites.append(invite.to_dict())
 
-        # # populate boats list
-        # boat = boater['boat_id']
-        # boats.append(boat)
+        # package boater list
+        boater_objects = trip_object.boaters
+        for boater in boater_objects:
+            boaters.append(boater.to_dict())
 
-        # # populate vehicles list
-        # vehicle = boater['vehicle_id']
-        # vehicles.append(vehicle)
+            # # populate boats list
+            # boat = boater['boat_id']
+            # boats.append(boat)
 
-    # package access points
-    putin = Access.query.filter_by(id=trip['put_in']).first()
-    takeout = Access.query.filter_by(id=trip['take_out']).first()
-    access.append(putin.to_dict())
-    access.append(takeout.to_dict())
+            # # populate vehicles list
+            # vehicle = boater['vehicle_id']
+            # vehicles.append(vehicle)
 
-    river = River.query.filter_by(id=trip['river_id']).first()
-    trip_leader = User.query.filter_by(id=trip['trip_leader']).first()
+        # package access points
+        putin = Access.query.filter_by(id=trip_object['put_in']).first()
+        takeout = Access.query.filter_by(id=trip_object['take_out']).first()
+        access.append(putin.to_dict())
+        access.append(takeout.to_dict())
 
-    return jsonify(
-        trip=trip,
-        invites=invites,
-        boaters=boaters,
-        boats=boats,
-        vehicles=vehicles,
-        access=access,
-        river=river.to_dict(),
-        trip_leader=trip_leader.to_safe_object(),
-    ), 200
+        river = River.query.filter_by(id=trip_object['river_id']).first()
+        trip_leader = User.query.filter_by(
+            id=trip_object['trip_leader']).first()
+
+        return jsonify(
+            trip=trip_object.to_dict(),
+            invites=invites,
+            boaters=boaters,
+            boats=boats,
+            vehicles=vehicles,
+            access=access,
+            river=river.to_dict(),
+            trip_leader=trip_leader.to_safe_object(),
+        ), 200
 
 
 @trip.route('/<id>/update', methods=["PUT"])

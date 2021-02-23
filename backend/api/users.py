@@ -21,31 +21,7 @@ def user_by_token():
         user_email = get_jwt_identity()
         user = User.query.filter_by(email=user_email).first()
         safe_user = user.to_safe_object()
-
-        # populate user's boats
-        user_boats = user.boats
-        boats = []
-        for boat in user_boats:
-            boats.append(boat.to_dict())
-
-        # populate user's vehicles
-        user_vehicles = user.vehicles
-        vehicles = []
-        for vehicle in user_vehicles:
-            vehicles.append(vehicle.to_dict())
-
-        # populate user's invites
-        user_invites = user.invites
-        invites = []
-        for invite in user_invites:
-            invites.append(invite.to_dict())
-
-        return jsonify(
-            profile=safe_user,
-            boats=boats,
-            vehicles=vehicles,
-            invites=invites,
-        ), 200
+        return jsonify(user=safe_user), 200
 
     # PUT path
     if request.method == "PUT":
