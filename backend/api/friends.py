@@ -49,4 +49,8 @@ def friend_by_id(id):
 @friend.route('/delete', methods=["DELETE"])
 @jwt_required()
 def delete_friend():
+    data = request.get_json()
+    friend = Friend.query.filter_by(id=data["id"]).first()
+    db.session.delete(friend)
+    db.session.commit()
     return jsonify(message="friend deleted successfully"), 200
