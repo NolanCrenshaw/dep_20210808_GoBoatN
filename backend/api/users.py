@@ -35,10 +35,19 @@ def user_by_token():
 
 
 # Get User by ID
-@user.route('/<id>')
+@user.route('/<id>', methods=["GET", "DELETE"])
 @jwt_required()
 def user_by_id(id):
-    # return safe_user object by id
-    user = User.query.filter_by(id=id).first()
-    safe_user = user.to_safe_object()
-    return jsonify(user=safe_user), 200
+
+    # Delete path
+    if request.method == "DELETE":
+        user_email = get_jwt_identity()
+        user = User.query.filter_by(email=user_email).first()
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify(message="User Successfully Deleted"), 200
+
+    else:
+        user = User.query.filter_by(id=id).first()
+        safe_user = user.to_safe_object()
+        return jsonify(user=safe_user), 200
