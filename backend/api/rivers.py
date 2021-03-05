@@ -10,16 +10,49 @@ from ..models import db, River
 river = Blueprint('rivers', __name__)
 
 
-@river.route('/')
+@river.route('/', methods=["GET", "POST"])
 @jwt_required()
 def get_rivers():
-    # return all rivers ordered by name
-    rivers = []
-    river_objects = River.query.order_by(River.name).all()
-    for river_obj in river_objects:
-        river = river_obj.to_dict()
-        rivers.append(river)
-    return jsonify(rivers=rivers), 200
+
+    if request.method == "POST":
+        data = request.get_json()
+        river = River(
+            name=data["name"],
+            class_designation=data["class"],
+            description=data["description"],
+            region=data["region"]
+        )
+        db.session.add(river)
+        db.session.commit()
+        return jsonify(message="River Successfully Added"), 200
+
+    else:
+        # return all rivers ordered by name
+        rivers = []
+        river_objects = River.query.order_by(River.name).all()
+        for river_obj in river_objects:
+            river = river_obj.to_dict()
+            rivers.append(river)
+        return jsonify(rivers=rivers), 200
+
+
+@river.route('/<id>', methods=["GET", "PUT"])
+@jwt_required()
+def get_rivers(id):
+    river_obj = River.query.filter_by(id=id).first()
+
+    # PUT path
+    if request.method == "PUT":
+        data = request.get_json()
+        river_obj.name = data["name"]
+        river_obj.class_designation = data["class"]
+        river_obj.description = data["description"]
+        river_obj.region = data["region"]
+        db.session.commit()
+        return jsonify(message="River Successfully Updated"), 200
+
+    else:
+        return jsonify(river_obj.to_dict()), 200
 
 
 @river.route('/accesses/<id>/', methods=["GET", "PUT"])
