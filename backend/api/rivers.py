@@ -39,8 +39,20 @@ def get_rivers():
 @river.route('/<id>', methods=["GET", "PUT"])
 @jwt_required()
 def get_rivers(id):
+    river_obj = River.query.filter_by(id=id).first()
 
-    if request.
+    # PUT path
+    if request.method == "PUT":
+        data = request.get_json()
+        river_obj.name = data["name"]
+        river_obj.class_designation = data["class"]
+        river_obj.description = data["description"]
+        river_obj.region = data["region"]
+        db.session.commit()
+        return jsonify(message="River Successfully Updated"), 200
+
+    else:
+        return jsonify(river_obj.to_dict()), 200
 
 
 @river.route('/accesses/<id>/', methods=["GET", "PUT"])
