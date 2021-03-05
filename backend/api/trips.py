@@ -49,7 +49,15 @@ def trip_by_id(id):
     trip_object = Trip.query.filter_by(id=id).first()
 
     # PUT path
-    # if request.method == "PUT":
+    if request.method == "PUT":
+        data = request.get_json()
+        trip_object.scheduled_time = data['dateTime']
+        trip_object.river_id = data['riverID']
+        trip_object.trip_leader = data['userID']
+        trip_object.put_in = data['putinID']
+        trip_object.take_out = data['takeoutID']
+        db.session.commit()
+        return jsonify(message="Trip Successfully Updated"), 200
 
     # DELETE path
     if request.method == "DELETE":
@@ -78,14 +86,6 @@ def trip_by_id(id):
         for boater in boater_objects:
             boaters.append(boater.to_dict())
 
-            # # populate boats list
-            # boat = boater['boat_id']
-            # boats.append(boat)
-
-            # # populate vehicles list
-            # vehicle = boater['vehicle_id']
-            # vehicles.append(vehicle)
-
         # package access points
         putin = Access.query.filter_by(id=trip_object['put_in']).first()
         takeout = Access.query.filter_by(id=trip_object['take_out']).first()
@@ -106,16 +106,3 @@ def trip_by_id(id):
             river=river.to_dict(),
             trip_leader=trip_leader.to_safe_object(),
         ), 200
-
-
-@trip.route('/<id>/update', methods=["PUT"])
-@jwt_required()
-def update_trip_time(id):
-    try:
-        data = request.get_json()
-        trip = Trip.query.filter_by(id=id).first()
-        trip.scheduled_time = data
-        db.session.commit()
-        return jsonify(message="update trip time success")
-    except Exception:
-        return jsonify(message="update trip time failure")
