@@ -43,12 +43,24 @@ def trips():
         return jsonify(message="Success"), 200
 
 
-@trip.route('/<id>', methods=["GET", "PUT"])
+@trip.route('/<id>', methods=["GET", "PUT", "DELETE"])
 @jwt_required()
 def trip_by_id(id):
     trip_object = Trip.query.filter_by(id=id).first()
 
-    if request.method == "GET":
+    # PUT path
+    # if request.method == "PUT":
+
+    # DELETE path
+    if request.method == "DELETE":
+        user_email = get_jwt_identity()
+        user = User.query.filter_by(email=user_email).first()
+        if trip_object.trip_leader == user.id:
+            db.session.delete(trip_object)
+            db.session.commit()
+            return jsonify(message="Trip Successfully Deleted"), 200
+
+    else:
         # return trip
         invites = []
         boaters = []
