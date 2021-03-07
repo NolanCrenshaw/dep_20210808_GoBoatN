@@ -5,6 +5,12 @@ import {
   SET_ACCESSES_START,
   SET_ACCESSES_SUCCESS,
   SET_ACCESSES_FAILURE,
+  CREATE_RIVER_START,
+  CREATE_RIVER_SUCCESS,
+  CREATE_RIVER_FAILURE,
+  UPDATE_RIVER_START,
+  UPDATE_RIVER_SUCCESS,
+  UPDATE_RIVER_FAILURE,
 } from "../actions/riverActions";
 
 const riverReducer = (state = {}, action) => {
@@ -38,6 +44,36 @@ const riverReducer = (state = {}, action) => {
       nextState.loading = false;
       return nextState;
     case SET_ACCESSES_FAILURE:
+      nextState.loading = false;
+      return nextState;
+    case CREATE_RIVER_START:
+      nextState.loading = true;
+      return nextState;
+    case CREATE_RIVER_SUCCESS:
+      const newRiver = action.river;
+      nextState = { ...nextState, newRiver };
+      nextState.loading = false;
+      return nextState;
+    case CREATE_RIVER_FAILURE:
+      nextState.error = action.error;
+      nextState.loading = false;
+      return nextState;
+    case UPDATE_RIVER_START:
+      nextState.loading = true;
+      return nextState;
+    case UPDATE_RIVER_SUCCESS:
+      const mappedRivers = Object.values(newState).map((river) => {
+        if (river.id === action.river.id) {
+          return action.river;
+        } else {
+          return river;
+        }
+      });
+      nextState = { ...mappedRivers };
+      nextState.loading = false;
+      return nextState;
+    case UPDATE_RIVER_FAILURE:
+      nextState.error = action.error;
       nextState.loading = false;
       return nextState;
     default:
