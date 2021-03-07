@@ -12,6 +12,7 @@ invite = Blueprint('invites', __name__)
 @jwt_required()
 def handle_invites():
 
+    # POST path
     if request.method == "POST":
         data = request.get_json()
         invite = Invite(
@@ -23,6 +24,7 @@ def handle_invites():
         db.session.commit()
         return jsonify(message="Invite Successfully Sent"), 200
 
+    # GET path
     else:
         user_email = get_jwt_identity()
         user = User.query.filter_by(email=user_email).first()
@@ -47,5 +49,5 @@ def handle_invite_by_id(id):
         return jsonify(message="invite deleted successfully"), 200
 
     # GET path
-    if request.method == "GET":
+    else:
         return jsonify(invite=invite_obj.to_dict()), 200
