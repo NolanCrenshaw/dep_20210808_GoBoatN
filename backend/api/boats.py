@@ -9,24 +9,15 @@ boat = Blueprint('boats', __name__)
 @boat.route('/', methods=["GET", "POST"])
 @jwt_required()
 def handle_boats():
-
-    # GET path
-    if request.method == "GET":
-        user_email = get_jwt_identity()
-        user = User.query.filter_by(email=user_email).first()
-        boats = []
-        user_boats = user.boats
-        for boat in user_boats:
-            boats.append(boat.to_dict())
-        return jsonify(boats=boats), 200
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
 
     # POST path
     if request.method == "POST":
         data = request.get_json()
         boat = Boat(
             name=data['name'],
-            make=data['make'],
-            user_id=data['user_id'],
+            user_id=user.id,
             occupancy=data['occupancy'],
             sprite=data['sprite']
         )
@@ -34,27 +25,40 @@ def handle_boats():
         db.session.commit()
         return jsonify(message="boat created successfully"), 200
 
+    # GET path
+    else:
+        boats = []
+        user_boats = user.boats
+        for boat in user_boats:
+            boats.append(boat.to_dict())
+        return jsonify(boats=boats), 200
 
-@boat.route('/<id>', methods=["GET", "PUT"])
+
+@boat.route('/<id>', methods=["GET", "PUT", "DELETE"])
 @jwt_required()
 def handle_boat_by_id(id):
-    boat_object = Boat.query.filter_by(id=id).first()
-
-    # GET path
-    if request.method == "GET":
-        return jsonify(boat=boat_object.to_dict()), 200
+    boat_obj = Boat.query.filter_by(id=id).first()
 
     # PUT path
     if request.method == "PUT":
-        # ~~ TODO ~~
-        return jsonify(message="reached boat PUT successfully"), 200
+        data = request.get_json()
+        boat_obj.name = data["name"]
+        boat_obj.occupancy = data["occupancy"]
+        boat_obj.sprite = data["sprite"]
+        db.session.commit()
+        return jsonify(message="Boat Successfully Updated"), 200
 
+    # DELETE path
+    if request.method == "DELETE":
+        user_email = get_jwt_identity()
+        user_obj = User.query.filter_by(email=user_email).first()
+        if boat_obj.user_id == user_obj.id:
+            db.session.delete(boat_obj)
+            db.session.commit()
+            return jsonify(message="Boat Successfully Removed"), 200
+        else:
+            return jsonify(message="Unauthorized Request"), 403
 
-@boat.route('/delete', methods=["DELETE"])
-@jwt_required()
-def destroy_boat():
-    data = request.get_json()
-    boat = Boat.query.filter_by(id=data["id"]).first()
-    db.session.delete(boat)
-    db.session.commit()
-    return jsonify(message="boat deleted"), 200
+    # GET path
+    else:
+        return jsonify(boat=boat_obj.to_dict()), 200

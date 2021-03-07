@@ -105,7 +105,6 @@ class Boat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    make = db.Column(db.String(255), nullable=False)
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
     date_added = db.Column(db.DateTime, nullable=False,
@@ -118,7 +117,6 @@ class Boat(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "make": self.make,
             "user": self.user_id,
             "occupancy": self.occupancy,
             "sprite": self.sprite,
