@@ -21,6 +21,9 @@ class User(db.Model):
     profile_pic = db.Column(db.String(255))
     banner_pic = db.Column(db.String(255))
     sprite = db.Column(db.String(255))
+    updated_at = db.Column(
+        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
+    )
     date_added = db.Column(
         db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
