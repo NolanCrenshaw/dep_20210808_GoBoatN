@@ -14,6 +14,7 @@ river = Blueprint('rivers', __name__)
 @jwt_required()
 def get_rivers():
 
+    # POST path
     if request.method == "POST":
         data = request.get_json()
         river = River(
@@ -26,6 +27,7 @@ def get_rivers():
         db.session.commit()
         return jsonify(message="River Successfully Added"), 200
 
+    # GET path
     else:
         # return all rivers ordered by name
         rivers = []
@@ -51,23 +53,19 @@ def get_rivers(id):
         db.session.commit()
         return jsonify(message="River Successfully Updated"), 200
 
+    # GET path
     else:
         return jsonify(river_obj.to_dict()), 200
 
 
-@river.route('/accesses/<id>/', methods=["GET", "PUT"])
+@river.route('/accesses/<id>/', methods=["GET"])
 @jwt_required()
 def accesses_by_river(id):
 
     # GET path
-    if request.method == "GET":
-        access_list = []
-        river_obj = River.query.filter_by(id=id).first()
-        access_objects = river_obj.accesses
-        for access in access_objects:
-            access_list.append(access.to_dict())
-
-        return jsonify(accesses=access_list), 200
-
-    if request.method == "PUT":
-        return jsonify(message="reached accesses PUT route successfully"), 200
+    access_list = []
+    river_obj = River.query.filter_by(id=id).first()
+    access_objects = river_obj.accesses
+    for access in access_objects:
+        access_list.append(access.to_dict())
+    return jsonify(accesses=access_list), 200
