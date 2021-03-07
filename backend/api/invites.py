@@ -11,37 +11,43 @@ invite = Blueprint('invites', __name__)
 @invite.route('/', methods=["GET", "POST"])
 @jwt_required()
 def handle_invites():
-    user_email = get_jwt_identity()
-    user = User.query.filter_by(email=user_email).first()
-    user_invites = user.invites
 
-    invites = []
-    for invite in user_invites:
-        invites.append(invite.to_dict())
-
-    return jsonify(invites=invites), 200
-
-
-@invite.route('/<id>', methods=["GET", "PUT"])
-@jwt_required()
-def invite_by_id(id):
+    # POST path
+    if request.method == "POST":
+        data = request.get_json()
+        invite = Invite(
+            trip_id=data["tripID"],
+            sender_id=data["senderID"],
+            receiver_id=data["receiverID"],
+        )
+        db.session.add(invite)
+        db.session.commit()
+        return jsonify(message="Invite Successfully Sent"), 200
 
     # GET path
-    if request.method == "GET":
-        invite = Invite.query.filter_by(id=id).first()
-        return jsonify(invite=invite.to_dict()), 200
+    else:
+        user_email = get_jwt_identity()
+        user = User.query.filter_by(email=user_email).first()
+        user_invites = user.invites
 
-    # PUT path
-    if request.method == "PUT":
-        data = request.get_json()
-        return jsonify(message="hit PUT method"), 200
+        invites = []
+        for invite in user_invites:
+            invites.append(invite.to_dict())
+
+        return jsonify(invites=invites), 200
 
 
-@invite.route('/delete', methods=["DELETE"])
+@invite.route('/<id>', methods=["GET", "DELETE"])
 @jwt_required()
-def delete_friend():
-    data = request.get_json()
-    invite = Invite.query.filter_by(id=data["id"]).first()
-    db.session.delete(invite)
-    db.session.commit()
-    return jsonify(message="invite deleted successfully"), 200
+def handle_invite_by_id(id):
+    invite_obj = Invite.query.filter_by(id=id).first()
+
+    # DELETE path
+    if request.method == "DELETE":
+        db.session.delete(invite_obj)
+        db.session.commit()
+        return jsonify(message="invite deleted successfully"), 200
+
+    # GET path
+    else:
+        return jsonify(invite=invite_obj.to_dict()), 200

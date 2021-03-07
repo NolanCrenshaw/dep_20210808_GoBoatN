@@ -11,22 +11,8 @@ trip = Blueprint('trips', __name__)
 @trip.route('/', methods=["GET", "POST"])
 @jwt_required()
 def trips():
-
-    # GET path
-    if request.method == "GET":
-        user_email = get_jwt_identity()
-        user = User.query.filter_by(email=user_email).first()
-
-        user_trips = []
-        user_boater_instances = user.boaters
-        for instance in user_boater_instances:
-            user_trips.append(instance.trip_id)
-
-        trips = []
-        trip_objects = Trip.query.filter(Trip.id.in_(user_trips)).all()
-        for trip in trip_objects:
-            trips.append(trip.to_dict())
-        return jsonify(trips=trips), 200
+    user_email = get_jwt_identity()
+    user_obj = User.query.filter_by(email=user_email).first()
 
     # POST path
     if request.method == "POST":
@@ -34,13 +20,25 @@ def trips():
         trip = Trip(
             scheduled_time=data['dateTime'],
             river_id=data['riverID'],
-            trip_leader=data['userID'],
+            trip_leader=user_obj.id,
             put_in=data['putinID'],
             take_out=data['takeoutID']
         )
         db.session.add(trip)
         db.session.commit()
         return jsonify(message="Success"), 200
+
+    # GET path
+    else:
+        user_trips = []
+        user_boater_instances = user_obj.boaters
+        for instance in user_boater_instances:
+            user_trips.append(instance.trip_id)
+        trips = []
+        trip_objects = Trip.query.filter(Trip.id.in_(user_trips)).all()
+        for trip in trip_objects:
+            trips.append(trip.to_dict())
+        return jsonify(trips=trips), 200
 
 
 @trip.route('/<id>', methods=["GET", "PUT", "DELETE"])

@@ -105,7 +105,6 @@ class Boat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    make = db.Column(db.String(255), nullable=False)
     occupancy = db.Column(db.Integer, nullable=False)
     sprite = db.Column(db.String(255))
     date_added = db.Column(db.DateTime, nullable=False,
@@ -118,7 +117,6 @@ class Boat(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "make": self.make,
             "user": self.user_id,
             "occupancy": self.occupancy,
             "sprite": self.sprite,
@@ -204,10 +202,6 @@ class Invite(db.Model):
         db.Integer, db.ForeignKey("users.id"), nullable=False)
     receiver_id = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    accepted = db.Column(db.Boolean, nullable=False, default=False)
-    updated_at = db.Column(
-        db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
-    )
     date_added = db.Column(
         db.DateTime(timezone=True), nullable=False, default=datetime.utcnow
     )
@@ -218,8 +212,6 @@ class Invite(db.Model):
             "trip_id": self.trip_id,
             "sender_id": self.sender_id,
             "receiver_id": self.receiver_id,
-            "accepted": self.accepted,
-            "updated_at": self.updated_at,
             "date_added": self.date_added,
         }
 
